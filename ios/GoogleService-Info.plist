@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>267741102183-g98a9k0ee3la9o5tumpaun818el933nf.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.267741102183-g98a9k0ee3la9o5tumpaun818el933nf</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCUBoXl2PzkLMNDZE8dYtb_XUJGCNNNgsY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>267741102183</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.nikhilsingh.ielts</string>
+	<key>PROJECT_ID</key>
+	<string>ielts-690ca</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ielts-690ca.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:267741102183:ios:622c746a609e264bf994c2</string>
+	<key>DATABASE_URL</key>
+	<string>https://ielts-690ca.firebaseio.com</string>
+</dict>
+</plist>
