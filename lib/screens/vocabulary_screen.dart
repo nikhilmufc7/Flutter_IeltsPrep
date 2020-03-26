@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
+import 'package:ielts/lesson_data/vocabulary_data.dart';
+import 'package:ielts/models/vocabulary.dart';
 import 'package:ielts/widgets/menu_page.dart';
 
 final Color backgroundColor = Color(0xFF21BFBD);
@@ -13,14 +15,7 @@ class VocabularyScreen extends StatefulWidget {
 
 class _VocabularyScreenState extends State<VocabularyScreen>
     with SingleTickerProviderStateMixin {
-  List<String> welcomeImages = [
-    "https://images.unsplash.com/photo-1533470192478-9897d90d5461?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-    "https://images.unsplash.com/photo-1461301214746-1e109215d6d3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-    "https://images.unsplash.com/photo-1426604966848-d7adac402bff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-    "https://images.unsplash.com/photo-1494633114655-819eb91fde40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-    "https://images.unsplash.com/photo-1490682143684-14369e18dce8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-    "https://images.unsplash.com/reserve/Hxev8VTsTuOJ27thHQdK_DSC_0068.JPG?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-  ];
+  List vocabulary;
 
   bool isCollapsed = true;
   double screenWidth, screenHeight;
@@ -39,6 +34,8 @@ class _VocabularyScreenState extends State<VocabularyScreen>
         Tween<double>(begin: 0.5, end: 1).animate(_controller);
     _slideAnimation = Tween<Offset>(begin: Offset(-1, 0), end: Offset(0, 0))
         .animate(_controller);
+
+    vocabulary = getVocabularyData();
   }
 
   @override
@@ -114,23 +111,21 @@ class _VocabularyScreenState extends State<VocabularyScreen>
                   SizedBox(height: 25.0),
                   Padding(
                     padding: EdgeInsets.only(left: 40.0),
-                    child: Expanded(
-                      child: Row(
-                        children: <Widget>[
-                          Text('Vocabulary',
-                              style: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 25.0)),
-                          SizedBox(width: 10.0),
-                          // Text('Prep',
-                          //     style: TextStyle(
-                          //         fontFamily: 'Montserrat',
-                          //         color: Colors.white,
-                          //         fontSize: 25.0))
-                        ],
-                      ),
+                    child: Row(
+                      children: <Widget>[
+                        Text('Vocabulary',
+                            style: TextStyle(
+                                fontFamily: 'Montserrat',
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25.0)),
+                        SizedBox(width: 10.0),
+                        // Text('Prep',
+                        //     style: TextStyle(
+                        //         fontFamily: 'Montserrat',
+                        //         color: Colors.white,
+                        //         fontSize: 25.0))
+                      ],
                     ),
                   ),
                   SizedBox(height: 40.0),
@@ -150,7 +145,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
                           child: Container(
                             child: TinderSwapCard(
                                 orientation: AmassOrientation.BOTTOM,
-                                totalNum: 6,
+                                totalNum: vocabulary.length,
                                 stackNum: 3,
                                 swipeEdge: 4.0,
                                 maxWidth:
@@ -161,16 +156,8 @@ class _VocabularyScreenState extends State<VocabularyScreen>
                                     MediaQuery.of(context).size.width * 0.8,
                                 minHeight:
                                     MediaQuery.of(context).size.width * 0.8,
-                                cardBuilder: (context, index) => Card(
-                                      child: Column(
-                                        children: <Widget>[
-                                          Image.network(
-                                              '${welcomeImages[index]}'),
-                                          Text('This is a noun'),
-                                          Text('Oxford ')
-                                        ],
-                                      ),
-                                    ),
+                                cardBuilder: (context, index) =>
+                                    makeCard(vocabulary[index]),
                                 cardController: controller = CardController(),
                                 swipeUpdateCallback: (DragUpdateDetails details,
                                     Alignment align) {
@@ -196,6 +183,18 @@ class _VocabularyScreenState extends State<VocabularyScreen>
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget makeCard(Vocabulary vocabulary) {
+    return Card(
+      child: Column(
+        children: <Widget>[
+          Text(vocabulary.word),
+          Text(vocabulary.description),
+          Text(vocabulary.sentence)
+        ],
       ),
     );
   }
