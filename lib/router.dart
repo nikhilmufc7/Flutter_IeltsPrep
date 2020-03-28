@@ -5,12 +5,15 @@ import 'package:ielts/screens/reading_screen.dart';
 import 'package:ielts/screens/speaking_screen.dart';
 import 'package:ielts/screens/vocabulary_screen.dart';
 import 'package:ielts/screens/writing_screen.dart';
+import 'package:ielts/screens/login_screen.dart';
 import 'app_constants.dart';
 
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case RoutePaths.root:
+        return MaterialPageRoute<Widget>(builder: (_) => LoginScreen());
+      case RoutePaths.home:
         return MaterialPageRoute<Widget>(builder: (_) => HomeScreen());
       case RoutePaths.vocabulary:
         return MaterialPageRoute<Widget>(builder: (_) => VocabularyScreen());

@@ -14,7 +14,7 @@ description: A new Flutter project.
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.1.0 <3.0.0'
+  sdk: '>=2.5.0 <3.0.0'
 
 dependencies:
   flutter:
@@ -33,6 +33,7 @@ dependencies:
   cached_network_image: ^2.0.0
   audioplayers:
   firebase_messaging: ^6.0.13
+  google_fonts:
 
 dev_dependencies:
   flutter_test:
