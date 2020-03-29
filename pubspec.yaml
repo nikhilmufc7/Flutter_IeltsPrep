@@ -34,6 +34,7 @@ dependencies:
   audioplayers:
   firebase_messaging: ^6.0.13
   google_fonts:
+  google_sign_in:
 
 dev_dependencies:
   flutter_test:

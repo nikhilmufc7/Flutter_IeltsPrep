@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ielts/app_constants.dart';
+import 'package:ielts/services/auth.dart';
 import 'package:ielts/widgets/menu_page.dart';
 
 final Color backgroundColor = Color(0xFF21BFBD);
@@ -95,8 +96,25 @@ class _HomeScreenState extends State<HomeScreen>
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(right: 18.0),
-                        child: Icon(Icons.settings, color: Colors.white),
+                        padding: const EdgeInsets.only(right: 8, top: 14),
+                        child: PopupMenuButton<String>(
+                          onSelected: (String result) {
+                            switch (result) {
+                              case 'signOut':
+                                signOutGoogle(context);
+                                break;
+
+                              default:
+                            }
+                          },
+                          itemBuilder: (BuildContext context) =>
+                              <PopupMenuEntry<String>>[
+                            const PopupMenuItem<String>(
+                              value: 'signOut',
+                              child: Text('Sign Out'),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),

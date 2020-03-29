@@ -11,24 +11,24 @@ class ZoomScaffold extends StatefulWidget {
   });
 
   @override
-  _ZoomScaffoldState createState() => new _ZoomScaffoldState();
+  _ZoomScaffoldState createState() => _ZoomScaffoldState();
 }
 
 class _ZoomScaffoldState extends State<ZoomScaffold>
     with TickerProviderStateMixin {
-  Curve scaleDownCurve = new Interval(0.0, 0.3, curve: Curves.easeOut);
-  Curve scaleUpCurve = new Interval(0.0, 1.0, curve: Curves.easeOut);
-  Curve slideOutCurve = new Interval(0.0, 1.0, curve: Curves.easeOut);
-  Curve slideInCurve = new Interval(0.0, 1.0, curve: Curves.easeOut);
+  Curve scaleDownCurve = Interval(0.0, 0.3, curve: Curves.easeOut);
+  Curve scaleUpCurve = Interval(0.0, 1.0, curve: Curves.easeOut);
+  Curve slideOutCurve = Interval(0.0, 1.0, curve: Curves.easeOut);
+  Curve slideInCurve = Interval(0.0, 1.0, curve: Curves.easeOut);
 
   createContentDisplay() {
-    return zoomAndSlideContent(new Container(
-      child: new Scaffold(
+    return zoomAndSlideContent(Container(
+      child: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: new AppBar(
+        appBar: AppBar(
             backgroundColor: Colors.grey[200],
             elevation: 0.0,
-            leading: new IconButton(
+            leading: IconButton(
                 icon: Icon(
                   Icons.menu,
                   color: Colors.black,
@@ -101,14 +101,14 @@ class _ZoomScaffoldState extends State<ZoomScaffold>
     final cornerRadius =
         16.0 * Provider.of<MenuController>(context, listen: true).percentOpen;
 
-    return new Transform(
-      transform: new Matrix4.translationValues(slideAmount, 0.0, 0.0)
+    return Transform(
+      transform: Matrix4.translationValues(slideAmount, 0.0, 0.0)
         ..scale(contentScale, contentScale),
       alignment: Alignment.centerLeft,
-      child: new Container(
-        decoration: new BoxDecoration(
+      child: Container(
+        decoration: BoxDecoration(
           boxShadow: [
-            new BoxShadow(
+            BoxShadow(
               color: Colors.black12,
               offset: const Offset(0.0, 5.0),
               blurRadius: 15.0,
@@ -116,9 +116,8 @@ class _ZoomScaffoldState extends State<ZoomScaffold>
             ),
           ],
         ),
-        child: new ClipRRect(
-            borderRadius: new BorderRadius.circular(cornerRadius),
-            child: content),
+        child: ClipRRect(
+            borderRadius: BorderRadius.circular(cornerRadius), child: content),
       ),
     );
   }
@@ -147,7 +146,7 @@ class ZoomScaffoldMenuController extends StatefulWidget {
 
   @override
   ZoomScaffoldMenuControllerState createState() {
-    return new ZoomScaffoldMenuControllerState();
+    return ZoomScaffoldMenuControllerState();
   }
 }
 
@@ -178,7 +177,7 @@ class MenuController extends ChangeNotifier {
 
   MenuController({
     this.vsync,
-  }) : _animationController = new AnimationController(vsync: vsync) {
+  }) : _animationController = AnimationController(vsync: vsync) {
     _animationController
       ..duration = const Duration(milliseconds: 250)
       ..addListener(() {

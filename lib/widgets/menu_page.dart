@@ -1,19 +1,17 @@
 import 'package:ielts/app_constants.dart';
 import 'package:ielts/widgets/circular_image.dart';
 import 'package:ielts/widgets/zoom_scaffold.dart';
+import 'package:ielts/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class MenuPage extends StatelessWidget {
-  final String imageUrl =
-      "https://celebritypets.net/wp-content/uploads/2016/12/Adriana-Lima.jpg";
-
   final List<MenuItem> options = [
     MenuItem(Icons.home, 'Home', RoutePaths.root),
     MenuItem(Icons.library_books, 'Vocabulary', RoutePaths.vocabulary),
-    MenuItem(Icons.favorite, 'Discounts', ''),
-    MenuItem(Icons.code, 'Prom-codes', ''),
-    MenuItem(Icons.format_list_bulleted, 'Orders', ''),
+    MenuItem(Icons.speaker_notes, 'Blog', ''),
+    MenuItem(Icons.people, 'Forum', ''),
+    MenuItem(Icons.format_list_bulleted, 'Tips and tricks', ''),
   ];
 
   @override
@@ -43,7 +41,7 @@ class MenuPage extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'Nikhil',
+                  name,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,
