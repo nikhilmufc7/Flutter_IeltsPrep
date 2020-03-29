@@ -3,15 +3,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ielts/app_constants.dart';
 import 'package:ielts/screens/home_screen.dart';
+import 'package:ielts/services/auth.dart';
 
-class SplashPage extends StatefulWidget {
-  SplashPage({Key key}) : super(key: key);
+class SplashScreen extends StatefulWidget {
+  SplashScreen({Key key}) : super(key: key);
 
   @override
-  _SplashPageState createState() => _SplashPageState();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashPageState extends State<SplashPage> {
+class _SplashScreenState extends State<SplashScreen> {
   @override
   initState() {
     FirebaseAuth.instance
@@ -34,6 +35,7 @@ class _SplashPageState extends State<SplashPage> {
                 }
             })
         .catchError((err) => print(err));
+
     super.initState();
   }
 

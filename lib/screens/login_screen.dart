@@ -1,4 +1,9 @@
+import 'dart:io';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ielts/app_constants.dart';
@@ -21,6 +26,10 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen>
     with SingleTickerProviderStateMixin {
   final GlobalKey<FormState> _formKey = GlobalKey();
+  TextEditingController firstNameInputController;
+  TextEditingController emailInputController;
+  TextEditingController passwordInputController;
+
   AuthMode _authMode = AuthMode.Login;
   Map<String, String> _authData = {
     'email': '',
@@ -34,6 +43,11 @@ class _LoginScreenState extends State<LoginScreen>
   @override
   void initState() {
     // TODO: implement initState
+
+    firstNameInputController = TextEditingController();
+
+    emailInputController = TextEditingController();
+    passwordInputController = TextEditingController();
     super.initState();
     _controller = AnimationController(
         vsync: this,
@@ -58,6 +72,74 @@ class _LoginScreenState extends State<LoginScreen>
     _controller.dispose();
   }
 
+  String emailValidator(String value) {
+    Pattern pattern =
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    RegExp regex = RegExp(pattern);
+    if (!regex.hasMatch(value)) {
+      return 'Email format is invalid';
+    } else {
+      return null;
+    }
+  }
+
+  String pwdValidator(String value) {
+    if (value.length < 8) {
+      return 'Password must be longer than 8 characters';
+    } else {
+      return null;
+    }
+  }
+
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text('An Error Occurred!'),
+        content: Text(message),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('Okay'),
+            onPressed: () {
+              Navigator.of(ctx).pop();
+            },
+          )
+        ],
+      ),
+    );
+  }
+
+  Future<void> _submit() async {
+    if (!_formKey.currentState.validate()) {
+      return;
+    }
+    _formKey.currentState.save();
+    try {
+      if (_authMode == AuthMode.Login) {
+        await signIn(emailInputController.text, passwordInputController.text)
+            .then((value) =>
+                {Navigator.pushReplacementNamed(context, RoutePaths.home)});
+      } else {
+        signUp(emailInputController.text, passwordInputController.text,
+                firstNameInputController.text)
+            .then((result) =>
+                {Navigator.pushReplacementNamed(context, RoutePaths.home)});
+      }
+    } on AuthException catch (error) {
+      print('''
+    caught firebase auth exception\n
+    ${error.code}\n
+    ${error.message}
+  ''');
+      _showErrorDialog(error.message);
+    } catch (error) {
+      const errorMessage =
+          'Could not authenticate you. Please try again later.';
+      _showErrorDialog(errorMessage);
+      print(error);
+    }
+  }
+
   void _switchAuthMode() {
     if (_authMode == AuthMode.Login) {
       setState(() {
@@ -72,7 +154,7 @@ class _LoginScreenState extends State<LoginScreen>
     }
   }
 
-  Widget _entryField(String title, {bool isPassword = false}) {
+  Widget _firstNameEntryField(String title) {
     return AnimatedContainer(
       duration: Duration(
         milliseconds: 300,
@@ -89,8 +171,73 @@ class _LoginScreenState extends State<LoginScreen>
           SizedBox(
             height: 10,
           ),
-          TextField(
-              obscureText: isPassword,
+          TextFormField(
+              controller: firstNameInputController,
+              validator: (value) {
+                if (value.length < 3) {
+                  return "Please enter a valid first name";
+                }
+              },
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  fillColor: Color(0xfff3f3f4),
+                  filled: true))
+        ],
+      ),
+    );
+  }
+
+  Widget _emailEntryField(String title) {
+    return AnimatedContainer(
+      duration: Duration(
+        milliseconds: 300,
+      ),
+      curve: Curves.easeIn,
+      margin: EdgeInsets.symmetric(vertical: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            title,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          TextFormField(
+              controller: emailInputController,
+              keyboardType: TextInputType.emailAddress,
+              validator: emailValidator,
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  fillColor: Color(0xfff3f3f4),
+                  filled: true))
+        ],
+      ),
+    );
+  }
+
+  Widget _passwordEntryField(String title) {
+    return AnimatedContainer(
+      duration: Duration(
+        milliseconds: 300,
+      ),
+      curve: Curves.easeIn,
+      margin: EdgeInsets.symmetric(vertical: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            title,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          TextFormField(
+              controller: passwordInputController,
+              obscureText: true,
+              validator: pwdValidator,
               decoration: InputDecoration(
                   border: InputBorder.none,
                   fillColor: Color(0xfff3f3f4),
@@ -101,23 +248,26 @@ class _LoginScreenState extends State<LoginScreen>
   }
 
   Widget _submitButton() {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.symmetric(vertical: 15),
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(5)),
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-                color: Colors.grey.shade200,
-                offset: Offset(2, 4),
-                blurRadius: 5,
-                spreadRadius: 2)
-          ],
-          color: Color(0xFF21BFBD)),
-      child: Text(
-        '${_authMode == AuthMode.Login ? 'Login' : 'Register'}',
-        style: TextStyle(fontSize: 20, color: Colors.white),
+    return FlatButton(
+      onPressed: _submit,
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        padding: EdgeInsets.symmetric(vertical: 15),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(5)),
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                  color: Colors.grey.shade200,
+                  offset: Offset(2, 4),
+                  blurRadius: 5,
+                  spreadRadius: 2)
+            ],
+            color: Color(0xFF21BFBD)),
+        child: Text(
+          '${_authMode == AuthMode.Login ? 'Login' : 'Register'}',
+          style: TextStyle(fontSize: 20, color: Colors.white),
+        ),
       ),
     );
   }
@@ -265,15 +415,15 @@ class _LoginScreenState extends State<LoginScreen>
   }
 
   Widget _emailPasswordWidget() {
-    return Column(
-      children: <Widget>[
-        _entryField("Email id"),
-        _entryField("Password", isPassword: true),
-        if (_authMode == AuthMode.Signup)
-          _entryField(
-            "First Name",
-          )
-      ],
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: <Widget>[
+          if (_authMode == AuthMode.Signup) _firstNameEntryField('First Name'),
+          _emailEntryField('Email'),
+          _passwordEntryField('Password'),
+        ],
+      ),
     );
   }
 

@@ -13,7 +13,7 @@ class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case RoutePaths.root:
-        return MaterialPageRoute<Widget>(builder: (_) => SplashPage());
+        return MaterialPageRoute<Widget>(builder: (_) => SplashScreen());
       case RoutePaths.login:
         return MaterialPageRoute<Widget>(builder: (_) => LoginScreen());
       case RoutePaths.home:

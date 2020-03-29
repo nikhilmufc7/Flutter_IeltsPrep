@@ -1,6 +1,8 @@
 import 'package:ielts/app_constants.dart';
+
+import 'package:ielts/screens/splash_screen.dart';
 import 'package:ielts/widgets/circular_image.dart';
-import 'package:ielts/widgets/zoom_scaffold.dart';
+
 import 'package:ielts/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,12 +19,12 @@ class MenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onPanUpdate: (details) {
-        //on swiping left
-        if (details.delta.dx < -6) {
-          Provider.of<MenuController>(context, listen: true).toggle();
-        }
-      },
+      // onPanUpdate: (details) {
+      //   //on swiping left
+      //   if (details.delta.dx < -6) {
+      //     Provider.of<MenuController>(context, listen: true).toggle();
+      //   }
+      // },
       child: Container(
         padding: EdgeInsets.only(
             top: 62,
@@ -37,13 +39,12 @@ class MenuPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 16),
                   child: CircularImage(
-                    NetworkImage(imageUrl != null
-                        ? imageUrl
-                        : 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpPB5pEuE0YB_QJpiRec81Y5ZFGgFLBZB6S2krq-MQkF8CG8MU'),
+                    NetworkImage(
+                        'https://images.unsplash.com/photo-1553830591-2f39e38a013c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'),
                   ),
                 ),
                 Text(
-                  name,
+                  'name',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,

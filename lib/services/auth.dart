@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -52,15 +53,22 @@ Future<String> signIn(String email, String password) async {
   FirebaseUser user = result.user;
   name = user.displayName;
   email = user.email;
+
   return user.uid;
 }
 
-Future<String> signUp(String email, String password) async {
+Future<String> signUp(String email, String password, String firstName) async {
   AuthResult result = await _auth.createUserWithEmailAndPassword(
       email: email, password: password);
   FirebaseUser user = result.user;
   name = user.displayName;
   email = user.email;
+
+  Firestore.instance.collection('users').document(user.uid).setData({
+    "uid": user.uid,
+    "firstName": firstName,
+    "email": email,
+  });
   return user.uid;
 }
 
