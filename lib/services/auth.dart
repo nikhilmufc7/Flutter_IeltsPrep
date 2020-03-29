@@ -67,7 +67,7 @@ Future<String> signUp(String email, String password) async {
 void signOutGoogle(context) async {
   await _auth.signOut();
   await googleSignIn.signOut();
-  Navigator.pushReplacementNamed(context, RoutePaths.root);
+  Navigator.pushReplacementNamed(context, RoutePaths.login);
 
   print("User Sign Out");
 }

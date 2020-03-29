@@ -37,7 +37,9 @@ class MenuPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 16),
                   child: CircularImage(
-                    NetworkImage(imageUrl),
+                    NetworkImage(imageUrl != null
+                        ? imageUrl
+                        : 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpPB5pEuE0YB_QJpiRec81Y5ZFGgFLBZB6S2krq-MQkF8CG8MU'),
                   ),
                 ),
                 Text(

@@ -3,6 +3,7 @@ import 'package:ielts/screens/home_screen.dart';
 import 'package:ielts/screens/listening_screen.dart';
 import 'package:ielts/screens/reading_screen.dart';
 import 'package:ielts/screens/speaking_screen.dart';
+import 'package:ielts/screens/splash_screen.dart';
 import 'package:ielts/screens/vocabulary_screen.dart';
 import 'package:ielts/screens/writing_screen.dart';
 import 'package:ielts/screens/login_screen.dart';
@@ -12,6 +13,8 @@ class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case RoutePaths.root:
+        return MaterialPageRoute<Widget>(builder: (_) => SplashPage());
+      case RoutePaths.login:
         return MaterialPageRoute<Widget>(builder: (_) => LoginScreen());
       case RoutePaths.home:
         return MaterialPageRoute<Widget>(builder: (_) => HomeScreen());
