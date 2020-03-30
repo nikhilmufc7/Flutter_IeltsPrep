@@ -11,6 +11,9 @@ String name;
 String email;
 String imageUrl;
 
+String userImage =
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTP6HBlxRaCn7CViHiZrhpx1Sx4GHM-dafYZZjW0eizMFidSQRS&usqp=CAU';
+
 Future<String> signInWithGoogle() async {
   final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
   final GoogleSignInAuthentication googleSignInAuthentication =
@@ -37,6 +40,12 @@ Future<String> signInWithGoogle() async {
   if (name.contains(" ")) {
     name = name.substring(0, name.indexOf(" "));
   }
+  Firestore.instance.collection('users').document(user.uid).setData({
+    "uid": user.uid,
+    "firstName": name,
+    "email": user.email,
+    "userImage": user.photoUrl
+  });
 
   assert(!user.isAnonymous);
   assert(await user.getIdToken() != null);
@@ -68,6 +77,7 @@ Future<String> signUp(String email, String password, String firstName) async {
     "uid": user.uid,
     "firstName": firstName,
     "email": email,
+    "userImage": userImage,
   });
   return user.uid;
 }
