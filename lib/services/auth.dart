@@ -10,6 +10,7 @@ final GoogleSignIn googleSignIn = GoogleSignIn();
 String name;
 String email;
 String imageUrl;
+String userId;
 
 String userImage =
     'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTP6HBlxRaCn7CViHiZrhpx1Sx4GHM-dafYZZjW0eizMFidSQRS&usqp=CAU';
@@ -35,6 +36,7 @@ Future<String> signInWithGoogle() async {
   name = user.displayName;
   email = user.email;
   imageUrl = user.photoUrl;
+  userId = user.uid;
 
   // Only taking the first part of the name, i.e., First Name
   if (name.contains(" ")) {
@@ -62,6 +64,7 @@ Future<String> signIn(String email, String password) async {
   FirebaseUser user = result.user;
   name = user.displayName;
   email = user.email;
+  userId = user.uid;
 
   return user.uid;
 }

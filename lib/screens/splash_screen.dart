@@ -4,6 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ielts/app_constants.dart';
 import 'package:ielts/screens/home_screen.dart';
 import 'package:ielts/services/auth.dart';
+import 'package:ielts/widgets/menu_page.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   SplashScreen({Key key}) : super(key: key);
@@ -19,9 +21,16 @@ class _SplashScreenState extends State<SplashScreen> {
         .currentUser()
         .then((currentUser) => {
               if (currentUser == null)
-                {Navigator.pushReplacementNamed(context, RoutePaths.login)}
+                {
+                  Navigator.pushReplacementNamed(
+                    context,
+                    RoutePaths.login,
+                  ),
+                  userId = currentUser.uid,
+                }
               else
                 {
+                  userId = currentUser.uid,
                   Firestore.instance
                       .collection("users")
                       .document(currentUser.uid)
@@ -41,6 +50,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    @override
+    void initState() {
+      super.initState();
+    }
+
     return Scaffold(
       body: Center(
         child: Container(

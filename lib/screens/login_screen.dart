@@ -346,7 +346,7 @@ class _LoginScreenState extends State<LoginScreen>
                       topRight: Radius.circular(5)),
                 ),
                 alignment: Alignment.center,
-                child: Text('Log in with Facebook',
+                child: Text('Log in with Google',
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,

@@ -1,9 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ielts/app_constants.dart';
+import 'package:ielts/models/userModel.dart';
+import 'package:ielts/services/auth.dart';
+import 'package:ielts/viewModels/speakingCrudModel.dart';
 
-import 'package:ielts/screens/splash_screen.dart';
 import 'package:ielts/widgets/circular_image.dart';
 
-import 'package:ielts/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,6 +22,7 @@ class MenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final productProvider = Provider.of<SpeakingCrudModel>(context);
     return GestureDetector(
       // onPanUpdate: (details) {
       //   //on swiping left
@@ -34,23 +39,54 @@ class MenuPage extends StatelessWidget {
         color: Color(0xff454dff),
         child: Column(
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(right: 16),
-                  child: CircularImage(
-                    NetworkImage(
-                        'https://images.unsplash.com/photo-1553830591-2f39e38a013c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60'),
-                  ),
-                ),
-                Text(
-                  'name',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                  ),
-                )
-              ],
+            Flexible(
+              child: StreamBuilder(
+                  stream: Firestore.instance
+                      .collection('users')
+                      .document(userId)
+                      .snapshots(),
+                  builder: (context, AsyncSnapshot snapshot) {
+                    var userDocument = snapshot.data;
+
+                    if (snapshot.connectionState == ConnectionState.active) {
+                      User user = User.from(snapshot.data);
+                      return Row(
+                        children: <Widget>[
+                          CircularImage(
+                            NetworkImage(
+                              user.photoUrl,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 15,
+                          ),
+                          Text(
+                            user.firstName,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
+                      );
+                    } else if (snapshot.connectionState ==
+                        ConnectionState.waiting) {
+                      return Container(
+                          child: Center(child: CircularProgressIndicator()));
+                    } else {
+                      return Container(
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Icon(Icons.warning),
+                            ),
+                            Text('Error in loading data')
+                          ],
+                        ),
+                      );
+                    }
+                  }),
             ),
             Spacer(),
             Column(
