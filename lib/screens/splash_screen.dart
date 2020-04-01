@@ -4,8 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ielts/app_constants.dart';
 import 'package:ielts/screens/home_screen.dart';
 import 'package:ielts/services/auth.dart';
-import 'package:ielts/widgets/menu_page.dart';
-import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   SplashScreen({Key key}) : super(key: key);
@@ -26,7 +24,6 @@ class _SplashScreenState extends State<SplashScreen> {
                     context,
                     RoutePaths.login,
                   ),
-                  userId = currentUser.uid,
                 }
               else
                 {

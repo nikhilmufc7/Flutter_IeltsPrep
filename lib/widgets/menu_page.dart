@@ -46,8 +46,6 @@ class MenuPage extends StatelessWidget {
                       .document(userId)
                       .snapshots(),
                   builder: (context, AsyncSnapshot snapshot) {
-                    var userDocument = snapshot.data;
-
                     if (snapshot.connectionState == ConnectionState.active) {
                       User user = User.from(snapshot.data);
                       return Row(
