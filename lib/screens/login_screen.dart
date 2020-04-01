@@ -77,15 +77,15 @@ class _LoginScreenState extends State<LoginScreen>
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
     RegExp regex = RegExp(pattern);
     if (!regex.hasMatch(value)) {
-      return 'Email format is invalid';
+      return 'Email format is invalid, Check for spaces or special characters';
     } else {
       return null;
     }
   }
 
   String pwdValidator(String value) {
-    if (value.length < 8) {
-      return 'Password must be longer than 8 characters';
+    if (value.length < 6) {
+      return 'Password must be longer than 6 characters';
     } else {
       return null;
     }
@@ -120,7 +120,7 @@ class _LoginScreenState extends State<LoginScreen>
             .then((value) =>
                 {Navigator.pushReplacementNamed(context, RoutePaths.home)});
       } else {
-        signUp(emailInputController.text, passwordInputController.text,
+        await signUp(emailInputController.text, passwordInputController.text,
                 firstNameInputController.text)
             .then((result) =>
                 {Navigator.pushReplacementNamed(context, RoutePaths.home)});
@@ -131,11 +131,12 @@ class _LoginScreenState extends State<LoginScreen>
     ${error.code}\n
     ${error.message}
   ''');
-      _showErrorDialog(error.message);
+      _showErrorDialog(
+          'Could not authenticate you.$errorMessage Please try again later.');
     } catch (error) {
-      const errorMessage =
-          'Could not authenticate you. Please try again later.';
-      _showErrorDialog(errorMessage);
+      var errorM =
+          'Could not authenticate you.$errorMessage Please try again later.';
+      _showErrorDialog(errorM);
       print(error);
     }
   }
