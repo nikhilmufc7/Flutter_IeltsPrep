@@ -153,3 +153,24 @@ void signOutGoogle(context) async {
 
   print("User Sign Out");
 }
+
+Future<void> resetPassword(String email) async {
+  try {
+    await _auth.sendPasswordResetEmail(email: email);
+  } catch (error) {
+    switch (error.code) {
+      case "ERROR_USER_NOT_FOUND":
+        errorMessage = "Email address does not have a account";
+        break;
+      case "ERROR_INVALID_EMAIL":
+        errorMessage = "Invalid email";
+        break;
+
+      default:
+        errorMessage = "An undefined Error happened.";
+    }
+  }
+  if (errorMessage != null) {
+    return Future.error(errorMessage);
+  }
+}

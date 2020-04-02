@@ -7,4 +7,5 @@ class RoutePaths {
   static const String speaking = '/speaking';
   static const String reading = '/reading';
   static const String listening = '/listening';
+  static const String resetpassword = '/resetpassword';
 }

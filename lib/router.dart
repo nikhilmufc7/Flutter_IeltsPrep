@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ielts/screens/home_screen.dart';
 import 'package:ielts/screens/listening_screen.dart';
 import 'package:ielts/screens/reading_screen.dart';
+import 'package:ielts/screens/reset_password_screen.dart';
 import 'package:ielts/screens/speaking_screen.dart';
 import 'package:ielts/screens/splash_screen.dart';
 import 'package:ielts/screens/vocabulary_screen.dart';
@@ -28,6 +29,9 @@ class Router {
         return MaterialPageRoute<Widget>(builder: (_) => ReadingScreen());
       case RoutePaths.listening:
         return MaterialPageRoute<Widget>(builder: (_) => ListeningScreen());
+      case RoutePaths.resetpassword:
+        return MaterialPageRoute<Widget>(builder: (_) => ResetPasswordScreen());
+
       default:
         return MaterialPageRoute<Widget>(
           builder: (_) => Scaffold(

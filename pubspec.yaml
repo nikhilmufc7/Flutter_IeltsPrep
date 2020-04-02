@@ -56,6 +56,8 @@ flutter:
     - assets/writing.jpg
     - assets/listening.jpeg
     - assets/speaking.jpg
+    - assets/googlelogo.jpg
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
