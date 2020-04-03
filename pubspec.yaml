@@ -35,6 +35,7 @@ dependencies:
   firebase_messaging: ^6.0.13
   google_fonts:
   google_sign_in:
+  basic_utils:
 
 dev_dependencies:
   flutter_test:
@@ -57,6 +58,7 @@ flutter:
     - assets/listening.jpeg
     - assets/speaking.jpg
     - assets/googlelogo.jpg
+    - assets/giphy.gif
 
   #   - images/a_dot_ham.jpeg
 

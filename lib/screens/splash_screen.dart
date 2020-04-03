@@ -53,9 +53,10 @@ class _SplashScreenState extends State<SplashScreen> {
     }
 
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Center(
         child: Container(
-          child: Text("Loading..."),
+          child: Image.asset('assets/giphy.gif'),
         ),
       ),
     );
