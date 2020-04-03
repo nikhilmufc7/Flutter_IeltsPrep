@@ -11,7 +11,7 @@ List getVocabularyData() {
         word: "approach",
         description: "move towards",
         sentence:
-            "Spain’s jobless rate for people ages  to  is approaching  percent"),
+            "Spains jobless rate for people ages  to  is approaching  percent"),
     Vocabulary(
         word: "establish",
         description: "set up or found",
@@ -48,7 +48,7 @@ List getVocabularyData() {
         description:
             "a plan of action adopted by an individual or social group",
         sentence:
-            "Inflation has lagged behind the central bank’s  percent target, giving policy makers extra scope to cut rates"),
+            "Inflation has lagged behind the central banks  percent target, giving policy makers extra scope to cut rates"),
     Vocabulary(
         word: "straight",
         description: "successive, without a break",
@@ -58,7 +58,7 @@ List getVocabularyData() {
         word: "apparent",
         description: "clearly revealed to the mind or the senses or judgment",
         sentence:
-            "But the elderly creak is beginning to become apparent in McCartney’s voice"),
+            "But the elderly creak is beginning to become apparent in McCartneys voice"),
     Vocabulary(
         word: "property",
         description:
@@ -136,7 +136,7 @@ List getVocabularyData() {
         word: "level",
         description: "a relative position or degree of value in a graded group",
         sentence:
-            "Only last month did the men’s and women’s unemployment rates reach the same level"),
+            "Only last month did the mens and womens unemployment rates reach the same level"),
     Vocabulary(
         word: "affect",
         description: "have an influence upon",
@@ -156,7 +156,7 @@ List getVocabularyData() {
         word: "appeal",
         description: "be attractive to",
         sentence:
-            "To get traditional women’s accessories to appeal to men, some designers are giving them manly names and styles"),
+            "To get traditional womens accessories to appeal to men, some designers are giving them manly names and styles"),
     Vocabulary(
         word: "generate",
         description: "bring into existence",
@@ -248,7 +248,7 @@ List getVocabularyData() {
         word: "convention",
         description: "a large formal assembly",
         sentence:
-            "Last year, the industry’s main trade convention, the Inside Self-Storage World Expo, organized workshops in Las Vegas focusing on lien laws and auction sales"),
+            "Last year, the industrys main trade convention, the Inside Self-Storage World Expo, organized workshops in Las Vegas focusing on lien laws and auction sales"),
     Vocabulary(
         word: "skill",
         description: "an ability that has been acquired by training",
@@ -258,7 +258,7 @@ List getVocabularyData() {
         word: "harry",
         description: "annoy continually or chronically",
         sentence:
-            "There’s something uplifting about hearing a string instrument when I’m feeling ragged or harried"),
+            "Theres something uplifting about hearing a string instrument when Im feeling ragged or harried"),
     Vocabulary(
         word: "financial",
         description: "involving fiscal matters",
@@ -355,7 +355,7 @@ List getVocabularyData() {
         word: "liberal",
         description: "having political views favoring reform and progress",
         sentence:
-            "Romney’s actually done well in open primaries where fiscally conservative yet socially liberal independents have backed him over his opponents"),
+            "Romneys actually done well in open primaries where fiscally conservative yet socially liberal independents have backed him over his opponents"),
     Vocabulary(
         word: "despair",
         description: "a state in which all hope is lost or absent",
@@ -592,7 +592,7 @@ List getVocabularyData() {
         word: "fare",
         description: "proceed, get along, or succeed",
         sentence:
-            "A recent study breaks down how graduates with various college degrees are faring in today’s difficult job marke"),
+            "A recent study breaks down how graduates with various college degrees are faring in todays difficult job marke"),
     Vocabulary(
         word: "cede",
         description: "relinquish possession or control over",
@@ -607,7 +607,7 @@ List getVocabularyData() {
         word: "decree",
         description: "a legally binding command or decision",
         sentence:
-            "While the decree takes effect immediately, it requires Parliament’s approval within  days to remain in forc"),
+            "While the decree takes effect immediately, it requires Parliaments approval within  days to remain in forc"),
     Vocabulary(
         word: "contrive",
         description: "make or work out a plan for; devise",
@@ -731,7 +731,7 @@ List getVocabularyData() {
         word: "plus",
         description: "the arithmetic operation of summing",
         sentence:
-            "The survey’s margin of error was plus or minus four percentage point"),
+            "The surveys margin of error was plus or minus four percentage point"),
     Vocabulary(
         word: "sanction",
         description: "give authority or permission to",
@@ -781,7 +781,7 @@ List getVocabularyData() {
         word: "assail",
         description: "attack someone physically or emotionally",
         sentence:
-            "His campaign even issued a press release assailing other rivals for, in Mr Paul’s view, taking Mr Romney’s quote about firing people out ofcontex"),
+            "His campaign even issued a press release assailing other rivals for, in Mr Pauls view, taking Mr Romneys quote about firing people out ofcontex"),
     Vocabulary(
         word: "sublime",
         description: "of high moral or intellectual value",
@@ -839,12 +839,12 @@ List getVocabularyData() {
         word: "muse",
         description: "reflect deeply on a subject",
         sentence:
-            "Musing about the Big Picture may be a lot more gratifying than focusing on the details of the specific policies that aren’t workin"),
+            "Musing about the Big Picture may be a lot more gratifying than focusing on the details of the specific policies that arent workin"),
     Vocabulary(
         word: "satire",
         description: "witty language used to convey insults or scorn",
         sentence:
-            "There’s plenty of humor on Russian television, though not much political satire; Mr Putin put a stop to that long ag"),
+            "Theres plenty of humor on Russian television, though not much political satire; Mr Putin put a stop to that long ag"),
     Vocabulary(
         word: "intrigue",
         description: "cause to be interested or curious",
@@ -927,7 +927,7 @@ List getVocabularyData() {
         word: "philosophical",
         description: "relating to the investigation of existence and knowledge",
         sentence:
-            "His arguments, like Einstein’s, were qualitative, verging on highly philosophica"),
+            "His arguments, like Einsteins, were qualitative, verging on highly philosophica"),
     Vocabulary(
         word: "grove",
         description: "a small growth of trees without underbrush",
@@ -947,7 +947,7 @@ List getVocabularyData() {
         word: "device",
         description: "an instrumentality invented for a particular purpose",
         sentence:
-            "You’ve probably also noticed that the telephone and computer are no longer the only devices on your employees’ desk"),
+            "Youve probably also noticed that the telephone and computer are no longer the only devices on your employees desk"),
     Vocabulary(
         word: "pomp",
         description: "cheap or pretentious or vain display",
@@ -1016,12 +1016,12 @@ List getVocabularyData() {
         word: "restrained",
         description: "not showy or obtrusive",
         sentence:
-            "By contrast, Mr Pei’s restrained design took time to claim my attention, particularly since it sat quietly next door to Saarinen’s concrete gullwing"),
+            "By contrast, Mr Peis restrained design took time to claim my attention, particularly since it sat quietly next door to Saarinens concrete gullwing"),
     Vocabulary(
         word: "besiege",
         description: "harass, as with questions or requests",
         sentence:
-            "He can’t trot down the street without being besieged by paparazz"),
+            "He cant trot down the street without being besieged by paparazz"),
     Vocabulary(
         word: "manifestation",
         description: "a clear appearance",
@@ -1175,12 +1175,12 @@ List getVocabularyData() {
         word: "pervade",
         description: "spread or diffuse through",
         sentence:
-            "An air of intense anticipation pervaded the General’s dining room"),
+            "An air of intense anticipation pervaded the Generals dining room"),
     Vocabulary(
         word: "foster",
         description: "promote the growth of",
         sentence:
-            "Mr Horne accused the district’s Mexican-American studies program of using an antiwhite curriculum to foster social activist"),
+            "Mr Horne accused the districts Mexican-American studies program of using an antiwhite curriculum to foster social activist"),
     Vocabulary(
         word: "admonish",
         description:
@@ -1205,7 +1205,7 @@ List getVocabularyData() {
         word: "acquiesce",
         description: "agree or express agreement",
         sentence:
-            "American officials initially tried to resist President Karzai’s moves but eventually acquiesce"),
+            "American officials initially tried to resist President Karzais moves but eventually acquiesce"),
     Vocabulary(
         word: "slew",
         description: "a large number or amount or extent",
@@ -1215,7 +1215,7 @@ List getVocabularyData() {
         word: "usurp",
         description: "seize and take control without authority",
         sentence:
-            "More than anything, though, officials expressed concern about reigniting longstanding Mexican concerns about the United States’ usurping Mexico’sauthorit"),
+            "More than anything, though, officials expressed concern about reigniting longstanding Mexican concerns about the United States usurping Mexicosauthorit"),
     Vocabulary(
         word: "sentinel",
         description:
@@ -1343,7 +1343,7 @@ List getVocabularyData() {
         word: "pacify",
         description: "ease the anger, agitation, or strong emotion of",
         sentence:
-            "How they pacified him I don’t know, but at the end of two hours he had cooled off enough to let us go aboar"),
+            "How they pacified him I dont know, but at the end of two hours he had cooled off enough to let us go aboar"),
     Vocabulary(
         word: "pastoral",
         description: "idyllically rustic",
@@ -1358,12 +1358,12 @@ List getVocabularyData() {
         word: "ebb",
         description: "fall away or decline",
         sentence:
-            "Although Gardner’s competitive appetite ebbed after , other cravings did no"),
+            "Although Gardners competitive appetite ebbed after , other cravings did no"),
     Vocabulary(
         word: "aide",
         description: "someone who acts as an assistant",
         sentence:
-            "She later found work as a teacher’s aide in a Head Start program in Harlem"),
+            "She later found work as a teachers aide in a Head Start program in Harlem"),
     Vocabulary(
         word: "appease",
         description:
@@ -1380,7 +1380,7 @@ List getVocabularyData() {
         description:
             "something or someone turned to for assistance or security",
         sentence:
-            "Bargain hunters and holiday shoppers are bad guys’ favorite targets and have little or no recourse when shoddy or fake merchandise arrive"),
+            "Bargain hunters and holiday shoppers are bad guys favorite targets and have little or no recourse when shoddy or fake merchandise arrive"),
     Vocabulary(
         word: "constrained",
         description: "lacking spontaneity; not natural",
@@ -1390,7 +1390,7 @@ List getVocabularyData() {
         word: "bate",
         description: "moderate or restrain; lessen the force of",
         sentence:
-            "“You called her ‘an interfering, disagreeable old woman’!” whispered Bertha with bated breath, glancing half fearfully at the door as she spok"),
+            "“You called her ‘an interfering, disagreeable old woman!” whispered Bertha with bated breath, glancing half fearfully at the door as she spok"),
     Vocabulary(
         word: "aversion",
         description: "a feeling of intense dislike",
@@ -1405,7 +1405,7 @@ List getVocabularyData() {
         word: "loath",
         description: "strongly opposed",
         sentence:
-            "Friends and political allies are loath to talk about her, knowing the family’s intense obsession with privac"),
+            "Friends and political allies are loath to talk about her, knowing the familys intense obsession with privac"),
     Vocabulary(
         word: "rampart",
         description:
@@ -1426,7 +1426,7 @@ List getVocabularyData() {
         word: "perpetrate",
         description: "perform an act, usually with a negative connotation",
         sentence:
-            "Come on it’s just a cruel joke perpetrated by the airline industry"),
+            "Come on its just a cruel joke perpetrated by the airline industry"),
     Vocabulary(
         word: "decorum",
         description: "propriety in manners and conduct",

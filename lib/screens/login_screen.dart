@@ -276,9 +276,13 @@ class _LoginScreenState extends State<LoginScreen>
   Widget _googleButton() {
     return OutlineButton(
       splashColor: Colors.grey,
-      onPressed: () {
-        signInWithGoogle().whenComplete(
-            () => Navigator.pushReplacementNamed(context, RoutePaths.home));
+      onPressed: () async {
+        try {
+          await signInWithGoogle().whenComplete(
+              () => Navigator.pushReplacementNamed(context, RoutePaths.home));
+        } catch (error) {
+          print(error);
+        }
       },
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
       highlightElevation: 0,

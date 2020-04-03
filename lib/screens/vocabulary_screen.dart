@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:basic_utils/basic_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
 import 'package:ielts/lesson_data/vocabulary_data.dart';
@@ -15,6 +18,22 @@ class VocabularyScreen extends StatefulWidget {
 
 class _VocabularyScreenState extends State<VocabularyScreen>
     with SingleTickerProviderStateMixin {
+  List shuffle(List items) {
+    var random = Random();
+
+    // Go through all elements.
+    for (var i = items.length - 1; i > 0; i--) {
+      // Pick a pseudorandom number according to the list length
+      var n = random.nextInt(i + 1);
+
+      var temp = items[i];
+      items[i] = items[n];
+      items[n] = temp;
+    }
+
+    return items;
+  }
+
   List vocabulary;
 
   bool isCollapsed = true;
@@ -36,6 +55,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
         .animate(_controller);
 
     vocabulary = getVocabularyData();
+    shuffle(vocabulary);
   }
 
   @override
@@ -75,8 +95,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
           elevation: 8,
           color: backgroundColor,
           child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            physics: ClampingScrollPhysics(),
+            physics: NeverScrollableScrollPhysics(),
             child: Container(
               padding: const EdgeInsets.only(top: 48),
               child: Column(
@@ -137,11 +156,12 @@ class _VocabularyScreenState extends State<VocabularyScreen>
                           BorderRadius.only(topLeft: Radius.circular(75.0)),
                     ),
                     child: ListView(
+                      physics: ClampingScrollPhysics(),
                       primary: false,
                       padding: EdgeInsets.only(left: 25.0, right: 20.0),
                       children: <Widget>[
                         Container(
-                          height: MediaQuery.of(context).size.height - 300.0,
+                          height: MediaQuery.of(context).size.height - 400.0,
                           child: Container(
                             child: TinderSwapCard(
                                 orientation: AmassOrientation.BOTTOM,
@@ -191,9 +211,78 @@ class _VocabularyScreenState extends State<VocabularyScreen>
     return Card(
       child: Column(
         children: <Widget>[
-          Text(vocabulary.word),
-          Text(vocabulary.description),
-          Text(vocabulary.sentence)
+          Row(
+            children: <Widget>[
+              Text(
+                'Word :    ',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  fontFamily: 'Montserrat',
+                ),
+              ),
+              Text(
+                StringUtils.capitalize(vocabulary.word ?? 'Word'),
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 18,
+                  fontFamily: 'Montserrat',
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 15),
+          Row(
+            children: <Widget>[
+              Text(
+                'Description : ',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  fontFamily: 'Montserrat',
+                ),
+              ),
+              Flexible(
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      vocabulary.description ?? 'Description',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 16,
+                          fontFamily: 'Montserrat'),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+          SizedBox(height: 25),
+          Row(
+            children: <Widget>[
+              Text(
+                'Sentence : ',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  fontFamily: 'Montserrat',
+                ),
+              ),
+              Flexible(
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      vocabulary.sentence ?? 'sentence',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 16,
+                          fontFamily: 'Montserrat'),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ],
       ),
     );
