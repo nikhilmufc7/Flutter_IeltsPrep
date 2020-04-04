@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ielts/screens/blog_screen.dart';
 import 'package:ielts/screens/home_screen.dart';
 import 'package:ielts/screens/listening_screen.dart';
 import 'package:ielts/screens/reading_screen.dart';
@@ -31,6 +32,8 @@ class Router {
         return MaterialPageRoute<Widget>(builder: (_) => ListeningScreen());
       case RoutePaths.resetpassword:
         return MaterialPageRoute<Widget>(builder: (_) => ResetPasswordScreen());
+      case RoutePaths.blog:
+        return MaterialPageRoute<Widget>(builder: (_) => BlogScreen());
 
       default:
         return MaterialPageRoute<Widget>(

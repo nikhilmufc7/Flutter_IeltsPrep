@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:basic_utils/basic_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
+import 'package:ielts/app_constants.dart';
 import 'package:ielts/lesson_data/vocabulary_data.dart';
 import 'package:ielts/models/vocabulary.dart';
 import 'package:ielts/widgets/menu_page.dart';
@@ -56,7 +57,6 @@ class _VocabularyScreenState extends State<VocabularyScreen>
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          MenuPage(),
           dashboard(context),
         ],
       ),
@@ -92,16 +92,11 @@ class _VocabularyScreenState extends State<VocabularyScreen>
                       Padding(
                         padding: const EdgeInsets.only(left: 18.0),
                         child: InkWell(
-                          child: Icon(Icons.menu, color: Colors.white),
+                          child:
+                              Icon(Icons.arrow_back_ios, color: Colors.white),
                           onTap: () {
-                            setState(() {
-                              if (isCollapsed)
-                                _controller.forward();
-                              else
-                                _controller.reverse();
-
-                              isCollapsed = !isCollapsed;
-                            });
+                            Navigator.pushReplacementNamed(
+                                context, RoutePaths.home);
                           },
                         ),
                       ),

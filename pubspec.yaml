@@ -36,6 +36,7 @@ dependencies:
   google_fonts:
   google_sign_in:
   basic_utils:
+  intl:
 
 dev_dependencies:
   flutter_test:

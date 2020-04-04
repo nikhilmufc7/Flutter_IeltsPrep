@@ -8,4 +8,5 @@ class RoutePaths {
   static const String reading = '/reading';
   static const String listening = '/listening';
   static const String resetpassword = '/resetpassword';
+  static const String blog = '/blog';
 }

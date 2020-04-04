@@ -15,7 +15,7 @@ class MenuPage extends StatelessWidget {
   final List<MenuItem> options = [
     MenuItem(Icons.home, 'Home', RoutePaths.root),
     MenuItem(Icons.library_books, 'Vocabulary', RoutePaths.vocabulary),
-    MenuItem(Icons.speaker_notes, 'Blog', ''),
+    MenuItem(Icons.speaker_notes, 'Blog', RoutePaths.blog),
     MenuItem(Icons.people, 'Forum', ''),
     MenuItem(Icons.format_list_bulleted, 'Tips and tricks', ''),
   ];
