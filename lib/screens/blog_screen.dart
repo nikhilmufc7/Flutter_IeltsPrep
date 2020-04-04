@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ielts/lesson_data/blog_data.dart';
 import 'package:ielts/models/blog.dart';
+import 'package:ielts/screens/blog_detail_screen.dart';
 import 'package:ielts/widgets/circular_image.dart';
 import 'package:intl/intl.dart';
 
@@ -103,7 +104,12 @@ class _BlogScreenState extends State<BlogScreen> {
 
   Widget makeCard(Blog blog) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => BlogDetailScreen(blog: blog)));
+      },
       child: Container(
         padding: EdgeInsets.all(10),
         height: 310,
@@ -112,17 +118,20 @@ class _BlogScreenState extends State<BlogScreen> {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             child: Stack(children: <Widget>[
-              ClipRRect(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10)),
-                child: CachedNetworkImage(
-                  fit: BoxFit.cover,
-                  height: 200,
-                  imageUrl: blog.imageUrl,
-                  placeholder: (context, url) =>
-                      Center(child: CircularProgressIndicator()),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
+              Hero(
+                tag: blog.title,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10)),
+                  child: CachedNetworkImage(
+                    fit: BoxFit.cover,
+                    height: 200,
+                    imageUrl: blog.imageUrl,
+                    placeholder: (context, url) =>
+                        Center(child: CircularProgressIndicator()),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  ),
                 ),
               ),
               Align(
@@ -157,21 +166,29 @@ class _BlogScreenState extends State<BlogScreen> {
 
   Widget bottomCard(Blog blog) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => BlogDetailScreen(blog: blog)));
+      },
       child: Row(
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(14.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              child: CachedNetworkImage(
-                fit: BoxFit.cover,
-                height: 60,
-                width: 60,
-                imageUrl: blog.imageUrl,
-                placeholder: (context, url) =>
-                    Center(child: CircularProgressIndicator()),
-                errorWidget: (context, url, error) => Icon(Icons.error),
+            child: Hero(
+              tag: blog.imageUrl,
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                child: CachedNetworkImage(
+                  fit: BoxFit.cover,
+                  height: 60,
+                  width: 60,
+                  imageUrl: blog.imageUrl,
+                  placeholder: (context, url) =>
+                      Center(child: CircularProgressIndicator()),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
               ),
             ),
           ),
