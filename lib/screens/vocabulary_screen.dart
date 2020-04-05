@@ -91,10 +91,9 @@ class _VocabularyScreenState extends State<VocabularyScreen>
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(left: 18.0),
-                        child: InkWell(
-                          child:
-                              Icon(Icons.arrow_back_ios, color: Colors.white),
-                          onTap: () {
+                        child: IconButton(
+                          icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+                          onPressed: () {
                             Navigator.pushReplacementNamed(
                                 context, RoutePaths.home);
                           },

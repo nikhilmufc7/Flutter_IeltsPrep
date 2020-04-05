@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ielts/models/blog.dart';
 import 'package:ielts/widgets/circular_clipper.dart';
+import 'package:intl/intl.dart';
 
 class BlogDetailScreen extends StatefulWidget {
   final Blog blog;
@@ -10,10 +11,12 @@ class BlogDetailScreen extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _BlogDetailScreenState createState() => _BlogDetailScreenState();
+  _BlogDetailScreenState createState() => _BlogDetailScreenState(blog);
 }
 
 class _BlogDetailScreenState extends State<BlogDetailScreen> {
+  final Blog blog;
+  _BlogDetailScreenState(this.blog);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +28,7 @@ class _BlogDetailScreenState extends State<BlogDetailScreen> {
               Container(
                 transform: Matrix4.translationValues(0.0, -50.0, 0.0),
                 child: Hero(
-                  tag: widget.blog.imageUrl,
+                  tag: blog.imageUrl,
                   child: ClipShadowPath(
                     clipper: CircularClipper(),
                     shadow: Shadow(blurRadius: 20.0),
@@ -33,7 +36,7 @@ class _BlogDetailScreenState extends State<BlogDetailScreen> {
                       height: 400.0,
                       width: double.infinity,
                       fit: BoxFit.cover,
-                      image: NetworkImage(widget.blog.imageUrl),
+                      image: NetworkImage(blog.imageUrl),
                     ),
                   ),
                 ),
@@ -49,7 +52,7 @@ class _BlogDetailScreenState extends State<BlogDetailScreen> {
                     color: Colors.black,
                   ),
                   Image(
-                    image: NetworkImage(widget.blog.imageUrl),
+                    image: NetworkImage(blog.imageUrl),
                     height: 60.0,
                     width: 150.0,
                   ),
@@ -81,26 +84,60 @@ class _BlogDetailScreenState extends State<BlogDetailScreen> {
                 ),
               ),
               Positioned(
-                bottom: 0.0,
-                left: 20.0,
-                child: IconButton(
-                  onPressed: () => print('Add to My List'),
-                  icon: Icon(Icons.add),
-                  iconSize: 40.0,
-                  color: Colors.black,
-                ),
-              ),
+                  bottom: 0.0,
+                  left: 20.0,
+                  child: Text(
+                    blog.tags,
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Montserrat',
+                      fontSize: 16,
+                    ),
+                  )),
               Positioned(
-                bottom: 0.0,
-                right: 25.0,
-                child: IconButton(
-                  onPressed: () => print('Share'),
-                  icon: Icon(Icons.share),
-                  iconSize: 35.0,
-                  color: Colors.black,
-                ),
-              ),
+                  bottom: 0.0,
+                  right: 25.0,
+                  child: Text(
+                    DateFormat('dd MMM yyyy').format(blog.time),
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w900,
+                      fontFamily: 'Montserrat',
+                      fontSize: 16,
+                    ),
+                  )),
             ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Text(
+              blog.title.replaceAll('_n', '/n'),
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Montserrat',
+                fontSize: 20,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Text(
+              blog.content.replaceAll('_n', '/n'),
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w400,
+                fontFamily: 'Montserrat',
+                fontSize: 16,
+              ),
+            ),
           ),
         ],
       ),

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:ielts/app_constants.dart';
 import 'package:ielts/lesson_data/blog_data.dart';
 import 'package:ielts/models/blog.dart';
 import 'package:ielts/screens/blog_detail_screen.dart';
@@ -33,7 +34,20 @@ class _BlogScreenState extends State<BlogScreen> {
     screenWidth = size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Blog'),
+        title: Text(
+          'Blog',
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1.2,
+              fontSize: 20,
+              fontFamily: 'Montserrat'),
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, RoutePaths.home);
+          },
+        ),
         backgroundColor: Color(0xFF21BFBD),
       ),
       body: SingleChildScrollView(
@@ -197,7 +211,7 @@ class _BlogScreenState extends State<BlogScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  'Design',
+                  blog.tags,
                   style: TextStyle(
                     color: Colors.red,
                     fontWeight: FontWeight.bold,
@@ -206,7 +220,7 @@ class _BlogScreenState extends State<BlogScreen> {
                   ),
                 ),
                 Text(
-                  blog.title,
+                  blog.title.replaceAll('_n', '/n'),
                   textAlign: TextAlign.start,
                   style: TextStyle(
                     color: Colors.black,
