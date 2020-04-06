@@ -12,4 +12,21 @@ class Blog {
     this.tags,
     this.content,
   });
+
+  Blog.fromMap(Map<dynamic, dynamic> snapshot, String id)
+      : title = snapshot['title'] ?? '',
+        imageUrl = snapshot['imageUrl'] ?? '',
+        time = snapshot['time'] ?? '',
+        tags = snapshot['tags'] ?? '',
+        content = snapshot['content'] ?? '';
+
+  toJson() {
+    return {
+      "title": title,
+      "imageUrl": imageUrl,
+      "time": time,
+      "tags": tags,
+      "content": content,
+    };
+  }
 }
