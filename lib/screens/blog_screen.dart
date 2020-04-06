@@ -1,11 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:ielts/app_constants.dart';
 import 'package:ielts/lesson_data/blog_data.dart';
 import 'package:ielts/models/blog.dart';
 import 'package:ielts/screens/blog_detail_screen.dart';
+import 'package:ielts/viewModels/blogCrudModel.dart';
 import 'package:ielts/widgets/circular_image.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class BlogScreen extends StatefulWidget {
   BlogScreen({Key key}) : super(key: key);
@@ -29,6 +32,7 @@ class _BlogScreenState extends State<BlogScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final productProvider = Provider.of<BlogCrudModel>(context);
     Size size = MediaQuery.of(context).size;
     screenHeight = size.height;
     screenWidth = size.width;
@@ -71,14 +75,25 @@ class _BlogScreenState extends State<BlogScreen> {
             Container(
               height: 310,
               width: 400,
-              child: ListView.builder(
-                itemCount: blog.length,
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return makeCard(blog[index]);
-                },
-              ),
+              child: StreamBuilder(
+                  stream: productProvider.fetchBlogsAsStream(),
+                  builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if (snapshot.hasData) {
+                      blog = snapshot.data.documents
+                          .map((doc) => Blog.fromMap(doc.data, doc.documentID))
+                          .toList();
+                      return ListView.builder(
+                        itemCount: blog.length,
+                        scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return makeCard(blog[index]);
+                        },
+                      );
+                    } else {
+                      return CircularProgressIndicator();
+                    }
+                  }),
             ),
             Row(
               children: <Widget>[
@@ -100,15 +115,26 @@ class _BlogScreenState extends State<BlogScreen> {
             Container(
               height: screenHeight,
               width: screenWidth,
-              child: ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: blog.length,
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return bottomCard(blog[index]);
-                },
-              ),
+              child: StreamBuilder(
+                  stream: productProvider.fetchBlogsAsStream(),
+                  builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if (snapshot.hasData) {
+                      blog = snapshot.data.documents
+                          .map((doc) => Blog.fromMap(doc.data, doc.documentID))
+                          .toList();
+                      return ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: blog.length,
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return bottomCard(blog[index]);
+                        },
+                      );
+                    } else {
+                      return CircularProgressIndicator();
+                    }
+                  }),
             ),
           ],
         ),

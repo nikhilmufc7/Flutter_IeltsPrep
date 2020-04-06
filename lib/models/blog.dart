@@ -16,7 +16,7 @@ class Blog {
   Blog.fromMap(Map<dynamic, dynamic> snapshot, String id)
       : title = snapshot['title'] ?? '',
         imageUrl = snapshot['imageUrl'] ?? '',
-        time = snapshot['time'] ?? '',
+        time = snapshot['time'].toDate() ?? '',
         tags = snapshot['tags'] ?? '',
         content = snapshot['content'] ?? '';
 

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ielts/models/blog.dart';
 import 'package:ielts/widgets/circular_clipper.dart';
@@ -36,7 +37,7 @@ class _BlogDetailScreenState extends State<BlogDetailScreen> {
                       height: 400.0,
                       width: double.infinity,
                       fit: BoxFit.cover,
-                      image: NetworkImage(blog.imageUrl),
+                      image: CachedNetworkImageProvider(blog.imageUrl),
                     ),
                   ),
                 ),
@@ -48,18 +49,6 @@ class _BlogDetailScreenState extends State<BlogDetailScreen> {
                     padding: EdgeInsets.only(left: 30.0),
                     onPressed: () => Navigator.pop(context),
                     icon: Icon(Icons.arrow_back),
-                    iconSize: 30.0,
-                    color: Colors.black,
-                  ),
-                  Image(
-                    image: NetworkImage(blog.imageUrl),
-                    height: 60.0,
-                    width: 150.0,
-                  ),
-                  IconButton(
-                    padding: EdgeInsets.only(left: 30.0),
-                    onPressed: () => print('Add to Favorites'),
-                    icon: Icon(Icons.favorite_border),
                     iconSize: 30.0,
                     color: Colors.black,
                   ),
@@ -115,7 +104,7 @@ class _BlogDetailScreenState extends State<BlogDetailScreen> {
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: Text(
-              blog.title.replaceAll('_n', '/n'),
+              blog.title.replaceAll("_n", "\n"),
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
@@ -130,7 +119,7 @@ class _BlogDetailScreenState extends State<BlogDetailScreen> {
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: Text(
-              blog.content.replaceAll('_n', '/n'),
+              blog.content.replaceAll("_n", "\n"),
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w400,
