@@ -37,6 +37,7 @@ dependencies:
   google_sign_in:
   basic_utils:
   intl:
+  flutter_custom_clippers:
 
 dev_dependencies:
   flutter_test:
