@@ -1,12 +1,9 @@
-import 'dart:math';
-
 import 'package:basic_utils/basic_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
 import 'package:ielts/app_constants.dart';
 import 'package:ielts/lesson_data/vocabulary_data.dart';
 import 'package:ielts/models/vocabulary.dart';
-import 'package:ielts/widgets/menu_page.dart';
 
 final Color backgroundColor = Color(0xFF21BFBD);
 

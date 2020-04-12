@@ -22,12 +22,6 @@ class ReadingCrudModel extends ChangeNotifier {
     return _api.streamSentenceCollection();
   }
 
-  Future addSentenceCollection(Reading data) async {
-    var result = await _api.addSentenceDocument(data.toJson());
-
-    return;
-  }
-
   // True Or false
 
   Future<List<Reading>> fetchTrueOrFalse() async {
@@ -40,12 +34,6 @@ class ReadingCrudModel extends ChangeNotifier {
 
   Stream<QuerySnapshot> fetchTrueOrFalseAsStream() {
     return _api.streamTrueOrFalseCollection();
-  }
-
-  Future addTrueOrFalse(Reading data) async {
-    var result = await _api.addTrueOrFalseDocument(data.toJson());
-
-    return;
   }
 
   // HeadingCompletion
@@ -62,12 +50,6 @@ class ReadingCrudModel extends ChangeNotifier {
     return _api.streamHeadingCompletionCollection();
   }
 
-  Future addHeadingCompletion(Reading data) async {
-    var result = await _api.addHeadingCompletionDocument(data.toJson());
-
-    return;
-  }
-
   // SummaryCompletion
 
   Future<List<Reading>> fetchSummaryCompletion() async {
@@ -80,12 +62,6 @@ class ReadingCrudModel extends ChangeNotifier {
 
   Stream<QuerySnapshot> fetchSummaryCompletionAsStream() {
     return _api.streamSummaryCompletionCollection();
-  }
-
-  Future addSummaryCompletion(Reading data) async {
-    var result = await _api.addSummaryCompletionDocument(data.toJson());
-
-    return;
   }
 
   // ParagraphCompletion
@@ -102,12 +78,6 @@ class ReadingCrudModel extends ChangeNotifier {
     return _api.streamParagraphCompletionCollection();
   }
 
-  Future addParagraphCompletion(Reading data) async {
-    var result = await _api.addParagraphCompletionDocument(data.toJson());
-
-    return;
-  }
-
   // MCQs
 
   Future<List<Reading>> fetchMCQs() async {
@@ -120,12 +90,6 @@ class ReadingCrudModel extends ChangeNotifier {
 
   Stream<QuerySnapshot> fetchMCQsAsStream() {
     return _api.streamMCQsCollection();
-  }
-
-  Future addMCQs(Reading data) async {
-    var result = await _api.addMCQsDocument(data.toJson());
-
-    return;
   }
 
   // ListSelection
@@ -142,12 +106,6 @@ class ReadingCrudModel extends ChangeNotifier {
     return _api.streamListSelectionCollection();
   }
 
-  Future addListSelection(Reading data) async {
-    var result = await _api.addListSelectionDocument(data.toJson());
-
-    return;
-  }
-
   // TitleSelection
 
   Future<List<Reading>> fetchTitleSelection() async {
@@ -160,12 +118,6 @@ class ReadingCrudModel extends ChangeNotifier {
 
   Stream<QuerySnapshot> fetchTitleSelectionAsStream() {
     return _api.streamTitleSelectionCollection();
-  }
-
-  Future addTitleSelection(Reading data) async {
-    var result = await _api.addTitleSelectionDocument(data.toJson());
-
-    return;
   }
 
   // Categorization
@@ -182,12 +134,6 @@ class ReadingCrudModel extends ChangeNotifier {
     return _api.streamCategorizationCollection();
   }
 
-  Future addCategorization(Reading data) async {
-    var result = await _api.addCategorizationDocument(data.toJson());
-
-    return;
-  }
-
   // EndingSelection
 
   Future<List<Reading>> fetchEndingSelection() async {
@@ -202,12 +148,6 @@ class ReadingCrudModel extends ChangeNotifier {
     return _api.streamEndingSelectionCollection();
   }
 
-  Future addEndingSelection(Reading data) async {
-    var result = await _api.addEndingSelectionDocument(data.toJson());
-
-    return;
-  }
-
   // SAQs
 
   Future<List<Reading>> fetchSAQsSAQs() async {
@@ -220,11 +160,5 @@ class ReadingCrudModel extends ChangeNotifier {
 
   Stream<QuerySnapshot> fetchSAQsAsStream() {
     return _api.streamSAQsCollection();
-  }
-
-  Future addSAQs(Reading data) async {
-    var result = await _api.addSAQsDocument(data.toJson());
-
-    return;
   }
 }

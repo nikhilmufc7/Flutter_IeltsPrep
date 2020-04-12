@@ -35,10 +35,4 @@ class BlogCrudModel extends ChangeNotifier {
     await _api.updateDocument(data.toJson(), id);
     return;
   }
-
-  Future addProduct(Blog data) async {
-    var result = await _api.addDocument(data.toJson());
-
-    return;
-  }
 }

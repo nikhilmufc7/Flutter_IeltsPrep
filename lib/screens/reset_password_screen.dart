@@ -1,7 +1,3 @@
-import 'dart:io';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -33,8 +29,6 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen>
 
   @override
   void initState() {
-    // TODO: implement initState
-
     emailInputController = TextEditingController();
 
     super.initState();
@@ -56,7 +50,6 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen>
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _controller.dispose();
   }

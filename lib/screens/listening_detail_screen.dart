@@ -30,7 +30,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
   String s1SubQuestions2Result;
   String s1SubQuestions3Result;
   String answersResult;
-  int current_step = 0;
+
   bool isCollapsed = true;
   double screenWidth, screenHeight;
   final Duration duration = const Duration(milliseconds: 300);

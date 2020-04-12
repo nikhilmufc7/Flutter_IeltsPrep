@@ -35,10 +35,4 @@ class SpeakingCrudModel extends ChangeNotifier {
     await _api.updateDocument(data.toJson(), id);
     return;
   }
-
-  Future addSpeaking(Speaking data) async {
-    var result = await _api.addDocument(data.toJson());
-
-    return;
-  }
 }

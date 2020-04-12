@@ -34,10 +34,4 @@ class ListeningCrudModel extends ChangeNotifier {
     await _api.updateDocument(data.toJson(), id);
     return;
   }
-
-  Future addListening(Listening data) async {
-    var result = await _api.addDocument(data.toJson());
-
-    return;
-  }
 }

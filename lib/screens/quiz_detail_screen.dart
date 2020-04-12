@@ -17,8 +17,6 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
 
   final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
 
-  final TextStyle _questionStyle = TextStyle(
-      fontSize: 18.0, fontWeight: FontWeight.w500, color: Colors.white);
   int _currentIndex = 0;
   int _optionsIndex = 0;
 
@@ -48,29 +46,52 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
                   height: 200,
                 ),
               ),
-              Container(
-                child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          CircleAvatar(
-                            backgroundColor: Colors.white70,
-                            child: Text("${_currentIndex + 1}"),
+              Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        CircleAvatar(
+                          backgroundColor: Colors.white70,
+                          child: Text(
+                            "${_currentIndex + 1}",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
                           ),
-                          SizedBox(width: 16.0),
-                          Expanded(child: Text(quiz.question[_currentIndex])),
-                        ],
-                      ),
-                      SizedBox(height: 20.0),
-                      Card(
+                        ),
+                        SizedBox(width: 16.0),
+                        Expanded(
+                            child: Text(
+                          quiz.question[_currentIndex],
+                          style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white),
+                        )),
+                      ],
+                    ),
+                    SizedBox(height: 25.0),
+                    Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 12, horizontal: 12),
                         child: ListView.builder(
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
                             itemCount: options.length,
                             itemBuilder: (context, index) {
                               return ListTile(
-                                title: Text(options[index]),
+                                title: Text(
+                                  options[index],
+                                  style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
                                 leading: Radio(
                                     value: options[index],
                                     groupValue: _selectedAnswer,
@@ -93,20 +114,25 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
                               );
                             }),
                       ),
-                      RaisedButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Text(
-                          _currentIndex == (quiz.question.length - 1)
-                              ? "Submit"
-                              : "Next",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        color: Colors.deepPurpleAccent,
-                        onPressed: _nextSubmit,
-                      )
-                    ])),
-              ),
+                    ),
+                    Visibility(
+                        visible: _answer != null, child: Text(_answer ?? '')),
+                    RaisedButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Text(
+                        _currentIndex == (quiz.question.length - 1)
+                            ? "Submit"
+                            : "Next",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      color: Colors.deepPurpleAccent,
+                      onPressed: _nextSubmit,
+                    )
+                  ])),
             ],
           )),
     );

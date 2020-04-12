@@ -34,10 +34,4 @@ class CrudModel extends ChangeNotifier {
     await _api.updateDocument(data.toJson(), id);
     return;
   }
-
-  Future addProduct(Lesson data) async {
-    var result = await _api.addDocument(data.toJson());
-
-    return;
-  }
 }

@@ -43,9 +43,6 @@ class _PlayerWidgetState extends State<PlayerWidget> {
   get _durationText => _duration?.toString()?.split('.')?.first ?? '';
   get _positionText => _position?.toString()?.split('.')?.first ?? '';
 
-  get _isPlayingThroughEarpiece =>
-      _playingRouteState == PlayingRouteState.earpiece;
-
   _PlayerWidgetState(this.url, this.mode);
 
   @override
@@ -105,9 +102,9 @@ class _PlayerWidgetState extends State<PlayerWidget> {
                 children: [
                   Slider(
                     onChanged: (v) {
-                      final Position = v * _duration.inMilliseconds;
+                      final position = v * _duration.inMilliseconds;
                       _audioPlayer
-                          .seek(Duration(milliseconds: Position.round()));
+                          .seek(Duration(milliseconds: position.round()));
                     },
                     value: (_position != null &&
                             _duration != null &&
@@ -138,7 +135,6 @@ class _PlayerWidgetState extends State<PlayerWidget> {
     _durationSubscription = _audioPlayer.onDurationChanged.listen((duration) {
       setState(() => _duration = duration);
 
-      // TODO implemented for iOS, waiting for android impl
       if (Theme.of(context).platform == TargetPlatform.iOS) {
         // (Optional) listen for notification updates in the background
         _audioPlayer.startHeadlessService();

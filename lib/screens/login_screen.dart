@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -31,10 +28,6 @@ class _LoginScreenState extends State<LoginScreen>
   TextEditingController passwordInputController;
 
   AuthMode _authMode = AuthMode.Login;
-  Map<String, String> _authData = {
-    'email': '',
-    'password': '',
-  };
 
   AnimationController _controller;
   Animation<Offset> _slideAnimation;
@@ -42,8 +35,6 @@ class _LoginScreenState extends State<LoginScreen>
 
   @override
   void initState() {
-    // TODO: implement initState
-
     firstNameInputController = TextEditingController();
 
     emailInputController = TextEditingController();
@@ -67,7 +58,6 @@ class _LoginScreenState extends State<LoginScreen>
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _controller.dispose();
   }
@@ -380,7 +370,6 @@ class _LoginScreenState extends State<LoginScreen>
       text: TextSpan(
           text: 'I',
           style: GoogleFonts.portLligatSans(
-            textStyle: Theme.of(context).textTheme.display1,
             fontSize: 30,
             fontWeight: FontWeight.w700,
             color: Color(0xffe46b10),
