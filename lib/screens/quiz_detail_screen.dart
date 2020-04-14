@@ -20,9 +20,17 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
   int _currentIndex = 0;
   int _optionsIndex = 0;
 
+  bool _isRadioEnabled = true;
+
   String _answer;
   String _selectedAnswer;
   int answerScore = 0;
+
+  _onChanged() {
+    setState(() {
+      _isRadioEnabled = !_isRadioEnabled;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,24 +101,31 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
                                   ),
                                 ),
                                 leading: Radio(
+                                    activeColor: Colors.deepPurple,
                                     value: options["$index"],
                                     groupValue: _selectedAnswer,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        _selectedAnswer = value;
-                                        if (_selectedAnswer ==
-                                            quiz.answers[_currentIndex]) {
-                                          answerScore = answerScore + 1;
-                                          _answer =
-                                              'Answer is right, your score is $answerScore';
-                                          print(_answer);
-                                        } else {
-                                          _answer =
-                                              'Your answer is wrong  $answerScore';
-                                          print(_answer);
-                                        }
-                                      });
-                                    }),
+                                    onChanged: _isRadioEnabled
+                                        ? (value) {
+                                            setState(() {
+                                              _selectedAnswer = value;
+                                              if (_selectedAnswer ==
+                                                  quiz.answers[_currentIndex]) {
+                                                answerScore = answerScore + 1;
+                                                _onChanged();
+
+                                                _answer =
+                                                    'Answer is right, your score is $answerScore';
+                                                print(_answer);
+                                              } else {
+                                                _answer =
+                                                    'Your answer is wrong  $answerScore';
+                                                _onChanged();
+
+                                                print(_answer);
+                                              }
+                                            });
+                                          }
+                                        : null),
                               );
                             }),
                       ),
@@ -174,6 +189,9 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
     if (_currentIndex < (quiz.question.length - 1)) {
       setState(() {
         _currentIndex++;
+        _selectedAnswer = '';
+        _answer = '';
+        _onChanged();
       });
     } else {
       // Navigator.of(context).pushReplacement(MaterialPageRoute(
