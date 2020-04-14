@@ -1,6 +1,6 @@
 class Quiz {
   List question;
-  List<dynamic> options;
+  Map options;
   List answers;
   String quizTitle;
   double indicatorValue;

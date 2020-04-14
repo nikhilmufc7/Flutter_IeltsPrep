@@ -26,7 +26,7 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final List<dynamic> options = quiz.options[_currentIndex];
+    final Map options = quiz.options["$_currentIndex"];
 
     return WillPopScope(
       onWillPop: _onWillPop,
@@ -81,11 +81,11 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
                         child: ListView.builder(
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
-                            itemCount: options.length,
+                            itemCount: options.keys.length,
                             itemBuilder: (context, index) {
                               return ListTile(
                                 title: Text(
-                                  options[index],
+                                  options["$index"] ?? '',
                                   style: TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontSize: 16,
@@ -93,7 +93,7 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
                                   ),
                                 ),
                                 leading: Radio(
-                                    value: options[index],
+                                    value: options["$index"],
                                     groupValue: _selectedAnswer,
                                     onChanged: (value) {
                                       setState(() {
