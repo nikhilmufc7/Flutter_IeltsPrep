@@ -115,6 +115,7 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
 
                                                 _answer =
                                                     'Answer is right, your score is $answerScore';
+
                                                 print(_answer);
                                               } else {
                                                 _answer =
@@ -180,7 +181,7 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
   }
 
   void _nextSubmit() {
-    if (_selectedAnswer == null) {
+    if (_selectedAnswer == null || _selectedAnswer == '') {
       _key.currentState.showSnackBar(SnackBar(
         content: Text("You must select an answer to continue."),
       ));

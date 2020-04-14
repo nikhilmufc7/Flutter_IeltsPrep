@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ielts/lesson_data/quiz_data.dart';
 import 'package:ielts/models/quiz.dart';
 import 'package:ielts/screens/quiz_detail_screen.dart';
+import 'package:ielts/viewModels/quizCrudModel.dart';
 
 import 'package:provider/provider.dart';
 
@@ -57,6 +58,7 @@ class _QuizScreenState extends State<QuizScreen>
   }
 
   Widget dashboard(context) {
+    final productProvider = Provider.of<QuizCrudModel>(context);
     return Material(
       animationDuration: duration,
       // borderRadius: BorderRadius.all(Radius.circular(40)),
@@ -119,16 +121,29 @@ class _QuizScreenState extends State<QuizScreen>
                 ),
                 child: Container(
                   // height: screenHeight,
-                  child: ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    padding: EdgeInsets.only(top: 70, bottom: 50),
-                    shrinkWrap: true,
-                    physics: ScrollPhysics(),
-                    itemCount: quizzes.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return makeCard(quizzes[index]);
-                    },
-                  ),
+                  child: StreamBuilder<QuerySnapshot>(
+                      stream: productProvider.fetchQuizAsStream(),
+                      builder:
+                          (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                        if (snapshot.hasData) {
+                          quizzes = snapshot.data.documents
+                              .map((doc) =>
+                                  Quiz.fromMap(doc.data, doc.documentID))
+                              .toList();
+                          return ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            padding: EdgeInsets.only(top: 70, bottom: 50),
+                            shrinkWrap: true,
+                            physics: ScrollPhysics(),
+                            itemCount: quizzes.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return makeCard(quizzes[index]);
+                            },
+                          );
+                        } else {
+                          return CircularProgressIndicator();
+                        }
+                      }),
                 ),
               )
             ],

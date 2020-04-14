@@ -4,6 +4,7 @@ import 'package:ielts/locator.dart';
 import 'package:ielts/router.dart';
 import 'package:ielts/viewModels/blogCrudModel.dart';
 import 'package:ielts/viewModels/listeningCrudModel.dart';
+import 'package:ielts/viewModels/quizCrudModel.dart';
 import 'package:ielts/viewModels/readingCrudModel.dart';
 import 'package:ielts/viewModels/speakingCrudModel.dart';
 import 'package:ielts/viewModels/writingCrudModel.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (_) => locator<ReadingCrudModel>()),
           ChangeNotifierProvider(create: (_) => locator<ListeningCrudModel>()),
           ChangeNotifierProvider(create: (_) => locator<BlogCrudModel>()),
+          ChangeNotifierProvider(create: (_) => locator<QuizCrudModel>()),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
