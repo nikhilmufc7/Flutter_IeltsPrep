@@ -82,7 +82,8 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
                     SizedBox(height: 25.0),
                     Card(
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                             vertical: 12, horizontal: 12),
@@ -91,17 +92,21 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
                             physics: NeverScrollableScrollPhysics(),
                             itemCount: options.keys.length,
                             itemBuilder: (context, index) {
-                              return ListTile(
-                                title: Text(
-                                  options["$index"] ?? '',
-                                  style: TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                leading: Radio(
-                                    activeColor: Colors.deepPurple,
+                              return Card(
+                                color: (_selectedAnswer == quiz.answers[index])
+                                    ? Colors.green
+                                    : Color.fromRGBO(204, 224, 255, 0.8),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: RadioListTile(
+                                    activeColor: Colors.deepPurpleAccent,
+                                    title: Text(
+                                      options["$index"],
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600),
+                                    ),
                                     value: options["$index"],
                                     groupValue: _selectedAnswer,
                                     onChanged: _isRadioEnabled
@@ -118,8 +123,7 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
 
                                                 print(_answer);
                                               } else {
-                                                _answer =
-                                                    'Your answer is wrong  $answerScore';
+                                                _answer = value;
                                                 _onChanged();
 
                                                 print(_answer);
