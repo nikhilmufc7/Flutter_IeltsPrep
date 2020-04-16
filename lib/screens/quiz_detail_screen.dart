@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:flutter_emoji/flutter_emoji.dart';
 import 'package:ielts/lesson_data/quiz_data.dart';
 import 'package:ielts/models/quiz.dart';
 
@@ -21,6 +22,8 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
   int _optionsIndex = 0;
 
   bool _isRadioEnabled = true;
+
+  var parser = EmojiParser();
 
   String _answer;
   String _selectedAnswer;
@@ -102,8 +105,11 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
                                     activeColor: Colors.deepPurpleAccent,
                                     title: Text(
                                       options["$index"],
+                                      maxLines: 3,
+                                      overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
                                           color: Colors.black,
+                                          fontFamily: 'Montserrat',
                                           fontSize: 16,
                                           fontWeight: FontWeight.w600),
                                     ),
@@ -119,11 +125,12 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
                                                 _onChanged();
 
                                                 _answer =
-                                                    'Answer is right, your score is $answerScore';
+                                                    'Answer is right, well done!';
 
                                                 print(_answer);
                                               } else {
-                                                _answer = value;
+                                                _answer =
+                                                    'Wrong Answer, try again';
                                                 _onChanged();
 
                                                 print(_answer);
@@ -135,8 +142,77 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
                             }),
                       ),
                     ),
-                    Visibility(
-                        visible: _answer != null, child: Text(_answer ?? '')),
+                    SizedBox(height: 10),
+                    Column(
+                      children: <Widget>[
+                        Visibility(
+                            visible: _answer != null,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    (_answer == 'Answer is right, well done!')
+                                        ? '${parser.emojify(':wink:')}'
+                                        : '${parser.emojify(':disappointed:')} ',
+                                    style: TextStyle(fontSize: 36),
+                                  ),
+                                ),
+                                Container(
+                                    width: 220,
+                                    padding: EdgeInsets.all(10),
+                                    decoration: BoxDecoration(
+                                        color: (_answer ==
+                                                'Answer is right, well done!')
+                                            ? Colors.lightGreen
+                                            : Colors.redAccent,
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
+                                    child: FittedBox(
+                                      child: Text(
+                                        _answer ?? '',
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontFamily: 'Montserrat',
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                    )),
+                              ],
+                            )),
+                        Visibility(
+                            visible: _answer == 'Wrong Answer, try again',
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    parser.emojify(':heart:'),
+                                    style: TextStyle(fontSize: 36),
+                                  ),
+                                ),
+                                Container(
+                                  width: 220,
+                                  padding: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                      color: Colors.cyanAccent,
+                                      borderRadius: BorderRadius.circular(20)),
+                                  child: Text(
+                                    ' Correct Answer is ${quiz.answers[_currentIndex]} ',
+                                    maxLines: 4,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ),
+                              ],
+                            )),
+                      ],
+                    ),
+                    SizedBox(height: 10),
                     RaisedButton(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
@@ -195,7 +271,7 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
       setState(() {
         _currentIndex++;
         _selectedAnswer = '';
-        _answer = '';
+        _answer = null;
         _onChanged();
       });
     } else {
