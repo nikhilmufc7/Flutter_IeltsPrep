@@ -39,6 +39,7 @@ dependencies:
   intl:
   flutter_custom_clippers:
   flutter_emoji: '>= 2.0.0'
+  carousel_slider:
 
 dev_dependencies:
   flutter_test:
@@ -62,6 +63,7 @@ flutter:
     - assets/speaking.jpg
     - assets/googlelogo.jpg
     - assets/giphy.gif
+    - assets/quiz.png
 
   #   - images/a_dot_ham.jpeg
 

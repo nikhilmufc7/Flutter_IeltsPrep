@@ -96,9 +96,7 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
                             itemCount: options.keys.length,
                             itemBuilder: (context, index) {
                               return Card(
-                                color: (_selectedAnswer == quiz.answers[index])
-                                    ? Colors.green
-                                    : Color.fromRGBO(204, 224, 255, 0.8),
+                                color: Color.fromRGBO(204, 224, 255, 0.8),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10)),
                                 child: RadioListTile(
@@ -246,6 +244,7 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
               FlatButton(
                 child: Text("Yes"),
                 onPressed: () {
+                  quiz.score = answerScore;
                   Navigator.pop(context, true);
                 },
               ),
