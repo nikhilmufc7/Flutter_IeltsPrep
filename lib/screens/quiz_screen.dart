@@ -171,25 +171,27 @@ class _QuizScreenState extends State<QuizScreen> {
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text(
-                            quiz.quizTitle,
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'Avenir',
-                                fontWeight: FontWeight.w700),
-                          ),
-                          Text(
-                            'This is category',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Avenir',
+                          FittedBox(
+                            child: Text(
+                              quiz.quizTitle,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w700),
                             ),
                           ),
+                          SizedBox(height: 10),
+                          LinearProgressIndicator(
+                              backgroundColor:
+                                  Color.fromRGBO(209, 224, 224, 0.2),
+                              value: quiz.indicatorValue,
+                              valueColor: AlwaysStoppedAnimation(Colors.green)),
                           SizedBox(height: 16),
                           Row(
                             children: <Widget>[
                               Icon(
-                                Icons.location_on,
+                                Icons.cached,
                                 color: Colors.white,
                                 size: 16,
                               ),
@@ -198,10 +200,10 @@ class _QuizScreenState extends State<QuizScreen> {
                               ),
                               Flexible(
                                 child: Text(
-                                  'items[index].locationa',
+                                  'Total Questions : 10',
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontFamily: 'Avenir',
+                                    fontFamily: 'Montserrat',
                                   ),
                                 ),
                               ),
