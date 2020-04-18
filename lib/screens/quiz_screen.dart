@@ -1,217 +1,304 @@
+import 'dart:ui' as ui;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:ielts/lesson_data/quiz_data.dart';
+import 'package:grouped_buttons/grouped_buttons.dart';
+
 import 'package:ielts/models/quiz.dart';
 import 'package:ielts/screens/quiz_detail_screen.dart';
 import 'package:ielts/viewModels/quizCrudModel.dart';
 
 import 'package:provider/provider.dart';
-
-final Color backgroundColor = Color(0xFF21BFBD);
+import 'package:shared_preferences/shared_preferences.dart';
 
 class QuizScreen extends StatefulWidget {
-  QuizScreen({Key key}) : super(key: key);
-
   @override
   _QuizScreenState createState() => _QuizScreenState();
 }
 
-class _QuizScreenState extends State<QuizScreen>
-    with SingleTickerProviderStateMixin {
+class _QuizScreenState extends State<QuizScreen> {
+  final double _borderRadius = 24;
+
+  int _currentIndex = 0;
+  int _scoresIndex = 0;
+
   List quizzes;
 
-  bool isCollapsed = true;
-  double screenWidth, screenHeight;
-  final Duration duration = const Duration(milliseconds: 300);
+  bool completed = false;
 
-  @override
-  void initState() {
-    super.initState();
-    quizzes = getQuizData();
+  List<String> checkedItems = [];
+
+  var items = [
+    PlaceInfo(Color(0xff6DC8F3), Color(0xff73A1F9), 4.4),
+    PlaceInfo(
+      Color(0xffFFB157),
+      Color(0xffFFA057),
+      3.7,
+    ),
+    PlaceInfo(
+      Color(0xffFF5B95),
+      Color(0xffF8556D),
+      4.5,
+    ),
+    PlaceInfo(
+      Color(0xffD76EF5),
+      Color(0xff8F7AFE),
+      4.1,
+    ),
+    PlaceInfo(
+      Color(0xff42E695),
+      Color(0xff3BB2B8),
+      4.2,
+    ),
+  ];
+
+  LinearGradient _color() {
+    return LinearGradient(colors: [
+      items[_currentIndex].startColor,
+      items[_currentIndex].endColor
+    ]);
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    screenHeight = size.height;
-    screenWidth = size.width;
-    return Scaffold(
-      appBar: topAppBar,
-      // floatingActionButton: FloatingActionButton(
-      //     child: Icon(Icons.add),
-      //     onPressed: () {
-      //       Navigator.push(
-      //           context, MaterialPageRoute(builder: (context) => AddWriting()));
-      //     }),
-      body: Stack(
-        children: <Widget>[
-          // MenuPage(),
-          dashboard(context),
-        ],
-      ),
+  BoxShadow _boxShadowColor() {
+    return BoxShadow(
+      color: items[_currentIndex].endColor,
+      blurRadius: 12,
+      offset: Offset(0, 6),
     );
   }
 
-  Widget dashboard(context) {
-    final productProvider = Provider.of<QuizCrudModel>(context);
-    return Material(
-      animationDuration: duration,
-      // borderRadius: BorderRadius.all(Radius.circular(40)),
-      elevation: 8,
-      color: backgroundColor,
-      child: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        physics: ClampingScrollPhysics(),
-        child: Container(
-          padding: const EdgeInsets.only(top: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   mainAxisSize: MainAxisSize.max,
-              //   children: [
-              //     Padding(
-              //       padding: const EdgeInsets.only(left: 18.0),
-              //       child: InkWell(
-              //         child: Icon(Icons.arrow_back, color: Colors.white),
-              //         onTap: () {
-              //           Navigator.pop(context);
-              //         },
-              //       ),
-              //     ),
-              //     Padding(
-              //       padding: const EdgeInsets.only(right: 18.0),
-              //       child: Icon(Icons.settings, color: Colors.white),
-              //     ),
-              //   ],
-              // ),
+  void _changeToZero() {
+    if (_currentIndex > 3) {
+      _currentIndex = 0;
+    }
+  }
 
-              Padding(
-                padding: EdgeInsets.only(left: 40.0),
-                child: Row(
-                  children: <Widget>[
-                    Text('Quizzes',
-                        style: TextStyle(
-                            fontFamily: 'Montserrat',
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25.0)),
-                    SizedBox(width: 10.0),
-                    // Text('Prep',
-                    //     style: TextStyle(
-                    //         fontFamily: 'Montserrat',
-                    //         color: Colors.white,
-                    //         fontSize: 25.0))
+  void _getCheckedItems() async {
+    var prefs = await SharedPreferences.getInstance();
+    checkedItems = prefs.getStringList('checkedItems');
+  }
+
+  @override
+  void initState() {
+    _getCheckedItems();
+    super.initState();
+  }
+
+  Quiz quiz;
+
+  @override
+  Widget build(BuildContext context) {
+    final productProvider = Provider.of<QuizCrudModel>(context);
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Quizzes'),
+      ),
+      body: StreamBuilder<QuerySnapshot>(
+          stream: productProvider.fetchQuizAsStream(),
+          builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.hasData) {
+              quizzes = snapshot.data.documents
+                  .map((doc) => Quiz.fromMap(doc.data, doc.documentID))
+                  .toList();
+
+              return ListView.builder(
+                itemCount: quizzes.length,
+                itemBuilder: (context, index) {
+                  _scoresIndex = _scoresIndex + 1;
+                  _changeToZero();
+                  _getCheckedItems();
+
+                  _currentIndex = _currentIndex + 1;
+                  return _inkwell(quizzes[index]);
+                },
+              );
+            } else {
+              return CircularProgressIndicator();
+            }
+          }),
+    );
+  }
+
+  Widget _inkwell(Quiz quiz) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => QuizDetailScreen(quiz: quiz)));
+      },
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Stack(
+            children: <Widget>[
+              Container(
+                height: 150,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(_borderRadius),
+                  gradient: _color(),
+                  boxShadow: [
+                    _boxShadowColor(),
                   ],
                 ),
               ),
-              SizedBox(height: 40.0),
-              Container(
-                // height: MediaQuery.of(context).size.height,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius:
-                      BorderRadius.only(topLeft: Radius.circular(75.0)),
+              Positioned(
+                right: 0,
+                bottom: 0,
+                top: 0,
+                child: CustomPaint(
+                  size: Size(100, 150),
+                  painter: CustomCardShapePainter(
+                      _borderRadius,
+                      items[_currentIndex].startColor,
+                      items[_currentIndex].endColor),
                 ),
-                child: Container(
-                  // height: screenHeight,
-                  child: StreamBuilder<QuerySnapshot>(
-                      stream: productProvider.fetchQuizAsStream(),
-                      builder:
-                          (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                        if (snapshot.hasData) {
-                          quizzes = snapshot.data.documents
-                              .map((doc) =>
-                                  Quiz.fromMap(doc.data, doc.documentID))
-                              .toList();
-                          return ListView.builder(
-                            scrollDirection: Axis.vertical,
-                            padding: EdgeInsets.only(top: 70, bottom: 50),
-                            shrinkWrap: true,
-                            physics: ScrollPhysics(),
-                            itemCount: quizzes.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return makeCard(quizzes[index]);
+              ),
+              Positioned.fill(
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Image.asset(
+                        'assets/quiz.png',
+                        height: 64,
+                        width: 64,
+                      ),
+                      flex: 2,
+                    ),
+                    Expanded(
+                      flex: 4,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            quiz.quizTitle,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'Avenir',
+                                fontWeight: FontWeight.w700),
+                          ),
+                          Text(
+                            'This is category',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Avenir',
+                            ),
+                          ),
+                          SizedBox(height: 16),
+                          Row(
+                            children: <Widget>[
+                              Icon(
+                                Icons.location_on,
+                                color: Colors.white,
+                                size: 16,
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Flexible(
+                                child: Text(
+                                  'items[index].locationa',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'Avenir',
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: FittedBox(
+                        child: CheckboxGroup(
+                            checked: checkedItems,
+                            labels: [quiz.id[0]],
+                            labelStyle: TextStyle(fontSize: 0),
+                            onSelected: (List<String> checked) {
+                              print("${checked.toString()}");
                             },
-                          );
-                        } else {
-                          return CircularProgressIndicator();
-                        }
-                      }),
+                            onChange: (bool isChecked, String label,
+                                int index) async {
+                              print(label);
+                              final prefs =
+                                  await SharedPreferences.getInstance();
+                              prefs.setBool(label, isChecked);
+                              print(prefs.getBool(label) ?? 0);
+                              setState(() {
+                                isChecked = prefs.getBool(label);
+                                completed = prefs.getBool(label);
+                                if (checkedItems.contains(label)) {
+                                  checkedItems.remove(label);
+                                } else {
+                                  checkedItems.add(label);
+                                }
+                                prefs.setStringList(
+                                    'checkedItems', checkedItems);
+                                print(checkedItems);
+                              });
+                            }),
+                      ),
+                    ),
+                  ],
                 ),
-              )
+              ),
             ],
           ),
         ),
       ),
     );
   }
+}
 
-  final topAppBar = AppBar(
-    elevation: 0.0,
-    backgroundColor: Color(0xFF21BFBD),
-    bottomOpacity: 0.0,
+class PlaceInfo {
+  final double rating;
+  final Color startColor;
+  final Color endColor;
+
+  PlaceInfo(
+    this.startColor,
+    this.endColor,
+    this.rating,
   );
+}
 
-  Widget makeCard(Quiz quiz) => Padding(
-        padding: const EdgeInsets.only(bottom: 15.0, left: 5, right: 5),
-        child: Card(
-          elevation: 8.0,
-          margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-          child: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Color.fromRGBO(64, 75, 96, .9)),
-            child: makeListTile(quiz),
-          ),
-        ),
-      );
+class CustomCardShapePainter extends CustomPainter {
+  final double radius;
+  final Color startColor;
+  final Color endColor;
 
-  ListTile makeListTile(Quiz quiz) => ListTile(
-        contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-        leading: Container(
-          padding: EdgeInsets.only(right: 12.0),
-          decoration: BoxDecoration(
-              border:
-                  Border(right: BorderSide(width: 1.0, color: Colors.white24))),
-          child: Icon(Icons.autorenew, color: Colors.white),
-        ),
-        title: Text(
-          quiz.quizTitle ?? 'Title',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        subtitle: Row(
-          children: <Widget>[
-            Expanded(
-                flex: 1,
-                child: Container(
-                  // tag: 'hero',
-                  child: LinearProgressIndicator(
-                      backgroundColor: Color.fromRGBO(209, 224, 224, 0.2),
-                      value: quiz.indicatorValue,
-                      valueColor: AlwaysStoppedAnimation(Colors.green)),
-                )),
-            Expanded(
-              flex: 4,
-              child: Padding(
-                  padding: EdgeInsets.only(left: 10.0),
-                  child: Text('Easy', style: TextStyle(color: Colors.white))),
-            )
-          ],
-        ),
-        trailing:
-            Icon(Icons.keyboard_arrow_right, color: Colors.white, size: 30.0),
-        onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => QuizDetailScreen(quiz: quiz)));
-        },
-      );
+  CustomCardShapePainter(this.radius, this.startColor, this.endColor);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    var radius = 24.0;
+
+    var paint = Paint();
+    paint.shader = ui.Gradient.linear(
+        Offset(0, 0), Offset(size.width, size.height), [
+      HSLColor.fromColor(startColor).withLightness(0.8).toColor(),
+      endColor
+    ]);
+
+    var path = Path()
+      ..moveTo(0, size.height)
+      ..lineTo(size.width - radius, size.height)
+      ..quadraticBezierTo(
+          size.width, size.height, size.width, size.height - radius)
+      ..lineTo(size.width, radius)
+      ..quadraticBezierTo(size.width, 0, size.width - radius, 0)
+      ..lineTo(size.width - 1.5 * radius, 0)
+      ..quadraticBezierTo(-radius, 2 * radius, 0, size.height)
+      ..close();
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return true;
+  }
 }

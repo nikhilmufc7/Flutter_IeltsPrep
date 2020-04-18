@@ -4,8 +4,7 @@ class Quiz {
   List answers;
   String quizTitle;
   double indicatorValue;
-  bool isFeatured;
-  int id;
+  String id;
 
   Quiz({
     this.question,
@@ -13,7 +12,6 @@ class Quiz {
     this.answers,
     this.quizTitle,
     this.indicatorValue,
-    this.isFeatured,
     this.id,
   });
 
@@ -23,7 +21,6 @@ class Quiz {
         answers = snapshot['answers'] ?? [],
         quizTitle = snapshot['quizTitle'] ?? '',
         indicatorValue = snapshot['indicatorValue'] ?? '',
-        isFeatured = snapshot['isFeatured'] ?? '',
         id = snapshot['id'] ?? '';
 
   toJson() {
@@ -33,7 +30,6 @@ class Quiz {
       "answers": answers,
       "quizTitle": quizTitle,
       "indicatorValue": indicatorValue,
-      "isFeatured": isFeatured,
       "id": id,
     };
   }

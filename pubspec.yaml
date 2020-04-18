@@ -41,8 +41,6 @@ dependencies:
   flutter_emoji: '>= 2.0.0'
   carousel_slider:
   grouped_buttons:
-  hive:
-  path_provider:
   shared_preferences:
 
 dev_dependencies:
