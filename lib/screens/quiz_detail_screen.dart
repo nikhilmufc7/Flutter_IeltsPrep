@@ -19,7 +19,6 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
   final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
 
   int _currentIndex = 0;
-  int _optionsIndex = 0;
 
   bool _isRadioEnabled = true;
 
@@ -126,9 +125,11 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
                                                     'Answer is right, well done!';
 
                                                 print(_answer);
+                                                print(answerScore);
                                               } else {
                                                 _answer =
                                                     'Wrong Answer, try again';
+                                                print(answerScore);
                                                 _onChanged();
 
                                                 print(_answer);
@@ -244,7 +245,8 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
               FlatButton(
                 child: Text("Yes"),
                 onPressed: () {
-                  quiz.score = answerScore;
+                  print(answerScore);
+
                   Navigator.pop(context, true);
                 },
               ),

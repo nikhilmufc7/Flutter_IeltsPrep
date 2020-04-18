@@ -1,10 +1,14 @@
 import 'dart:ui' as ui;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:grouped_buttons/grouped_buttons.dart';
+
 import 'package:ielts/models/quiz.dart';
 import 'package:ielts/screens/quiz_detail_screen.dart';
 import 'package:ielts/viewModels/quizCrudModel.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class QuizScreenTest extends StatefulWidget {
   @override
@@ -15,8 +19,13 @@ class _QuizScreenTestState extends State<QuizScreenTest> {
   final double _borderRadius = 24;
 
   int _currentIndex = 0;
+  int _scoresIndex = 0;
 
   List quizzes;
+
+  bool completed = false;
+
+  List<String> checkedItems = [];
 
   var items = [
     PlaceInfo(Color(0xff6DC8F3), Color(0xff73A1F9), 4.4),
@@ -63,6 +72,17 @@ class _QuizScreenTestState extends State<QuizScreenTest> {
     }
   }
 
+  void _getCheckedItems() async {
+    var prefs = await SharedPreferences.getInstance();
+    checkedItems = prefs.getStringList('checkedItems');
+  }
+
+  @override
+  void initState() {
+    _getCheckedItems();
+    super.initState();
+  }
+
   Quiz quiz;
 
   @override
@@ -84,131 +104,150 @@ class _QuizScreenTestState extends State<QuizScreenTest> {
               return ListView.builder(
                 itemCount: quizzes.length,
                 itemBuilder: (context, index) {
+                  _scoresIndex = _scoresIndex + 1;
                   _changeToZero();
+                  _getCheckedItems();
+
                   _currentIndex = _currentIndex + 1;
-                  return InkWell(
-                    onTap: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) =>
-                      //             QuizDetailScreen(quiz: quiz)));
-                    },
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Stack(
-                          children: <Widget>[
-                            Container(
-                              height: 150,
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.circular(_borderRadius),
-                                gradient: _color(),
-                                boxShadow: [
-                                  _boxShadowColor(),
-                                ],
-                              ),
-                            ),
-                            Positioned(
-                              right: 0,
-                              bottom: 0,
-                              top: 0,
-                              child: CustomPaint(
-                                size: Size(100, 150),
-                                painter: CustomCardShapePainter(
-                                    _borderRadius,
-                                    items[_currentIndex].startColor,
-                                    items[_currentIndex].endColor),
-                              ),
-                            ),
-                            Positioned.fill(
-                              child: Row(
-                                children: <Widget>[
-                                  Expanded(
-                                    child: Image.asset(
-                                      'assets/quiz.png',
-                                      height: 64,
-                                      width: 64,
-                                    ),
-                                    flex: 2,
-                                  ),
-                                  Expanded(
-                                    flex: 4,
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Text(
-                                          quizzes[index].quizTitle,
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontFamily: 'Avenir',
-                                              fontWeight: FontWeight.w700),
-                                        ),
-                                        Text(
-                                          'This is category',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontFamily: 'Avenir',
-                                          ),
-                                        ),
-                                        SizedBox(height: 16),
-                                        Row(
-                                          children: <Widget>[
-                                            Icon(
-                                              Icons.location_on,
-                                              color: Colors.white,
-                                              size: 16,
-                                            ),
-                                            SizedBox(
-                                              width: 8,
-                                            ),
-                                            Flexible(
-                                              child: Text(
-                                                'items[index].location',
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontFamily: 'Avenir',
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 2,
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: <Widget>[
-                                        Text(
-                                          quizzes[index].score ??
-                                              'Not Attempted',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontFamily: 'Avenir',
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w700),
-                                        ),
-                                        // RatingBar(rating: items[index].rating),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
+                  return _inkwell(quizzes[index]);
                 },
               );
+            } else {
+              return CircularProgressIndicator();
             }
           }),
+    );
+  }
+
+  Widget _inkwell(Quiz quiz) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => QuizDetailScreen(quiz: quiz)));
+      },
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Stack(
+            children: <Widget>[
+              Container(
+                height: 150,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(_borderRadius),
+                  gradient: _color(),
+                  boxShadow: [
+                    _boxShadowColor(),
+                  ],
+                ),
+              ),
+              Positioned(
+                right: 0,
+                bottom: 0,
+                top: 0,
+                child: CustomPaint(
+                  size: Size(100, 150),
+                  painter: CustomCardShapePainter(
+                      _borderRadius,
+                      items[_currentIndex].startColor,
+                      items[_currentIndex].endColor),
+                ),
+              ),
+              Positioned.fill(
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Image.asset(
+                        'assets/quiz.png',
+                        height: 64,
+                        width: 64,
+                      ),
+                      flex: 2,
+                    ),
+                    Expanded(
+                      flex: 4,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            quiz.quizTitle,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'Avenir',
+                                fontWeight: FontWeight.w700),
+                          ),
+                          Text(
+                            'This is category',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Avenir',
+                            ),
+                          ),
+                          SizedBox(height: 16),
+                          Row(
+                            children: <Widget>[
+                              Icon(
+                                Icons.location_on,
+                                color: Colors.white,
+                                size: 16,
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Flexible(
+                                child: Text(
+                                  'items[index].locationa',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'Avenir',
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: FittedBox(
+                        child: CheckboxGroup(
+                            checked: checkedItems,
+                            labels: [quiz.id.toString()],
+                            onSelected: (List<String> checked) {
+                              print("${checked.toString()}");
+                            },
+                            onChange: (bool isChecked, String label,
+                                int index) async {
+                              print(label);
+                              final prefs =
+                                  await SharedPreferences.getInstance();
+                              prefs.setBool(label, isChecked);
+                              print(prefs.getBool(label) ?? 0);
+                              setState(() {
+                                isChecked = prefs.getBool(label);
+                                completed = prefs.getBool(label);
+                                if (checkedItems.contains(label)) {
+                                  checkedItems.remove(label);
+                                } else {
+                                  checkedItems.add(label);
+                                }
+                                prefs.setStringList(
+                                    'checkedItems', checkedItems);
+                                print(checkedItems);
+                              });
+                            }),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

@@ -5,7 +5,7 @@ class Quiz {
   String quizTitle;
   double indicatorValue;
   bool isFeatured;
-  int score;
+  int id;
 
   Quiz({
     this.question,
@@ -14,7 +14,7 @@ class Quiz {
     this.quizTitle,
     this.indicatorValue,
     this.isFeatured,
-    this.score,
+    this.id,
   });
 
   Quiz.fromMap(Map<dynamic, dynamic> snapshot, String id)
@@ -23,7 +23,8 @@ class Quiz {
         answers = snapshot['answers'] ?? [],
         quizTitle = snapshot['quizTitle'] ?? '',
         indicatorValue = snapshot['indicatorValue'] ?? '',
-        isFeatured = snapshot['isFeatured'] ?? '';
+        isFeatured = snapshot['isFeatured'] ?? '',
+        id = snapshot['id'] ?? '';
 
   toJson() {
     return {
@@ -33,6 +34,7 @@ class Quiz {
       "quizTitle": quizTitle,
       "indicatorValue": indicatorValue,
       "isFeatured": isFeatured,
+      "id": id,
     };
   }
 }
