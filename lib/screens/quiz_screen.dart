@@ -1,7 +1,9 @@
 import 'dart:ui' as ui;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
+import 'package:ielts/app_constants.dart';
 
 import 'package:ielts/models/quiz.dart';
 import 'package:ielts/screens/quiz_detail_screen.dart';
@@ -74,7 +76,11 @@ class _QuizScreenState extends State<QuizScreen> {
 
   void _getCheckedItems() async {
     var prefs = await SharedPreferences.getInstance();
-    checkedItems = prefs.getStringList('checkedItems');
+    if (prefs.containsKey('checkedItems')) {
+      checkedItems = prefs.getStringList('checkedItems');
+    } else {
+      prefs.setStringList('checkedItems', checkedItems);
+    }
   }
 
   @override
@@ -91,31 +97,53 @@ class _QuizScreenState extends State<QuizScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Quizzes'),
+          backgroundColor: Color(0xFF21BFBD),
+          title: Text('Quizzes'),
+          elevation: 0,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, RoutePaths.home);
+            },
+            icon: Icon(Icons.arrow_back_ios),
+          )),
+      body: Stack(
+        children: <Widget>[
+          ClipPath(
+            clipper: ArcClipper(),
+            child: Container(
+              decoration: BoxDecoration(color: Color(0xFF21BFBD)),
+              height: 200,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 40, left: 10, right: 10),
+            child: StreamBuilder<QuerySnapshot>(
+                stream: productProvider.fetchQuizAsStream(),
+                builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (snapshot.hasData) {
+                    quizzes = snapshot.data.documents
+                        .map((doc) => Quiz.fromMap(doc.data, doc.documentID))
+                        .toList();
+
+                    return ListView.builder(
+                      physics: ClampingScrollPhysics(),
+                      itemCount: quizzes.length,
+                      itemBuilder: (context, index) {
+                        _scoresIndex = _scoresIndex + 1;
+                        _changeToZero();
+                        _getCheckedItems();
+
+                        _currentIndex = _currentIndex + 1;
+                        return _inkwell(quizzes[index]);
+                      },
+                    );
+                  } else {
+                    return CircularProgressIndicator();
+                  }
+                }),
+          ),
+        ],
       ),
-      body: StreamBuilder<QuerySnapshot>(
-          stream: productProvider.fetchQuizAsStream(),
-          builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-            if (snapshot.hasData) {
-              quizzes = snapshot.data.documents
-                  .map((doc) => Quiz.fromMap(doc.data, doc.documentID))
-                  .toList();
-
-              return ListView.builder(
-                itemCount: quizzes.length,
-                itemBuilder: (context, index) {
-                  _scoresIndex = _scoresIndex + 1;
-                  _changeToZero();
-                  _getCheckedItems();
-
-                  _currentIndex = _currentIndex + 1;
-                  return _inkwell(quizzes[index]);
-                },
-              );
-            } else {
-              return CircularProgressIndicator();
-            }
-          }),
     );
   }
 
@@ -229,6 +257,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                   await SharedPreferences.getInstance();
                               prefs.setBool(label, isChecked);
                               print(prefs.getBool(label) ?? 0);
+
                               setState(() {
                                 isChecked = prefs.getBool(label);
                                 completed = prefs.getBool(label);
@@ -252,6 +281,31 @@ class _QuizScreenState extends State<QuizScreen> {
         ),
       ),
     );
+  }
+}
+
+class CustomShapeBorder extends ContinuousRectangleBorder {
+  @override
+  Path getOuterPath(Rect rect, {TextDirection textDirection}) {
+    final double innerCircleRadius = 150.0;
+
+    Path path = Path();
+    path.lineTo(0, rect.height);
+    path.quadraticBezierTo(rect.width / 2 - (innerCircleRadius / 2) - 30,
+        rect.height + 15, rect.width / 2 - 75, rect.height + 50);
+    path.cubicTo(
+        rect.width / 2 - 40,
+        rect.height + innerCircleRadius - 40,
+        rect.width / 2 + 40,
+        rect.height + innerCircleRadius - 40,
+        rect.width / 2 + 75,
+        rect.height + 50);
+    path.quadraticBezierTo(rect.width / 2 + (innerCircleRadius / 2) + 30,
+        rect.height + 15, rect.width, rect.height);
+    path.lineTo(rect.width, 0.0);
+    path.close();
+
+    return path;
   }
 }
 

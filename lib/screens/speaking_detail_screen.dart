@@ -123,7 +123,7 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
                                             speaking.thingsToSpeak[index];
 
                                         return ListTile(
-                                          leading: Bullet(),
+                                          leading: bullet(),
                                           title: Text(
                                             resultant.replaceAll('_n', '\n'),
                                             style: TextStyle(
@@ -182,7 +182,7 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
                                         (BuildContext context, int index) {
                                       vocabResult = speaking.vocabulary[index];
                                       return ListTile(
-                                        leading: Bullet(),
+                                        leading: bullet(),
                                         title: Text(
                                           vocabResult.replaceAll("_n", "\n"),
                                           style: TextStyle(
@@ -217,7 +217,7 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
     bottomOpacity: 0.0,
   );
 
-  Widget Bullet() => Container(
+  Widget bullet() => Container(
       height: 20.0,
       width: 20.0,
       decoration: BoxDecoration(

@@ -35,9 +35,9 @@ class QuizCrudModel extends ChangeNotifier {
     return;
   }
 
-  Future addQuiz(Quiz data) async {
-    var result = await _api.addDocument(data.toJson());
+  // Future addQuiz(Quiz data) async {
+  //   var result = await _api.addDocument(data.toJson());
 
-    return;
-  }
+  //   return;
+  // }
 }
