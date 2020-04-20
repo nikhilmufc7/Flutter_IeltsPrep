@@ -86,6 +86,7 @@ class _QuizScreenState extends State<QuizScreen> {
   @override
   void initState() {
     _getCheckedItems();
+
     super.initState();
   }
 

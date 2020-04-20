@@ -20,7 +20,22 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
   final List answers;
   _QuizResultScreenState(this.quizScore, this.questions, this.answers);
 
+  bool showAnswers = false;
+
+  String resultText;
+
   double scoreInDouble = 0.0;
+
+  void _resultText() {
+    if (quizScore >= 8) {
+      resultText = 'Well Done! Keep learning';
+    } else if (quizScore >= 6) {
+      resultText = 'Not bad, Keep practicing';
+    } else if (quizScore <= 5) {
+      resultText =
+          'Keep practicing! \n Review the answers for better understanding';
+    }
+  }
 
   void scoreConverter() {
     if (quizScore == 1) {
@@ -49,6 +64,7 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
   @override
   void initState() {
     scoreConverter();
+    _resultText();
     super.initState();
   }
 
@@ -56,14 +72,13 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      floatingActionButton: FloatingActionButton.extended(
+      floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.popAndPushNamed(context, RoutePaths.quiz),
         isExtended: true,
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        icon: Icon(Icons.fast_forward),
-        label: Text('Continue'),
+        child: Icon(Icons.fast_forward),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       body: Container(
         height: size.height,
         decoration: BoxDecoration(
@@ -77,7 +92,9 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
         child: ListView(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(top: 30.0),
+              padding: showAnswers
+                  ? const EdgeInsets.only(top: 30.0)
+                  : const EdgeInsets.only(top: 80.0),
               child: Center(
                 child: CircularPercentIndicator(
                   radius: 160.0,
@@ -104,61 +121,101 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.all(14.0),
+            SizedBox(height: 40),
+            Center(
               child: Text(
-                'Answers Review',
+                resultText ?? '',
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22),
               ),
             ),
-            ListView.builder(
-                shrinkWrap: true,
-                physics: ClampingScrollPhysics(),
-                itemCount: questions.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding:
-                        const EdgeInsets.only(top: 10.0, left: 20, right: 20),
-                    child: Card(
-                      color: Color.fromRGBO(0, 65, 106, 0.5),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      elevation: 2,
-                      child: ListTile(
-                        leading: CircleAvatar(
-                            backgroundColor: Colors.black,
+            SizedBox(height: 30),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text('Review Answers',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontFamily: 'Montserrat',
+                    )),
+                Switch(
+                  activeColor: Colors.blue,
+                  activeTrackColor: Colors.green,
+                  inactiveThumbColor: Colors.white,
+                  inactiveTrackColor: Colors.grey,
+                  value: showAnswers,
+                  onChanged: (value) {
+                    setState(() {
+                      showAnswers = value;
+                    });
+                  },
+                ),
+              ],
+            ),
+            Visibility(
+              visible: showAnswers,
+              child: Padding(
+                padding: const EdgeInsets.all(14.0),
+                child: Text(
+                  'Answers Review',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            Visibility(
+              visible: showAnswers,
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: ClampingScrollPhysics(),
+                  itemCount: questions.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10.0, left: 20, right: 20),
+                      child: Card(
+                        color: Color.fromRGBO(57, 106, 137, 0.6),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        elevation: 2,
+                        child: ListTile(
+                          leading: CircleAvatar(
+                              backgroundColor: Colors.black,
+                              child: Text(
+                                "${index + 1}",
+                              )),
+                          title: Padding(
+                            padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              "${index + 1}",
-                            )),
-                        title: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            questions[index],
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                              color: Colors.white,
-                              fontFamily: 'Montserrat',
+                              questions[index],
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                                color: Colors.white,
+                                fontFamily: 'Montserrat',
+                              ),
+                            ),
+                          ),
+                          subtitle: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              "Answer: " + answers[index],
+                              style: TextStyle(
+                                  color: Colors.green,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
-                        subtitle: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "Answer: " + answers[index],
-                            style: TextStyle(
-                                color: Colors.green,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
                       ),
-                    ),
-                  );
-                })
+                    );
+                  }),
+            )
           ],
         ),
       ),

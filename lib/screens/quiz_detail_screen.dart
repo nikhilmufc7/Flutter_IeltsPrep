@@ -4,6 +4,7 @@ import 'package:flutter_emoji/flutter_emoji.dart';
 import 'package:ielts/lesson_data/quiz_data.dart';
 import 'package:ielts/models/quiz.dart';
 import 'package:ielts/screens/quiz_result_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class QuizDetailScreen extends StatefulWidget {
   final Quiz quiz;
@@ -28,6 +29,7 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
   String _answer;
   String _selectedAnswer;
   int answerScore = 0;
+  List<String> quizzesScores = [];
 
   _onChanged() {
     setState(() {
@@ -262,7 +264,7 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
         });
   }
 
-  void _nextSubmit() {
+  void _nextSubmit() async {
     if (_selectedAnswer == null || _selectedAnswer == '') {
       _key.currentState.showSnackBar(SnackBar(
         content: Text("You must select an answer to continue."),
