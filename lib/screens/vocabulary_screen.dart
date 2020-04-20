@@ -184,53 +184,63 @@ class _VocabularyScreenState extends State<VocabularyScreen>
 
   Widget makeCard(Vocabulary vocabulary) {
     return Card(
+      elevation: 8.0,
       child: Column(
         children: <Widget>[
           Row(
             children: <Widget>[
-              Text(
-                'Word :    ',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  fontFamily: 'Montserrat',
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Word :    ',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    fontFamily: 'Montserrat',
+                  ),
                 ),
               ),
-              Text(
-                StringUtils.capitalize(vocabulary.word ?? 'Word'),
-                style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 18,
-                  fontFamily: 'Montserrat',
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  StringUtils.capitalize(vocabulary.word ?? 'Word'),
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 18,
+                    fontFamily: 'Montserrat',
+                  ),
                 ),
               ),
             ],
           ),
           SizedBox(height: 15),
-          Row(
-            children: <Widget>[
-              Text(
-                'Description : ',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  fontFamily: 'Montserrat',
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: <Widget>[
+                Text(
+                  'Description : ',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    fontFamily: 'Montserrat',
+                  ),
                 ),
-              ),
-              Flexible(
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      vocabulary.description ?? 'Description',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 16,
-                          fontFamily: 'Montserrat'),
-                    ),
-                  ],
-                ),
-              )
-            ],
+                Flexible(
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        vocabulary.description ?? 'Description',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16,
+                            fontFamily: 'Montserrat'),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
           SizedBox(height: 25),
           Row(
