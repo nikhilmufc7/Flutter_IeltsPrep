@@ -42,6 +42,7 @@ dependencies:
   carousel_slider:
   grouped_buttons:
   shared_preferences:
+  percent_indicator:
 
 dev_dependencies:
   flutter_test:

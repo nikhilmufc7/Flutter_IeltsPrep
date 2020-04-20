@@ -3,6 +3,7 @@ import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_emoji/flutter_emoji.dart';
 import 'package:ielts/lesson_data/quiz_data.dart';
 import 'package:ielts/models/quiz.dart';
+import 'package:ielts/screens/quiz_result_screen.dart';
 
 class QuizDetailScreen extends StatefulWidget {
   final Quiz quiz;
@@ -276,9 +277,12 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
         _onChanged();
       });
     } else {
-      // Navigator.of(context).pushReplacement(MaterialPageRoute(
-      //   builder: (_) => QuizFinishedPage(questions: widget.questions, answers: _answers)
-      // ));
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (_) => QuizResultScreen(
+                quizScore: answerScore,
+                questions: quiz.question,
+                answers: quiz.answers,
+              )));
     }
   }
 }
