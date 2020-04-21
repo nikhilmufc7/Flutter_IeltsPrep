@@ -28,12 +28,11 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
 
   void _resultText() {
     if (quizScore >= 8) {
-      resultText = 'Well Done! Keep learning';
+      resultText = 'Keep on learning';
     } else if (quizScore >= 6) {
-      resultText = 'Not bad, Keep practicing';
+      resultText = 'You can do better!';
     } else if (quizScore <= 5) {
-      resultText =
-          'Keep practicing! \n Review the answers for better understanding';
+      resultText = 'Review the answers for better understanding';
     }
   }
 
@@ -122,15 +121,50 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
               ),
             ),
             SizedBox(height: 40),
-            Center(
-              child: Text(
-                resultText ?? '',
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 22),
-              ),
+            Column(
+              children: <Widget>[
+                Visibility(
+                  visible: showAnswers == false,
+                  child: Container(
+                    height: 150,
+                    width: 300,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: (quizScore < 6)
+                            ? AssetImage("assets/pushing.png")
+                            : AssetImage("assets/sucess.png"),
+                      ),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                Center(
+                    child: RichText(
+                  text: TextSpan(
+                    text: (quizScore > 5) ? "Well Done" : "Keep Pushing!",
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: Colors.tealAccent,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Montserrat',
+                    ),
+                  ),
+                )),
+                SizedBox(height: 20),
+                Center(
+                    child: RichText(
+                  text: TextSpan(
+                    text: resultText,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: 'Montserrat',
+                    ),
+                  ),
+                )),
+              ],
             ),
             SizedBox(height: 30),
             Row(
@@ -138,15 +172,16 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
               children: <Widget>[
                 Text('Review Answers',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.indigo,
                       fontSize: 20,
+                      fontWeight: FontWeight.bold,
                       fontFamily: 'Montserrat',
                     )),
                 Switch(
                   activeColor: Colors.blue,
-                  activeTrackColor: Colors.green,
+                  activeTrackColor: Colors.white,
                   inactiveThumbColor: Colors.white,
-                  inactiveTrackColor: Colors.grey,
+                  inactiveTrackColor: Colors.blue,
                   value: showAnswers,
                   onChanged: (value) {
                     setState(() {
@@ -207,7 +242,8 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
                             child: Text(
                               "Answer: " + answers[index],
                               style: TextStyle(
-                                  color: Colors.green,
+                                  color: Colors.lightGreen,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.bold),
                             ),
                           ),

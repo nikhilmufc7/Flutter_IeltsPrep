@@ -285,7 +285,7 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
     bottomOpacity: 0.0,
   );
 
-  Widget Bullet() => Container(
+  Widget bullet() => Container(
       height: 20.0,
       width: 20.0,
       decoration: BoxDecoration(
