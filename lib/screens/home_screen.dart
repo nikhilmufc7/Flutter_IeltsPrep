@@ -44,14 +44,17 @@ class _HomeScreenState extends State<HomeScreen>
     screenHeight = size.height;
     screenWidth = size.width;
 
-    return Scaffold(
-      backgroundColor: backgroundColor,
-      body: Stack(
-        children: <Widget>[
-          MenuPage(),
-          dashboard(context),
-          // curvedContainer(context),
-        ],
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        backgroundColor: backgroundColor,
+        body: Stack(
+          children: <Widget>[
+            MenuPage(),
+            dashboard(context),
+            // curvedContainer(context),
+          ],
+        ),
       ),
     );
   }

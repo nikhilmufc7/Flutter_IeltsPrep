@@ -33,10 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       .document(currentUser.uid)
                       .get()
                       .then((DocumentSnapshot result) =>
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HomeScreen())))
+                          Navigator.popAndPushNamed(context, RoutePaths.home))
                       .catchError((err) => print(err))
                 }
             })

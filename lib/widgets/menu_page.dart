@@ -7,6 +7,8 @@ import 'package:ielts/services/auth.dart';
 import 'package:ielts/widgets/circular_image.dart';
 
 import 'package:flutter/material.dart';
+import 'package:ielts/widgets/zoom_scaffold.dart';
+import 'package:provider/provider.dart';
 
 class MenuPage extends StatelessWidget {
   final List<MenuItem> options = [
@@ -20,12 +22,12 @@ class MenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      // onPanUpdate: (details) {
-      //   //on swiping left
-      //   if (details.delta.dx < -6) {
-      //     Provider.of<MenuController>(context, listen: true).toggle();
-      //   }
-      // },
+      onPanUpdate: (details) {
+        //on swiping left
+        if (details.delta.dx < 6) {
+          Provider.of<MenuController>(context, listen: true).toggle();
+        }
+      },
       child: Container(
         padding: EdgeInsets.only(
             top: 62,

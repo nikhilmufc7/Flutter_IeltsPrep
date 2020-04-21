@@ -28,7 +28,7 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
 
   void _resultText() {
     if (quizScore >= 8) {
-      resultText = 'Keep on learning';
+      resultText = 'Keep on learning!';
     } else if (quizScore >= 6) {
       resultText = 'You can do better!';
     } else if (quizScore <= 5) {
@@ -143,7 +143,7 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
                 Center(
                     child: RichText(
                   text: TextSpan(
-                    text: (quizScore > 5) ? "Well Done" : "Keep Pushing!",
+                    text: (quizScore > 5) ? "Well Done!" : "Keep Pushing!",
                     style: TextStyle(
                       fontSize: 24,
                       color: Colors.tealAccent,
@@ -220,33 +220,37 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
                             borderRadius: BorderRadius.circular(20)),
                         elevation: 2,
                         child: ListTile(
-                          leading: CircleAvatar(
-                              backgroundColor: Colors.black,
-                              child: Text(
-                                "${index + 1}",
-                              )),
-                          title: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 20.0, vertical: 10.0),
+                          leading: Container(
+                            padding: EdgeInsets.only(right: 12.0),
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    right: BorderSide(
+                                        width: 1.0, color: Colors.white24))),
                             child: Text(
-                              questions[index],
+                              '${index + 1}',
                               style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15,
-                                color: Colors.white,
-                                fontFamily: 'Montserrat',
-                              ),
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16),
                             ),
+                          ),
+                          title: Text(
+                            questions[index],
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w400),
                           ),
                           subtitle: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "Answer: " + answers[index],
-                              style: TextStyle(
-                                  color: Colors.lightGreen,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
+                              padding: EdgeInsets.only(top: 20.0),
+                              child: Text('Answer: ' + answers[index],
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14,
+                                      color: Colors.white))),
                         ),
                       ),
                     );
