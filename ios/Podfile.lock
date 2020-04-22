@@ -273,6 +273,8 @@ PODS:
     - GoogleUtilities/UserDefaults (~> 6.5)
     - Protobuf (>= 3.9.2, ~> 3.9)
   - Flutter (1.0.0)
+  - flutter_tts (0.0.1):
+    - Flutter
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
@@ -368,6 +370,7 @@ DEPENDENCIES:
   - firebase_core_web (from `.symlinks/plugins/firebase_core_web/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - Flutter (from `Flutter`)
+  - flutter_tts (from `.symlinks/plugins/flutter_tts/ios`)
   - google_sign_in (from `.symlinks/plugins/google_sign_in/ios`)
   - google_sign_in_web (from `.symlinks/plugins/google_sign_in_web/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
@@ -429,6 +432,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_messaging/ios"
   Flutter:
     :path: Flutter
+  flutter_tts:
+    :path: ".symlinks/plugins/flutter_tts/ios"
   google_sign_in:
     :path: ".symlinks/plugins/google_sign_in/ios"
   google_sign_in_web:
@@ -470,6 +475,7 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: 6668efc1655a4052c083f287a7141f1ead12f9c2
   FirebaseMessaging: 9e23f9d603b1fb71ccbeb48d79bf0d4ba0272c84
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  flutter_tts: 0f492aab6accf87059b72354fcb4ba934304771d
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   google_sign_in: f32920a589fdf4ab2918ec6dc5e5b0d5b8040ff5
   google_sign_in_web: 52deb24929ac0992baff65c57956031c44ed44c3

@@ -39,10 +39,10 @@ dependencies:
   intl:
   flutter_custom_clippers:
   flutter_emoji: '>= 2.0.0'
-  carousel_slider:
   grouped_buttons:
   shared_preferences:
   percent_indicator:
+  flutter_tts:
 
 dev_dependencies:
   flutter_test:

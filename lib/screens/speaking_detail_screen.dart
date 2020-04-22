@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:ielts/models/speaking.dart';
 
 final Color backgroundColor = Color(0xFF21BFBD);
@@ -16,8 +17,22 @@ class SpeakingDetailScreen extends StatefulWidget {
       _SpeakingDetailScreenState(speaking);
 }
 
+enum TtsState { playing, stopped }
+
 class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
     with SingleTickerProviderStateMixin {
+  FlutterTts flutterTts;
+
+  double volume = 0.5;
+  double pitch = 1.0;
+  double rate = 0.5;
+
+  TtsState ttsState = TtsState.stopped;
+
+  get isPlaying => ttsState == TtsState.playing;
+
+  get isStopped => ttsState == TtsState.stopped;
+
   final Speaking speaking;
   _SpeakingDetailScreenState(this.speaking);
 
@@ -30,11 +45,56 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
   @override
   void initState() {
     super.initState();
+    initTts();
+  }
+
+  initTts() {
+    flutterTts = FlutterTts();
+
+    flutterTts.setStartHandler(() {
+      setState(() {
+        print("playing");
+        ttsState = TtsState.playing;
+      });
+    });
+
+    flutterTts.setCompletionHandler(() {
+      setState(() {
+        print("Complete");
+        ttsState = TtsState.stopped;
+      });
+    });
+
+    flutterTts.setErrorHandler((msg) {
+      setState(() {
+        print("error: $msg");
+        ttsState = TtsState.stopped;
+      });
+    });
+  }
+
+  Future _speak() async {
+    await flutterTts.setVolume(volume);
+    await flutterTts.setSpeechRate(rate);
+    await flutterTts.setPitch(pitch);
+
+    if (speaking.answer != null) {
+      if (speaking.answer.isNotEmpty) {
+        var result = await flutterTts.speak(speaking.answer);
+        if (result == 1) setState(() => ttsState = TtsState.playing);
+      }
+    }
+  }
+
+  Future _stop() async {
+    var result = await flutterTts.stop();
+    if (result == 1) setState(() => ttsState = TtsState.stopped);
   }
 
   @override
   void dispose() {
     super.dispose();
+    flutterTts.stop();
   }
 
   @override
@@ -108,7 +168,9 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
                                 ),
                               ),
                               Card(
-                                elevation: 10,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                                elevation: 5,
                                 child: Padding(
                                     padding: const EdgeInsets.only(
                                         left: 10.0, right: 10, top: 10),
@@ -135,6 +197,19 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
                                       },
                                     )),
                               ),
+                              SizedBox(height: 15),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  'Listen to sample answer',
+                                  style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                      color: Color(0xFF21BFBD)),
+                                ),
+                              ),
+                              _btnSection(),
                               SizedBox(height: 15),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -217,9 +292,39 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
     bottomOpacity: 0.0,
   );
 
+  Widget _btnSection() => Container(
+      padding: EdgeInsets.only(top: 20.0),
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        _buildButtonColumn(
+            Colors.green, Colors.white, Icons.play_arrow, 'PLAY', _speak),
+        _buildButtonColumn(
+            Colors.red, Colors.redAccent, Icons.stop, 'STOP', _stop)
+      ]));
+
+  Column _buildButtonColumn(Color color, Color splashColor, IconData icon,
+      String label, Function func) {
+    return Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          IconButton(
+              icon: Icon(icon),
+              iconSize: 40,
+              color: color,
+              splashColor: splashColor,
+              onPressed: () => func()),
+          Container(
+              child: Text(label,
+                  style: TextStyle(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.black)))
+        ]);
+  }
+
   Widget bullet() => Container(
-      height: 20.0,
-      width: 20.0,
+      height: 15.0,
+      width: 15.0,
       decoration: BoxDecoration(
         color: Colors.black,
         shape: BoxShape.circle,

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_emoji/flutter_emoji.dart';
-import 'package:ielts/lesson_data/quiz_data.dart';
 import 'package:ielts/models/quiz.dart';
 import 'package:ielts/screens/quiz_result_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class QuizDetailScreen extends StatefulWidget {
   final Quiz quiz;
