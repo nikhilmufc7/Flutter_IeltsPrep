@@ -24,9 +24,9 @@ class MenuPage extends StatelessWidget {
     return GestureDetector(
       onPanUpdate: (details) {
         //on swiping left
-        if (details.delta.dx < 6) {
-          Provider.of<MenuController>(context, listen: true).toggle();
-        }
+        // if (details.delta.dx < 6) {
+        //   Provider.of<MenuController>(context, listen: true).toggle();
+        // }
       },
       child: Container(
         padding: EdgeInsets.only(

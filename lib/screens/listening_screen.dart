@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:grouped_buttons/grouped_buttons.dart';
 
 import 'package:ielts/models/listening.dart';
 import 'package:ielts/screens/listening_detail_screen.dart';
 import 'package:ielts/viewModels/listeningCrudModel.dart';
 
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final Color backgroundColor = Color(0xFF21BFBD);
 
@@ -24,8 +26,20 @@ class _ListeningScreenState extends State<ListeningScreen>
   double screenWidth, screenHeight;
   final Duration duration = const Duration(milliseconds: 300);
 
+  List<String> checkedListeningItems = [];
+
+  void _getcheckedListeningItems() async {
+    var prefs = await SharedPreferences.getInstance();
+    if (prefs.containsKey('checkedListeningItems')) {
+      checkedListeningItems = prefs.getStringList('checkedListeningItems');
+    } else {
+      prefs.setStringList('checkedListeningItems', checkedListeningItems);
+    }
+  }
+
   @override
   void initState() {
+    _getcheckedListeningItems();
     super.initState();
 
     // listening = getListeningData();
@@ -133,6 +147,7 @@ class _ListeningScreenState extends State<ListeningScreen>
                             physics: ScrollPhysics(),
                             itemCount: listening.length,
                             itemBuilder: (BuildContext context, int index) {
+                              _getcheckedListeningItems();
                               return makeCard(listening[index]);
                             },
                           );
@@ -202,8 +217,34 @@ class _ListeningScreenState extends State<ListeningScreen>
             )
           ],
         ),
-        trailing:
-            Icon(Icons.keyboard_arrow_right, color: Colors.white, size: 30.0),
+        trailing: FittedBox(
+          child: CheckboxGroup(
+              checked: checkedListeningItems,
+              labels: [listening.id],
+              labelStyle: TextStyle(fontSize: 0),
+              onSelected: (List<String> checked) {
+                print("${checked.toString()}");
+              },
+              onChange: (bool isChecked, String label, int index) async {
+                print(label);
+                final prefs = await SharedPreferences.getInstance();
+                prefs.setBool(label, isChecked);
+                print(prefs.getBool(label) ?? 0);
+
+                setState(() {
+                  isChecked = prefs.getBool(label);
+
+                  if (checkedListeningItems.contains(label)) {
+                    checkedListeningItems.remove(label);
+                  } else {
+                    checkedListeningItems.add(label);
+                  }
+                  prefs.setStringList(
+                      'checkedListeningItems', checkedListeningItems);
+                  print(checkedListeningItems);
+                });
+              }),
+        ),
         onTap: () {
           Navigator.push(
               context,

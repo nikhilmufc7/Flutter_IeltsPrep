@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:ielts/models/lesson.dart';
 import 'package:ielts/screens/writing_detail_screen.dart';
 import 'package:ielts/viewModels/writingCrudModel.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final Color backgroundColor = Color(0xFF21BFBD);
 
@@ -20,10 +22,22 @@ class _WritingScreenState extends State<WritingScreen>
 
   bool isCollapsed = true;
   double screenWidth, screenHeight;
+
+  List<String> checkedWritingItems = [];
   final Duration duration = const Duration(milliseconds: 300);
+
+  void _getcheckedWritingItems() async {
+    var prefs = await SharedPreferences.getInstance();
+    if (prefs.containsKey('checkedWritingItems')) {
+      checkedWritingItems = prefs.getStringList('checkedWritingItems');
+    } else {
+      prefs.setStringList('checkedWritingItems', checkedWritingItems);
+    }
+  }
 
   @override
   void initState() {
+    _getcheckedWritingItems();
     super.initState();
     // lessons = getWritingData();
   }
@@ -136,6 +150,7 @@ class _WritingScreenState extends State<WritingScreen>
                             physics: ScrollPhysics(),
                             itemCount: lessons.length,
                             itemBuilder: (BuildContext context, int index) {
+                              _getcheckedWritingItems();
                               return makeCard(lessons[index]);
                             },
                           );
@@ -205,8 +220,34 @@ class _WritingScreenState extends State<WritingScreen>
             )
           ],
         ),
-        trailing:
-            Icon(Icons.keyboard_arrow_right, color: Colors.white, size: 30.0),
+        trailing: FittedBox(
+          child: CheckboxGroup(
+              checked: checkedWritingItems,
+              labels: [lesson.id],
+              labelStyle: TextStyle(fontSize: 0),
+              onSelected: (List<String> checked) {
+                print("${checked.toString()}");
+              },
+              onChange: (bool isChecked, String label, int index) async {
+                print(label);
+                final prefs = await SharedPreferences.getInstance();
+                prefs.setBool(label, isChecked);
+                print(prefs.getBool(label) ?? 0);
+
+                setState(() {
+                  isChecked = prefs.getBool(label);
+
+                  if (checkedWritingItems.contains(label)) {
+                    checkedWritingItems.remove(label);
+                  } else {
+                    checkedWritingItems.add(label);
+                  }
+                  prefs.setStringList(
+                      'checkedWritingItems', checkedWritingItems);
+                  print(checkedWritingItems);
+                });
+              }),
+        ),
         onTap: () {
           Navigator.push(
               context,

@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:ielts/models/speaking.dart';
 import 'package:ielts/screens/speaking_detail_screen.dart';
 import 'package:ielts/viewModels/speakingCrudModel.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final Color backgroundColor = Color(0xFF21BFBD);
 
@@ -22,8 +24,20 @@ class _SpeakingScreenState extends State<SpeakingScreen>
   double screenWidth, screenHeight;
   final Duration duration = const Duration(milliseconds: 300);
 
+  List<String> checkedSpeakingItems = [];
+
+  void _getcheckedSpeakingItems() async {
+    var prefs = await SharedPreferences.getInstance();
+    if (prefs.containsKey('checkedSpeakingItems')) {
+      checkedSpeakingItems = prefs.getStringList('checkedSpeakingItems');
+    } else {
+      prefs.setStringList('checkedSpeakingItems', checkedSpeakingItems);
+    }
+  }
+
   @override
   void initState() {
+    _getcheckedSpeakingItems();
     super.initState();
 
     // speakings = getSpeakingData();
@@ -130,6 +144,7 @@ class _SpeakingScreenState extends State<SpeakingScreen>
                             physics: ScrollPhysics(),
                             itemCount: speakings.length,
                             itemBuilder: (BuildContext context, int index) {
+                              _getcheckedSpeakingItems();
                               return makeCard(speakings[index]);
                             },
                           );
@@ -199,8 +214,34 @@ class _SpeakingScreenState extends State<SpeakingScreen>
             )
           ],
         ),
-        trailing:
-            Icon(Icons.keyboard_arrow_right, color: Colors.white, size: 30.0),
+        trailing: FittedBox(
+          child: CheckboxGroup(
+              checked: checkedSpeakingItems,
+              labels: [speaking.id],
+              labelStyle: TextStyle(fontSize: 0),
+              onSelected: (List<String> checked) {
+                print("${checked.toString()}");
+              },
+              onChange: (bool isChecked, String label, int index) async {
+                print(label);
+                final prefs = await SharedPreferences.getInstance();
+                prefs.setBool(label, isChecked);
+                print(prefs.getBool(label) ?? 0);
+
+                setState(() {
+                  isChecked = prefs.getBool(label);
+
+                  if (checkedSpeakingItems.contains(label)) {
+                    checkedSpeakingItems.remove(label);
+                  } else {
+                    checkedSpeakingItems.add(label);
+                  }
+                  prefs.setStringList(
+                      'checkedSpeakingItems', checkedSpeakingItems);
+                  print(checkedSpeakingItems);
+                });
+              }),
+        ),
         onTap: () {
           Navigator.push(
               context,

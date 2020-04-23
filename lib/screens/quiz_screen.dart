@@ -246,7 +246,7 @@ class _QuizScreenState extends State<QuizScreen> {
                       child: FittedBox(
                         child: CheckboxGroup(
                             checked: checkedItems,
-                            labels: [quiz.id[0]],
+                            labels: [quiz.id],
                             labelStyle: TextStyle(fontSize: 0),
                             onSelected: (List<String> checked) {
                               print("${checked.toString()}");

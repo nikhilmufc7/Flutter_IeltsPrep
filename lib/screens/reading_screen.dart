@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:grouped_buttons/grouped_buttons.dart';
 
 import 'package:ielts/models/reading.dart';
 import 'package:ielts/screens/reading_detail_screen.dart';
 import 'package:ielts/viewModels/readingCrudModel.dart';
 
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final Color backgroundColor = Color(0xFF21BFBD);
 
@@ -34,11 +36,24 @@ class _ReadingScreenState extends State<ReadingScreen>
   double screenWidth, screenHeight;
   final Duration duration = const Duration(milliseconds: 300);
   AnimationController _controller;
-
   TabController _tabController;
+
+  List<String> checkedReadingItems = [];
+
+  void _getcheckedReadingItems() async {
+    var prefs = await SharedPreferences.getInstance();
+    if (prefs.containsKey('checkedReadingItems')) {
+      checkedReadingItems = prefs.getStringList('checkedReadingItems');
+    } else {
+      prefs.setStringList('checkedReadingItems', checkedReadingItems);
+    }
+  }
+
   @override
   void initState() {
     _tabController = TabController(length: 11, vsync: this);
+    _getcheckedReadingItems();
+
     super.initState();
     _controller = AnimationController(vsync: this, duration: duration);
 
@@ -222,6 +237,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                             physics: ScrollPhysics(),
                             itemCount: readings.length,
                             itemBuilder: (BuildContext context, int index) {
+                              _getcheckedReadingItems();
                               return makeCard(readings[index]);
                             },
                           );
@@ -281,6 +297,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                             physics: ScrollPhysics(),
                             itemCount: trueOrFalse.length,
                             itemBuilder: (BuildContext context, int index) {
+                              _getcheckedReadingItems();
                               return makeCard(trueOrFalse[index]);
                             },
                           );
@@ -340,6 +357,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                             physics: ScrollPhysics(),
                             itemCount: headings.length,
                             itemBuilder: (BuildContext context, int index) {
+                              _getcheckedReadingItems();
                               return makeCard(headings[index]);
                             },
                           );
@@ -398,6 +416,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                             physics: ScrollPhysics(),
                             itemCount: summary.length,
                             itemBuilder: (BuildContext context, int index) {
+                              _getcheckedReadingItems();
                               return makeCard(summary[index]);
                             },
                           );
@@ -457,6 +476,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                             physics: ScrollPhysics(),
                             itemCount: paragraph.length,
                             itemBuilder: (BuildContext context, int index) {
+                              _getcheckedReadingItems();
                               return makeCard(paragraph[index]);
                             },
                           );
@@ -515,6 +535,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                             physics: ScrollPhysics(),
                             itemCount: mcqs.length,
                             itemBuilder: (BuildContext context, int index) {
+                              _getcheckedReadingItems();
                               return makeCard(mcqs[index]);
                             },
                           );
@@ -573,6 +594,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                             physics: ScrollPhysics(),
                             itemCount: listSelection.length,
                             itemBuilder: (BuildContext context, int index) {
+                              _getcheckedReadingItems();
                               return makeCard(listSelection[index]);
                             },
                           );
@@ -631,6 +653,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                             physics: ScrollPhysics(),
                             itemCount: titleSelection.length,
                             itemBuilder: (BuildContext context, int index) {
+                              _getcheckedReadingItems();
                               return makeCard(titleSelection[index]);
                             },
                           );
@@ -689,6 +712,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                             physics: ScrollPhysics(),
                             itemCount: categorization.length,
                             itemBuilder: (BuildContext context, int index) {
+                              _getcheckedReadingItems();
                               return makeCard(categorization[index]);
                             },
                           );
@@ -747,6 +771,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                             physics: ScrollPhysics(),
                             itemCount: matchingEndings.length,
                             itemBuilder: (BuildContext context, int index) {
+                              _getcheckedReadingItems();
                               return makeCard(matchingEndings[index]);
                             },
                           );
@@ -805,6 +830,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                             physics: ScrollPhysics(),
                             itemCount: saqs.length,
                             itemBuilder: (BuildContext context, int index) {
+                              _getcheckedReadingItems();
                               return makeCard(saqs[index]);
                             },
                           );
@@ -868,8 +894,34 @@ class _ReadingScreenState extends State<ReadingScreen>
             )
           ],
         ),
-        trailing:
-            Icon(Icons.keyboard_arrow_right, color: Colors.white, size: 30.0),
+        trailing: FittedBox(
+          child: CheckboxGroup(
+              checked: checkedReadingItems,
+              labels: [reading.id],
+              labelStyle: TextStyle(fontSize: 0),
+              onSelected: (List<String> checked) {
+                print("${checked.toString()}");
+              },
+              onChange: (bool isChecked, String label, int index) async {
+                print(label);
+                final prefs = await SharedPreferences.getInstance();
+                prefs.setBool(label, isChecked);
+                print(prefs.getBool(label) ?? 0);
+
+                setState(() {
+                  isChecked = prefs.getBool(label);
+
+                  if (checkedReadingItems.contains(label)) {
+                    checkedReadingItems.remove(label);
+                  } else {
+                    checkedReadingItems.add(label);
+                  }
+                  prefs.setStringList(
+                      'checkedReadingItems', checkedReadingItems);
+                  print(checkedReadingItems);
+                });
+              }),
+        ),
         onTap: () {
           Navigator.push(
               context,
