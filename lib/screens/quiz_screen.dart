@@ -30,26 +30,25 @@ class _QuizScreenState extends State<QuizScreen> {
   List<String> checkedItems = [];
 
   var items = [
-    PlaceInfo(Color(0xff6DC8F3), Color(0xff73A1F9), 4.4),
-    PlaceInfo(
+    GradientColors(
+      Color(0xff6DC8F3),
+      Color(0xff73A1F9),
+    ),
+    GradientColors(
       Color(0xffFFB157),
       Color(0xffFFA057),
-      3.7,
     ),
-    PlaceInfo(
+    GradientColors(
       Color(0xffFF5B95),
       Color(0xffF8556D),
-      4.5,
     ),
-    PlaceInfo(
+    GradientColors(
       Color(0xffD76EF5),
       Color(0xff8F7AFE),
-      4.1,
     ),
-    PlaceInfo(
+    GradientColors(
       Color(0xff42E695),
       Color(0xff3BB2B8),
-      4.2,
     ),
   ];
 
@@ -285,15 +284,13 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 }
 
-class PlaceInfo {
-  final double rating;
+class GradientColors {
   final Color startColor;
   final Color endColor;
 
-  PlaceInfo(
+  GradientColors(
     this.startColor,
     this.endColor,
-    this.rating,
   );
 }
 
