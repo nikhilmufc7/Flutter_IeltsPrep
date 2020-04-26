@@ -176,14 +176,12 @@ class _WritingScreenState extends State<WritingScreen>
   Widget makeCard(Lesson lesson) => Padding(
         padding: const EdgeInsets.only(bottom: 15.0, left: 5, right: 5),
         child: Card(
+          color: Color.fromRGBO(64, 75, 96, .9),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           elevation: 8.0,
           margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-          child: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Color.fromRGBO(64, 75, 96, .9)),
-            child: makeListTile(lesson),
-          ),
+          child: makeListTile(lesson),
         ),
       );
 

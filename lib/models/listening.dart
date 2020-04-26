@@ -16,6 +16,9 @@ class Listening {
   String s1SubQuestions2Numbers;
   List s1SubQuestions2;
 
+  String secondQuestionImage;
+  bool secondQuestionImageBool;
+
   List answers;
 
   //section 2
@@ -59,6 +62,10 @@ class Listening {
   String s4WhatToDo;
   String section4Audio;
   String section4Question1Numbers;
+  String section4Image1;
+  bool section4Image1Bool;
+  String section4Image2;
+  bool section4Image2Bool;
   List section4Question1;
   bool section4Question1Bool;
   String section4Question2Numbers;
@@ -69,75 +76,80 @@ class Listening {
   bool section4Question3Bool;
   List section4Answers;
 
-  Listening({
-    this.id,
-    this.title,
-    this.level,
-    this.indicatorValue,
-    this.s1SubQuestions1,
-    this.firstSectionAudio,
-    this.firstQuestionImage,
-    this.s1SubQuestions1Bool,
-    this.s1SubQuestions1Numbers,
-    this.answers,
-    this.intialQuestionNumbers,
-    this.whatToDo,
-    this.s1SubQuestions2Bool,
-    this.s1SubQuestions2Numbers,
-    this.s1SubQuestions2,
+  Listening(
+      {this.id,
+      this.title,
+      this.level,
+      this.indicatorValue,
+      this.s1SubQuestions1,
+      this.firstSectionAudio,
+      this.firstQuestionImage,
+      this.s1SubQuestions1Bool,
+      this.s1SubQuestions1Numbers,
+      this.answers,
+      this.intialQuestionNumbers,
+      this.whatToDo,
+      this.s1SubQuestions2Bool,
+      this.s1SubQuestions2Numbers,
+      this.s1SubQuestions2,
+      this.secondQuestionImage,
+      this.secondQuestionImageBool,
 
-    // section 2
+      // section 2
 
-    this.s2WhatToDo,
-    this.section2Audio,
-    this.section2Image1,
-    this.section2Image1Bool,
-    this.section2Image2,
-    this.section2Image2Bool,
-    this.s2SubQuestion1Numbers,
-    this.s2SubQuestions1,
-    this.s2SubQuestions1Bool,
-    this.s2SubQuestion2Numbers,
-    this.s2SubQuestions2,
-    this.s2SubQuestions2Bool,
-    this.section2Answers,
+      this.s2WhatToDo,
+      this.section2Audio,
+      this.section2Image1,
+      this.section2Image1Bool,
+      this.section2Image2,
+      this.section2Image2Bool,
+      this.s2SubQuestion1Numbers,
+      this.s2SubQuestions1,
+      this.s2SubQuestions1Bool,
+      this.s2SubQuestion2Numbers,
+      this.s2SubQuestions2,
+      this.s2SubQuestions2Bool,
+      this.section2Answers,
 
-    // section 3
+      // section 3
 
-    this.s3WhatToDo,
-    this.section3Audio,
-    this.section3Image1,
-    this.section3Image1Bool,
-    this.section3Image2bool,
-    this.section3Image2,
-    this.section3Image3bool,
-    this.section3Image3,
-    this.section3Question1,
-    this.section3Question1Numbers,
-    this.section3Question1bool,
-    this.section3Question2,
-    this.section3Question2Numbers,
-    this.section3Questions2bool,
-    this.section3Question3,
-    this.section3Question3bool,
-    this.section3Question3Numbers,
-    this.section3Answers,
+      this.s3WhatToDo,
+      this.section3Audio,
+      this.section3Image1,
+      this.section3Image1Bool,
+      this.section3Image2bool,
+      this.section3Image2,
+      this.section3Image3bool,
+      this.section3Image3,
+      this.section3Question1,
+      this.section3Question1Numbers,
+      this.section3Question1bool,
+      this.section3Question2,
+      this.section3Question2Numbers,
+      this.section3Questions2bool,
+      this.section3Question3,
+      this.section3Question3bool,
+      this.section3Question3Numbers,
+      this.section3Answers,
 
-    // section4
-    //
-    this.s4WhatToDo,
-    this.section4Audio,
-    this.section4Question1Numbers,
-    this.section4Question1,
-    this.section4Question1Bool,
-    this.section4Question2Numbers,
-    this.section4Question2,
-    this.section4Question2Bool,
-    this.section4Question3Numbers,
-    this.section4Question3,
-    this.section4Question3Bool,
-    this.section4Answers,
-  });
+      // section4
+      //
+      this.s4WhatToDo,
+      this.section4Audio,
+      this.section4Question1Numbers,
+      this.section4Question1,
+      this.section4Question1Bool,
+      this.section4Question2Numbers,
+      this.section4Question2,
+      this.section4Question2Bool,
+      this.section4Question3Numbers,
+      this.section4Question3,
+      this.section4Question3Bool,
+      this.section4Answers,
+      this.section4Image1,
+      this.section4Image1Bool,
+      this.section4Image2,
+      this.section4Image2Bool});
 
   Listening.fromMap(Map<dynamic, dynamic> snapshot, String id)
       : id = snapshot['id'] ?? '',
@@ -155,6 +167,8 @@ class Listening {
         s1SubQuestions2Bool = snapshot['s1SubQuestions2Bool'] ?? false,
         s1SubQuestions2 = snapshot['s1SubQuestions2'] ?? [],
         s1SubQuestions2Numbers = snapshot['s1SubQuestions2Numbers'] ?? '',
+        secondQuestionImage = snapshot['secondQuestionImage'] ?? '',
+        secondQuestionImageBool = snapshot['secondQuestionImageBool'] ?? false,
 
         // section 2
         s2WhatToDo = snapshot['s2WhatToDo'] ?? '',
@@ -205,7 +219,11 @@ class Listening {
         section4Question3Numbers = snapshot['section4Question3Numbers'] ?? '',
         section4Question3 = snapshot['section4Question3'] ?? [],
         section4Question3Bool = snapshot['section4Question3Bool'] ?? false,
-        section4Answers = snapshot['section4Answers'] ?? [];
+        section4Answers = snapshot['section4Answers'] ?? [],
+        section4Image1 = snapshot['section4Image1'] ?? '',
+        section4Image1Bool = snapshot['section4Image1'] ?? false,
+        section4Image2 = snapshot['section4Image2'] ?? '',
+        section4Image2Bool = snapshot['section4Image2'] ?? false;
 
   toJson() {
     return {
@@ -224,6 +242,8 @@ class Listening {
       "s1SubQuestions2Bool": s1SubQuestions2Bool,
       "s1SubQuestions2": s1SubQuestions2,
       "s1SubQuestions2Numbers": s1SubQuestions2Numbers,
+      "secondQuestionImage": secondQuestionImage,
+      "secondQuestionImageBool": secondQuestionImageBool,
 
       // section 2
       "s2WhatToDo": s2WhatToDo,
@@ -275,6 +295,10 @@ class Listening {
       "section4Question3": section4Question3,
       "section4Question3Bool": section4Question3Bool,
       "section4Answers": section4Answers,
+      "section4Image1": section4Image1,
+      "section4Image1Bool": section4Image1Bool,
+      "section4Image2": section4Image2,
+      "section4Image2Bool": section4Image2Bool,
     };
   }
 }

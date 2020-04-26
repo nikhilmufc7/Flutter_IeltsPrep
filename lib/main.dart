@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ielts/app_constants.dart';
 import 'package:ielts/locator.dart';
 import 'package:ielts/router.dart';
+import 'package:ielts/theme.dart';
 import 'package:ielts/viewModels/blogCrudModel.dart';
 import 'package:ielts/viewModels/listeningCrudModel.dart';
 import 'package:ielts/viewModels/quizCrudModel.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          theme: ThemeData(fontFamily: 'Montserrat'),
+          // theme: AppTheme.lightTheme,
           title: 'IELTS',
           initialRoute: RoutePaths.root,
           onGenerateRoute: Router.generateRoute,

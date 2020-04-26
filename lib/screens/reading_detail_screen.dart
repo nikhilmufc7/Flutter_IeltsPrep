@@ -142,6 +142,7 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
                                         (BuildContext context, int index) {
                                       initialQuestionResult =
                                           reading.initialQuestions[index];
+
                                       return ListTile(
                                         title: Text(
                                           initialQuestionResult.replaceAll(

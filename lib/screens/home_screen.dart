@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ielts/app_constants.dart';
 import 'package:ielts/services/auth.dart';
+import 'package:ielts/theme.dart';
 import 'package:ielts/widgets/menu_page.dart';
 
 final Color backgroundColor = Color(0xFF21BFBD);
@@ -145,6 +146,9 @@ class _HomeScreenState extends State<HomeScreen>
                   Container(
                     height: MediaQuery.of(context).size.height,
                     decoration: BoxDecoration(
+                      // boxShadow: [
+                      //   BoxShadow(color: Colors.white, blurRadius: 10)
+                      // ],
                       color: Colors.white,
                       borderRadius:
                           BorderRadius.only(topLeft: Radius.circular(75.0)),

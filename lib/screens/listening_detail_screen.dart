@@ -237,6 +237,22 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                 ),
                               ),
                             ),
+
+                            Visibility(
+                              visible:
+                                  listening.secondQuestionImageBool == true,
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: CachedNetworkImage(
+                                  imageUrl: listening.secondQuestionImage,
+                                  placeholder: (context, url) => Center(
+                                      child: CircularProgressIndicator()),
+                                  errorWidget: (context, url, error) =>
+                                      Icon(Icons.error),
+                                ),
+                              ),
+                            ),
+
                             Visibility(
                               visible: listening.s1SubQuestions2Bool == true,
                               child: Padding(
@@ -776,6 +792,19 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             ),
 
                             Visibility(
+                              visible: listening.section4Image1Bool == true,
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: CachedNetworkImage(
+                                  imageUrl: listening.section4Image1,
+                                  placeholder: (context, url) => Center(
+                                      child: CircularProgressIndicator()),
+                                  errorWidget: (context, url, error) =>
+                                      Icon(Icons.error),
+                                ),
+                              ),
+                            ),
+                            Visibility(
                               visible: listening.section4Question1Bool == true,
                               child: Padding(
                                   padding: const EdgeInsets.only(
@@ -812,6 +841,20 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                   fontWeight: FontWeight.bold,
                                   fontSize: 13,
                                   color: Color(0xFF21BFBD)),
+                            ),
+
+                            Visibility(
+                              visible: listening.section4Image2Bool == true,
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: CachedNetworkImage(
+                                  imageUrl: listening.section4Image2,
+                                  placeholder: (context, url) => Center(
+                                      child: CircularProgressIndicator()),
+                                  errorWidget: (context, url, error) =>
+                                      Icon(Icons.error),
+                                ),
+                              ),
                             ),
 
                             Visibility(
