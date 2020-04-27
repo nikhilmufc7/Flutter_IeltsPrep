@@ -4,6 +4,8 @@ import 'package:ielts/app_constants.dart';
 import 'package:ielts/services/auth.dart';
 import 'package:ielts/theme.dart';
 import 'package:ielts/widgets/menu_page.dart';
+import 'package:ielts/widgets/zoom_scaffold.dart';
+import 'package:provider/provider.dart';
 
 final Color backgroundColor = Color(0xFF21BFBD);
 
@@ -71,6 +73,9 @@ class _HomeScreenState extends State<HomeScreen>
         scale: _scaleAnimation,
         child: Material(
           animationDuration: duration,
+          borderRadius: (isCollapsed)
+              ? BorderRadius.circular(0)
+              : BorderRadius.circular(40),
           elevation: 8,
           color: backgroundColor,
           child: SingleChildScrollView(
@@ -157,161 +162,191 @@ class _HomeScreenState extends State<HomeScreen>
                       padding: EdgeInsets.only(top: 45.0, left: 25, right: 25),
                       child: Container(
                         height: MediaQuery.of(context).size.height,
-                        child: ListView(
-                          physics: NeverScrollableScrollPhysics(),
-                          children: <Widget>[
-                            FittedBox(
-                              fit: BoxFit.cover,
-                              child: Row(
-                                children: <Widget>[
-                                  CupertinoButton(
-                                    child: Container(
-                                      height: 180,
-                                      width: 150,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          image:
-                                              AssetImage("assets/reading.jpg"),
-                                          fit: BoxFit.cover,
-                                        ),
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
+                        child: GestureDetector(
+                          onPanUpdate: (details) {
+                            //on swiping left
+                            if (details.delta.dx < 6) {
+                              if (isCollapsed) {
+                                return null;
+                              } else {
+                                setState(() {
+                                  _controller.reverse();
+                                  isCollapsed = true;
+                                });
+                              }
+                            }
+                            // }
+                          },
+                          onTap: (isCollapsed)
+                              ? null
+                              : () {
+                                  setState(() {
+                                    _controller.reverse();
+                                    isCollapsed = true;
+                                  });
+                                },
+                          child: ListView(
+                            physics: ClampingScrollPhysics(),
+                            children: <Widget>[
+                              FittedBox(
+                                fit: BoxFit.cover,
+                                child: Row(
+                                  children: <Widget>[
+                                    CupertinoButton(
                                       child: Container(
-                                        margin:
-                                            EdgeInsets.fromLTRB(15, 15, 0, 0),
-                                        child: Text(
-                                          "Reading",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 20,
-                                              fontFamily: 'Montserrat',
-                                              fontWeight: FontWeight.bold),
+                                        height: 180,
+                                        width: 150,
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            image: AssetImage(
+                                                "assets/reading.jpg"),
+                                            fit: BoxFit.cover,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                        ),
+                                        child: Container(
+                                          margin:
+                                              EdgeInsets.fromLTRB(15, 15, 0, 0),
+                                          child: Text(
+                                            "Reading",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20,
+                                                fontFamily: 'Montserrat',
+                                                fontWeight: FontWeight.bold),
+                                          ),
                                         ),
                                       ),
+                                      onPressed: () {
+                                        Navigator.of(context)
+                                            .pushNamed(RoutePaths.reading);
+                                      },
                                     ),
-                                    onPressed: () {
-                                      Navigator.of(context)
-                                          .pushNamed(RoutePaths.reading);
-                                    },
-                                  ),
-                                  CupertinoButton(
-                                    child: Container(
-                                      height: 180,
-                                      width: 150,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          image:
-                                              AssetImage("assets/writing.jpg"),
-                                          fit: BoxFit.cover,
-                                        ),
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
+                                    CupertinoButton(
                                       child: Container(
-                                        margin:
-                                            EdgeInsets.fromLTRB(15, 15, 0, 0),
-                                        child: Text(
-                                          "Writing",
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 20,
-                                              fontFamily: 'Montserrat',
-                                              fontWeight: FontWeight.bold),
+                                        height: 180,
+                                        width: 150,
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            image: AssetImage(
+                                                "assets/writing.jpg"),
+                                            fit: BoxFit.cover,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                        ),
+                                        child: Container(
+                                          margin:
+                                              EdgeInsets.fromLTRB(15, 15, 0, 0),
+                                          child: Text(
+                                            "Writing",
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 20,
+                                                fontFamily: 'Montserrat',
+                                                fontWeight: FontWeight.bold),
+                                          ),
                                         ),
                                       ),
+                                      onPressed: () {
+                                        Navigator.of(context)
+                                            .pushNamed(RoutePaths.writing);
+                                      },
                                     ),
-                                    onPressed: () {
-                                      Navigator.of(context)
-                                          .pushNamed(RoutePaths.writing);
-                                    },
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                            // tj
-                            FittedBox(
-                              fit: BoxFit.cover,
-                              child: Row(
-                                children: <Widget>[
-                                  CupertinoButton(
-                                    child: Container(
-                                      height: 180,
-                                      width: 150,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          image: AssetImage(
-                                              "assets/listening.jpeg"),
-                                          fit: BoxFit.cover,
-                                        ),
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
+                              // tj
+                              FittedBox(
+                                fit: BoxFit.cover,
+                                child: Row(
+                                  children: <Widget>[
+                                    CupertinoButton(
                                       child: Container(
-                                        margin:
-                                            EdgeInsets.fromLTRB(15, 15, 0, 0),
-                                        child: Align(
-                                          alignment:
-                                              FractionalOffset.bottomLeft,
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                bottom: 15.0),
-                                            child: Text(
-                                              "Listening",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 20,
-                                                  fontFamily: 'Montserrat',
-                                                  fontWeight: FontWeight.bold),
+                                        height: 180,
+                                        width: 150,
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            image: AssetImage(
+                                                "assets/listening.jpeg"),
+                                            fit: BoxFit.cover,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                        ),
+                                        child: Container(
+                                          margin:
+                                              EdgeInsets.fromLTRB(15, 15, 0, 0),
+                                          child: Align(
+                                            alignment:
+                                                FractionalOffset.bottomLeft,
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  bottom: 15.0),
+                                              child: Text(
+                                                "Listening",
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 20,
+                                                    fontFamily: 'Montserrat',
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
+                                      onPressed: () {
+                                        Navigator.of(context)
+                                            .pushNamed(RoutePaths.listening);
+                                      },
                                     ),
-                                    onPressed: () {
-                                      Navigator.of(context)
-                                          .pushNamed(RoutePaths.listening);
-                                    },
-                                  ),
-                                  CupertinoButton(
-                                    child: Container(
-                                      height: 180,
-                                      width: 150,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          image:
-                                              AssetImage("assets/speaking.jpg"),
-                                          fit: BoxFit.cover,
-                                        ),
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
+                                    CupertinoButton(
                                       child: Container(
-                                        margin:
-                                            EdgeInsets.fromLTRB(15, 15, 0, 0),
-                                        child: Align(
-                                          alignment:
-                                              FractionalOffset.bottomLeft,
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                bottom: 15.0),
-                                            child: Text(
-                                              "Speaking",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 20,
-                                                  fontFamily: 'Montserrat',
-                                                  fontWeight: FontWeight.bold),
+                                        height: 180,
+                                        width: 150,
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            image: AssetImage(
+                                                "assets/speaking.jpg"),
+                                            fit: BoxFit.cover,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                        ),
+                                        child: Container(
+                                          margin:
+                                              EdgeInsets.fromLTRB(15, 15, 0, 0),
+                                          child: Align(
+                                            alignment:
+                                                FractionalOffset.bottomLeft,
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  bottom: 15.0),
+                                              child: Text(
+                                                "Speaking",
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 20,
+                                                    fontFamily: 'Montserrat',
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
+                                      onPressed: () {
+                                        Navigator.of(context)
+                                            .pushNamed(RoutePaths.speaking);
+                                      },
                                     ),
-                                    onPressed: () {
-                                      Navigator.of(context)
-                                          .pushNamed(RoutePaths.speaking);
-                                    },
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),

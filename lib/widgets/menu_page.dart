@@ -7,8 +7,6 @@ import 'package:ielts/services/auth.dart';
 import 'package:ielts/widgets/circular_image.dart';
 
 import 'package:flutter/material.dart';
-import 'package:ielts/widgets/zoom_scaffold.dart';
-import 'package:provider/provider.dart';
 
 class MenuPage extends StatelessWidget {
   final List<MenuItem> options = [
