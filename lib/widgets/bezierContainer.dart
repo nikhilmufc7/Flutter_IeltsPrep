@@ -15,7 +15,7 @@ class BezierContainer extends StatelessWidget {
       child: ClipPath(
         clipper: ClipPainter(),
         child: Container(
-          height: MediaQuery.of(context).size.height * .5,
+          height: MediaQuery.of(context).size.height * 0.35,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(color: Color(0xFF21BFBD)),
         ),

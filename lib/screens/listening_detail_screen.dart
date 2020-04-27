@@ -67,7 +67,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
       child: Scaffold(
         appBar: AppBar(
           elevation: 0.0,
-          backgroundColor: Color(0xFF21BFBD),
+          backgroundColor: backgroundColor,
           title: FittedBox(
             child: Text(listening.title),
           ),
@@ -144,7 +144,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14,
-                                    color: Color(0xFF21BFBD)),
+                                    color: Colors.deepPurpleAccent),
                               ),
                             ),
 
@@ -167,17 +167,22 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14,
-                                    color: Color(0xFF21BFBD)),
+                                    color: Colors.deepPurpleAccent),
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: CachedNetworkImage(
-                                imageUrl: listening.firstQuestionImage,
-                                placeholder: (context, url) =>
-                                    Center(child: CircularProgressIndicator()),
-                                errorWidget: (context, url, error) =>
-                                    Icon(Icons.error),
+                            Visibility(
+                              visible: (listening.firstQuestionImage != '')
+                                  ? true
+                                  : false,
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: CachedNetworkImage(
+                                  imageUrl: listening.firstQuestionImage,
+                                  placeholder: (context, url) => Center(
+                                      child: CircularProgressIndicator()),
+                                  errorWidget: (context, url, error) =>
+                                      Icon(Icons.error),
+                                ),
                               ),
                             ),
                             // Summary
@@ -190,7 +195,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14,
-                                    color: Color(0xFF21BFBD)),
+                                    color: Colors.deepPurpleAccent),
                               ),
                             ),
 
@@ -233,7 +238,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.bold,
                                       fontSize: 14,
-                                      color: Color(0xFF21BFBD)),
+                                      color: Colors.deepPurpleAccent),
                                 ),
                               ),
                             ),
@@ -354,7 +359,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14,
-                                    color: Color(0xFF21BFBD)),
+                                    color: Colors.deepPurpleAccent),
                               ),
                             ),
 
@@ -362,14 +367,17 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
 
                             SizedBox(height: 15),
 
-                            Text(
-                              listening.s2SubQuestion1Numbers
-                                  .replaceAll("_n", "\n"),
-                              style: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14,
-                                  color: Color(0xFF21BFBD)),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                listening.s2SubQuestion1Numbers
+                                    .replaceAll("_n", "\n"),
+                                style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                    color: Colors.deepPurpleAccent),
+                              ),
                             ),
                             Visibility(
                               visible: listening.section2Image1Bool == true,
@@ -413,14 +421,17 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                   )),
                             ),
                             // Summary
-                            Text(
-                              listening.s2SubQuestion2Numbers
-                                  .replaceAll("_n", "\n"),
-                              style: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 13,
-                                  color: Color(0xFF21BFBD)),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                listening.s2SubQuestion2Numbers
+                                    .replaceAll("_n", "\n"),
+                                style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13,
+                                    color: Colors.deepPurpleAccent),
+                              ),
                             ),
 
                             Visibility(
@@ -537,7 +548,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14,
-                                    color: Color(0xFF21BFBD)),
+                                    color: Colors.deepPurpleAccent),
                               ),
                             ),
 
@@ -545,14 +556,17 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
 
                             SizedBox(height: 15),
 
-                            Text(
-                              listening.section3Question1Numbers
-                                  .replaceAll("_n", "\n"),
-                              style: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14,
-                                  color: Color(0xFF21BFBD)),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                listening.section3Question1Numbers
+                                    .replaceAll("_n", "\n"),
+                                style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                    color: Colors.deepPurpleAccent),
+                              ),
                             ),
                             Visibility(
                               visible: listening.section3Image1Bool == true,
@@ -597,14 +611,17 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                   )),
                             ),
                             // Summary
-                            Text(
-                              listening.section3Question2Numbers
-                                  .replaceAll("_n", "\n"),
-                              style: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 13,
-                                  color: Color(0xFF21BFBD)),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                listening.section3Question2Numbers
+                                    .replaceAll("_n", "\n"),
+                                style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13,
+                                    color: Colors.deepPurpleAccent),
+                              ),
                             ),
 
                             Visibility(
@@ -650,14 +667,17 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                   )),
                             ),
 
-                            Text(
-                              listening.section3Question3Numbers
-                                  .replaceAll("_n", "\n"),
-                              style: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 13,
-                                  color: Color(0xFF21BFBD)),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                listening.section3Question3Numbers
+                                    .replaceAll("_n", "\n"),
+                                style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13,
+                                    color: Colors.deepPurpleAccent),
+                              ),
                             ),
 
                             Visibility(
@@ -773,7 +793,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14,
-                                    color: Color(0xFF21BFBD)),
+                                    color: Colors.deepPurpleAccent),
                               ),
                             ),
 
@@ -781,14 +801,17 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
 
                             SizedBox(height: 15),
 
-                            Text(
-                              listening.section4Question1Numbers
-                                  .replaceAll("_n", "\n"),
-                              style: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14,
-                                  color: Color(0xFF21BFBD)),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                listening.section4Question1Numbers
+                                    .replaceAll("_n", "\n"),
+                                style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                    color: Colors.deepPurpleAccent),
+                              ),
                             ),
 
                             Visibility(
@@ -833,14 +856,17 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                   )),
                             ),
                             // Summary
-                            Text(
-                              listening.section4Question2Numbers
-                                  .replaceAll("_n", "\n"),
-                              style: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 13,
-                                  color: Color(0xFF21BFBD)),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                listening.section4Question2Numbers
+                                    .replaceAll("_n", "\n"),
+                                style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13,
+                                    color: Colors.deepPurpleAccent),
+                              ),
                             ),
 
                             Visibility(
@@ -886,14 +912,17 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                   )),
                             ),
 
-                            Text(
-                              listening.section4Question3Numbers
-                                  .replaceAll("_n", "\n"),
-                              style: TextStyle(
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 13,
-                                  color: Color(0xFF21BFBD)),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                listening.section4Question3Numbers
+                                    .replaceAll("_n", "\n"),
+                                style: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13,
+                                    color: Colors.deepPurpleAccent),
+                              ),
                             ),
 
                             Visibility(

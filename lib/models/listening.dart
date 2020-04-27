@@ -221,9 +221,9 @@ class Listening {
         section4Question3Bool = snapshot['section4Question3Bool'] ?? false,
         section4Answers = snapshot['section4Answers'] ?? [],
         section4Image1 = snapshot['section4Image1'] ?? '',
-        section4Image1Bool = snapshot['section4Image1'] ?? false,
+        section4Image1Bool = snapshot['section4Image1Bool'] ?? false,
         section4Image2 = snapshot['section4Image2'] ?? '',
-        section4Image2Bool = snapshot['section4Image2'] ?? false;
+        section4Image2Bool = snapshot['section4Image2Bool'] ?? false;
 
   toJson() {
     return {
