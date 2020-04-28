@@ -870,7 +870,10 @@ class _ReadingScreenState extends State<ReadingScreen>
         ),
         title: Text(
           reading.title,
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              fontFamily: 'Montserrat',
+              color: Colors.white,
+              fontWeight: FontWeight.bold),
         ),
         subtitle: Row(
           children: <Widget>[

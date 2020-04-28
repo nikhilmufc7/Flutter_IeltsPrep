@@ -194,7 +194,7 @@ class Listening {
         section3Image2bool = snapshot['section3Image2bool'] ?? false,
         section3Image2 = snapshot['section3Image2'] ?? '',
         section3Image3bool = snapshot['section3Image3bool'] ?? false,
-        section3Image3 = snapshot['section3Image3 '] ?? '',
+        section3Image3 = snapshot['section3Image3'] ?? '',
         section3Question1 = snapshot['section3Question1'] ?? [],
         section3Question1bool = snapshot['section3Question1bool'] ?? false,
         section3Question1Numbers = snapshot['section3Question1Numbers'] ?? '',

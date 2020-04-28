@@ -196,7 +196,10 @@ class _WritingScreenState extends State<WritingScreen>
         ),
         title: Text(
           lesson.title,
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              fontFamily: 'Montserrat',
+              color: Colors.white,
+              fontWeight: FontWeight.bold),
         ),
         subtitle: Row(
           children: <Widget>[

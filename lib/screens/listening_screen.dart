@@ -193,7 +193,10 @@ class _ListeningScreenState extends State<ListeningScreen>
         ),
         title: Text(
           listening.title,
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              fontFamily: 'Montserrat',
+              color: Colors.white,
+              fontWeight: FontWeight.bold),
         ),
         subtitle: Row(
           children: <Widget>[

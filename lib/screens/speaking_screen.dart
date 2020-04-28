@@ -190,7 +190,10 @@ class _SpeakingScreenState extends State<SpeakingScreen>
         ),
         title: Text(
           speaking.title,
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              fontFamily: 'Montserrat',
+              color: Colors.white,
+              fontWeight: FontWeight.bold),
         ),
         subtitle: Row(
           children: <Widget>[
