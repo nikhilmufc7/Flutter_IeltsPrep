@@ -37,6 +37,7 @@ class _BlogScreenState extends State<BlogScreen> {
     screenHeight = size.height;
     screenWidth = size.width;
     return Scaffold(
+      backgroundColor: Theme.of(context).secondaryHeaderColor,
       appBar: AppBar(
         title: Text(
           'Blog',
@@ -52,7 +53,7 @@ class _BlogScreenState extends State<BlogScreen> {
             Navigator.pushReplacementNamed(context, RoutePaths.home);
           },
         ),
-        backgroundColor: Color(0xFF21BFBD),
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       body: SingleChildScrollView(
         physics: ClampingScrollPhysics(),

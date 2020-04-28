@@ -96,10 +96,12 @@ class _QuizScreenState extends State<QuizScreen> {
     final productProvider = Provider.of<QuizCrudModel>(context);
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-          backgroundColor: Color(0xFF21BFBD),
+          backgroundColor: Theme.of(context).primaryColor,
           title: Text('Quizzes'),
           elevation: 0,
+          actions: <Widget>[],
           leading: IconButton(
             onPressed: () {
               Navigator.pushReplacementNamed(context, RoutePaths.home);
@@ -111,7 +113,7 @@ class _QuizScreenState extends State<QuizScreen> {
           ClipPath(
             clipper: ArcClipper(),
             child: Container(
-              decoration: BoxDecoration(color: Color(0xFF21BFBD)),
+              decoration: BoxDecoration(color: Theme.of(context).primaryColor),
               height: 200,
             ),
           ),

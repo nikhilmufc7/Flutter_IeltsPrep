@@ -6,6 +6,7 @@ import 'package:ielts/screens/listening_screen.dart';
 import 'package:ielts/screens/quiz_screen.dart';
 import 'package:ielts/screens/reading_screen.dart';
 import 'package:ielts/screens/reset_password_screen.dart';
+import 'package:ielts/screens/settings_screen.dart';
 import 'package:ielts/screens/speaking_screen.dart';
 import 'package:ielts/screens/splash_screen.dart';
 import 'package:ielts/screens/vocabulary_screen.dart';
@@ -38,6 +39,8 @@ class Router {
         return MaterialPageRoute<Widget>(builder: (_) => BlogScreen());
       case RoutePaths.quiz:
         return MaterialPageRoute<Widget>(builder: (_) => QuizScreen());
+      case RoutePaths.settings:
+        return MaterialPageRoute<Widget>(builder: (_) => SettingsPage());
 
       default:
         return MaterialPageRoute<Widget>(

@@ -106,7 +106,9 @@ class MenuPage extends StatelessWidget {
             ),
             Spacer(),
             ListTile(
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, RoutePaths.settings);
+              },
               leading: Icon(
                 Icons.settings,
                 color: Colors.white,

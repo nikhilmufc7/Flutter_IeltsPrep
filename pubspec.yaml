@@ -43,7 +43,7 @@ dependencies:
   shared_preferences:
   percent_indicator:
   flutter_tts:
-  day_night_switcher:
+  day_night_switch:
 
 dev_dependencies:
   flutter_test:

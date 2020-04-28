@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ielts/app_constants.dart';
+import 'package:ielts/models/themeChange.dart';
 import 'package:ielts/services/auth.dart';
 import 'package:ielts/theme.dart';
 import 'package:ielts/widgets/menu_page.dart';
@@ -77,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen>
               ? BorderRadius.circular(0)
               : BorderRadius.circular(40),
           elevation: 8,
-          color: backgroundColor,
+          color: Theme.of(context).primaryColor,
           child: SingleChildScrollView(
             physics: NeverScrollableScrollPhysics(),
             child: Container(
