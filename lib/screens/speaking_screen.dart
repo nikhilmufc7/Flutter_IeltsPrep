@@ -54,7 +54,11 @@ class _SpeakingScreenState extends State<SpeakingScreen>
     screenHeight = size.height;
     screenWidth = size.width;
     return Scaffold(
-      appBar: topAppBar,
+      appBar: AppBar(
+        elevation: 0.0,
+        backgroundColor: Theme.of(context).primaryColor,
+        bottomOpacity: 0.0,
+      ),
       body: Stack(
         children: <Widget>[
           // MenuPage(),
@@ -70,7 +74,7 @@ class _SpeakingScreenState extends State<SpeakingScreen>
       animationDuration: duration,
       // borderRadius: BorderRadius.all(Radius.circular(40)),
       elevation: 8,
-      color: backgroundColor,
+      color: Theme.of(context).primaryColor,
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         physics: ClampingScrollPhysics(),
@@ -160,12 +164,6 @@ class _SpeakingScreenState extends State<SpeakingScreen>
       ),
     );
   }
-
-  final topAppBar = AppBar(
-    elevation: 0.0,
-    backgroundColor: Color(0xFF21BFBD),
-    bottomOpacity: 0.0,
-  );
 
   Widget makeCard(Speaking speaking) => Padding(
         padding: const EdgeInsets.only(bottom: 15.0, left: 5, right: 5),

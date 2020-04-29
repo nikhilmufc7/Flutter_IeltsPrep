@@ -74,7 +74,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
           animationDuration: duration,
           borderRadius: BorderRadius.all(Radius.circular(40)),
           elevation: 8,
-          color: backgroundColor,
+          color: Theme.of(context).primaryColor,
           child: SingleChildScrollView(
             physics: NeverScrollableScrollPhysics(),
             child: Container(

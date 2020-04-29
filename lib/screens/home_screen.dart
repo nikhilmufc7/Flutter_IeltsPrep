@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ielts/app_constants.dart';
-import 'package:ielts/models/themeChange.dart';
+
 import 'package:ielts/services/auth.dart';
-import 'package:ielts/theme.dart';
+
 import 'package:ielts/widgets/menu_page.dart';
-import 'package:ielts/widgets/zoom_scaffold.dart';
-import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final Color backgroundColor = Color(0xFF21BFBD);
 
@@ -77,6 +76,7 @@ class _HomeScreenState extends State<HomeScreen>
           borderRadius: (isCollapsed)
               ? BorderRadius.circular(0)
               : BorderRadius.circular(40),
+          shadowColor: Colors.white,
           elevation: 8,
           color: Theme.of(context).primaryColor,
           child: SingleChildScrollView(
@@ -152,10 +152,12 @@ class _HomeScreenState extends State<HomeScreen>
                   Container(
                     height: MediaQuery.of(context).size.height,
                     decoration: BoxDecoration(
-                      // boxShadow: [
-                      //   BoxShadow(color: Colors.white, blurRadius: 10)
-                      // ],
-                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                            color: Theme.of(context).secondaryHeaderColor,
+                            blurRadius: 10)
+                      ],
+                      color: Theme.of(context).canvasColor,
                       borderRadius:
                           BorderRadius.only(topLeft: Radius.circular(75.0)),
                     ),

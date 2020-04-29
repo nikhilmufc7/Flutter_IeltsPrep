@@ -42,6 +42,7 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
     return WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
+          backgroundColor: Colors.white,
           key: _key,
           appBar: AppBar(
             title: Text('Quiz'),
@@ -84,6 +85,8 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
                     ),
                     SizedBox(height: 25.0),
                     Card(
+                      elevation: 8,
+                      color: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
@@ -203,6 +206,7 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
                                     maxLines: 4,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
+                                        color: Colors.black,
                                         fontSize: 16,
                                         fontFamily: 'Montserrat',
                                         fontWeight: FontWeight.w600),

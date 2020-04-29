@@ -113,7 +113,9 @@ class _QuizScreenState extends State<QuizScreen> {
           ClipPath(
             clipper: ArcClipper(),
             child: Container(
-              decoration: BoxDecoration(color: Theme.of(context).primaryColor),
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+              ),
               height: 200,
             ),
           ),

@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:ielts/models/speaking.dart';
 
-final Color backgroundColor = Color(0xFF21BFBD);
-
 class SpeakingDetailScreen extends StatefulWidget {
   final Speaking speaking;
   SpeakingDetailScreen({
@@ -103,7 +101,11 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
     screenHeight = size.height;
     screenWidth = size.width;
     return Scaffold(
-      appBar: topAppBar,
+      appBar: AppBar(
+        elevation: 0.0,
+        backgroundColor: Theme.of(context).primaryColor,
+        bottomOpacity: 0.0,
+      ),
       body: Stack(
         children: <Widget>[
           // MenuPage(),
@@ -111,7 +113,7 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
             animationDuration: duration,
             // borderRadius: BorderRadius.all(Radius.circular(40)),
             elevation: 8,
-            color: backgroundColor,
+            color: Theme.of(context).primaryColor,
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               physics: ClampingScrollPhysics(),
@@ -285,12 +287,6 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
   //   CardController controller;
   //   return
   // }
-
-  final topAppBar = AppBar(
-    elevation: 0.0,
-    backgroundColor: Color(0xFF21BFBD),
-    bottomOpacity: 0.0,
-  );
 
   Widget _btnSection() => Container(
       padding: EdgeInsets.only(top: 20.0),

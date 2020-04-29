@@ -51,7 +51,7 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
             animationDuration: duration,
             // borderRadius: BorderRadius.all(Radius.circular(40)),
             elevation: 8,
-            color: backgroundColor,
+            color: Theme.of(context).primaryColor,
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               physics: ClampingScrollPhysics(),

@@ -173,7 +173,6 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen>
       text: TextSpan(
           text: 'Reset ',
           style: GoogleFonts.portLligatSans(
-            textStyle: Theme.of(context).textTheme.display1,
             fontSize: 30,
             fontWeight: FontWeight.w700,
             color: Color(0xffe46b10),
@@ -201,58 +200,60 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.white,
         body: SingleChildScrollView(
             child: Container(
-      height: MediaQuery.of(context).size.height,
-      child: Stack(
-        children: <Widget>[
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Expanded(
-                  flex: 2,
-                  child: SizedBox(),
+          height: MediaQuery.of(context).size.height,
+          child: Stack(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Expanded(
+                      flex: 2,
+                      child: SizedBox(),
+                    ),
+                    _title(),
+                    SizedBox(
+                      height: 50,
+                    ),
+                    _emailPasswordWidget(),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    _submitButton(),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    MaterialButton(
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(
+                            context, RoutePaths.login);
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        alignment: Alignment.centerRight,
+                        child: Text('Back to login',
+                            style: TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.w500)),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: SizedBox(),
+                    ),
+                  ],
                 ),
-                _title(),
-                SizedBox(
-                  height: 50,
-                ),
-                _emailPasswordWidget(),
-                SizedBox(
-                  height: 20,
-                ),
-                _submitButton(),
-                SizedBox(
-                  height: 10,
-                ),
-                MaterialButton(
-                  onPressed: () {
-                    Navigator.pushReplacementNamed(context, RoutePaths.login);
-                  },
-                  child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 10),
-                    alignment: Alignment.centerRight,
-                    child: Text('Back to login',
-                        style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w500)),
-                  ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: SizedBox(),
-                ),
-              ],
-            ),
+              ),
+              Positioned(
+                  top: -MediaQuery.of(context).size.height * .15,
+                  right: -MediaQuery.of(context).size.width * .4,
+                  child: BezierContainer())
+            ],
           ),
-          Positioned(
-              top: -MediaQuery.of(context).size.height * .15,
-              right: -MediaQuery.of(context).size.width * .4,
-              child: BezierContainer())
-        ],
-      ),
-    )));
+        )));
   }
 }

@@ -9,8 +9,6 @@ import 'package:ielts/viewModels/readingCrudModel.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-final Color backgroundColor = Color(0xFF21BFBD);
-
 class ReadingScreen extends StatefulWidget {
   ReadingScreen({Key key}) : super(key: key);
 
@@ -85,7 +83,7 @@ class _ReadingScreenState extends State<ReadingScreen>
       appBar: AppBar(
         title: Text('Reading Exercises'),
         elevation: 0.0,
-        backgroundColor: Color(0xFF21BFBD),
+        backgroundColor: Theme.of(context).primaryColor,
         bottomOpacity: 0.8,
         bottom: TabBar(
           isScrollable: true,
@@ -200,7 +198,7 @@ class _ReadingScreenState extends State<ReadingScreen>
       animationDuration: duration,
       // borderRadius: BorderRadius.all(Radius.circular(40)),
       elevation: 8,
-      color: backgroundColor,
+      color: Theme.of(context).primaryColor,
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         physics: ClampingScrollPhysics(),
@@ -261,7 +259,7 @@ class _ReadingScreenState extends State<ReadingScreen>
       animationDuration: duration,
       // borderRadius: BorderRadius.all(Radius.circular(40)),
       elevation: 8,
-      color: backgroundColor,
+      color: Theme.of(context).primaryColor,
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         physics: ClampingScrollPhysics(),
@@ -321,7 +319,7 @@ class _ReadingScreenState extends State<ReadingScreen>
       animationDuration: duration,
       // borderRadius: BorderRadius.all(Radius.circular(40)),
       elevation: 8,
-      color: backgroundColor,
+      color: Theme.of(context).primaryColor,
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         physics: ClampingScrollPhysics(),
@@ -381,7 +379,7 @@ class _ReadingScreenState extends State<ReadingScreen>
       animationDuration: duration,
       // borderRadius: BorderRadius.all(Radius.circular(40)),
       elevation: 8,
-      color: backgroundColor,
+      color: Theme.of(context).primaryColor,
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         physics: ClampingScrollPhysics(),
@@ -440,7 +438,7 @@ class _ReadingScreenState extends State<ReadingScreen>
       animationDuration: duration,
       // borderRadius: BorderRadius.all(Radius.circular(40)),
       elevation: 8,
-      color: backgroundColor,
+      color: Theme.of(context).primaryColor,
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         physics: ClampingScrollPhysics(),
@@ -500,7 +498,7 @@ class _ReadingScreenState extends State<ReadingScreen>
       animationDuration: duration,
       // borderRadius: BorderRadius.all(Radius.circular(40)),
       elevation: 8,
-      color: backgroundColor,
+      color: Theme.of(context).primaryColor,
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         physics: ClampingScrollPhysics(),
@@ -559,7 +557,7 @@ class _ReadingScreenState extends State<ReadingScreen>
       animationDuration: duration,
       // borderRadius: BorderRadius.all(Radius.circular(40)),
       elevation: 8,
-      color: backgroundColor,
+      color: Theme.of(context).primaryColor,
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         physics: ClampingScrollPhysics(),
@@ -618,7 +616,7 @@ class _ReadingScreenState extends State<ReadingScreen>
       animationDuration: duration,
       // borderRadius: BorderRadius.all(Radius.circular(40)),
       elevation: 8,
-      color: backgroundColor,
+      color: Theme.of(context).primaryColor,
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         physics: ClampingScrollPhysics(),
@@ -677,7 +675,7 @@ class _ReadingScreenState extends State<ReadingScreen>
       animationDuration: duration,
       // borderRadius: BorderRadius.all(Radius.circular(40)),
       elevation: 8,
-      color: backgroundColor,
+      color: Theme.of(context).primaryColor,
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         physics: ClampingScrollPhysics(),
@@ -736,7 +734,7 @@ class _ReadingScreenState extends State<ReadingScreen>
       animationDuration: duration,
       // borderRadius: BorderRadius.all(Radius.circular(40)),
       elevation: 8,
-      color: backgroundColor,
+      color: Theme.of(context).primaryColor,
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         physics: ClampingScrollPhysics(),
@@ -795,7 +793,7 @@ class _ReadingScreenState extends State<ReadingScreen>
       animationDuration: duration,
       // borderRadius: BorderRadius.all(Radius.circular(40)),
       elevation: 8,
-      color: backgroundColor,
+      color: Theme.of(context).primaryColor,
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         physics: ClampingScrollPhysics(),

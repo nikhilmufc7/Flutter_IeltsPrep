@@ -27,12 +27,14 @@ class MenuPage extends StatelessWidget {
         // }
       },
       child: Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).backgroundColor,
+        ),
         padding: EdgeInsets.only(
             top: 62,
             left: 32,
             bottom: 8,
             right: MediaQuery.of(context).size.width / 2.9),
-        color: Color(0xff454dff),
         child: Column(
           children: <Widget>[
             Flexible(

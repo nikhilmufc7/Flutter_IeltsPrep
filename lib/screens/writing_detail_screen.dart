@@ -41,7 +41,11 @@ class _WritingDetailScreenState extends State<WritingDetailScreen>
     screenHeight = size.height;
     screenWidth = size.width;
     return Scaffold(
-      appBar: topAppBar,
+      appBar: AppBar(
+        elevation: 0.0,
+        backgroundColor: Theme.of(context).primaryColor,
+        bottomOpacity: 0.0,
+      ),
       body: Stack(
         children: <Widget>[
           // MenuPage(),
@@ -49,7 +53,7 @@ class _WritingDetailScreenState extends State<WritingDetailScreen>
             animationDuration: duration,
             // borderRadius: BorderRadius.all(Radius.circular(40)),
             elevation: 8,
-            color: backgroundColor,
+            color: Theme.of(context).primaryColor,
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               physics: ClampingScrollPhysics(),
@@ -180,9 +184,4 @@ class _WritingDetailScreenState extends State<WritingDetailScreen>
   //   return
   // }
 
-  final topAppBar = AppBar(
-    elevation: 0.0,
-    backgroundColor: Color(0xFF21BFBD),
-    bottomOpacity: 0.0,
-  );
 }

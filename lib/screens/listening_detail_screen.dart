@@ -65,9 +65,10 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
     return DefaultTabController(
       length: 4,
       child: Scaffold(
+        backgroundColor: Theme.of(context).primaryColor,
         appBar: AppBar(
           elevation: 0.0,
-          backgroundColor: backgroundColor,
+          backgroundColor: Theme.of(context).primaryColor,
           title: FittedBox(
             child: Text(listening.title),
           ),
@@ -111,7 +112,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
           Material(
             elevation: 8.0,
             animationDuration: duration,
-            color: backgroundColor,
+            color: Theme.of(context).primaryColor,
             child: ListView(
               padding: EdgeInsets.only(bottom: 0, top: 20),
               shrinkWrap: true,
@@ -218,6 +219,8 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                           s1SubQuestions1Result.replaceAll(
                                               "_n", "\n"),
                                           style: TextStyle(
+                                            color:
+                                                Theme.of(context).accentColor,
                                             fontFamily: 'Montserrat',
                                             fontWeight: FontWeight.w400,
                                           ),
@@ -277,6 +280,8 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                           s1SubQuestions2Result.replaceAll(
                                               "_n", "\n"),
                                           style: TextStyle(
+                                            color:
+                                                Theme.of(context).accentColor,
                                             fontFamily: 'Montserrat',
                                             fontWeight: FontWeight.w400,
                                           ),
@@ -326,7 +331,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
           Material(
             elevation: 8.0,
             animationDuration: duration,
-            color: backgroundColor,
+            color: Theme.of(context).primaryColor,
             child: ListView(
               padding: EdgeInsets.only(bottom: 0, top: 20),
               shrinkWrap: true,
@@ -412,6 +417,8 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                           s1SubQuestions1Result.replaceAll(
                                               "_n", "\n"),
                                           style: TextStyle(
+                                            color:
+                                                Theme.of(context).accentColor,
                                             fontFamily: 'Montserrat',
                                             fontWeight: FontWeight.w400,
                                           ),
@@ -467,6 +474,8 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                           s1SubQuestions2Result.replaceAll(
                                               "_n", "\n"),
                                           style: TextStyle(
+                                            color:
+                                                Theme.of(context).accentColor,
                                             fontFamily: 'Montserrat',
                                             fontWeight: FontWeight.w400,
                                           ),
@@ -513,7 +522,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
           Material(
             elevation: 8.0,
             animationDuration: duration,
-            color: backgroundColor,
+            color: Theme.of(context).primaryColor,
             child: ListView(
               padding: EdgeInsets.only(bottom: 0, top: 20),
               shrinkWrap: true,
@@ -602,6 +611,8 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                           s1SubQuestions1Result.replaceAll(
                                               "_n", "\n"),
                                           style: TextStyle(
+                                            color:
+                                                Theme.of(context).accentColor,
                                             fontFamily: 'Montserrat',
                                             fontWeight: FontWeight.w400,
                                           ),
@@ -658,6 +669,8 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                           s1SubQuestions2Result.replaceAll(
                                               "_n", "\n"),
                                           style: TextStyle(
+                                            color:
+                                                Theme.of(context).accentColor,
                                             fontFamily: 'Montserrat',
                                             fontWeight: FontWeight.w400,
                                           ),
@@ -714,6 +727,8 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                           s1SubQuestions3Result.replaceAll(
                                               "_n", "\n"),
                                           style: TextStyle(
+                                            color:
+                                                Theme.of(context).accentColor,
                                             fontFamily: 'Montserrat',
                                             fontWeight: FontWeight.w400,
                                           ),
@@ -758,7 +773,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
           Material(
             elevation: 8.0,
             animationDuration: duration,
-            color: backgroundColor,
+            color: Theme.of(context).primaryColor,
             child: ListView(
               padding: EdgeInsets.only(bottom: 0, top: 20),
               shrinkWrap: true,
@@ -847,6 +862,8 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                           s1SubQuestions1Result.replaceAll(
                                               "_n", "\n"),
                                           style: TextStyle(
+                                            color:
+                                                Theme.of(context).accentColor,
                                             fontFamily: 'Montserrat',
                                             fontWeight: FontWeight.w400,
                                           ),
@@ -903,6 +920,8 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                           s1SubQuestions2Result.replaceAll(
                                               "_n", "\n"),
                                           style: TextStyle(
+                                            color:
+                                                Theme.of(context).accentColor,
                                             fontFamily: 'Montserrat',
                                             fontWeight: FontWeight.w400,
                                           ),
@@ -945,6 +964,8 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                           s1SubQuestions3Result.replaceAll(
                                               "_n", "\n"),
                                           style: TextStyle(
+                                            color:
+                                                Theme.of(context).accentColor,
                                             fontFamily: 'Montserrat',
                                             fontWeight: FontWeight.w400,
                                           ),

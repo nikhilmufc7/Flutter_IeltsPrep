@@ -53,7 +53,11 @@ class _WritingScreenState extends State<WritingScreen>
     screenHeight = size.height;
     screenWidth = size.width;
     return Scaffold(
-      appBar: topAppBar,
+      appBar: AppBar(
+        elevation: 0.0,
+        backgroundColor: Theme.of(context).primaryColor,
+        bottomOpacity: 0.0,
+      ),
       // floatingActionButton: FloatingActionButton(
       //     child: Icon(Icons.add),
       //     onPressed: () {
@@ -75,7 +79,7 @@ class _WritingScreenState extends State<WritingScreen>
       animationDuration: duration,
       // borderRadius: BorderRadius.all(Radius.circular(40)),
       elevation: 8,
-      color: backgroundColor,
+      color: Theme.of(context).primaryColor,
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         physics: ClampingScrollPhysics(),
@@ -166,12 +170,6 @@ class _WritingScreenState extends State<WritingScreen>
       ),
     );
   }
-
-  final topAppBar = AppBar(
-    elevation: 0.0,
-    backgroundColor: Color(0xFF21BFBD),
-    bottomOpacity: 0.0,
-  );
 
   Widget makeCard(Lesson lesson) => Padding(
         padding: const EdgeInsets.only(bottom: 15.0, left: 5, right: 5),

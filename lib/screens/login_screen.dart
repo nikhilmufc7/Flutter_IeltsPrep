@@ -157,12 +157,15 @@ class _LoginScreenState extends State<LoginScreen>
         children: <Widget>[
           Text(
             title,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            style: TextStyle(
+                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15),
           ),
           SizedBox(
             height: 10,
           ),
           TextFormField(
+              style:
+                  TextStyle(color: Colors.black, fontStyle: FontStyle.italic),
               controller: firstNameInputController,
               validator: (value) {
                 if (value.length < 3) {
@@ -190,12 +193,15 @@ class _LoginScreenState extends State<LoginScreen>
         children: <Widget>[
           Text(
             title,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            style: TextStyle(
+                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15),
           ),
           SizedBox(
             height: 10,
           ),
           TextFormField(
+              style:
+                  TextStyle(color: Colors.black, fontStyle: FontStyle.italic),
               controller: emailInputController,
               keyboardType: TextInputType.emailAddress,
               validator: emailValidator,
@@ -220,7 +226,8 @@ class _LoginScreenState extends State<LoginScreen>
         children: <Widget>[
           Text(
             title,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            style: TextStyle(
+                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15),
           ),
           SizedBox(
             height: 10,
@@ -229,8 +236,10 @@ class _LoginScreenState extends State<LoginScreen>
               controller: passwordInputController,
               obscureText: true,
               validator: pwdValidator,
+              style: TextStyle(color: Colors.black),
               decoration: InputDecoration(
                   border: InputBorder.none,
+                  labelStyle: TextStyle(color: Colors.black),
                   fillColor: Color(0xfff3f3f4),
                   filled: true))
         ],
@@ -312,16 +321,21 @@ class _LoginScreenState extends State<LoginScreen>
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Divider(
+                color: Colors.black,
                 thickness: 1,
               ),
             ),
           ),
-          Text('or'),
+          Text(
+            'or',
+            style: TextStyle(color: Colors.black),
+          ),
           Expanded(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Divider(
                 thickness: 1,
+                color: Colors.black,
               ),
             ),
           ),
@@ -342,7 +356,8 @@ class _LoginScreenState extends State<LoginScreen>
         children: <Widget>[
           Text(
             '${_authMode == AuthMode.Login ? 'Don\'t have an account ?' : 'Already have a account ?'}',
-            style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+            style: TextStyle(
+                color: Colors.black, fontSize: 13, fontWeight: FontWeight.w600),
           ),
           SizedBox(
             width: 10,
