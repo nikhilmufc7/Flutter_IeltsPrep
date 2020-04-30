@@ -126,7 +126,12 @@ class _SpeakingScreenState extends State<SpeakingScreen>
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                        color: Theme.of(context).secondaryHeaderColor,
+                        blurRadius: 10)
+                  ],
+                  color: Theme.of(context).canvasColor,
                   borderRadius:
                       BorderRadius.only(topLeft: Radius.circular(75.0)),
                 ),
@@ -216,6 +221,8 @@ class _SpeakingScreenState extends State<SpeakingScreen>
         trailing: FittedBox(
           child: CheckboxGroup(
               checked: checkedSpeakingItems,
+              checkColor: Colors.black,
+              activeColor: Theme.of(context).secondaryHeaderColor,
               labels: [speaking.id],
               labelStyle: TextStyle(fontSize: 0),
               onSelected: (List<String> checked) {

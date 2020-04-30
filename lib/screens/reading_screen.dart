@@ -896,6 +896,8 @@ class _ReadingScreenState extends State<ReadingScreen>
         trailing: FittedBox(
           child: CheckboxGroup(
               checked: checkedReadingItems,
+              checkColor: Colors.black,
+              activeColor: Theme.of(context).secondaryHeaderColor,
               labels: [reading.id],
               labelStyle: TextStyle(fontSize: 0),
               onSelected: (List<String> checked) {

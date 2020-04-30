@@ -220,6 +220,8 @@ class _ListeningScreenState extends State<ListeningScreen>
           child: CheckboxGroup(
               checked: checkedListeningItems,
               labels: [listening.id],
+              checkColor: Colors.black,
+              activeColor: Theme.of(context).secondaryHeaderColor,
               labelStyle: TextStyle(fontSize: 0),
               onSelected: (List<String> checked) {
                 print("${checked.toString()}");

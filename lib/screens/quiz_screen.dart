@@ -249,6 +249,8 @@ class _QuizScreenState extends State<QuizScreen> {
                       child: FittedBox(
                         child: CheckboxGroup(
                             checked: checkedItems,
+                            checkColor: Colors.black,
+                            activeColor: Theme.of(context).secondaryHeaderColor,
                             labels: [quiz.id],
                             labelStyle: TextStyle(fontSize: 0),
                             onSelected: (List<String> checked) {

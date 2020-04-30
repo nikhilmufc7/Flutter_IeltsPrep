@@ -144,7 +144,12 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
                     Container(
                       // height: MediaQuery.of(context).size.height,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                              color: Theme.of(context).secondaryHeaderColor,
+                              blurRadius: 10)
+                        ],
+                        color: Theme.of(context).canvasColor,
                         borderRadius:
                             BorderRadius.only(topLeft: Radius.circular(75.0)),
                       ),
@@ -187,7 +192,14 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
                                             speaking.thingsToSpeak[index];
 
                                         return ListTile(
-                                          leading: bullet(),
+                                          leading: Container(
+                                              height: 15.0,
+                                              width: 15.0,
+                                              decoration: BoxDecoration(
+                                                color: Theme.of(context)
+                                                    .accentColor,
+                                                shape: BoxShape.circle,
+                                              )),
                                           title: Text(
                                             resultant.replaceAll('_n', '\n'),
                                             style: TextStyle(
@@ -230,6 +242,7 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
                                   speaking.answer.replaceAll("_n", "\n"),
                                   style: TextStyle(
                                     fontSize: 16,
+                                    color: Theme.of(context).accentColor,
                                     fontFamily: 'Montserrat',
                                   ),
                                 ),
@@ -259,7 +272,14 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
                                         (BuildContext context, int index) {
                                       vocabResult = speaking.vocabulary[index];
                                       return ListTile(
-                                        leading: bullet(),
+                                        leading: Container(
+                                            height: 15.0,
+                                            width: 15.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  Theme.of(context).accentColor,
+                                              shape: BoxShape.circle,
+                                            )),
                                         title: Text(
                                           vocabResult.replaceAll("_n", "\n"),
                                           style: TextStyle(
@@ -314,15 +334,7 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
                   style: TextStyle(
                       fontSize: 14.0,
                       fontWeight: FontWeight.w400,
-                      color: Colors.black)))
+                      color: Theme.of(context).accentColor)))
         ]);
   }
-
-  Widget bullet() => Container(
-      height: 15.0,
-      width: 15.0,
-      decoration: BoxDecoration(
-        color: Colors.black,
-        shape: BoxShape.circle,
-      ));
 }

@@ -99,11 +99,13 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
                             itemCount: options.keys.length,
                             itemBuilder: (context, index) {
                               return Card(
-                                color: Color.fromRGBO(204, 224, 255, 0.8),
+                                color: Colors.grey,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10)),
                                 child: RadioListTile(
-                                    activeColor: Colors.deepPurpleAccent,
+                                    activeColor: (_isRadioEnabled)
+                                        ? Colors.deepPurpleAccent
+                                        : Colors.deepPurpleAccent,
                                     title: Text(
                                       options["$index"],
                                       maxLines: 3,

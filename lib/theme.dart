@@ -19,5 +19,5 @@ final ThemeData darkTheme = ThemeData(
     canvasColor: Colors.black,
     fontFamily: 'Montserrat',
     backgroundColor: Color.fromRGBO(0, 0, 0, .93),
-    accentColor: Colors.black,
+    accentColor: Colors.white,
     brightness: Brightness.dark);
