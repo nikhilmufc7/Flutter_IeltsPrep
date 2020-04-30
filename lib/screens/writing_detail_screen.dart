@@ -84,7 +84,12 @@ class _WritingDetailScreenState extends State<WritingDetailScreen>
                     Container(
                       height: MediaQuery.of(context).size.height,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                              color: Theme.of(context).secondaryHeaderColor,
+                              blurRadius: 10)
+                        ],
+                        color: Theme.of(context).canvasColor,
                         borderRadius:
                             BorderRadius.only(topLeft: Radius.circular(75.0)),
                       ),
@@ -97,19 +102,36 @@ class _WritingDetailScreenState extends State<WritingDetailScreen>
                             physics: ScrollPhysics(),
                             children: <Widget>[
                               Card(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15)),
                                 elevation: 8,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Text(
-                                    lesson.question.replaceAll("_n", "\n"),
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontFamily: 'Montserrat',
+                                child: Column(
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        'Question',
+                                        style: TextStyle(
+                                            fontFamily: 'Montserrat',
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20,
+                                            color: Color(0xFF21BFBD)),
+                                      ),
                                     ),
-                                  ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Text(
+                                        lesson.question.replaceAll("_n", "\n"),
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontFamily: 'Montserrat',
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              SizedBox(height: 15),
+                              SizedBox(height: 25),
                               Card(
                                 elevation: 8,
                                 child: CachedNetworkImage(
