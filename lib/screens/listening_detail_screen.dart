@@ -122,7 +122,12 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                     // height: MediaQuery.of(context).size.height,
 
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                            color: Theme.of(context).secondaryHeaderColor,
+                            blurRadius: 10)
+                      ],
+                      color: Theme.of(context).canvasColor,
                       borderRadius:
                           BorderRadius.only(topLeft: Radius.circular(75.0)),
                     ),
@@ -145,7 +150,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14,
-                                    color: Colors.deepPurpleAccent),
+                                    color: Theme.of(context).accentColor),
                               ),
                             ),
 
@@ -168,7 +173,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14,
-                                    color: Colors.deepPurpleAccent),
+                                    color: Theme.of(context).accentColor),
                               ),
                             ),
                             Visibility(
@@ -196,7 +201,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14,
-                                    color: Colors.deepPurpleAccent),
+                                    color: Theme.of(context).accentColor),
                               ),
                             ),
 
@@ -241,7 +246,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.bold,
                                       fontSize: 14,
-                                      color: Colors.deepPurpleAccent),
+                                      color: Theme.of(context).accentColor),
                                 ),
                               ),
                             ),
@@ -341,7 +346,12 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                     // height: MediaQuery.of(context).size.height,
 
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                            color: Theme.of(context).secondaryHeaderColor,
+                            blurRadius: 10)
+                      ],
+                      color: Theme.of(context).canvasColor,
                       borderRadius:
                           BorderRadius.only(topLeft: Radius.circular(75.0)),
                     ),
@@ -364,7 +374,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14,
-                                    color: Colors.deepPurpleAccent),
+                                    color: Theme.of(context).accentColor),
                               ),
                             ),
 
@@ -381,7 +391,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14,
-                                    color: Colors.deepPurpleAccent),
+                                    color: Theme.of(context).accentColor),
                               ),
                             ),
                             Visibility(
@@ -437,7 +447,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
                                     fontSize: 13,
-                                    color: Colors.deepPurpleAccent),
+                                    color: Theme.of(context).accentColor),
                               ),
                             ),
 
@@ -532,7 +542,12 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                     // height: MediaQuery.of(context).size.height,
 
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                            color: Theme.of(context).secondaryHeaderColor,
+                            blurRadius: 10)
+                      ],
+                      color: Theme.of(context).canvasColor,
                       borderRadius:
                           BorderRadius.only(topLeft: Radius.circular(75.0)),
                     ),
@@ -557,7 +572,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14,
-                                    color: Colors.deepPurpleAccent),
+                                    color: Theme.of(context).accentColor),
                               ),
                             ),
 
@@ -574,7 +589,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14,
-                                    color: Colors.deepPurpleAccent),
+                                    color: Theme.of(context).accentColor),
                               ),
                             ),
                             Visibility(
@@ -631,7 +646,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
                                     fontSize: 13,
-                                    color: Colors.deepPurpleAccent),
+                                    color: Theme.of(context).accentColor),
                               ),
                             ),
 
@@ -689,7 +704,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
                                     fontSize: 13,
-                                    color: Colors.deepPurpleAccent),
+                                    color: Theme.of(context).accentColor),
                               ),
                             ),
 
@@ -783,7 +798,12 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                     // height: MediaQuery.of(context).size.height,
 
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                            color: Theme.of(context).secondaryHeaderColor,
+                            blurRadius: 10)
+                      ],
+                      color: Theme.of(context).canvasColor,
                       borderRadius:
                           BorderRadius.only(topLeft: Radius.circular(75.0)),
                     ),
@@ -808,7 +828,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14,
-                                    color: Colors.deepPurpleAccent),
+                                    color: Theme.of(context).accentColor),
                               ),
                             ),
 
@@ -825,7 +845,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14,
-                                    color: Colors.deepPurpleAccent),
+                                    color: Theme.of(context).accentColor),
                               ),
                             ),
 
@@ -882,7 +902,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
                                     fontSize: 13,
-                                    color: Colors.deepPurpleAccent),
+                                    color: Theme.of(context).accentColor),
                               ),
                             ),
 
@@ -940,7 +960,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
                                     fontSize: 13,
-                                    color: Colors.deepPurpleAccent),
+                                    color: Theme.of(context).accentColor),
                               ),
                             ),
 

@@ -128,7 +128,12 @@ class _ListeningScreenState extends State<ListeningScreen>
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                        color: Theme.of(context).secondaryHeaderColor,
+                        blurRadius: 10)
+                  ],
+                  color: Theme.of(context).canvasColor,
                   borderRadius:
                       BorderRadius.only(topLeft: Radius.circular(75.0)),
                 ),
