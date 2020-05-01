@@ -43,7 +43,11 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
     screenHeight = size.height;
     screenWidth = size.width;
     return Scaffold(
-      appBar: topAppBar,
+      appBar: AppBar(
+        elevation: 0.0,
+        backgroundColor: Theme.of(context).primaryColor,
+        bottomOpacity: 0.0,
+      ),
       body: Stack(
         children: <Widget>[
           // MenuPage(),
@@ -82,7 +86,12 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
                     Container(
                       // height: MediaQuery.of(context).size.height,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                              color: Theme.of(context).secondaryHeaderColor,
+                              blurRadius: 10)
+                        ],
+                        color: Theme.of(context).canvasColor,
                         borderRadius:
                             BorderRadius.only(topLeft: Radius.circular(75.0)),
                       ),
@@ -99,11 +108,11 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  reading.whatToDo.replaceAll("_n", "\n"),
+                                  reading.whatToDo.replaceAll("_n", "\n \n"),
                                   style: TextStyle(
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 20,
+                                      fontSize: 16,
                                       color: Color(0xFF21BFBD)),
                                 ),
                               ),
@@ -115,6 +124,7 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
                                   style: TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.w400,
+                                    color: Theme.of(context).accentColor,
                                   ),
                                 ),
                               ),
@@ -127,7 +137,7 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
                                   style: TextStyle(
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 20,
+                                      fontSize: 18,
                                       color: Color(0xFF21BFBD)),
                                 ),
                               ),
@@ -150,6 +160,8 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
                                           style: TextStyle(
                                             fontFamily: 'Montserrat',
                                             fontWeight: FontWeight.w400,
+                                            color:
+                                                Theme.of(context).accentColor,
                                           ),
                                         ),
                                       );
@@ -157,14 +169,14 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
                                   )),
                               // Summary
                               Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 10.0, right: 10, top: 10),
+                                padding: const EdgeInsets.all(12),
                                 child: Text(
                                   reading.summary.replaceAll("_n", "\n"),
                                   style: TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.w400,
-                                  ),
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w400,
+                                      color: Theme.of(context).accentColor,
+                                      fontSize: 16),
                                 ),
                               ),
 
@@ -178,7 +190,7 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
                                     style: TextStyle(
                                         fontFamily: 'Montserrat',
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 20,
+                                        fontSize: 18,
                                         color: Color(0xFF21BFBD)),
                                   ),
                                 ),
@@ -204,6 +216,8 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
                                             style: TextStyle(
                                               fontFamily: 'Montserrat',
                                               fontWeight: FontWeight.w400,
+                                              color:
+                                                  Theme.of(context).accentColor,
                                             ),
                                           ),
                                         );
@@ -275,22 +289,4 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
       ),
     );
   }
-  // Widget dashboard(context) {
-  //   CardController controller;
-  //   return
-  // }
-
-  final topAppBar = AppBar(
-    elevation: 0.0,
-    backgroundColor: Color(0xFF21BFBD),
-    bottomOpacity: 0.0,
-  );
-
-  Widget bullet() => Container(
-      height: 20.0,
-      width: 20.0,
-      decoration: BoxDecoration(
-        color: Colors.black,
-        shape: BoxShape.circle,
-      ));
 }

@@ -98,9 +98,15 @@ class _ReadingScreenState extends State<ReadingScreen>
             Tab(
               child: Align(
                 alignment: Alignment.center,
+                child: FittedBox(child: Text("True/ False")),
+              ),
+            ),
+            Tab(
+              child: Align(
+                alignment: Alignment.center,
                 child: FittedBox(
                   child: Text(
-                    "Sentence",
+                    "Sentence \n Completion",
                   ),
                 ),
               ),
@@ -108,25 +114,19 @@ class _ReadingScreenState extends State<ReadingScreen>
             Tab(
               child: Align(
                 alignment: Alignment.center,
-                child: FittedBox(child: Text("True/False")),
+                child: FittedBox(child: Text("Heading \n Completion")),
               ),
             ),
             Tab(
               child: Align(
                 alignment: Alignment.center,
-                child: Text("Heading"),
+                child: FittedBox(child: Text("Summary \n Completion")),
               ),
             ),
             Tab(
               child: Align(
                 alignment: Alignment.center,
-                child: Text("Summary"),
-              ),
-            ),
-            Tab(
-              child: Align(
-                alignment: Alignment.center,
-                child: FittedBox(child: Text("Paragraph")),
+                child: FittedBox(child: Text("Matching \n Paragraphs")),
               ),
             ),
             Tab(
@@ -138,13 +138,13 @@ class _ReadingScreenState extends State<ReadingScreen>
             Tab(
               child: Align(
                 alignment: Alignment.center,
-                child: FittedBox(child: Text("Selection")),
+                child: FittedBox(child: Text("List \n Selection")),
               ),
             ),
             Tab(
               child: Align(
                 alignment: Alignment.center,
-                child: FittedBox(child: Text("Title")),
+                child: FittedBox(child: Text("Title \n Selection")),
               ),
             ),
             Tab(
@@ -156,13 +156,13 @@ class _ReadingScreenState extends State<ReadingScreen>
             Tab(
               child: Align(
                 alignment: Alignment.center,
-                child: FittedBox(child: Text("Endings")),
+                child: FittedBox(child: Text("Matching \n Endings")),
               ),
             ),
             Tab(
               child: Align(
                 alignment: Alignment.center,
-                child: FittedBox(child: Text("SAQs")),
+                child: FittedBox(child: Text("Short \n Answers")),
               ),
             ),
           ],
@@ -172,8 +172,8 @@ class _ReadingScreenState extends State<ReadingScreen>
         children: <Widget>[
           TabBarView(
             children: [
-              sentenceDashboard(context),
               trueFalseDashBoard(context),
+              sentenceDashboard(context),
               headingDashboard(context),
               summaryDashboard(context),
               paragraphDashboard(context),
@@ -211,9 +211,15 @@ class _ReadingScreenState extends State<ReadingScreen>
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius:
-                      BorderRadius.only(topLeft: Radius.circular(75.0)),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Theme.of(context).secondaryHeaderColor,
+                        blurRadius: 10)
+                  ],
+                  color: Theme.of(context).canvasColor,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(75.0),
+                      topRight: Radius.circular(75.0)),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -272,9 +278,15 @@ class _ReadingScreenState extends State<ReadingScreen>
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius:
-                      BorderRadius.only(topLeft: Radius.circular(75.0)),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Theme.of(context).secondaryHeaderColor,
+                        blurRadius: 10)
+                  ],
+                  color: Theme.of(context).canvasColor,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(75.0),
+                      topRight: Radius.circular(75.0)),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -332,9 +344,15 @@ class _ReadingScreenState extends State<ReadingScreen>
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius:
-                      BorderRadius.only(topLeft: Radius.circular(75.0)),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Theme.of(context).secondaryHeaderColor,
+                        blurRadius: 10)
+                  ],
+                  color: Theme.of(context).canvasColor,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(75.0),
+                      topRight: Radius.circular(75.0)),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -392,9 +410,15 @@ class _ReadingScreenState extends State<ReadingScreen>
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius:
-                      BorderRadius.only(topLeft: Radius.circular(75.0)),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Theme.of(context).secondaryHeaderColor,
+                        blurRadius: 10)
+                  ],
+                  color: Theme.of(context).canvasColor,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(75.0),
+                      topRight: Radius.circular(75.0)),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -451,9 +475,15 @@ class _ReadingScreenState extends State<ReadingScreen>
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius:
-                      BorderRadius.only(topLeft: Radius.circular(75.0)),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Theme.of(context).secondaryHeaderColor,
+                        blurRadius: 10)
+                  ],
+                  color: Theme.of(context).canvasColor,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(75.0),
+                      topRight: Radius.circular(75.0)),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -511,9 +541,15 @@ class _ReadingScreenState extends State<ReadingScreen>
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius:
-                      BorderRadius.only(topLeft: Radius.circular(75.0)),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Theme.of(context).secondaryHeaderColor,
+                        blurRadius: 10)
+                  ],
+                  color: Theme.of(context).canvasColor,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(75.0),
+                      topRight: Radius.circular(75.0)),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -570,9 +606,15 @@ class _ReadingScreenState extends State<ReadingScreen>
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius:
-                      BorderRadius.only(topLeft: Radius.circular(75.0)),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Theme.of(context).secondaryHeaderColor,
+                        blurRadius: 10)
+                  ],
+                  color: Theme.of(context).canvasColor,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(75.0),
+                      topRight: Radius.circular(75.0)),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -629,9 +671,15 @@ class _ReadingScreenState extends State<ReadingScreen>
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius:
-                      BorderRadius.only(topLeft: Radius.circular(75.0)),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Theme.of(context).secondaryHeaderColor,
+                        blurRadius: 10)
+                  ],
+                  color: Theme.of(context).canvasColor,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(75.0),
+                      topRight: Radius.circular(75.0)),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -688,9 +736,15 @@ class _ReadingScreenState extends State<ReadingScreen>
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius:
-                      BorderRadius.only(topLeft: Radius.circular(75.0)),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Theme.of(context).secondaryHeaderColor,
+                        blurRadius: 10)
+                  ],
+                  color: Theme.of(context).canvasColor,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(75.0),
+                      topRight: Radius.circular(75.0)),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -747,9 +801,15 @@ class _ReadingScreenState extends State<ReadingScreen>
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius:
-                      BorderRadius.only(topLeft: Radius.circular(75.0)),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Theme.of(context).secondaryHeaderColor,
+                        blurRadius: 10)
+                  ],
+                  color: Theme.of(context).canvasColor,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(75.0),
+                      topRight: Radius.circular(75.0)),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -806,9 +866,15 @@ class _ReadingScreenState extends State<ReadingScreen>
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius:
-                      BorderRadius.only(topLeft: Radius.circular(75.0)),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Theme.of(context).secondaryHeaderColor,
+                        blurRadius: 10)
+                  ],
+                  color: Theme.of(context).canvasColor,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(75.0),
+                      topRight: Radius.circular(75.0)),
                 ),
                 child: Container(
                   // height: screenHeight,
