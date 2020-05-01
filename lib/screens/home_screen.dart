@@ -139,7 +139,7 @@ class _HomeScreenState extends State<HomeScreen>
                                 fontWeight: FontWeight.bold,
                                 fontSize: 25.0)),
                         SizedBox(width: 10.0),
-                        Text('Prep',
+                        Text('Quest',
                             style: TextStyle(
                                 fontFamily: 'Montserrat',
                                 color: Colors.white,

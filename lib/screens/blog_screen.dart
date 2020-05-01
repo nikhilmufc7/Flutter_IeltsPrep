@@ -68,7 +68,8 @@ class _BlogScreenState extends State<BlogScreen> {
                     style: TextStyle(
                         fontWeight: FontWeight.w900,
                         letterSpacing: 1.2,
-                        color: Colors.brown,
+                        color: Theme.of(context).accentColor,
+                        fontStyle: FontStyle.italic,
                         fontSize: 20,
                         fontFamily: 'Montserrat'),
                   )),
@@ -106,7 +107,8 @@ class _BlogScreenState extends State<BlogScreen> {
                     style: TextStyle(
                         fontWeight: FontWeight.w900,
                         letterSpacing: 1.2,
-                        color: Colors.brown,
+                        color: Theme.of(context).accentColor,
+                        fontStyle: FontStyle.italic,
                         fontSize: 20,
                         fontFamily: 'Montserrat'),
                   ),
@@ -190,7 +192,7 @@ class _BlogScreenState extends State<BlogScreen> {
                           child: Text(
                             blog.title,
                             style: TextStyle(
-                              color: Colors.black,
+                              color: Theme.of(context).accentColor,
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Montserrat',
                               fontSize: 16,
@@ -250,7 +252,7 @@ class _BlogScreenState extends State<BlogScreen> {
                   blog.title.replaceAll('_n', '/n'),
                   textAlign: TextAlign.start,
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Theme.of(context).accentColor,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Montserrat',
                     fontSize: 14,

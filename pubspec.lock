@@ -209,6 +209,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.1+1"
+  flutter_fader:
+    dependency: "direct main"
+    description:
+      name: flutter_fader
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0+4"
   flutter_test:
     dependency: "direct dev"
     description: flutter

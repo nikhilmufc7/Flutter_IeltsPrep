@@ -21,7 +21,7 @@ class _BlogDetailScreenState extends State<BlogDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).primaryColor,
       body: ListView(
         children: <Widget>[
           Stack(
@@ -106,9 +106,10 @@ class _BlogDetailScreenState extends State<BlogDetailScreen> {
             child: Text(
               blog.title.replaceAll("_n", "\n"),
               style: TextStyle(
-                color: Colors.black,
+                color: Theme.of(context).accentColor,
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Montserrat',
+                fontStyle: FontStyle.italic,
                 fontSize: 20,
               ),
             ),
@@ -121,7 +122,7 @@ class _BlogDetailScreenState extends State<BlogDetailScreen> {
             child: Text(
               blog.content.replaceAll("_n", "\n"),
               style: TextStyle(
-                color: Colors.black,
+                color: Theme.of(context).accentColor,
                 fontWeight: FontWeight.w400,
                 fontFamily: 'Montserrat',
                 fontSize: 16,

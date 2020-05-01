@@ -44,6 +44,7 @@ dependencies:
   percent_indicator:
   flutter_tts:
   day_night_switch:
+  flutter_fader: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +71,7 @@ flutter:
     - assets/quiz.png
     - assets/pushing.png
     - assets/sucess.png
+    - assets/swipe.png
 
   #   - images/a_dot_ham.jpeg
 

@@ -1,5 +1,6 @@
 import 'package:basic_utils/basic_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_fader/flutter_fader.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
 import 'package:ielts/app_constants.dart';
 import 'package:ielts/lesson_data/vocabulary_data.dart';
@@ -39,6 +40,8 @@ class _VocabularyScreenState extends State<VocabularyScreen>
     vocabulary = getVocabularyData();
     vocabulary.shuffle();
   }
+
+  FaderController faderController = FaderController();
 
   @override
   void dispose() {
@@ -126,7 +129,12 @@ class _VocabularyScreenState extends State<VocabularyScreen>
                   Container(
                     height: MediaQuery.of(context).size.height,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                            color: Theme.of(context).secondaryHeaderColor,
+                            blurRadius: 10)
+                      ],
+                      color: Theme.of(context).canvasColor,
                       borderRadius:
                           BorderRadius.only(topLeft: Radius.circular(75.0)),
                     ),
@@ -158,9 +166,9 @@ class _VocabularyScreenState extends State<VocabularyScreen>
                                     Alignment align) {
                                   /// Get swiping card's alignment
                                   if (align.x < 0) {
-                                    //Card is LEFT swiping
+                                    faderController.fadeOut();
                                   } else if (align.x > 0) {
-                                    //Card is RIGHT swiping
+                                    faderController.fadeOut();
                                   }
                                 },
                                 swipeCompleteCallback:
@@ -170,6 +178,21 @@ class _VocabularyScreenState extends State<VocabularyScreen>
                                 }),
                           ),
                         ),
+                        Fader(
+                          controller: faderController,
+                          duration: const Duration(milliseconds: 5),
+                          child: Container(
+                            height: 60,
+                            width: 20,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage("assets/swipe.png"),
+                                fit: BoxFit.fitHeight,
+                              ),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   )

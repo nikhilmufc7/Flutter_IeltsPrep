@@ -128,8 +128,9 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             blurRadius: 10)
                       ],
                       color: Theme.of(context).canvasColor,
-                      borderRadius:
-                          BorderRadius.only(topLeft: Radius.circular(75.0)),
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(75.0),
+                          topRight: Radius.circular(75)),
                     ),
                     child: ListView(
                       padding: EdgeInsets.only(top: 50),
@@ -352,8 +353,9 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             blurRadius: 10)
                       ],
                       color: Theme.of(context).canvasColor,
-                      borderRadius:
-                          BorderRadius.only(topLeft: Radius.circular(75.0)),
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(75.0),
+                          topRight: Radius.circular(75)),
                     ),
                     child: ListView(
                       padding: EdgeInsets.only(top: 50),
@@ -548,8 +550,9 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             blurRadius: 10)
                       ],
                       color: Theme.of(context).canvasColor,
-                      borderRadius:
-                          BorderRadius.only(topLeft: Radius.circular(75.0)),
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(75.0),
+                          topRight: Radius.circular(75)),
                     ),
                     child: ListView(
                       padding: EdgeInsets.only(top: 50),
@@ -804,8 +807,9 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             blurRadius: 10)
                       ],
                       color: Theme.of(context).canvasColor,
-                      borderRadius:
-                          BorderRadius.only(topLeft: Radius.circular(75.0)),
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(75.0),
+                          topRight: Radius.circular(75)),
                     ),
                     child: ListView(
                       padding: EdgeInsets.only(top: 50),
