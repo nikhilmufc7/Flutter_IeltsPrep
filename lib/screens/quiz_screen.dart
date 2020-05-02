@@ -232,7 +232,7 @@ class _QuizScreenState extends State<QuizScreen> {
                               ),
                               Flexible(
                                 child: Text(
-                                  'Total Questions : 10',
+                                  'Total Questions : ${quiz.question.length}',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontFamily: 'Montserrat',

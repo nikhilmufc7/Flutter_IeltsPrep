@@ -50,7 +50,7 @@ class _ReadingScreenState extends State<ReadingScreen>
 
   @override
   void initState() {
-    _tabController = TabController(length: 11, vsync: this);
+    _tabController = TabController(length: 10, vsync: this);
     _getcheckedReadingItems();
 
     super.initState();
@@ -145,12 +145,6 @@ class _ReadingScreenState extends State<ReadingScreen>
             Tab(
               child: Align(
                 alignment: Alignment.center,
-                child: FittedBox(child: Text("Title \n Selection")),
-              ),
-            ),
-            Tab(
-              child: Align(
-                alignment: Alignment.center,
                 child: FittedBox(child: Text("Categorization")),
               ),
             ),
@@ -180,7 +174,6 @@ class _ReadingScreenState extends State<ReadingScreen>
               paragraphDashboard(context),
               mcqDashboard(context),
               selectionDashboard(context),
-              titleDashboard(context),
               categoryDashboard(context),
               endingsDashboard(context),
               saqDashboard(context),
@@ -652,70 +645,70 @@ class _ReadingScreenState extends State<ReadingScreen>
     );
   }
 
-  Widget titleDashboard(context) {
-    final productProvider = Provider.of<ReadingCrudModel>(context);
+  // Widget titleDashboard(context) {
+  //   final productProvider = Provider.of<ReadingCrudModel>(context);
 
-    return Material(
-      animationDuration: duration,
-      // borderRadius: BorderRadius.all(Radius.circular(40)),
-      elevation: 8,
-      color: Theme.of(context).primaryColor,
-      child: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        physics: ClampingScrollPhysics(),
-        child: Container(
-          padding: const EdgeInsets.only(top: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(height: 40.0),
-              Container(
-                // height: MediaQuery.of(context).size.height,
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                        color: Theme.of(context).secondaryHeaderColor,
-                        blurRadius: 10)
-                  ],
-                  color: Theme.of(context).canvasColor,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(75.0),
-                      topRight: Radius.circular(75.0)),
-                ),
-                child: Container(
-                  // height: screenHeight,
-                  child: StreamBuilder(
-                      stream: productProvider.fetchTitleSelectionAsStream(),
-                      builder:
-                          (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                        if (snapshot.hasData) {
-                          titleSelection = snapshot.data.documents
-                              .map((doc) =>
-                                  Reading.fromMap(doc.data, doc.documentID))
-                              .toList();
-                          return ListView.builder(
-                            scrollDirection: Axis.vertical,
-                            padding: EdgeInsets.only(top: 70, bottom: 50),
-                            shrinkWrap: true,
-                            physics: ScrollPhysics(),
-                            itemCount: titleSelection.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              _getcheckedReadingItems();
-                              return makeCard(titleSelection[index]);
-                            },
-                          );
-                        } else {
-                          return CircularProgressIndicator();
-                        }
-                      }),
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+  //   return Material(
+  //     animationDuration: duration,
+  //     // borderRadius: BorderRadius.all(Radius.circular(40)),
+  //     elevation: 8,
+  //     color: Theme.of(context).primaryColor,
+  //     child: SingleChildScrollView(
+  //       scrollDirection: Axis.vertical,
+  //       physics: ClampingScrollPhysics(),
+  //       child: Container(
+  //         padding: const EdgeInsets.only(top: 10),
+  //         child: Column(
+  //           crossAxisAlignment: CrossAxisAlignment.start,
+  //           children: <Widget>[
+  //             SizedBox(height: 40.0),
+  //             Container(
+  //               // height: MediaQuery.of(context).size.height,
+  //               decoration: BoxDecoration(
+  //                 boxShadow: [
+  //                   BoxShadow(
+  //                       color: Theme.of(context).secondaryHeaderColor,
+  //                       blurRadius: 10)
+  //                 ],
+  //                 color: Theme.of(context).canvasColor,
+  //                 borderRadius: BorderRadius.only(
+  //                     topLeft: Radius.circular(75.0),
+  //                     topRight: Radius.circular(75.0)),
+  //               ),
+  //               child: Container(
+  //                 // height: screenHeight,
+  //                 child: StreamBuilder(
+  //                     stream: productProvider.fetchTitleSelectionAsStream(),
+  //                     builder:
+  //                         (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+  //                       if (snapshot.hasData) {
+  //                         titleSelection = snapshot.data.documents
+  //                             .map((doc) =>
+  //                                 Reading.fromMap(doc.data, doc.documentID))
+  //                             .toList();
+  //                         return ListView.builder(
+  //                           scrollDirection: Axis.vertical,
+  //                           padding: EdgeInsets.only(top: 70, bottom: 50),
+  //                           shrinkWrap: true,
+  //                           physics: ScrollPhysics(),
+  //                           itemCount: titleSelection.length,
+  //                           itemBuilder: (BuildContext context, int index) {
+  //                             _getcheckedReadingItems();
+  //                             return makeCard(titleSelection[index]);
+  //                           },
+  //                         );
+  //                       } else {
+  //                         return CircularProgressIndicator();
+  //                       }
+  //                     }),
+  //               ),
+  //             )
+  //           ],
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Widget categoryDashboard(context) {
     final productProvider = Provider.of<ReadingCrudModel>(context);

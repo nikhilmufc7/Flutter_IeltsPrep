@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:ielts/utils/app_constants.dart';
 import 'package:ielts/models/userModel.dart';
@@ -19,6 +20,13 @@ class MenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
+
+//If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
+    ScreenUtil.init(context, width: 414, height: 896);
+
+//If you want to set the font size is scaled according to the system's "font size" assist option
+    ScreenUtil.init(context, width: 414, height: 896, allowFontScaling: true);
     return GestureDetector(
       onPanUpdate: (details) {
         //on swiping left
@@ -31,9 +39,9 @@ class MenuPage extends StatelessWidget {
           color: Theme.of(context).backgroundColor,
         ),
         padding: EdgeInsets.only(
-            top: 62,
-            left: 32,
-            bottom: 8,
+            top: ScreenUtil().setHeight(62),
+            left: ScreenUtil().setWidth(32),
+            bottom: ScreenUtil().setHeight(8),
             right: MediaQuery.of(context).size.width / 2.9),
         child: Column(
           children: <Widget>[
@@ -54,13 +62,13 @@ class MenuPage extends StatelessWidget {
                             ),
                           ),
                           SizedBox(
-                            width: 15,
+                            width: ScreenUtil().setWidth(15),
                           ),
                           Text(
                             user.firstName,
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 20,
+                              fontSize: ScreenUtil().setSp(20),
                             ),
                           ),
                         ],
@@ -74,7 +82,8 @@ class MenuPage extends StatelessWidget {
                         child: Column(
                           children: <Widget>[
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding:
+                                  EdgeInsets.all(ScreenUtil().setHeight(8)),
                               child: Icon(Icons.warning),
                             ),
                             Text('Error in loading data')
@@ -94,12 +103,12 @@ class MenuPage extends StatelessWidget {
                   leading: Icon(
                     item.icon,
                     color: Colors.white,
-                    size: 20,
+                    size: ScreenUtil().setSp(20),
                   ),
                   title: Text(
                     item.title,
                     style: TextStyle(
-                        fontSize: 14,
+                        fontSize: ScreenUtil().setSp(14),
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
@@ -114,20 +123,22 @@ class MenuPage extends StatelessWidget {
               leading: Icon(
                 Icons.settings,
                 color: Colors.white,
-                size: 20,
+                size: ScreenUtil().setSp(20),
               ),
               title: Text('Settings',
-                  style: TextStyle(fontSize: 14, color: Colors.white)),
+                  style: TextStyle(
+                      fontSize: ScreenUtil().setSp(14), color: Colors.white)),
             ),
             ListTile(
               onTap: () {},
               leading: Icon(
                 Icons.headset_mic,
                 color: Colors.white,
-                size: 20,
+                size: ScreenUtil().setSp(20),
               ),
               title: Text('Support',
-                  style: TextStyle(fontSize: 14, color: Colors.white)),
+                  style: TextStyle(
+                      fontSize: ScreenUtil().setSp(14), color: Colors.white)),
             ),
           ],
         ),

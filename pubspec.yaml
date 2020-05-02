@@ -47,6 +47,7 @@ dependencies:
   flutter_fader: ^1.0.0
   upgrader:
   firebase_crashlytics:
+  flutter_screenutil:
 
 dev_dependencies:
   flutter_test:

@@ -6,6 +6,7 @@ import 'package:ielts/services/auth.dart';
 
 import 'package:ielts/widgets/menu_page.dart';
 import 'package:upgrader/upgrader.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 final Color backgroundColor = Color(0xFF21BFBD);
 
@@ -49,6 +50,13 @@ class _HomeScreenState extends State<HomeScreen>
     screenHeight = size.height;
     screenWidth = size.width;
 
+    ScreenUtil.init(context);
+
+//If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
+    ScreenUtil.init(context, width: 414, height: 896);
+
+//If you want to set the font size is scaled according to the system's "font size" assist option
+    ScreenUtil.init(context, width: 414, height: 896, allowFontScaling: true);
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
@@ -86,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen>
           child: SingleChildScrollView(
             physics: NeverScrollableScrollPhysics(),
             child: Container(
-              padding: const EdgeInsets.only(top: 48),
+              padding: EdgeInsets.only(top: ScreenUtil().setHeight(48)),
               child: Column(
                 children: <Widget>[
                   Row(
@@ -94,7 +102,8 @@ class _HomeScreenState extends State<HomeScreen>
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 18.0),
+                        padding:
+                            EdgeInsets.only(left: ScreenUtil().setWidth(18)),
                         child: InkWell(
                           child: Icon(Icons.menu, color: Colors.white),
                           onTap: () {
@@ -110,7 +119,9 @@ class _HomeScreenState extends State<HomeScreen>
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(right: 8, top: 14),
+                        padding: EdgeInsets.only(
+                            right: ScreenUtil().setWidth(8),
+                            top: ScreenUtil().setHeight(14)),
                         child: PopupMenuButton<String>(
                           onSelected: (String result) {
                             switch (result) {
@@ -132,9 +143,9 @@ class _HomeScreenState extends State<HomeScreen>
                       ),
                     ],
                   ),
-                  SizedBox(height: 25.0),
+                  SizedBox(height: ScreenUtil().setHeight(25)),
                   Padding(
-                    padding: EdgeInsets.only(left: 40.0),
+                    padding: EdgeInsets.only(left: ScreenUtil().setWidth(40)),
                     child: Row(
                       children: <Widget>[
                         Text('IELTS',
@@ -142,17 +153,17 @@ class _HomeScreenState extends State<HomeScreen>
                                 fontFamily: 'Montserrat',
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 25.0)),
-                        SizedBox(width: 10.0),
+                                fontSize: ScreenUtil().setSp(25))),
+                        SizedBox(width: ScreenUtil().setHeight(10)),
                         Text('Quest',
                             style: TextStyle(
                                 fontFamily: 'Montserrat',
                                 color: Colors.white,
-                                fontSize: 25.0))
+                                fontSize: ScreenUtil().setSp(25)))
                       ],
                     ),
                   ),
-                  SizedBox(height: 40.0),
+                  SizedBox(height: ScreenUtil().setHeight(40)),
                   Container(
                     height: MediaQuery.of(context).size.height,
                     decoration: BoxDecoration(
@@ -162,11 +173,14 @@ class _HomeScreenState extends State<HomeScreen>
                             blurRadius: 10)
                       ],
                       color: Theme.of(context).canvasColor,
-                      borderRadius:
-                          BorderRadius.only(topLeft: Radius.circular(75.0)),
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(ScreenUtil().setWidth(75))),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.only(top: 45.0, left: 25, right: 25),
+                      padding: EdgeInsets.only(
+                          top: ScreenUtil().setHeight(45),
+                          left: ScreenUtil().setWidth(25),
+                          right: ScreenUtil().setWidth(25)),
                       child: Container(
                         height: MediaQuery.of(context).size.height,
                         child: GestureDetector(
@@ -201,25 +215,29 @@ class _HomeScreenState extends State<HomeScreen>
                                   children: <Widget>[
                                     CupertinoButton(
                                       child: Container(
-                                        height: 180,
-                                        width: 150,
+                                        height: ScreenUtil().setHeight(180),
+                                        width: ScreenUtil().setWidth(150),
                                         decoration: BoxDecoration(
                                           image: DecorationImage(
                                             image: AssetImage(
                                                 "assets/reading.jpg"),
                                             fit: BoxFit.cover,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(12),
+                                          borderRadius: BorderRadius.circular(
+                                              ScreenUtil().setWidth(12)),
                                         ),
                                         child: Container(
-                                          margin:
-                                              EdgeInsets.fromLTRB(15, 15, 0, 0),
+                                          margin: EdgeInsets.fromLTRB(
+                                              ScreenUtil().setWidth(15),
+                                              ScreenUtil().setWidth(15),
+                                              0,
+                                              0),
                                           child: Text(
                                             "Reading",
                                             style: TextStyle(
                                                 color: Colors.white,
-                                                fontSize: 20,
+                                                fontSize:
+                                                    ScreenUtil().setSp(20),
                                                 fontFamily: 'Montserrat',
                                                 fontWeight: FontWeight.bold),
                                           ),
@@ -232,25 +250,29 @@ class _HomeScreenState extends State<HomeScreen>
                                     ),
                                     CupertinoButton(
                                       child: Container(
-                                        height: 180,
-                                        width: 150,
+                                        height: ScreenUtil().setHeight(180),
+                                        width: ScreenUtil().setWidth(150),
                                         decoration: BoxDecoration(
                                           image: DecorationImage(
                                             image: AssetImage(
                                                 "assets/writing.jpg"),
                                             fit: BoxFit.cover,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(12),
+                                          borderRadius: BorderRadius.circular(
+                                              ScreenUtil().setWidth(12)),
                                         ),
                                         child: Container(
-                                          margin:
-                                              EdgeInsets.fromLTRB(15, 15, 0, 0),
+                                          margin: EdgeInsets.fromLTRB(
+                                              ScreenUtil().setWidth(15),
+                                              ScreenUtil().setWidth(15),
+                                              0,
+                                              0),
                                           child: Text(
                                             "Writing",
                                             style: TextStyle(
                                                 color: Colors.black,
-                                                fontSize: 20,
+                                                fontSize:
+                                                    ScreenUtil().setSp(20),
                                                 fontFamily: 'Montserrat',
                                                 fontWeight: FontWeight.bold),
                                           ),
@@ -271,31 +293,36 @@ class _HomeScreenState extends State<HomeScreen>
                                   children: <Widget>[
                                     CupertinoButton(
                                       child: Container(
-                                        height: 180,
-                                        width: 150,
+                                        height: ScreenUtil().setHeight(180),
+                                        width: ScreenUtil().setWidth(150),
                                         decoration: BoxDecoration(
                                           image: DecorationImage(
                                             image: AssetImage(
                                                 "assets/listening.jpeg"),
                                             fit: BoxFit.cover,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(12),
+                                          borderRadius: BorderRadius.circular(
+                                              ScreenUtil().setWidth(12)),
                                         ),
                                         child: Container(
-                                          margin:
-                                              EdgeInsets.fromLTRB(15, 15, 0, 0),
+                                          margin: EdgeInsets.fromLTRB(
+                                              ScreenUtil().setWidth(15),
+                                              ScreenUtil().setWidth(15),
+                                              0,
+                                              0),
                                           child: Align(
                                             alignment:
                                                 FractionalOffset.bottomLeft,
                                             child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  bottom: 15.0),
+                                              padding: EdgeInsets.only(
+                                                  bottom: ScreenUtil()
+                                                      .setWidth(15)),
                                               child: Text(
                                                 "Listening",
                                                 style: TextStyle(
                                                     color: Colors.black,
-                                                    fontSize: 20,
+                                                    fontSize:
+                                                        ScreenUtil().setSp(20),
                                                     fontFamily: 'Montserrat',
                                                     fontWeight:
                                                         FontWeight.bold),
@@ -311,31 +338,36 @@ class _HomeScreenState extends State<HomeScreen>
                                     ),
                                     CupertinoButton(
                                       child: Container(
-                                        height: 180,
-                                        width: 150,
+                                        height: ScreenUtil().setHeight(180),
+                                        width: ScreenUtil().setWidth(150),
                                         decoration: BoxDecoration(
                                           image: DecorationImage(
                                             image: AssetImage(
                                                 "assets/speaking.jpg"),
                                             fit: BoxFit.cover,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(12),
+                                          borderRadius: BorderRadius.circular(
+                                              ScreenUtil().setWidth(12)),
                                         ),
                                         child: Container(
-                                          margin:
-                                              EdgeInsets.fromLTRB(15, 15, 0, 0),
+                                          margin: EdgeInsets.fromLTRB(
+                                              ScreenUtil().setWidth(15),
+                                              ScreenUtil().setHeight(15),
+                                              0,
+                                              0),
                                           child: Align(
                                             alignment:
                                                 FractionalOffset.bottomLeft,
                                             child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  bottom: 15.0),
+                                              padding: EdgeInsets.only(
+                                                  bottom: ScreenUtil()
+                                                      .setWidth(15)),
                                               child: Text(
                                                 "Speaking",
                                                 style: TextStyle(
                                                     color: Colors.black,
-                                                    fontSize: 20,
+                                                    fontSize:
+                                                        ScreenUtil().setSp(20),
                                                     fontFamily: 'Montserrat',
                                                     fontWeight:
                                                         FontWeight.bold),
