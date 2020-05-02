@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 final lightTheme = ThemeData(
-  scaffoldBackgroundColor: Color(0xFF21BFBD),
-  primaryColor: Color(0xFF21BFBD),
-  fontFamily: 'Montserrat',
-  primarySwatch: Colors.teal,
-  brightness: Brightness.light,
-  canvasColor: Colors.white, // color for content background
-  secondaryHeaderColor: Colors.teal, // boxshadow color
-  backgroundColor: Color(0xff454dff), // side bar color
-  accentColor: Colors.black, // font color
-);
+    scaffoldBackgroundColor: Color(0xFF21BFBD),
+    primaryColor: Color(0xFF21BFBD),
+    fontFamily: 'Montserrat',
+    primarySwatch: Colors.teal,
+    brightness: Brightness.light,
+    canvasColor: Colors.white, // color for content background
+    secondaryHeaderColor: Colors.teal, // boxshadow color
+    backgroundColor: Color(0xff454dff), // side bar color
+    accentColor: Colors.black, // font color
+    bottomAppBarColor: Colors.white);
 
 final ThemeData darkTheme = ThemeData(
     scaffoldBackgroundColor: Colors.black,
@@ -20,4 +20,5 @@ final ThemeData darkTheme = ThemeData(
     fontFamily: 'Montserrat',
     backgroundColor: Color.fromRGBO(0, 0, 0, .93),
     accentColor: Colors.white,
-    brightness: Brightness.dark);
+    brightness: Brightness.dark,
+    bottomAppBarColor: Colors.black);

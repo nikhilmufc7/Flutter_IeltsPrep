@@ -1,3 +1,4 @@
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:ielts/app_constants.dart';
 import 'package:ielts/locator.dart';
@@ -14,6 +15,11 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
+  // firebase crashlytics
+  Crashlytics.instance.enableInDevMode = true;
+  // Pass all uncaught errors from the framework to Crashlytics.
+  FlutterError.onError = Crashlytics.instance.recordFlutterError;
+
   WidgetsFlutterBinding.ensureInitialized();
   setupLocator();
   var darkModeOn = false;

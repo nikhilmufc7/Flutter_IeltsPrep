@@ -5,6 +5,7 @@ import 'package:ielts/app_constants.dart';
 import 'package:ielts/services/auth.dart';
 
 import 'package:ielts/widgets/menu_page.dart';
+import 'package:upgrader/upgrader.dart';
 
 final Color backgroundColor = Color(0xFF21BFBD);
 
@@ -15,6 +16,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
+  //       var appcastURL = 'https://www.mydomain.com/myappcast.xml';
+  // final cfg = AppcastConfiguration(url: appcastURL, supportedOS: ['android']);
   bool isCollapsed = true;
   double screenWidth, screenHeight;
   final Duration duration = const Duration(milliseconds: 300);
@@ -50,12 +53,14 @@ class _HomeScreenState extends State<HomeScreen>
       onWillPop: () async => false,
       child: Scaffold(
         backgroundColor: backgroundColor,
-        body: Stack(
-          children: <Widget>[
-            MenuPage(),
-            dashboard(context),
-            // curvedContainer(context),
-          ],
+        body: UpgradeAlert(
+          child: Stack(
+            children: <Widget>[
+              MenuPage(),
+              dashboard(context),
+              // curvedContainer(context),
+            ],
+          ),
         ),
       ),
     );

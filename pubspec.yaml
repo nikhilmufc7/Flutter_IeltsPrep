@@ -45,6 +45,8 @@ dependencies:
   flutter_tts:
   day_night_switch:
   flutter_fader: ^1.0.0
+  upgrader:
+  firebase_crashlytics:
 
 dev_dependencies:
   flutter_test:

@@ -37,7 +37,7 @@ class _BlogScreenState extends State<BlogScreen> {
     screenHeight = size.height;
     screenWidth = size.width;
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: Theme.of(context).bottomAppBarColor,
       appBar: AppBar(
         title: Text(
           'Blog',
