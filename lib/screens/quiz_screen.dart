@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
-import 'package:ielts/app_constants.dart';
+import 'package:ielts/utils/app_constants.dart';
 
 import 'package:ielts/models/quiz.dart';
 import 'package:ielts/screens/quiz_detail_screen.dart';

@@ -4,6 +4,7 @@ import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:ielts/models/lesson.dart';
 import 'package:ielts/screens/writing_detail_screen.dart';
 import 'package:ielts/viewModels/writingCrudModel.dart';
+import 'package:ielts/widgets/lessonCard.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -176,54 +177,16 @@ class _WritingScreenState extends State<WritingScreen>
     );
   }
 
-  Widget makeCard(Lesson lesson) => Padding(
-        padding: const EdgeInsets.only(bottom: 15.0, left: 5, right: 5),
-        child: Card(
-          color: Color.fromRGBO(64, 75, 96, .9),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          elevation: 8.0,
-          margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-          child: makeListTile(lesson),
-        ),
-      );
-
-  ListTile makeListTile(Lesson lesson) => ListTile(
-        contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-        leading: Container(
-          padding: EdgeInsets.only(right: 12.0),
-          decoration: BoxDecoration(
-              border:
-                  Border(right: BorderSide(width: 1.0, color: Colors.white24))),
-          child: Icon(Icons.autorenew, color: Colors.white),
-        ),
-        title: Text(
-          lesson.title,
-          style: TextStyle(
-              fontFamily: 'Montserrat',
-              color: Colors.white,
-              fontWeight: FontWeight.bold),
-        ),
-        subtitle: Row(
-          children: <Widget>[
-            Expanded(
-                flex: 1,
-                child: Container(
-                  // tag: 'hero',
-                  child: LinearProgressIndicator(
-                      backgroundColor: Color.fromRGBO(209, 224, 224, 0.2),
-                      value: lesson.indicatorValue,
-                      valueColor: AlwaysStoppedAnimation(Colors.green)),
-                )),
-            Expanded(
-              flex: 4,
-              child: Padding(
-                  padding: EdgeInsets.only(left: 10.0),
-                  child: Text(lesson.level,
-                      style: TextStyle(color: Colors.white))),
-            )
-          ],
-        ),
+  Widget makeCard(Lesson lesson) => LessonCard(
+        title: lesson.title,
+        indicatorValue: lesson.indicatorValue,
+        level: lesson.level,
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => WritingDetailScreen(lesson: lesson)));
+        },
         trailing: FittedBox(
           child: CheckboxGroup(
               checked: checkedWritingItems,
@@ -254,11 +217,5 @@ class _WritingScreenState extends State<WritingScreen>
                 });
               }),
         ),
-        onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => WritingDetailScreen(lesson: lesson)));
-        },
       );
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ielts/app_constants.dart';
+import 'package:ielts/utils/app_constants.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class QuizResultScreen extends StatefulWidget {

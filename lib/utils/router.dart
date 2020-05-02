@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ielts/utils/app_constants.dart';
 import 'package:ielts/screens/blog_screen.dart';
 import 'package:ielts/screens/home_screen.dart';
 import 'package:ielts/screens/listening_screen.dart';
@@ -12,7 +13,6 @@ import 'package:ielts/screens/splash_screen.dart';
 import 'package:ielts/screens/vocabulary_screen.dart';
 import 'package:ielts/screens/writing_screen.dart';
 import 'package:ielts/screens/login_screen.dart';
-import 'app_constants.dart';
 
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {

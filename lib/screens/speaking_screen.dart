@@ -4,6 +4,7 @@ import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:ielts/models/speaking.dart';
 import 'package:ielts/screens/speaking_detail_screen.dart';
 import 'package:ielts/viewModels/speakingCrudModel.dart';
+import 'package:ielts/widgets/lessonCard.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -83,26 +84,6 @@ class _SpeakingScreenState extends State<SpeakingScreen>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   mainAxisSize: MainAxisSize.max,
-              //   children: [
-              //     Padding(
-              //       padding: const EdgeInsets.only(left: 18.0),
-              //       child: InkWell(
-              //         child: Icon(Icons.arrow_back, color: Colors.white),
-              //         onTap: () {
-              //           Navigator.pop(context);
-              //         },
-              //       ),
-              //     ),
-              //     Padding(
-              //       padding: const EdgeInsets.only(right: 18.0),
-              //       child: Icon(Icons.settings, color: Colors.white),
-              //     ),
-              //   ],
-              // ),
-
               Padding(
                 padding: EdgeInsets.only(left: 40.0),
                 child: Row(
@@ -114,11 +95,6 @@ class _SpeakingScreenState extends State<SpeakingScreen>
                             fontWeight: FontWeight.bold,
                             fontSize: 25.0)),
                     SizedBox(width: 10.0),
-                    // Text('Prep',
-                    //     style: TextStyle(
-                    //         fontFamily: 'Montserrat',
-                    //         color: Colors.white,
-                    //         fontSize: 25.0))
                   ],
                 ),
               ),
@@ -170,54 +146,17 @@ class _SpeakingScreenState extends State<SpeakingScreen>
     );
   }
 
-  Widget makeCard(Speaking speaking) => Padding(
-        padding: const EdgeInsets.only(bottom: 15.0, left: 5, right: 5),
-        child: Card(
-          color: Color.fromRGBO(64, 75, 96, .9),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          elevation: 8.0,
-          margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
-          child: makeListTile(speaking),
-        ),
-      );
-
-  ListTile makeListTile(Speaking speaking) => ListTile(
-        contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-        leading: Container(
-          padding: EdgeInsets.only(right: 12.0),
-          decoration: BoxDecoration(
-              border:
-                  Border(right: BorderSide(width: 1.0, color: Colors.white24))),
-          child: Icon(Icons.autorenew, color: Colors.white),
-        ),
-        title: Text(
-          speaking.title,
-          style: TextStyle(
-              fontFamily: 'Montserrat',
-              color: Colors.white,
-              fontWeight: FontWeight.bold),
-        ),
-        subtitle: Row(
-          children: <Widget>[
-            Expanded(
-                flex: 1,
-                child: Container(
-                  // tag: 'hero',
-                  child: LinearProgressIndicator(
-                      backgroundColor: Color.fromRGBO(209, 224, 224, 0.2),
-                      value: speaking.indicatorValue,
-                      valueColor: AlwaysStoppedAnimation(Colors.green)),
-                )),
-            Expanded(
-              flex: 4,
-              child: Padding(
-                  padding: EdgeInsets.only(left: 10.0),
-                  child: Text(speaking.level,
-                      style: TextStyle(color: Colors.white))),
-            )
-          ],
-        ),
+  Widget makeCard(Speaking speaking) => LessonCard(
+        title: speaking.title,
+        indicatorValue: speaking.indicatorValue,
+        level: speaking.level,
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      SpeakingDetailScreen(speaking: speaking)));
+        },
         trailing: FittedBox(
           child: CheckboxGroup(
               checked: checkedSpeakingItems,
@@ -248,12 +187,5 @@ class _SpeakingScreenState extends State<SpeakingScreen>
                 });
               }),
         ),
-        onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      SpeakingDetailScreen(speaking: speaking)));
-        },
       );
 }

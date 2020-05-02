@@ -1,10 +1,10 @@
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
-import 'package:ielts/app_constants.dart';
+import 'package:ielts/utils/app_constants.dart';
 import 'package:ielts/locator.dart';
-import 'package:ielts/models/themeChange.dart';
-import 'package:ielts/router.dart';
-import 'package:ielts/theme.dart';
+import 'package:ielts/utils/themeChange.dart';
+import 'package:ielts/utils/router.dart';
+import 'package:ielts/utils/theme.dart';
 import 'package:ielts/viewModels/blogCrudModel.dart';
 import 'package:ielts/viewModels/listeningCrudModel.dart';
 import 'package:ielts/viewModels/quizCrudModel.dart';

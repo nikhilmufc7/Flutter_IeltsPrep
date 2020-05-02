@@ -2,7 +2,7 @@ import 'package:basic_utils/basic_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fader/flutter_fader.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
-import 'package:ielts/app_constants.dart';
+import 'package:ielts/utils/app_constants.dart';
 import 'package:ielts/lesson_data/vocabulary_data.dart';
 import 'package:ielts/models/vocabulary.dart';
 

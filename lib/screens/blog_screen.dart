@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:ielts/app_constants.dart';
+import 'package:ielts/utils/app_constants.dart';
 import 'package:ielts/lesson_data/blog_data.dart';
 import 'package:ielts/models/blog.dart';
 import 'package:ielts/screens/blog_detail_screen.dart';

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:ielts/app_constants.dart';
+import 'package:ielts/utils/app_constants.dart';
 import 'package:ielts/models/userModel.dart';
 import 'package:ielts/services/auth.dart';
 

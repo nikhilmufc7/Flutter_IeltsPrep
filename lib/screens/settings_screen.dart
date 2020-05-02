@@ -1,10 +1,10 @@
 import 'package:day_night_switch/day_night_switch.dart';
 
-import 'package:ielts/models/themeChange.dart';
+import 'package:ielts/utils/themeChange.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:ielts/theme.dart';
+import 'package:ielts/utils/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
