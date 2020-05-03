@@ -4,6 +4,7 @@ import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ielts/models/listening.dart';
 import 'package:ielts/widgets/player_widget.dart';
 
@@ -33,7 +34,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
 
   bool isCollapsed = true;
   double screenWidth, screenHeight;
-  final Duration duration = const Duration(milliseconds: 300);
+  final Duration duration = Duration(milliseconds: 300);
 
   AudioCache audioCache = AudioCache();
   AudioPlayer advancedPlayer = AudioPlayer();
@@ -59,6 +60,13 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
+
+//If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
+    ScreenUtil.init(context, width: 414, height: 896);
+
+//If you want to set the font size is scaled according to the system's "font size" assist option
+    ScreenUtil.init(context, width: 414, height: 896, allowFontScaling: true);
     Size size = MediaQuery.of(context).size;
     screenHeight = size.height;
     screenWidth = size.width;
@@ -76,6 +84,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
               labelColor: Colors.redAccent,
               unselectedLabelColor: Colors.white,
               indicatorSize: TabBarIndicatorSize.label,
+              isScrollable: true,
               indicator: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   color: Colors.white),
@@ -114,7 +123,8 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
             animationDuration: duration,
             color: Theme.of(context).primaryColor,
             child: ListView(
-              padding: EdgeInsets.only(bottom: 0, top: 20),
+              padding:
+                  EdgeInsets.only(bottom: 0, top: ScreenUtil().setHeight(20)),
               shrinkWrap: true,
               physics: ClampingScrollPhysics(),
               children: <Widget>[
@@ -129,28 +139,31 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                       ],
                       color: Theme.of(context).canvasColor,
                       borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(75.0),
-                          topRight: Radius.circular(75)),
+                          topLeft: Radius.circular(ScreenUtil().setWidth(75)),
+                          topRight: Radius.circular(ScreenUtil().setWidth(75))),
                     ),
                     child: ListView(
-                      padding: EdgeInsets.only(top: 50),
+                      padding: EdgeInsets.only(top: ScreenUtil().setHeight(50)),
                       physics: ClampingScrollPhysics(),
                       shrinkWrap: true,
                       children: <Widget>[
                         ListView(
                           scrollDirection: Axis.vertical,
-                          padding: EdgeInsets.only(top: 10, bottom: 20),
+                          padding: EdgeInsets.only(
+                              top: ScreenUtil().setHeight(10),
+                              bottom: ScreenUtil().setHeight(20)),
                           shrinkWrap: true,
                           physics: ClampingScrollPhysics(),
                           children: <Widget>[
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding:
+                                  EdgeInsets.all(ScreenUtil().setHeight(8)),
                               child: Text(
                                 listening.whatToDo.replaceAll("_n", "\n"),
                                 style: TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 14,
+                                    fontSize: ScreenUtil().setSp(14),
                                     color: Theme.of(context).accentColor),
                               ),
                             ),
@@ -164,16 +177,17 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
 
                             PlayerWidget(url: listening.firstSectionAudio),
 
-                            SizedBox(height: 15),
+                            SizedBox(height: ScreenUtil().setHeight(15)),
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding:
+                                  EdgeInsets.all(ScreenUtil().setHeight(8)),
                               child: Text(
                                 listening.intialQuestionNumbers
                                     .replaceAll("_n", "\n"),
                                 style: TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 14,
+                                    fontSize: ScreenUtil().setSp(14),
                                     color: Theme.of(context).accentColor),
                               ),
                             ),
@@ -182,7 +196,8 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                   ? true
                                   : false,
                               child: Padding(
-                                padding: const EdgeInsets.all(10.0),
+                                padding:
+                                    EdgeInsets.all(ScreenUtil().setWidth(10)),
                                 child: CachedNetworkImage(
                                   imageUrl: listening.firstQuestionImage,
                                   placeholder: (context, url) => Center(
@@ -194,14 +209,15 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             ),
                             // Summary
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding:
+                                  EdgeInsets.all(ScreenUtil().setHeight(8)),
                               child: Text(
                                 listening.s1SubQuestions1Numbers
                                     .replaceAll("_n", "\n"),
                                 style: TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 14,
+                                    fontSize: ScreenUtil().setSp(14),
                                     color: Theme.of(context).accentColor),
                               ),
                             ),
@@ -209,12 +225,13 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             Visibility(
                               visible: listening.s1SubQuestions1Bool == true,
                               child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10.0, right: 10, top: 10),
+                                  padding: EdgeInsets.only(
+                                      left: ScreenUtil().setWidth(10),
+                                      right: ScreenUtil().setWidth(10),
+                                      top: ScreenUtil().setHeight(10)),
                                   child: ListView.builder(
                                     shrinkWrap: true,
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
+                                    physics: NeverScrollableScrollPhysics(),
                                     itemCount: listening.s1SubQuestions1.length,
                                     itemBuilder:
                                         (BuildContext context, int index) {
@@ -239,14 +256,15 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             Visibility(
                               visible: listening.s1SubQuestions2Bool == true,
                               child: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding:
+                                    EdgeInsets.all(ScreenUtil().setHeight(8)),
                                 child: Text(
                                   listening.s1SubQuestions2Numbers
                                       .replaceAll("_n", "\n"),
                                   style: TextStyle(
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 14,
+                                      fontSize: ScreenUtil().setSp(14),
                                       color: Theme.of(context).accentColor),
                                 ),
                               ),
@@ -256,7 +274,8 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                               visible:
                                   listening.secondQuestionImageBool == true,
                               child: Padding(
-                                padding: const EdgeInsets.all(10.0),
+                                padding:
+                                    EdgeInsets.all(ScreenUtil().setHeight(10)),
                                 child: CachedNetworkImage(
                                   imageUrl: listening.secondQuestionImage,
                                   placeholder: (context, url) => Center(
@@ -270,12 +289,13 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             Visibility(
                               visible: listening.s1SubQuestions2Bool == true,
                               child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10.0, right: 10, top: 10),
+                                  padding: EdgeInsets.only(
+                                      left: ScreenUtil().setWidth(10),
+                                      right: ScreenUtil().setWidth(10),
+                                      top: ScreenUtil().setHeight(10)),
                                   child: ListView.builder(
                                     shrinkWrap: true,
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
+                                    physics: NeverScrollableScrollPhysics(),
                                     itemCount: listening.s1SubQuestions2.length,
                                     itemBuilder:
                                         (BuildContext context, int index) {
@@ -304,9 +324,9 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                 onPressed: () {
                                   openAnswersSheet(context, listening);
                                 },
-                                child: const Text('Answers',
+                                child: Text('Answers',
                                     style: TextStyle(
-                                      fontSize: 20,
+                                      fontSize: ScreenUtil().setSp(20),
                                       fontFamily: 'Montserrat',
                                     )),
                                 color: Colors.deepPurpleAccent,
@@ -339,7 +359,8 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
             animationDuration: duration,
             color: Theme.of(context).primaryColor,
             child: ListView(
-              padding: EdgeInsets.only(bottom: 0, top: 20),
+              padding:
+                  EdgeInsets.only(bottom: 0, top: ScreenUtil().setHeight(20)),
               shrinkWrap: true,
               physics: ClampingScrollPhysics(),
               children: <Widget>[
@@ -354,52 +375,57 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                       ],
                       color: Theme.of(context).canvasColor,
                       borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(75.0),
-                          topRight: Radius.circular(75)),
+                          topLeft: Radius.circular(ScreenUtil().setWidth(75)),
+                          topRight: Radius.circular(ScreenUtil().setWidth(75))),
                     ),
                     child: ListView(
-                      padding: EdgeInsets.only(top: 50),
+                      padding: EdgeInsets.only(top: ScreenUtil().setHeight(50)),
                       physics: ClampingScrollPhysics(),
                       shrinkWrap: true,
                       children: <Widget>[
                         ListView(
                           scrollDirection: Axis.vertical,
-                          padding: EdgeInsets.only(top: 10, bottom: 20),
+                          padding: EdgeInsets.only(
+                              top: ScreenUtil().setHeight(10),
+                              bottom: ScreenUtil().setHeight(20)),
                           shrinkWrap: true,
                           physics: ClampingScrollPhysics(),
                           children: <Widget>[
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding:
+                                  EdgeInsets.all(ScreenUtil().setHeight(8)),
                               child: Text(
                                 listening.s2WhatToDo.replaceAll("_n", "\n"),
                                 style: TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 14,
+                                    fontSize: ScreenUtil().setSp(14),
                                     color: Theme.of(context).accentColor),
                               ),
                             ),
 
                             PlayerWidget(url: listening.section2Audio),
 
-                            SizedBox(height: 15),
+                            SizedBox(height: ScreenUtil().setHeight(15)),
 
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding:
+                                  EdgeInsets.all(ScreenUtil().setHeight(8)),
                               child: Text(
                                 listening.s2SubQuestion1Numbers
                                     .replaceAll("_n", "\n"),
                                 style: TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 14,
+                                    fontSize: ScreenUtil().setSp(14),
                                     color: Theme.of(context).accentColor),
                               ),
                             ),
                             Visibility(
                               visible: listening.section2Image1Bool == true,
                               child: Padding(
-                                padding: const EdgeInsets.all(10.0),
+                                padding:
+                                    EdgeInsets.all(ScreenUtil().setHeight(10)),
                                 child: CachedNetworkImage(
                                   imageUrl: listening.section2Image1,
                                   placeholder: (context, url) => Center(
@@ -413,12 +439,13 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             Visibility(
                               visible: listening.s2SubQuestions1Bool == true,
                               child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10.0, right: 10, top: 10),
+                                  padding: EdgeInsets.only(
+                                      left: ScreenUtil().setWidth(10),
+                                      right: ScreenUtil().setWidth(10),
+                                      top: ScreenUtil().setHeight(10)),
                                   child: ListView.builder(
                                     shrinkWrap: true,
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
+                                    physics: NeverScrollableScrollPhysics(),
                                     itemCount: listening.s2SubQuestions1.length,
                                     itemBuilder:
                                         (BuildContext context, int index) {
@@ -441,14 +468,15 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             ),
                             // Summary
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding:
+                                  EdgeInsets.all(ScreenUtil().setHeight(8)),
                               child: Text(
                                 listening.s2SubQuestion2Numbers
                                     .replaceAll("_n", "\n"),
                                 style: TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 13,
+                                    fontSize: ScreenUtil().setSp(13),
                                     color: Theme.of(context).accentColor),
                               ),
                             ),
@@ -456,7 +484,8 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             Visibility(
                               visible: listening.section2Image2Bool == true,
                               child: Padding(
-                                padding: const EdgeInsets.all(10.0),
+                                padding:
+                                    EdgeInsets.all(ScreenUtil().setHeight(10)),
                                 child: CachedNetworkImage(
                                   imageUrl: listening.section2Image2,
                                   placeholder: (context, url) => Center(
@@ -470,12 +499,13 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             Visibility(
                               visible: listening.s2SubQuestions2Bool == true,
                               child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10.0, right: 10, top: 10),
+                                  padding: EdgeInsets.only(
+                                      left: ScreenUtil().setWidth(10),
+                                      right: ScreenUtil().setWidth(10),
+                                      top: ScreenUtil().setHeight(10)),
                                   child: ListView.builder(
                                     shrinkWrap: true,
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
+                                    physics: NeverScrollableScrollPhysics(),
                                     itemCount: listening.s2SubQuestions2.length,
                                     itemBuilder:
                                         (BuildContext context, int index) {
@@ -505,9 +535,9 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                 onPressed: () {
                                   openSection2AnswersSheet(context, listening);
                                 },
-                                child: const Text('Answers',
+                                child: Text('Answers',
                                     style: TextStyle(
-                                      fontSize: 20,
+                                      fontSize: ScreenUtil().setSp(20),
                                       fontFamily: 'Montserrat',
                                     )),
                                 color: Colors.deepPurpleAccent,
@@ -536,7 +566,10 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
             animationDuration: duration,
             color: Theme.of(context).primaryColor,
             child: ListView(
-              padding: EdgeInsets.only(bottom: 0, top: 20),
+              padding: EdgeInsets.only(
+                  // left: ScreenUtil().setWidth(10),
+                  // right: ScreenUtil().setWidth(10),
+                  top: ScreenUtil().setHeight(10)),
               shrinkWrap: true,
               physics: ClampingScrollPhysics(),
               children: <Widget>[
@@ -551,8 +584,8 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                       ],
                       color: Theme.of(context).canvasColor,
                       borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(75.0),
-                          topRight: Radius.circular(75)),
+                          topLeft: Radius.circular(ScreenUtil().setWidth(75)),
+                          topRight: Radius.circular(ScreenUtil().setWidth(75))),
                     ),
                     child: ListView(
                       padding: EdgeInsets.only(top: 50),
@@ -568,37 +601,40 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                           physics: ClampingScrollPhysics(),
                           children: <Widget>[
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding:
+                                  EdgeInsets.all(ScreenUtil().setHeight(8)),
                               child: Text(
                                 listening.s3WhatToDo.replaceAll("_n", "\n"),
                                 style: TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 14,
+                                    fontSize: ScreenUtil().setSp(14),
                                     color: Theme.of(context).accentColor),
                               ),
                             ),
 
                             PlayerWidget(url: listening.section3Audio),
 
-                            SizedBox(height: 15),
+                            SizedBox(height: ScreenUtil().setHeight(15)),
 
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding:
+                                  EdgeInsets.all(ScreenUtil().setHeight(8)),
                               child: Text(
                                 listening.section3Question1Numbers
                                     .replaceAll("_n", "\n"),
                                 style: TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 14,
+                                    fontSize: ScreenUtil().setSp(14),
                                     color: Theme.of(context).accentColor),
                               ),
                             ),
                             Visibility(
                               visible: listening.section3Image1Bool == true,
                               child: Padding(
-                                padding: const EdgeInsets.all(10.0),
+                                padding:
+                                    EdgeInsets.all(ScreenUtil().setHeight(10)),
                                 child: CachedNetworkImage(
                                   imageUrl: listening.section3Image1,
                                   placeholder: (context, url) => Center(
@@ -612,12 +648,13 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             Visibility(
                               visible: listening.section3Question1bool == true,
                               child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10.0, right: 10, top: 10),
+                                  padding: EdgeInsets.only(
+                                      left: ScreenUtil().setWidth(10),
+                                      right: ScreenUtil().setWidth(10),
+                                      top: ScreenUtil().setHeight(10)),
                                   child: ListView.builder(
                                     shrinkWrap: true,
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
+                                    physics: NeverScrollableScrollPhysics(),
                                     itemCount:
                                         listening.section3Question1.length,
                                     itemBuilder:
@@ -641,14 +678,15 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             ),
                             // Summary
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding:
+                                  EdgeInsets.all(ScreenUtil().setHeight(8)),
                               child: Text(
                                 listening.section3Question2Numbers
                                     .replaceAll("_n", "\n"),
                                 style: TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 13,
+                                    fontSize: ScreenUtil().setSp(13),
                                     color: Theme.of(context).accentColor),
                               ),
                             ),
@@ -656,7 +694,8 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             Visibility(
                               visible: listening.section3Image2bool == true,
                               child: Padding(
-                                padding: const EdgeInsets.all(10.0),
+                                padding:
+                                    EdgeInsets.all(ScreenUtil().setHeight(10)),
                                 child: CachedNetworkImage(
                                   imageUrl: listening.section3Image2,
                                   placeholder: (context, url) => Center(
@@ -670,12 +709,13 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             Visibility(
                               visible: listening.section3Questions2bool == true,
                               child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10.0, right: 10, top: 10),
+                                  padding: EdgeInsets.only(
+                                      left: ScreenUtil().setWidth(10),
+                                      right: ScreenUtil().setWidth(10),
+                                      top: ScreenUtil().setHeight(10)),
                                   child: ListView.builder(
                                     shrinkWrap: true,
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
+                                    physics: NeverScrollableScrollPhysics(),
                                     itemCount:
                                         listening.section3Question2.length,
                                     itemBuilder:
@@ -699,14 +739,15 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             ),
 
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding:
+                                  EdgeInsets.all(ScreenUtil().setHeight(8)),
                               child: Text(
                                 listening.section3Question3Numbers
                                     .replaceAll("_n", "\n"),
                                 style: TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 13,
+                                    fontSize: ScreenUtil().setSp(13),
                                     color: Theme.of(context).accentColor),
                               ),
                             ),
@@ -714,7 +755,8 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             Visibility(
                               visible: listening.section3Image3bool == true,
                               child: Padding(
-                                padding: const EdgeInsets.all(10.0),
+                                padding:
+                                    EdgeInsets.all(ScreenUtil().setHeight(10)),
                                 child: CachedNetworkImage(
                                   imageUrl: listening.section3Image3,
                                   placeholder: (context, url) => Center(
@@ -728,12 +770,13 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             Visibility(
                               visible: listening.section3Question3bool == true,
                               child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10.0, right: 10, top: 10),
+                                  padding: EdgeInsets.only(
+                                      left: ScreenUtil().setWidth(10),
+                                      right: ScreenUtil().setWidth(10),
+                                      top: ScreenUtil().setHeight(10)),
                                   child: ListView.builder(
                                     shrinkWrap: true,
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
+                                    physics: NeverScrollableScrollPhysics(),
                                     itemCount:
                                         listening.section3Question3.length,
                                     itemBuilder:
@@ -764,9 +807,9 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                 onPressed: () {
                                   openSection3AnswersSheet(context, listening);
                                 },
-                                child: const Text('Answers',
+                                child: Text('Answers',
                                     style: TextStyle(
-                                      fontSize: 20,
+                                      fontSize: ScreenUtil().setSp(20),
                                       fontFamily: 'Montserrat',
                                     )),
                                 color: Colors.deepPurpleAccent,
@@ -793,7 +836,10 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
             animationDuration: duration,
             color: Theme.of(context).primaryColor,
             child: ListView(
-              padding: EdgeInsets.only(bottom: 0, top: 20),
+              padding: EdgeInsets.only(
+                  // left: ScreenUtil().setWidth(10),
+                  // right: ScreenUtil().setWidth(10),
+                  top: ScreenUtil().setHeight(10)),
               shrinkWrap: true,
               physics: ClampingScrollPhysics(),
               children: <Widget>[
@@ -808,11 +854,11 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                       ],
                       color: Theme.of(context).canvasColor,
                       borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(75.0),
-                          topRight: Radius.circular(75)),
+                          topLeft: Radius.circular(ScreenUtil().setWidth(75)),
+                          topRight: Radius.circular(ScreenUtil().setWidth(75))),
                     ),
                     child: ListView(
-                      padding: EdgeInsets.only(top: 50),
+                      padding: EdgeInsets.only(top: ScreenUtil().setHeight(50)),
                       physics: ClampingScrollPhysics(),
                       shrinkWrap: true,
                       children: <Widget>[
@@ -820,35 +866,39 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
 
                         ListView(
                           scrollDirection: Axis.vertical,
-                          padding: EdgeInsets.only(top: 10, bottom: 20),
+                          padding: EdgeInsets.only(
+                              top: ScreenUtil().setHeight(10),
+                              bottom: ScreenUtil().setHeight(20)),
                           shrinkWrap: true,
                           physics: ClampingScrollPhysics(),
                           children: <Widget>[
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding:
+                                  EdgeInsets.all(ScreenUtil().setHeight(8)),
                               child: Text(
                                 listening.s4WhatToDo.replaceAll("_n", "\n"),
                                 style: TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 14,
+                                    fontSize: ScreenUtil().setSp(14),
                                     color: Theme.of(context).accentColor),
                               ),
                             ),
 
                             PlayerWidget(url: listening.section4Audio),
 
-                            SizedBox(height: 15),
+                            SizedBox(height: ScreenUtil().setHeight(15)),
 
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding:
+                                  EdgeInsets.all(ScreenUtil().setHeight(8)),
                               child: Text(
                                 listening.section4Question1Numbers
                                     .replaceAll("_n", "\n"),
                                 style: TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 14,
+                                    fontSize: ScreenUtil().setSp(14),
                                     color: Theme.of(context).accentColor),
                               ),
                             ),
@@ -856,7 +906,8 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             Visibility(
                               visible: listening.section4Image1Bool == true,
                               child: Padding(
-                                padding: const EdgeInsets.all(10.0),
+                                padding:
+                                    EdgeInsets.all(ScreenUtil().setHeight(10)),
                                 child: CachedNetworkImage(
                                   imageUrl: listening.section4Image1,
                                   placeholder: (context, url) => Center(
@@ -869,12 +920,13 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             Visibility(
                               visible: listening.section4Question1Bool == true,
                               child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10.0, right: 10, top: 10),
+                                  padding: EdgeInsets.only(
+                                      left: ScreenUtil().setWidth(10),
+                                      right: ScreenUtil().setWidth(10),
+                                      top: ScreenUtil().setHeight(10)),
                                   child: ListView.builder(
                                     shrinkWrap: true,
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
+                                    physics: NeverScrollableScrollPhysics(),
                                     itemCount:
                                         listening.section4Question1.length,
                                     itemBuilder:
@@ -898,14 +950,15 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             ),
                             // Summary
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding:
+                                  EdgeInsets.all(ScreenUtil().setHeight(8)),
                               child: Text(
                                 listening.section4Question2Numbers
                                     .replaceAll("_n", "\n"),
                                 style: TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 13,
+                                    fontSize: ScreenUtil().setSp(13),
                                     color: Theme.of(context).accentColor),
                               ),
                             ),
@@ -913,7 +966,8 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             Visibility(
                               visible: listening.section4Image2Bool == true,
                               child: Padding(
-                                padding: const EdgeInsets.all(10.0),
+                                padding:
+                                    EdgeInsets.all(ScreenUtil().setHeight(10)),
                                 child: CachedNetworkImage(
                                   imageUrl: listening.section4Image2,
                                   placeholder: (context, url) => Center(
@@ -927,12 +981,13 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             Visibility(
                               visible: listening.section4Question2Bool == true,
                               child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10.0, right: 10, top: 10),
+                                  padding: EdgeInsets.only(
+                                      left: ScreenUtil().setWidth(10),
+                                      right: ScreenUtil().setWidth(10),
+                                      top: ScreenUtil().setHeight(10)),
                                   child: ListView.builder(
                                     shrinkWrap: true,
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
+                                    physics: NeverScrollableScrollPhysics(),
                                     itemCount:
                                         listening.section4Question2.length,
                                     itemBuilder:
@@ -956,14 +1011,15 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             ),
 
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding:
+                                  EdgeInsets.all(ScreenUtil().setHeight(8)),
                               child: Text(
                                 listening.section4Question3Numbers
                                     .replaceAll("_n", "\n"),
                                 style: TextStyle(
                                     fontFamily: 'Montserrat',
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 13,
+                                    fontSize: ScreenUtil().setSp(13),
                                     color: Theme.of(context).accentColor),
                               ),
                             ),
@@ -971,12 +1027,13 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             Visibility(
                               visible: listening.section4Question3Bool == true,
                               child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10.0, right: 10, top: 10),
+                                  padding: EdgeInsets.only(
+                                      left: ScreenUtil().setWidth(10),
+                                      right: ScreenUtil().setWidth(10),
+                                      top: ScreenUtil().setHeight(10)),
                                   child: ListView.builder(
                                     shrinkWrap: true,
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
+                                    physics: NeverScrollableScrollPhysics(),
                                     itemCount:
                                         listening.section4Question3.length,
                                     itemBuilder:
@@ -1007,9 +1064,9 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                 onPressed: () {
                                   openSection4AnswersSheet(context, listening);
                                 },
-                                child: const Text('Answers',
+                                child: Text('Answers',
                                     style: TextStyle(
-                                      fontSize: 20,
+                                      fontSize: ScreenUtil().setSp(20),
                                       fontFamily: 'Montserrat',
                                     )),
                                 color: Colors.deepPurpleAccent,
@@ -1041,10 +1098,10 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
         shrinkWrap: true,
         children: <Widget>[
           Container(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.all(ScreenUtil().setHeight(10)),
               child: ListView.builder(
                 shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
+                physics: NeverScrollableScrollPhysics(),
                 itemCount: listening.answers.length,
                 itemBuilder: (BuildContext context, int index) {
                   answersResult = listening.answers[index];
@@ -1076,10 +1133,10 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
         shrinkWrap: true,
         children: <Widget>[
           Container(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.all(ScreenUtil().setHeight(10)),
               child: ListView.builder(
                 shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
+                physics: NeverScrollableScrollPhysics(),
                 itemCount: listening.section2Answers.length,
                 itemBuilder: (BuildContext context, int index) {
                   answersResult = listening.section2Answers[index];
@@ -1113,10 +1170,10 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
         shrinkWrap: true,
         children: <Widget>[
           Container(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.all(ScreenUtil().setHeight(10)),
               child: ListView.builder(
                 shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
+                physics: NeverScrollableScrollPhysics(),
                 itemCount: listening.section3Answers.length,
                 itemBuilder: (BuildContext context, int index) {
                   answersResult = listening.section3Answers[index];
@@ -1150,10 +1207,10 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
         shrinkWrap: true,
         children: <Widget>[
           Container(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.all(ScreenUtil().setHeight(10)),
               child: ListView.builder(
                 shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
+                physics: NeverScrollableScrollPhysics(),
                 itemCount: listening.section4Answers.length,
                 itemBuilder: (BuildContext context, int index) {
                   answersResult = listening.section4Answers[index];
@@ -1174,8 +1231,8 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
   }
 
   Widget bullet() => Container(
-      height: 20.0,
-      width: 20.0,
+      height: ScreenUtil().setHeight(20),
+      width: ScreenUtil().setWidth(20),
       decoration: BoxDecoration(
         color: Colors.black,
         shape: BoxShape.circle,

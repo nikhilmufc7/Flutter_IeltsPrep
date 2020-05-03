@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ielts/utils/app_constants.dart';
 import 'package:ielts/lesson_data/blog_data.dart';
 import 'package:ielts/models/blog.dart';
@@ -32,6 +33,13 @@ class _BlogScreenState extends State<BlogScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
+
+//If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
+    ScreenUtil.init(context, width: 414, height: 896);
+
+//If you want to set the font size is scaled according to the system's "font size" assist option
+    ScreenUtil.init(context, width: 414, height: 896, allowFontScaling: true);
     final productProvider = Provider.of<BlogCrudModel>(context);
     Size size = MediaQuery.of(context).size;
     screenHeight = size.height;
@@ -39,12 +47,13 @@ class _BlogScreenState extends State<BlogScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).bottomAppBarColor,
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           'Blog',
           style: TextStyle(
               fontWeight: FontWeight.bold,
               letterSpacing: 1.2,
-              fontSize: 20,
+              fontSize: ScreenUtil().setSp(20),
               fontFamily: 'Montserrat'),
         ),
         leading: IconButton(
@@ -60,7 +69,7 @@ class _BlogScreenState extends State<BlogScreen> {
         child: Column(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.all(14.0),
+              padding: EdgeInsets.all(ScreenUtil().setHeight(14)),
               child: Align(
                   alignment: Alignment.topLeft,
                   child: Text(
@@ -70,13 +79,13 @@ class _BlogScreenState extends State<BlogScreen> {
                         letterSpacing: 1.2,
                         color: Theme.of(context).accentColor,
                         fontStyle: FontStyle.italic,
-                        fontSize: 20,
+                        fontSize: ScreenUtil().setSp(20),
                         fontFamily: 'Montserrat'),
                   )),
             ),
             Container(
-              height: 310,
-              width: 400,
+              height: ScreenUtil().setHeight(310),
+              width: ScreenUtil().setWidth(400),
               child: StreamBuilder(
                   stream: productProvider.fetchBlogsAsStream(),
                   builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -100,8 +109,10 @@ class _BlogScreenState extends State<BlogScreen> {
             Row(
               children: <Widget>[
                 Padding(
-                  padding:
-                      const EdgeInsets.only(left: 18.0, top: 10, bottom: 10),
+                  padding: EdgeInsets.only(
+                      left: ScreenUtil().setWidth(18),
+                      top: ScreenUtil().setHeight(10),
+                      bottom: ScreenUtil().setHeight(10)),
                   child: Text(
                     'Popular',
                     style: TextStyle(
@@ -109,7 +120,7 @@ class _BlogScreenState extends State<BlogScreen> {
                         letterSpacing: 1.2,
                         color: Theme.of(context).accentColor,
                         fontStyle: FontStyle.italic,
-                        fontSize: 20,
+                        fontSize: ScreenUtil().setSp(20),
                         fontFamily: 'Montserrat'),
                   ),
                 ),
@@ -155,21 +166,22 @@ class _BlogScreenState extends State<BlogScreen> {
       },
       child: Container(
         padding: EdgeInsets.all(10),
-        height: 310,
-        width: 360,
+        height: ScreenUtil().setHeight(310),
+        width: ScreenUtil().setWidth(360),
         child: Card(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(ScreenUtil().setWidth(20))),
             child: Stack(children: <Widget>[
               Hero(
                 tag: blog.title,
                 child: ClipRRect(
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      topRight: Radius.circular(10)),
+                      topLeft: Radius.circular(ScreenUtil().setWidth(10)),
+                      topRight: Radius.circular(ScreenUtil().setWidth(10))),
                   child: CachedNetworkImage(
                     fit: BoxFit.cover,
-                    height: 200,
+                    height: ScreenUtil().setHeight(180),
+                    width: ScreenUtil().setWidth(360),
                     imageUrl: blog.imageUrl,
                     placeholder: (context, url) =>
                         Center(child: CircularProgressIndicator()),
@@ -178,13 +190,13 @@ class _BlogScreenState extends State<BlogScreen> {
                 ),
               ),
               Align(
-                  alignment: Alignment.bottomCenter,
+                  alignment: Alignment.bottomLeft,
                   child: Padding(
-                    padding: const EdgeInsets.all(12.0),
+                    padding: EdgeInsets.all(ScreenUtil().setHeight(12)),
                     child: Row(
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(ScreenUtil().setWidth(8)),
                           child: CircularImage(CachedNetworkImageProvider(
                               'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQQCcQzNKw6r9VqXtdJgwcXG6VcQxc9wMA6q0lMKaaTs5Ebj6fI&usqp=CAU')),
                         ),
@@ -195,7 +207,7 @@ class _BlogScreenState extends State<BlogScreen> {
                               color: Theme.of(context).accentColor,
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Montserrat',
-                              fontSize: 16,
+                              fontSize: ScreenUtil().setSp(16),
                             ),
                           ),
                         ),
@@ -218,15 +230,19 @@ class _BlogScreenState extends State<BlogScreen> {
       child: Row(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(14.0),
+            padding: EdgeInsets.all(
+              ScreenUtil().setWidth(14),
+            ),
             child: Hero(
               tag: blog.imageUrl,
               child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
+                borderRadius: BorderRadius.all(Radius.circular(
+                  ScreenUtil().setWidth(10),
+                )),
                 child: CachedNetworkImage(
                   fit: BoxFit.cover,
-                  height: 60,
-                  width: 60,
+                  height: ScreenUtil().setHeight(60),
+                  width: ScreenUtil().setWidth(60),
                   imageUrl: blog.imageUrl,
                   placeholder: (context, url) =>
                       Center(child: CircularProgressIndicator()),
@@ -245,7 +261,7 @@ class _BlogScreenState extends State<BlogScreen> {
                     color: Colors.red,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Montserrat',
-                    fontSize: 12,
+                    fontSize: ScreenUtil().setSp(12),
                   ),
                 ),
                 Text(
@@ -255,7 +271,7 @@ class _BlogScreenState extends State<BlogScreen> {
                     color: Theme.of(context).accentColor,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Montserrat',
-                    fontSize: 14,
+                    fontSize: ScreenUtil().setSp(14),
                   ),
                 ),
                 Text(
@@ -264,7 +280,7 @@ class _BlogScreenState extends State<BlogScreen> {
                     color: Colors.grey,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Montserrat',
-                    fontSize: 12,
+                    fontSize: ScreenUtil().setSp(12),
                   ),
                 ),
               ],

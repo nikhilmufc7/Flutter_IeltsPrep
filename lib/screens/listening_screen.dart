@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
 
 import 'package:ielts/models/listening.dart';
@@ -53,6 +54,13 @@ class _ListeningScreenState extends State<ListeningScreen>
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
+
+//If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
+    ScreenUtil.init(context, width: 414, height: 896);
+
+//If you want to set the font size is scaled according to the system's "font size" assist option
+    ScreenUtil.init(context, width: 414, height: 896, allowFontScaling: true);
     Size size = MediaQuery.of(context).size;
     screenHeight = size.height;
     screenWidth = size.width;
@@ -82,7 +90,7 @@ class _ListeningScreenState extends State<ListeningScreen>
         scrollDirection: Axis.vertical,
         physics: ClampingScrollPhysics(),
         child: Container(
-          padding: const EdgeInsets.only(top: 10),
+          padding: EdgeInsets.only(top: ScreenUtil().setHeight(10)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -107,16 +115,17 @@ class _ListeningScreenState extends State<ListeningScreen>
               // ),
 
               Padding(
-                padding: EdgeInsets.only(left: 40.0),
+                padding: EdgeInsets.only(left: ScreenUtil().setWidth(40)),
                 child: Row(
                   children: <Widget>[
                     Text('Listening Exercises',
                         style: TextStyle(
-                            fontFamily: 'Montserrat',
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25.0)),
-                    SizedBox(width: 10.0),
+                          fontFamily: 'Montserrat',
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: ScreenUtil().setSp(25),
+                        )),
+                    SizedBox(width: ScreenUtil().setWidth(10)),
                     // Text('Prep',
                     //     style: TextStyle(
                     //         fontFamily: 'Montserrat',
@@ -125,7 +134,7 @@ class _ListeningScreenState extends State<ListeningScreen>
                   ],
                 ),
               ),
-              SizedBox(height: 40.0),
+              SizedBox(height: ScreenUtil().setHeight(40)),
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
@@ -135,8 +144,8 @@ class _ListeningScreenState extends State<ListeningScreen>
                         blurRadius: 10)
                   ],
                   color: Theme.of(context).canvasColor,
-                  borderRadius:
-                      BorderRadius.only(topLeft: Radius.circular(75.0)),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(ScreenUtil().setWidth(75))),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -152,7 +161,9 @@ class _ListeningScreenState extends State<ListeningScreen>
 
                           return ListView.builder(
                             scrollDirection: Axis.vertical,
-                            padding: EdgeInsets.only(top: 70, bottom: 50),
+                            padding: EdgeInsets.only(
+                                top: ScreenUtil().setHeight(70),
+                                bottom: ScreenUtil().setHeight(50)),
                             shrinkWrap: true,
                             physics: ScrollPhysics(),
                             itemCount: listening.length,
