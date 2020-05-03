@@ -54,6 +54,7 @@ class LessonCard extends StatelessWidget {
               title,
               style: TextStyle(
                   fontFamily: 'Montserrat',
+                  fontSize: ScreenUtil().setSp(16),
                   color: Colors.white,
                   fontWeight: FontWeight.bold),
             ),

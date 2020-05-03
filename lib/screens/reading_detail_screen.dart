@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ielts/models/reading.dart';
 
 final Color backgroundColor = Color(0xFF21BFBD);
@@ -39,6 +40,13 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
+
+//If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
+    ScreenUtil.init(context, width: 414, height: 896);
+
+//If you want to set the font size is scaled according to the system's "font size" assist option
+    ScreenUtil.init(context, width: 414, height: 896, allowFontScaling: true);
     Size size = MediaQuery.of(context).size;
     screenHeight = size.height;
     screenWidth = size.width;
@@ -65,7 +73,9 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.only(left: 20.0, right: 20),
+                      padding: EdgeInsets.only(
+                          left: ScreenUtil().setWidth(20),
+                          right: ScreenUtil().setWidth(20)),
                       child: FittedBox(
                         child: Text(reading.title.replaceAll("_n", "\n"),
                             maxLines: 2,
@@ -73,7 +83,7 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
                                 fontFamily: 'Montserrat',
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 25.0)),
+                                fontSize: ScreenUtil().setSp(25))),
                       ),
 
                       // Text('Prep',
@@ -82,7 +92,7 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
                       //         color: Colors.white,
                       //         fontSize: 25.0))
                     ),
-                    SizedBox(height: 40.0),
+                    SizedBox(height: ScreenUtil().setHeight(40)),
                     Container(
                       // height: MediaQuery.of(context).size.height,
                       decoration: BoxDecoration(
@@ -92,33 +102,37 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
                               blurRadius: 10)
                         ],
                         color: Theme.of(context).canvasColor,
-                        borderRadius:
-                            BorderRadius.only(topLeft: Radius.circular(75.0)),
+                        borderRadius: BorderRadius.only(
+                            topLeft:
+                                Radius.circular(ScreenUtil().setWidth(75))),
                       ),
                       child: Padding(
                           padding: EdgeInsets.all(10),
                           child: ListView(
                             scrollDirection: Axis.vertical,
                             padding: EdgeInsets.only(
-                              top: 40,
+                              top: ScreenUtil().setHeight(40),
                             ),
                             shrinkWrap: true,
                             physics: ScrollPhysics(),
                             children: <Widget>[
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding:
+                                    EdgeInsets.all(ScreenUtil().setHeight(8)),
                                 child: Text(
                                   reading.whatToDo.replaceAll("_n", "\n \n"),
                                   style: TextStyle(
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 16,
+                                      fontSize: ScreenUtil().setSp(16),
                                       color: Color(0xFF21BFBD)),
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 10.0, right: 10, top: 10),
+                                padding: EdgeInsets.only(
+                                    left: ScreenUtil().setWidth(10),
+                                    right: ScreenUtil().setWidth(10),
+                                    top: ScreenUtil().setHeight(10)),
                                 child: Text(
                                   reading.paragraph.replaceAll("_n", "\n"),
                                   style: TextStyle(
@@ -128,21 +142,23 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 15),
+                              SizedBox(height: ScreenUtil().setHeight(15)),
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding:
+                                    EdgeInsets.all(ScreenUtil().setHeight(8)),
                                 child: Text(
                                   reading.intialQuestionNumbers
                                       .replaceAll("_n", "\n"),
                                   style: TextStyle(
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 18,
+                                      fontSize: ScreenUtil().setSp(18),
                                       color: Color(0xFF21BFBD)),
                                 ),
                               ),
                               Padding(
-                                  padding: const EdgeInsets.all(10.0),
+                                  padding: EdgeInsets.all(
+                                      ScreenUtil().setHeight(10)),
                                   child: ListView.builder(
                                     shrinkWrap: true,
                                     physics:
@@ -169,28 +185,30 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
                                   )),
                               // Summary
                               Padding(
-                                padding: const EdgeInsets.all(12),
+                                padding:
+                                    EdgeInsets.all(ScreenUtil().setHeight(12)),
                                 child: Text(
                                   reading.summary.replaceAll("_n", "\n"),
                                   style: TextStyle(
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.w400,
                                       color: Theme.of(context).accentColor,
-                                      fontSize: 16),
+                                      fontSize: ScreenUtil().setSp(16)),
                                 ),
                               ),
 
                               Visibility(
                                 visible: reading.extraData == true,
                                 child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding:
+                                      EdgeInsets.all(ScreenUtil().setHeight(8)),
                                   child: Text(
                                     reading.endingQuestionNumbers
                                         .replaceAll("_n", "\n"),
                                     style: TextStyle(
                                         fontFamily: 'Montserrat',
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 18,
+                                        fontSize: ScreenUtil().setSp(18),
                                         color: Color(0xFF21BFBD)),
                                   ),
                                 ),
@@ -198,8 +216,10 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
                               Visibility(
                                 visible: reading.extraData == true,
                                 child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 10.0, right: 10, top: 10),
+                                    padding: EdgeInsets.only(
+                                        left: ScreenUtil().setHeight(10),
+                                        right: ScreenUtil().setHeight(10),
+                                        top: ScreenUtil().setHeight(10)),
                                     child: ListView.builder(
                                       shrinkWrap: true,
                                       physics:
@@ -232,9 +252,9 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
                                   onPressed: () {
                                     openBookingDetailsSheet(context, reading);
                                   },
-                                  child: const Text('Answers',
+                                  child: Text('Answers',
                                       style: TextStyle(
-                                        fontSize: 20,
+                                        fontSize: ScreenUtil().setSp(20),
                                         fontFamily: 'Montserrat',
                                       )),
                                   color: Colors.deepPurpleAccent,
@@ -267,7 +287,7 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
         shrinkWrap: true,
         children: <Widget>[
           Container(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.all(ScreenUtil().setHeight(10)),
               child: ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),

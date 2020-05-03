@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_emoji/flutter_emoji.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ielts/models/quiz.dart';
 import 'package:ielts/screens/quiz_result_screen.dart';
 
@@ -37,6 +38,13 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
+
+//If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
+    ScreenUtil.init(context, width: 414, height: 896);
+
+//If you want to set the font size is scaled according to the system's "font size" assist option
+    ScreenUtil.init(context, width: 414, height: 896, allowFontScaling: true);
     final Map options = quiz.options["$_currentIndex"];
 
     return WillPopScope(
@@ -48,194 +56,205 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
             title: Text('Quiz'),
             elevation: 0,
           ),
-          body: Stack(
-            children: <Widget>[
-              ClipPath(
-                clipper: WaveClipperTwo(),
-                child: Container(
-                  decoration:
-                      BoxDecoration(color: Theme.of(context).primaryColor),
-                  height: 200,
+          body: SingleChildScrollView(
+            child: Stack(
+              children: <Widget>[
+                ClipPath(
+                  clipper: WaveClipperTwo(),
+                  child: Container(
+                    decoration:
+                        BoxDecoration(color: Theme.of(context).primaryColor),
+                    height: ScreenUtil().setHeight(200),
+                  ),
                 ),
-              ),
-              Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        CircleAvatar(
-                          backgroundColor: Colors.white70,
-                          child: Text(
-                            "${_currentIndex + 1}",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        SizedBox(width: 16.0),
-                        Expanded(
+                Padding(
+                    padding: EdgeInsets.all(ScreenUtil().setHeight(16)),
+                    child: Column(children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          CircleAvatar(
+                            backgroundColor: Colors.white70,
                             child: Text(
-                          quiz.question[_currentIndex],
-                          style: TextStyle(
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white),
-                        )),
-                      ],
-                    ),
-                    SizedBox(height: 25.0),
-                    Card(
-                      elevation: 8,
-                      color: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
+                              "${_currentIndex + 1}",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(width: ScreenUtil().setWidth(16)),
+                          Expanded(
+                              child: Text(
+                            quiz.question[_currentIndex],
+                            style: TextStyle(
+                                fontSize: ScreenUtil().setSp(18),
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white),
+                          )),
+                        ],
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 12, horizontal: 12),
-                        child: ListView.builder(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemCount: options.keys.length,
-                            itemBuilder: (context, index) {
-                              return Card(
-                                color: Colors.grey,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: RadioListTile(
-                                    activeColor: (_isRadioEnabled)
-                                        ? Colors.deepPurpleAccent
-                                        : Colors.deepPurpleAccent,
-                                    title: Text(
-                                      options["$index"],
-                                      maxLines: 3,
+                      SizedBox(height: ScreenUtil().setHeight(25)),
+                      Card(
+                        elevation: 8,
+                        color: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical: ScreenUtil().setHeight(12),
+                              horizontal: ScreenUtil().setWidth(12)),
+                          child: ListView.builder(
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: options.keys.length,
+                              itemBuilder: (context, index) {
+                                return Card(
+                                  color: Colors.grey,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: RadioListTile(
+                                      activeColor: (_isRadioEnabled)
+                                          ? Colors.deepPurpleAccent
+                                          : Colors.deepPurpleAccent,
+                                      title: Text(
+                                        options["$index"],
+                                        maxLines: 3,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontFamily: 'Montserrat',
+                                            fontSize: ScreenUtil().setSp(16),
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                      value: options["$index"],
+                                      groupValue: _selectedAnswer,
+                                      onChanged: _isRadioEnabled
+                                          ? (value) {
+                                              setState(() {
+                                                _selectedAnswer = value;
+                                                if (_selectedAnswer ==
+                                                    quiz.answers[
+                                                        _currentIndex]) {
+                                                  answerScore = answerScore + 1;
+                                                  _onChanged();
+
+                                                  _answer =
+                                                      'Answer is right, well done!';
+
+                                                  print(_answer);
+                                                  print(answerScore);
+                                                } else {
+                                                  _answer =
+                                                      'Wrong Answer, try again';
+                                                  print(answerScore);
+                                                  _onChanged();
+
+                                                  print(_answer);
+                                                }
+                                              });
+                                            }
+                                          : null),
+                                );
+                              }),
+                        ),
+                      ),
+                      SizedBox(height: ScreenUtil().setHeight(10)),
+                      Column(
+                        children: <Widget>[
+                          Visibility(
+                              visible: _answer != null,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Padding(
+                                    padding: EdgeInsets.all(
+                                        ScreenUtil().setHeight(8)),
+                                    child: Text(
+                                      (_answer == 'Answer is right, well done!')
+                                          ? '${parser.emojify(':wink:')}'
+                                          : '${parser.emojify(':disappointed:')} ',
+                                      style: TextStyle(
+                                          fontSize: ScreenUtil().setSp(36)),
+                                    ),
+                                  ),
+                                  Container(
+                                      width: ScreenUtil().setWidth(220),
+                                      padding: EdgeInsets.all(
+                                          ScreenUtil().setHeight(10)),
+                                      decoration: BoxDecoration(
+                                          color: (_answer ==
+                                                  'Answer is right, well done!')
+                                              ? Colors.lightGreen
+                                              : Colors.redAccent,
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
+                                      child: FittedBox(
+                                        child: Text(
+                                          _answer ?? '',
+                                          style: TextStyle(
+                                              fontSize: ScreenUtil().setSp(14),
+                                              fontFamily: 'Montserrat',
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                      )),
+                                ],
+                              )),
+                          Visibility(
+                              visible: _answer == 'Wrong Answer, try again',
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Padding(
+                                    padding: EdgeInsets.all(
+                                        ScreenUtil().setHeight(8)),
+                                    child: Text(
+                                      parser.emojify(':heart:'),
+                                      style: TextStyle(
+                                          fontSize: ScreenUtil().setSp(36)),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: ScreenUtil().setWidth(220),
+                                    padding: EdgeInsets.all(
+                                        ScreenUtil().setHeight(10)),
+                                    decoration: BoxDecoration(
+                                        color: Colors.cyanAccent,
+                                        borderRadius:
+                                            BorderRadius.circular(20)),
+                                    child: Text(
+                                      ' Correct Answer is ${quiz.answers[_currentIndex]} ',
+                                      maxLines: 4,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
                                           color: Colors.black,
+                                          fontSize: ScreenUtil().setSp(16),
                                           fontFamily: 'Montserrat',
-                                          fontSize: 16,
                                           fontWeight: FontWeight.w600),
                                     ),
-                                    value: options["$index"],
-                                    groupValue: _selectedAnswer,
-                                    onChanged: _isRadioEnabled
-                                        ? (value) {
-                                            setState(() {
-                                              _selectedAnswer = value;
-                                              if (_selectedAnswer ==
-                                                  quiz.answers[_currentIndex]) {
-                                                answerScore = answerScore + 1;
-                                                _onChanged();
-
-                                                _answer =
-                                                    'Answer is right, well done!';
-
-                                                print(_answer);
-                                                print(answerScore);
-                                              } else {
-                                                _answer =
-                                                    'Wrong Answer, try again';
-                                                print(answerScore);
-                                                _onChanged();
-
-                                                print(_answer);
-                                              }
-                                            });
-                                          }
-                                        : null),
-                              );
-                            }),
+                                  ),
+                                ],
+                              )),
+                        ],
                       ),
-                    ),
-                    SizedBox(height: 10),
-                    Column(
-                      children: <Widget>[
-                        Visibility(
-                            visible: _answer != null,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    (_answer == 'Answer is right, well done!')
-                                        ? '${parser.emojify(':wink:')}'
-                                        : '${parser.emojify(':disappointed:')} ',
-                                    style: TextStyle(fontSize: 36),
-                                  ),
-                                ),
-                                Container(
-                                    width: 220,
-                                    padding: EdgeInsets.all(10),
-                                    decoration: BoxDecoration(
-                                        color: (_answer ==
-                                                'Answer is right, well done!')
-                                            ? Colors.lightGreen
-                                            : Colors.redAccent,
-                                        borderRadius:
-                                            BorderRadius.circular(20)),
-                                    child: FittedBox(
-                                      child: Text(
-                                        _answer ?? '',
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontFamily: 'Montserrat',
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                    )),
-                              ],
-                            )),
-                        Visibility(
-                            visible: _answer == 'Wrong Answer, try again',
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    parser.emojify(':heart:'),
-                                    style: TextStyle(fontSize: 36),
-                                  ),
-                                ),
-                                Container(
-                                  width: 220,
-                                  padding: EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                      color: Colors.cyanAccent,
-                                      borderRadius: BorderRadius.circular(20)),
-                                  child: Text(
-                                    ' Correct Answer is ${quiz.answers[_currentIndex]} ',
-                                    maxLines: 4,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 16,
-                                        fontFamily: 'Montserrat',
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                ),
-                              ],
-                            )),
-                      ],
-                    ),
-                    SizedBox(height: 10),
-                    RaisedButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Text(
-                        _currentIndex == (quiz.question.length - 1)
-                            ? "Submit"
-                            : "Next",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      color: Colors.deepPurpleAccent,
-                      onPressed: _nextSubmit,
-                    )
-                  ])),
-            ],
+                      SizedBox(height: ScreenUtil().setHeight(10)),
+                      RaisedButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Text(
+                          _currentIndex == (quiz.question.length - 1)
+                              ? "Submit"
+                              : "Next",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: ScreenUtil().setSp(16),
+                              fontWeight: FontWeight.w600),
+                        ),
+                        color: Colors.deepPurpleAccent,
+                        onPressed: _nextSubmit,
+                      )
+                    ])),
+              ],
+            ),
           )),
     );
   }

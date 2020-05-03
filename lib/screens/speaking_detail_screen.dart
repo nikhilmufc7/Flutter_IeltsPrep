@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:ielts/models/speaking.dart';
 
@@ -97,6 +98,13 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
+
+//If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
+    ScreenUtil.init(context, width: 414, height: 896);
+
+//If you want to set the font size is scaled according to the system's "font size" assist option
+    ScreenUtil.init(context, width: 414, height: 896, allowFontScaling: true);
     Size size = MediaQuery.of(context).size;
     screenHeight = size.height;
     screenWidth = size.width;
@@ -118,20 +126,24 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
               scrollDirection: Axis.vertical,
               physics: ClampingScrollPhysics(),
               child: Container(
-                padding: const EdgeInsets.only(top: 10),
+                padding: EdgeInsets.only(top: ScreenUtil().setHeight(10)),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.only(left: 20.0, right: 20),
+                      padding: EdgeInsets.only(
+                        left: ScreenUtil().setWidth(20),
+                        right: ScreenUtil().setWidth(20),
+                      ),
                       child: FittedBox(
                         child: Text(speaking.title.replaceAll("_n", "\n"),
                             maxLines: 2,
                             style: TextStyle(
-                                fontFamily: 'Montserrat',
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 25.0)),
+                              fontFamily: 'Montserrat',
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: ScreenUtil().setSp(25),
+                            )),
                       ),
 
                       // Text('Prep',
@@ -140,7 +152,9 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
                       //         color: Colors.white,
                       //         fontSize: 25.0))
                     ),
-                    SizedBox(height: 40.0),
+                    SizedBox(
+                      height: ScreenUtil().setHeight(40),
+                    ),
                     Container(
                       // height: MediaQuery.of(context).size.height,
                       decoration: BoxDecoration(
@@ -150,37 +164,45 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
                               blurRadius: 10)
                         ],
                         color: Theme.of(context).canvasColor,
-                        borderRadius:
-                            BorderRadius.only(topLeft: Radius.circular(75.0)),
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(
+                          ScreenUtil().setWidth(75),
+                        )),
                       ),
                       child: Padding(
                           padding: EdgeInsets.all(10),
                           child: ListView(
                             scrollDirection: Axis.vertical,
                             padding: EdgeInsets.only(
-                              top: 40,
+                              top: ScreenUtil().setHeight(40),
                             ),
                             shrinkWrap: true,
                             physics: ScrollPhysics(),
                             children: <Widget>[
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding:
+                                    EdgeInsets.all(ScreenUtil().setHeight(8)),
                                 child: Text(
                                   'Things to speak',
                                   style: TextStyle(
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 20,
+                                      fontSize: ScreenUtil().setSp(20),
                                       color: Color(0xFF21BFBD)),
                                 ),
                               ),
                               Card(
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20)),
+                                    borderRadius: BorderRadius.circular(
+                                  ScreenUtil().setHeight(20),
+                                )),
                                 elevation: 5,
                                 child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 10.0, right: 10, top: 10),
+                                    padding: EdgeInsets.only(
+                                      left: ScreenUtil().setWidth(10),
+                                      right: ScreenUtil().setWidth(45),
+                                      top: ScreenUtil().setHeight(10),
+                                    ),
                                     child: ListView.builder(
                                       shrinkWrap: true,
                                       physics:
@@ -193,8 +215,9 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
 
                                         return ListTile(
                                           leading: Container(
-                                              height: 15.0,
-                                              width: 15.0,
+                                              height:
+                                                  ScreenUtil().setHeight(20),
+                                              width: ScreenUtil().setWidth(20),
                                               decoration: BoxDecoration(
                                                 color: Theme.of(context)
                                                     .accentColor,
@@ -203,6 +226,8 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
                                           title: Text(
                                             resultant.replaceAll('_n', '\n'),
                                             style: TextStyle(
+                                              fontSize:
+                                                  ScreenUtil().setHeight(20),
                                               fontFamily: 'Montserrat',
                                               fontWeight: FontWeight.w400,
                                             ),
@@ -211,58 +236,73 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
                                       },
                                     )),
                               ),
-                              SizedBox(height: 15),
+                              SizedBox(
+                                height: ScreenUtil().setHeight(15),
+                              ),
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: EdgeInsets.all(
+                                  ScreenUtil().setHeight(8),
+                                ),
                                 child: Text(
                                   'Listen to sample answer',
                                   style: TextStyle(
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 20,
+                                      fontSize: ScreenUtil().setSp(20),
                                       color: Color(0xFF21BFBD)),
                                 ),
                               ),
                               _btnSection(),
-                              SizedBox(height: 15),
+                              SizedBox(
+                                height: ScreenUtil().setHeight(15),
+                              ),
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: EdgeInsets.all(
+                                  ScreenUtil().setHeight(8),
+                                ),
                                 child: Text(
                                   'Sample answer',
                                   style: TextStyle(
                                       fontFamily: 'Montserrat',
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 20,
+                                      fontSize: ScreenUtil().setSp(20),
                                       color: Color(0xFF21BFBD)),
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.all(10.0),
+                                padding: EdgeInsets.all(
+                                  ScreenUtil().setHeight(10),
+                                ),
                                 child: Text(
                                   speaking.answer.replaceAll("_n", "\n"),
                                   style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: ScreenUtil().setSp(16),
                                     color: Theme.of(context).accentColor,
                                     fontFamily: 'Montserrat',
                                   ),
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: EdgeInsets.all(
+                                  ScreenUtil().setHeight(8),
+                                ),
                                 child: FittedBox(
                                   child: Text(
                                     'Important Keywords for vocabulary',
                                     style: TextStyle(
                                         fontFamily: 'Montserrat',
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 20,
+                                        fontSize: ScreenUtil().setSp(20),
                                         color: Color(0xFF21BFBD)),
                                   ),
                                 ),
                               ),
                               Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10.0, right: 10, top: 10),
+                                  padding: EdgeInsets.only(
+                                    left: ScreenUtil().setWidth(10),
+                                    right: ScreenUtil().setWidth(10),
+                                    top: ScreenUtil().setHeight(10),
+                                  ),
                                   child: ListView.builder(
                                     shrinkWrap: true,
                                     physics:
@@ -273,8 +313,8 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
                                       vocabResult = speaking.vocabulary[index];
                                       return ListTile(
                                         leading: Container(
-                                            height: 15.0,
-                                            width: 15.0,
+                                            height: ScreenUtil().setHeight(15),
+                                            width: ScreenUtil().setWidth(15),
                                             decoration: BoxDecoration(
                                               color:
                                                   Theme.of(context).accentColor,
@@ -283,6 +323,7 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
                                         title: Text(
                                           vocabResult.replaceAll("_n", "\n"),
                                           style: TextStyle(
+                                            fontSize: ScreenUtil().setSp(16),
                                             fontFamily: 'Montserrat',
                                             fontWeight: FontWeight.w400,
                                           ),
@@ -325,14 +366,14 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
         children: [
           IconButton(
               icon: Icon(icon),
-              iconSize: 40,
+              iconSize: ScreenUtil().setHeight(40),
               color: color,
               splashColor: splashColor,
               onPressed: () => func()),
           Container(
               child: Text(label,
                   style: TextStyle(
-                      fontSize: 14.0,
+                      fontSize: ScreenUtil().setSp(14),
                       fontWeight: FontWeight.w400,
                       color: Theme.of(context).accentColor)))
         ]);

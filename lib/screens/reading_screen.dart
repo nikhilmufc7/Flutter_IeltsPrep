@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
 
 import 'package:ielts/models/reading.dart';
@@ -77,6 +78,13 @@ class _ReadingScreenState extends State<ReadingScreen>
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
+
+//If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
+    ScreenUtil.init(context, width: 414, height: 896);
+
+//If you want to set the font size is scaled according to the system's "font size" assist option
+    ScreenUtil.init(context, width: 414, height: 896, allowFontScaling: true);
     Size size = MediaQuery.of(context).size;
     screenHeight = size.height;
     screenWidth = size.width;
@@ -197,11 +205,10 @@ class _ReadingScreenState extends State<ReadingScreen>
         scrollDirection: Axis.vertical,
         physics: ClampingScrollPhysics(),
         child: Container(
-          padding: const EdgeInsets.only(top: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(height: 40.0),
+              SizedBox(height: ScreenUtil().setHeight(40)),
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
@@ -212,8 +219,8 @@ class _ReadingScreenState extends State<ReadingScreen>
                   ],
                   color: Theme.of(context).canvasColor,
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(75.0),
-                      topRight: Radius.circular(75.0)),
+                      topLeft: Radius.circular(ScreenUtil().setWidth(75)),
+                      topRight: Radius.circular(ScreenUtil().setWidth(75))),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -230,7 +237,9 @@ class _ReadingScreenState extends State<ReadingScreen>
 
                           return ListView.builder(
                             scrollDirection: Axis.vertical,
-                            padding: EdgeInsets.only(top: 70, bottom: 50),
+                            padding: EdgeInsets.only(
+                                top: ScreenUtil().setHeight(70),
+                                bottom: ScreenUtil().setHeight(50)),
                             shrinkWrap: true,
                             physics: ScrollPhysics(),
                             itemCount: readings.length,
@@ -264,11 +273,12 @@ class _ReadingScreenState extends State<ReadingScreen>
         scrollDirection: Axis.vertical,
         physics: ClampingScrollPhysics(),
         child: Container(
-          padding: const EdgeInsets.only(top: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(height: 40.0),
+              SizedBox(
+                height: ScreenUtil().setHeight(40),
+              ),
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
@@ -279,8 +289,8 @@ class _ReadingScreenState extends State<ReadingScreen>
                   ],
                   color: Theme.of(context).canvasColor,
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(75.0),
-                      topRight: Radius.circular(75.0)),
+                      topLeft: Radius.circular(ScreenUtil().setHeight(75)),
+                      topRight: Radius.circular(ScreenUtil().setHeight(75))),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -296,7 +306,9 @@ class _ReadingScreenState extends State<ReadingScreen>
 
                           return ListView.builder(
                             scrollDirection: Axis.vertical,
-                            padding: EdgeInsets.only(top: 70, bottom: 50),
+                            padding: EdgeInsets.only(
+                                top: ScreenUtil().setHeight(70),
+                                bottom: ScreenUtil().setHeight(70)),
                             shrinkWrap: true,
                             physics: ScrollPhysics(),
                             itemCount: trueOrFalse.length,
@@ -330,11 +342,12 @@ class _ReadingScreenState extends State<ReadingScreen>
         scrollDirection: Axis.vertical,
         physics: ClampingScrollPhysics(),
         child: Container(
-          padding: const EdgeInsets.only(top: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(height: 40.0),
+              SizedBox(
+                height: ScreenUtil().setHeight(40),
+              ),
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
@@ -345,8 +358,8 @@ class _ReadingScreenState extends State<ReadingScreen>
                   ],
                   color: Theme.of(context).canvasColor,
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(75.0),
-                      topRight: Radius.circular(75.0)),
+                      topLeft: Radius.circular(ScreenUtil().setHeight(75)),
+                      topRight: Radius.circular(ScreenUtil().setHeight(75))),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -362,7 +375,9 @@ class _ReadingScreenState extends State<ReadingScreen>
 
                           return ListView.builder(
                             scrollDirection: Axis.vertical,
-                            padding: EdgeInsets.only(top: 70, bottom: 50),
+                            padding: EdgeInsets.only(
+                                top: ScreenUtil().setHeight(70),
+                                bottom: ScreenUtil().setHeight(70)),
                             shrinkWrap: true,
                             physics: ScrollPhysics(),
                             itemCount: headings.length,
@@ -396,11 +411,12 @@ class _ReadingScreenState extends State<ReadingScreen>
         scrollDirection: Axis.vertical,
         physics: ClampingScrollPhysics(),
         child: Container(
-          padding: const EdgeInsets.only(top: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(height: 40.0),
+              SizedBox(
+                height: ScreenUtil().setHeight(40),
+              ),
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
@@ -411,8 +427,8 @@ class _ReadingScreenState extends State<ReadingScreen>
                   ],
                   color: Theme.of(context).canvasColor,
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(75.0),
-                      topRight: Radius.circular(75.0)),
+                      topLeft: Radius.circular(ScreenUtil().setHeight(75)),
+                      topRight: Radius.circular(ScreenUtil().setHeight(75))),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -427,7 +443,9 @@ class _ReadingScreenState extends State<ReadingScreen>
                               .toList();
                           return ListView.builder(
                             scrollDirection: Axis.vertical,
-                            padding: EdgeInsets.only(top: 70, bottom: 50),
+                            padding: EdgeInsets.only(
+                                top: ScreenUtil().setHeight(70),
+                                bottom: ScreenUtil().setHeight(70)),
                             shrinkWrap: true,
                             physics: ScrollPhysics(),
                             itemCount: summary.length,
@@ -461,11 +479,12 @@ class _ReadingScreenState extends State<ReadingScreen>
         scrollDirection: Axis.vertical,
         physics: ClampingScrollPhysics(),
         child: Container(
-          padding: const EdgeInsets.only(top: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(height: 40.0),
+              SizedBox(
+                height: ScreenUtil().setHeight(40),
+              ),
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
@@ -476,8 +495,8 @@ class _ReadingScreenState extends State<ReadingScreen>
                   ],
                   color: Theme.of(context).canvasColor,
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(75.0),
-                      topRight: Radius.circular(75.0)),
+                      topLeft: Radius.circular(ScreenUtil().setHeight(75)),
+                      topRight: Radius.circular(ScreenUtil().setHeight(75))),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -493,7 +512,9 @@ class _ReadingScreenState extends State<ReadingScreen>
                               .toList();
                           return ListView.builder(
                             scrollDirection: Axis.vertical,
-                            padding: EdgeInsets.only(top: 70, bottom: 50),
+                            padding: EdgeInsets.only(
+                                top: ScreenUtil().setHeight(70),
+                                bottom: ScreenUtil().setHeight(70)),
                             shrinkWrap: true,
                             physics: ScrollPhysics(),
                             itemCount: paragraph.length,
@@ -527,11 +548,12 @@ class _ReadingScreenState extends State<ReadingScreen>
         scrollDirection: Axis.vertical,
         physics: ClampingScrollPhysics(),
         child: Container(
-          padding: const EdgeInsets.only(top: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(height: 40.0),
+              SizedBox(
+                height: ScreenUtil().setHeight(40),
+              ),
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
@@ -542,8 +564,8 @@ class _ReadingScreenState extends State<ReadingScreen>
                   ],
                   color: Theme.of(context).canvasColor,
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(75.0),
-                      topRight: Radius.circular(75.0)),
+                      topLeft: Radius.circular(ScreenUtil().setHeight(75)),
+                      topRight: Radius.circular(ScreenUtil().setHeight(75))),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -558,7 +580,9 @@ class _ReadingScreenState extends State<ReadingScreen>
                               .toList();
                           return ListView.builder(
                             scrollDirection: Axis.vertical,
-                            padding: EdgeInsets.only(top: 70, bottom: 50),
+                            padding: EdgeInsets.only(
+                                top: ScreenUtil().setHeight(70),
+                                bottom: ScreenUtil().setHeight(70)),
                             shrinkWrap: true,
                             physics: ScrollPhysics(),
                             itemCount: mcqs.length,
@@ -592,11 +616,12 @@ class _ReadingScreenState extends State<ReadingScreen>
         scrollDirection: Axis.vertical,
         physics: ClampingScrollPhysics(),
         child: Container(
-          padding: const EdgeInsets.only(top: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(height: 40.0),
+              SizedBox(
+                height: ScreenUtil().setHeight(40),
+              ),
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
@@ -607,8 +632,8 @@ class _ReadingScreenState extends State<ReadingScreen>
                   ],
                   color: Theme.of(context).canvasColor,
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(75.0),
-                      topRight: Radius.circular(75.0)),
+                      topLeft: Radius.circular(ScreenUtil().setHeight(75)),
+                      topRight: Radius.circular(ScreenUtil().setHeight(75))),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -623,7 +648,9 @@ class _ReadingScreenState extends State<ReadingScreen>
                               .toList();
                           return ListView.builder(
                             scrollDirection: Axis.vertical,
-                            padding: EdgeInsets.only(top: 70, bottom: 50),
+                            padding: EdgeInsets.only(
+                                top: ScreenUtil().setHeight(70),
+                                bottom: ScreenUtil().setHeight(70)),
                             shrinkWrap: true,
                             physics: ScrollPhysics(),
                             itemCount: listSelection.length,
@@ -657,11 +684,11 @@ class _ReadingScreenState extends State<ReadingScreen>
   //       scrollDirection: Axis.vertical,
   //       physics: ClampingScrollPhysics(),
   //       child: Container(
-  //         padding: const EdgeInsets.only(top: 10),
+  //         padding: EdgeInsets.all(ScreenUtil().setHeight(48)),
   //         child: Column(
   //           crossAxisAlignment: CrossAxisAlignment.start,
   //           children: <Widget>[
-  //             SizedBox(height: 40.0),
+  //             SizedBox(height: ScreenUtil().setHeight(40),),
   //             Container(
   //               // height: MediaQuery.of(context).size.height,
   //               decoration: BoxDecoration(
@@ -688,7 +715,7 @@ class _ReadingScreenState extends State<ReadingScreen>
   //                             .toList();
   //                         return ListView.builder(
   //                           scrollDirection: Axis.vertical,
-  //                           padding: EdgeInsets.only(top: 70, bottom: 50),
+  //                           padding: EdgeInsets.only(top: ScreenUtil().setHeight(70), bottom: ScreenUtil().setHeight(70)),
   //                           shrinkWrap: true,
   //                           physics: ScrollPhysics(),
   //                           itemCount: titleSelection.length,
@@ -722,11 +749,12 @@ class _ReadingScreenState extends State<ReadingScreen>
         scrollDirection: Axis.vertical,
         physics: ClampingScrollPhysics(),
         child: Container(
-          padding: const EdgeInsets.only(top: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(height: 40.0),
+              SizedBox(
+                height: ScreenUtil().setHeight(40),
+              ),
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
@@ -737,8 +765,8 @@ class _ReadingScreenState extends State<ReadingScreen>
                   ],
                   color: Theme.of(context).canvasColor,
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(75.0),
-                      topRight: Radius.circular(75.0)),
+                      topLeft: Radius.circular(ScreenUtil().setHeight(75)),
+                      topRight: Radius.circular(ScreenUtil().setHeight(75))),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -753,7 +781,9 @@ class _ReadingScreenState extends State<ReadingScreen>
                               .toList();
                           return ListView.builder(
                             scrollDirection: Axis.vertical,
-                            padding: EdgeInsets.only(top: 70, bottom: 50),
+                            padding: EdgeInsets.only(
+                                top: ScreenUtil().setHeight(70),
+                                bottom: ScreenUtil().setHeight(70)),
                             shrinkWrap: true,
                             physics: ScrollPhysics(),
                             itemCount: categorization.length,
@@ -787,11 +817,13 @@ class _ReadingScreenState extends State<ReadingScreen>
         scrollDirection: Axis.vertical,
         physics: ClampingScrollPhysics(),
         child: Container(
-          padding: const EdgeInsets.only(top: 10),
+          // padding: EdgeInsets.all(ScreenUtil().setHeight(48)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(height: 40.0),
+              SizedBox(
+                height: ScreenUtil().setHeight(40),
+              ),
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
@@ -802,8 +834,8 @@ class _ReadingScreenState extends State<ReadingScreen>
                   ],
                   color: Theme.of(context).canvasColor,
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(75.0),
-                      topRight: Radius.circular(75.0)),
+                      topLeft: Radius.circular(ScreenUtil().setHeight(75)),
+                      topRight: Radius.circular(ScreenUtil().setHeight(75))),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -818,7 +850,9 @@ class _ReadingScreenState extends State<ReadingScreen>
                               .toList();
                           return ListView.builder(
                             scrollDirection: Axis.vertical,
-                            padding: EdgeInsets.only(top: 70, bottom: 50),
+                            padding: EdgeInsets.only(
+                                top: ScreenUtil().setHeight(70),
+                                bottom: ScreenUtil().setHeight(70)),
                             shrinkWrap: true,
                             physics: ScrollPhysics(),
                             itemCount: matchingEndings.length,
@@ -852,11 +886,13 @@ class _ReadingScreenState extends State<ReadingScreen>
         scrollDirection: Axis.vertical,
         physics: ClampingScrollPhysics(),
         child: Container(
-          padding: const EdgeInsets.only(top: 10),
+          // padding: EdgeInsets.all(ScreenUtil().setHeight(10)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(height: 40.0),
+              SizedBox(
+                height: ScreenUtil().setHeight(40),
+              ),
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
@@ -867,8 +903,8 @@ class _ReadingScreenState extends State<ReadingScreen>
                   ],
                   color: Theme.of(context).canvasColor,
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(75.0),
-                      topRight: Radius.circular(75.0)),
+                      topLeft: Radius.circular(ScreenUtil().setHeight(75)),
+                      topRight: Radius.circular(ScreenUtil().setHeight(75))),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -883,7 +919,9 @@ class _ReadingScreenState extends State<ReadingScreen>
                               .toList();
                           return ListView.builder(
                             scrollDirection: Axis.vertical,
-                            padding: EdgeInsets.only(top: 70, bottom: 50),
+                            padding: EdgeInsets.only(
+                                top: ScreenUtil().setHeight(70),
+                                bottom: ScreenUtil().setHeight(70)),
                             shrinkWrap: true,
                             physics: ScrollPhysics(),
                             itemCount: saqs.length,

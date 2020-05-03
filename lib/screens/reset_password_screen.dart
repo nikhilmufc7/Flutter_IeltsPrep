@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ielts/utils/app_constants.dart';
@@ -118,16 +119,17 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen>
         milliseconds: 300,
       ),
       curve: Curves.easeIn,
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: EdgeInsets.symmetric(vertical: ScreenUtil().setHeight(10)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
             title,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            style: TextStyle(
+                fontWeight: FontWeight.bold, fontSize: ScreenUtil().setSp(15)),
           ),
           SizedBox(
-            height: 10,
+            height: ScreenUtil().setHeight(10),
           ),
           TextFormField(
               controller: emailInputController,
@@ -147,7 +149,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen>
       onPressed: _submit,
       child: Container(
         width: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.symmetric(vertical: 15),
+        padding: EdgeInsets.symmetric(vertical: ScreenUtil().setHeight(15)),
         alignment: Alignment.center,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -161,7 +163,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen>
             color: Color(0xFF21BFBD)),
         child: Text(
           'Reset Password',
-          style: TextStyle(fontSize: 20, color: Colors.white),
+          style:
+              TextStyle(fontSize: ScreenUtil().setSp(20), color: Colors.white),
         ),
       ),
     );
@@ -173,14 +176,15 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen>
       text: TextSpan(
           text: 'Reset ',
           style: GoogleFonts.portLligatSans(
-            fontSize: 30,
+            fontSize: ScreenUtil().setSp(30),
             fontWeight: FontWeight.w700,
             color: Color(0xffe46b10),
           ),
           children: [
             TextSpan(
               text: ' Password',
-              style: TextStyle(color: Colors.black, fontSize: 30),
+              style: TextStyle(
+                  color: Colors.black, fontSize: ScreenUtil().setSp(30)),
             ),
           ]),
     );
@@ -207,7 +211,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen>
           child: Stack(
             children: <Widget>[
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding:
+                    EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(20)),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -218,15 +223,15 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen>
                     ),
                     _title(),
                     SizedBox(
-                      height: 50,
+                      height: ScreenUtil().setHeight(50),
                     ),
                     _emailPasswordWidget(),
                     SizedBox(
-                      height: 20,
+                      height: ScreenUtil().setHeight(20),
                     ),
                     _submitButton(),
                     SizedBox(
-                      height: 10,
+                      height: ScreenUtil().setHeight(10),
                     ),
                     MaterialButton(
                       onPressed: () {
@@ -234,11 +239,13 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen>
                             context, RoutePaths.login);
                       },
                       child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 10),
+                        padding: EdgeInsets.symmetric(
+                            vertical: ScreenUtil().setHeight(10)),
                         alignment: Alignment.centerRight,
                         child: Text('Back to login',
                             style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.w500)),
+                                fontSize: ScreenUtil().setSp(14),
+                                fontWeight: FontWeight.w500)),
                       ),
                     ),
                     Expanded(

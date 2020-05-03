@@ -2,6 +2,7 @@ import 'dart:ui' as ui;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:ielts/utils/app_constants.dart';
 
@@ -93,6 +94,13 @@ class _QuizScreenState extends State<QuizScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
+
+//If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
+    ScreenUtil.init(context, width: 414, height: 896);
+
+//If you want to set the font size is scaled according to the system's "font size" assist option
+    ScreenUtil.init(context, width: 414, height: 896, allowFontScaling: true);
     final productProvider = Provider.of<QuizCrudModel>(context);
 
     return Scaffold(
@@ -116,11 +124,14 @@ class _QuizScreenState extends State<QuizScreen> {
               decoration: BoxDecoration(
                 color: Theme.of(context).primaryColor,
               ),
-              height: 200,
+              height: ScreenUtil().setHeight(200),
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 40, left: 10, right: 10),
+            padding: EdgeInsets.only(
+                top: ScreenUtil().setHeight(40),
+                left: ScreenUtil().setWidth(10),
+                right: ScreenUtil().setWidth(10)),
             child: StreamBuilder<QuerySnapshot>(
                 stream: productProvider.fetchQuizAsStream(),
                 builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -161,11 +172,11 @@ class _QuizScreenState extends State<QuizScreen> {
       },
       child: Center(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(ScreenUtil().setHeight(16)),
           child: Stack(
             children: <Widget>[
               Container(
-                height: 150,
+                height: ScreenUtil().setHeight(150),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(_borderRadius),
                   gradient: _color(),
@@ -179,7 +190,8 @@ class _QuizScreenState extends State<QuizScreen> {
                 bottom: 0,
                 top: 0,
                 child: CustomPaint(
-                  size: Size(100, 150),
+                  size: Size(
+                      ScreenUtil().setHeight(100), ScreenUtil().setHeight(150)),
                   painter: CustomCardShapePainter(
                       _borderRadius,
                       items[_currentIndex].startColor,
@@ -192,8 +204,8 @@ class _QuizScreenState extends State<QuizScreen> {
                     Expanded(
                       child: Image.asset(
                         'assets/quiz.png',
-                        height: 64,
-                        width: 64,
+                        height: ScreenUtil().setHeight(64),
+                        width: ScreenUtil().setWidth(64),
                       ),
                       flex: 2,
                     ),
@@ -209,34 +221,34 @@ class _QuizScreenState extends State<QuizScreen> {
                               style: TextStyle(
                                   color: Colors.white,
                                   fontFamily: 'Montserrat',
-                                  fontSize: 20,
+                                  fontSize: ScreenUtil().setSp(20),
                                   fontWeight: FontWeight.w700),
                             ),
                           ),
-                          SizedBox(height: 10),
+                          SizedBox(height: ScreenUtil().setHeight(10)),
                           LinearProgressIndicator(
                               backgroundColor:
                                   Color.fromRGBO(209, 224, 224, 0.2),
                               value: quiz.indicatorValue,
                               valueColor: AlwaysStoppedAnimation(Colors.green)),
-                          SizedBox(height: 16),
+                          SizedBox(height: ScreenUtil().setHeight(16)),
                           Row(
                             children: <Widget>[
                               Icon(
                                 Icons.cached,
                                 color: Colors.white,
-                                size: 16,
+                                size: ScreenUtil().setHeight(16),
                               ),
                               SizedBox(
-                                width: 8,
+                                width: ScreenUtil().setHeight(8),
                               ),
                               Flexible(
                                 child: Text(
                                   'Total Questions : ${quiz.question.length}',
                                   style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Montserrat',
-                                  ),
+                                      color: Colors.white,
+                                      fontFamily: 'Montserrat',
+                                      fontSize: ScreenUtil().setSp(16)),
                                 ),
                               ),
                             ],
@@ -309,7 +321,7 @@ class CustomCardShapePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    var radius = 24.0;
+    var radius = ScreenUtil().setWidth(24);
 
     var paint = Paint();
     paint.shader = ui.Gradient.linear(

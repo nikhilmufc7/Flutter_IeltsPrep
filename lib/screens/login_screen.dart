@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ielts/utils/app_constants.dart';
@@ -151,17 +152,19 @@ class _LoginScreenState extends State<LoginScreen>
         milliseconds: 300,
       ),
       curve: Curves.easeIn,
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: EdgeInsets.symmetric(vertical: ScreenUtil().setHeight(10)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
             title,
             style: TextStyle(
-                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15),
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: ScreenUtil().setSp(15)),
           ),
           SizedBox(
-            height: 10,
+            height: ScreenUtil().setHeight(10),
           ),
           TextFormField(
               style:
@@ -187,17 +190,19 @@ class _LoginScreenState extends State<LoginScreen>
         milliseconds: 300,
       ),
       curve: Curves.easeIn,
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: EdgeInsets.symmetric(vertical: ScreenUtil().setHeight(10)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
             title,
             style: TextStyle(
-                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15),
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: ScreenUtil().setSp(15)),
           ),
           SizedBox(
-            height: 10,
+            height: ScreenUtil().setHeight(10),
           ),
           TextFormField(
               style:
@@ -220,14 +225,16 @@ class _LoginScreenState extends State<LoginScreen>
         milliseconds: 300,
       ),
       curve: Curves.easeIn,
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: EdgeInsets.symmetric(vertical: ScreenUtil().setHeight(10)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
             title,
             style: TextStyle(
-                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15),
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: ScreenUtil().setSp(15)),
           ),
           SizedBox(
             height: 10,
@@ -252,7 +259,7 @@ class _LoginScreenState extends State<LoginScreen>
       onPressed: _submit,
       child: Container(
         width: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.symmetric(vertical: 15),
+        padding: EdgeInsets.symmetric(vertical: ScreenUtil().setHeight(15)),
         alignment: Alignment.center,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -266,7 +273,8 @@ class _LoginScreenState extends State<LoginScreen>
             color: Color(0xFF21BFBD)),
         child: Text(
           '${_authMode == AuthMode.Login ? 'Login' : 'Register'}',
-          style: TextStyle(fontSize: 20, color: Colors.white),
+          style:
+              TextStyle(fontSize: ScreenUtil().setSp(20), color: Colors.white),
         ),
       ),
     );
@@ -287,18 +295,21 @@ class _LoginScreenState extends State<LoginScreen>
       highlightElevation: 0,
       borderSide: BorderSide(color: Colors.grey),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+        padding: EdgeInsets.fromLTRB(
+            0, ScreenUtil().setHeight(10), 0, ScreenUtil().setHeight(10)),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image(image: AssetImage("assets/googlelogo.jpg"), height: 35.0),
+            Image(
+                image: AssetImage("assets/googlelogo.jpg"),
+                height: ScreenUtil().setHeight(35)),
             Padding(
-              padding: const EdgeInsets.only(left: 10),
+              padding: EdgeInsets.only(left: ScreenUtil().setWidth(10)),
               child: Text(
                 'Sign in with Google',
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: ScreenUtil().setSp(20),
                   color: Colors.grey,
                 ),
               ),
@@ -311,15 +322,16 @@ class _LoginScreenState extends State<LoginScreen>
 
   Widget _divider() {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: EdgeInsets.symmetric(vertical: ScreenUtil().setHeight(10)),
       child: Row(
         children: <Widget>[
           SizedBox(
-            width: 20,
+            width: ScreenUtil().setWidth(20),
           ),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding:
+                  EdgeInsets.symmetric(horizontal: ScreenUtil().setHeight(10)),
               child: Divider(
                 color: Colors.black,
                 thickness: 1,
@@ -332,7 +344,8 @@ class _LoginScreenState extends State<LoginScreen>
           ),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding:
+                  EdgeInsets.symmetric(horizontal: ScreenUtil().setHeight(10)),
               child: Divider(
                 thickness: 1,
                 color: Colors.black,
@@ -340,7 +353,7 @@ class _LoginScreenState extends State<LoginScreen>
             ),
           ),
           SizedBox(
-            width: 20,
+            width: ScreenUtil().setWidth(20),
           ),
         ],
       ),
@@ -349,7 +362,7 @@ class _LoginScreenState extends State<LoginScreen>
 
   Widget _createAccountLabel() {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 20),
+      margin: EdgeInsets.symmetric(vertical: ScreenUtil().setHeight(20)),
       alignment: Alignment.bottomCenter,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -357,10 +370,12 @@ class _LoginScreenState extends State<LoginScreen>
           Text(
             '${_authMode == AuthMode.Login ? 'Don\'t have an account ?' : 'Already have a account ?'}',
             style: TextStyle(
-                color: Colors.black, fontSize: 13, fontWeight: FontWeight.w600),
+                color: Colors.black,
+                fontSize: ScreenUtil().setSp(13),
+                fontWeight: FontWeight.w600),
           ),
           SizedBox(
-            width: 10,
+            width: ScreenUtil().setWidth(10),
           ),
           InkWell(
             onTap: () {
@@ -370,7 +385,7 @@ class _LoginScreenState extends State<LoginScreen>
               '${_authMode == AuthMode.Login ? 'Register' : 'Login'}',
               style: TextStyle(
                   color: Color(0xfff79c4f),
-                  fontSize: 13,
+                  fontSize: ScreenUtil().setSp(13),
                   fontWeight: FontWeight.w600),
             ),
           )
@@ -385,7 +400,7 @@ class _LoginScreenState extends State<LoginScreen>
       text: TextSpan(
           text: 'I',
           style: GoogleFonts.portLligatSans(
-            fontSize: 30,
+            fontSize: ScreenUtil().setSp(30),
             fontWeight: FontWeight.w700,
             color: Color(0xffe46b10),
           ),
@@ -417,6 +432,14 @@ class _LoginScreenState extends State<LoginScreen>
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
+
+//If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
+    ScreenUtil.init(context, width: 414, height: 896);
+
+//If you want to set the font size is scaled according to the system's "font size" assist option
+    ScreenUtil.init(context, width: 414, height: 896, allowFontScaling: true);
+
     return Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
@@ -425,7 +448,8 @@ class _LoginScreenState extends State<LoginScreen>
           child: Stack(
             children: <Widget>[
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding:
+                    EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(20)),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -436,11 +460,11 @@ class _LoginScreenState extends State<LoginScreen>
                     ),
                     _title(),
                     SizedBox(
-                      height: 50,
+                      height: ScreenUtil().setHeight(50),
                     ),
                     _emailPasswordWidget(),
                     SizedBox(
-                      height: 20,
+                      height: ScreenUtil().setHeight(20),
                     ),
                     _submitButton(),
                     MaterialButton(
@@ -448,7 +472,8 @@ class _LoginScreenState extends State<LoginScreen>
                         Navigator.pushNamed(context, RoutePaths.resetpassword);
                       },
                       child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 10),
+                        padding: EdgeInsets.symmetric(
+                            vertical: ScreenUtil().setHeight(10)),
                         alignment: Alignment.centerRight,
                         child: Text('Forgot Password ?',
                             style: TextStyle(

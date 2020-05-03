@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ielts/utils/app_constants.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
@@ -69,6 +70,13 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
+
+//If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
+    ScreenUtil.init(context, width: 414, height: 896);
+
+//If you want to set the font size is scaled according to the system's "font size" assist option
+    ScreenUtil.init(context, width: 414, height: 896, allowFontScaling: true);
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
@@ -92,12 +100,12 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
           children: <Widget>[
             Padding(
               padding: showAnswers
-                  ? const EdgeInsets.only(top: 30.0)
-                  : const EdgeInsets.only(top: 80.0),
+                  ? EdgeInsets.only(top: ScreenUtil().setHeight(30))
+                  : EdgeInsets.only(top: ScreenUtil().setHeight(80)),
               child: Center(
                 child: CircularPercentIndicator(
-                  radius: 160.0,
-                  lineWidth: 16.0,
+                  radius: ScreenUtil().setWidth(160),
+                  lineWidth: ScreenUtil().setWidth(16),
                   animation: true,
                   percent: scoreInDouble,
                   center: Text(
@@ -105,14 +113,14 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
-                        fontSize: 25.0),
+                        fontSize: ScreenUtil().setSp(24)),
                   ),
                   footer: Text(
                     "Your Score",
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
-                        fontSize: 25.0,
+                        fontSize: ScreenUtil().setSp(24),
                         fontFamily: 'Montserrat'),
                   ),
                   circularStrokeCap: CircularStrokeCap.round,
@@ -120,14 +128,14 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 40),
+            SizedBox(height: ScreenUtil().setHeight(40)),
             Column(
               children: <Widget>[
                 Visibility(
                   visible: showAnswers == false,
                   child: Container(
-                    height: 150,
-                    width: 300,
+                    height: ScreenUtil().setHeight(150),
+                    width: ScreenUtil().setWidth(300),
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         fit: BoxFit.cover,
@@ -139,26 +147,26 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: ScreenUtil().setHeight(20)),
                 Center(
                     child: RichText(
                   text: TextSpan(
                     text: (quizScore > 5) ? "Well Done!" : "Keep Pushing!",
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: ScreenUtil().setSp(24),
                       color: Colors.tealAccent,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Montserrat',
                     ),
                   ),
                 )),
-                SizedBox(height: 20),
+                SizedBox(height: ScreenUtil().setHeight(20)),
                 Center(
                     child: RichText(
                   text: TextSpan(
                     text: resultText,
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: ScreenUtil().setSp(16),
                       fontWeight: FontWeight.w400,
                       fontFamily: 'Montserrat',
                     ),
@@ -166,14 +174,14 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
                 )),
               ],
             ),
-            SizedBox(height: 30),
+            SizedBox(height: ScreenUtil().setHeight(30)),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text('Review Answers',
                     style: TextStyle(
                       color: Colors.indigo,
-                      fontSize: 20,
+                      fontSize: ScreenUtil().setSp(20),
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Montserrat',
                     )),
@@ -194,12 +202,12 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
             Visibility(
               visible: showAnswers,
               child: Padding(
-                padding: const EdgeInsets.all(14.0),
+                padding: EdgeInsets.all(ScreenUtil().setHeight(14)),
                 child: Text(
                   'Answers Review',
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: 20,
+                      fontSize: ScreenUtil().setSp(20),
                       fontWeight: FontWeight.bold),
                 ),
               ),
@@ -212,8 +220,10 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
                   itemCount: questions.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
-                      padding:
-                          const EdgeInsets.only(top: 10.0, left: 20, right: 20),
+                      padding: EdgeInsets.only(
+                          top: ScreenUtil().setHeight(10),
+                          left: ScreenUtil().setWidth(20),
+                          right: ScreenUtil().setWidth(20)),
                       child: Card(
                         color: Color.fromRGBO(57, 106, 137, 0.6),
                         shape: RoundedRectangleBorder(
@@ -221,9 +231,11 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
                         elevation: 2,
                         child: ListTile(
                           contentPadding: EdgeInsets.symmetric(
-                              horizontal: 20.0, vertical: 10.0),
+                              horizontal: ScreenUtil().setWidth(20),
+                              vertical: ScreenUtil().setHeight(10)),
                           leading: Container(
-                            padding: EdgeInsets.only(right: 12.0),
+                            padding: EdgeInsets.only(
+                                right: ScreenUtil().setWidth(12)),
                             decoration: BoxDecoration(
                                 border: Border(
                                     right: BorderSide(
@@ -233,23 +245,24 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 16),
+                                  fontSize: ScreenUtil().setSp(16)),
                             ),
                           ),
                           title: Text(
                             questions[index],
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 16,
+                                fontSize: ScreenUtil().setSp(16),
                                 fontFamily: 'Montserrat',
                                 fontWeight: FontWeight.w400),
                           ),
                           subtitle: Padding(
-                              padding: EdgeInsets.only(top: 20.0),
+                              padding: EdgeInsets.only(
+                                  top: ScreenUtil().setHeight(20)),
                               child: Text('Answer: ' + answers[index],
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 14,
+                                      fontSize: ScreenUtil().setSp(14),
                                       color: Colors.white))),
                         ),
                       ),
