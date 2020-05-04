@@ -285,10 +285,19 @@ class _LoginScreenState extends State<LoginScreen>
       splashColor: Colors.grey,
       onPressed: () async {
         try {
-          await signInWithGoogle().whenComplete(
-              () => Navigator.pushReplacementNamed(context, RoutePaths.home));
+          await signInWithGoogle();
+          FirebaseUser _user = await FirebaseAuth.instance.currentUser();
+          if (_user != null) {
+            Navigator.pushReplacementNamed(context, RoutePaths.home);
+          } else {
+            setState(() {});
+          }
         } catch (error) {
-          print(error);
+          switch (error.code) {
+            case "sign_in_canceled":
+              errorMessage = "Sign in cancelled";
+              break;
+          }
         }
       },
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
@@ -440,65 +449,98 @@ class _LoginScreenState extends State<LoginScreen>
 //If you want to set the font size is scaled according to the system's "font size" assist option
     ScreenUtil.init(context, width: 414, height: 896, allowFontScaling: true);
 
-    return Scaffold(
-        backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-            child: Container(
-          height: MediaQuery.of(context).size.height,
-          child: Stack(
-            children: <Widget>[
-              Container(
-                padding:
-                    EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(20)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Expanded(
-                      flex: 3,
-                      child: SizedBox(),
-                    ),
-                    _title(),
-                    SizedBox(
-                      height: ScreenUtil().setHeight(50),
-                    ),
-                    _emailPasswordWidget(),
-                    SizedBox(
-                      height: ScreenUtil().setHeight(20),
-                    ),
-                    _submitButton(),
-                    MaterialButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, RoutePaths.resetpassword);
-                      },
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                            vertical: ScreenUtil().setHeight(10)),
-                        alignment: Alignment.centerRight,
-                        child: Text('Forgot Password ?',
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.w500)),
+    return WillPopScope(
+      onWillPop: () {
+        SystemNavigator.pop();
+        return null;
+      },
+      child: Scaffold(
+          backgroundColor: Colors.white,
+          body: SingleChildScrollView(
+              child: Container(
+            height: MediaQuery.of(context).size.height,
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: ScreenUtil().setWidth(20)),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Expanded(
+                        flex: 3,
+                        child: SizedBox(),
                       ),
-                    ),
-                    _divider(),
-                    _googleButton(),
-                    Expanded(
-                      flex: 2,
-                      child: SizedBox(),
-                    ),
-                  ],
+                      _title(),
+                      SizedBox(
+                        height: ScreenUtil().setHeight(50),
+                      ),
+                      _emailPasswordWidget(),
+                      SizedBox(
+                        height: ScreenUtil().setHeight(20),
+                      ),
+                      _submitButton(),
+                      MaterialButton(
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, RoutePaths.resetpassword);
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                              vertical: ScreenUtil().setHeight(10)),
+                          alignment: Alignment.centerRight,
+                          child: Text('Forgot Password ?',
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.w500)),
+                        ),
+                      ),
+                      _divider(),
+                      _googleButton(),
+                      Expanded(
+                        flex: 2,
+                        child: SizedBox(),
+                      ),
+                    ],
+                  ),
                 ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: _createAccountLabel(),
+                ),
+                Positioned(
+                    top: -MediaQuery.of(context).size.height * .15,
+                    right: -MediaQuery.of(context).size.width * .4,
+                    child: BezierContainer())
+              ],
+            ),
+          ))),
+    );
+  }
+
+  Future<bool> _onWillPop() async {
+    return showDialog<bool>(
+        context: context,
+        builder: (_) {
+          return AlertDialog(
+            content: Text(
+                "Are you sure you want to quit the quiz? All your progress will be lost."),
+            title: Text("Warning!"),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("Yes"),
+                onPressed: () {
+                  SystemNavigator.pop();
+                },
               ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: _createAccountLabel(),
+              FlatButton(
+                child: Text("No"),
+                onPressed: () {
+                  Navigator.pop(context, false);
+                },
               ),
-              Positioned(
-                  top: -MediaQuery.of(context).size.height * .15,
-                  right: -MediaQuery.of(context).size.width * .4,
-                  child: BezierContainer())
             ],
-          ),
-        )));
+          );
+        });
   }
 }

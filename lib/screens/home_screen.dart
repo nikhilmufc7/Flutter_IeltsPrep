@@ -119,28 +119,15 @@ class _HomeScreenState extends State<HomeScreen>
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(
-                            right: ScreenUtil().setWidth(8),
-                            top: ScreenUtil().setHeight(14)),
-                        child: PopupMenuButton<String>(
-                          onSelected: (String result) {
-                            switch (result) {
-                              case 'signOut':
-                                signOutGoogle(context);
-                                break;
-
-                              default:
-                            }
-                          },
-                          itemBuilder: (BuildContext context) =>
-                              <PopupMenuEntry<String>>[
-                            const PopupMenuItem<String>(
-                              value: 'signOut',
-                              child: Text('Sign Out'),
-                            ),
-                          ],
-                        ),
-                      ),
+                          padding: EdgeInsets.only(
+                              right: ScreenUtil().setWidth(8),
+                              top: ScreenUtil().setHeight(14)),
+                          child: IconButton(
+                              icon: Icon(Icons.settings),
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                    context, RoutePaths.settings);
+                              })),
                     ],
                   ),
                   SizedBox(height: ScreenUtil().setHeight(25)),
@@ -155,9 +142,10 @@ class _HomeScreenState extends State<HomeScreen>
                                 fontWeight: FontWeight.bold,
                                 fontSize: ScreenUtil().setSp(25))),
                         SizedBox(width: ScreenUtil().setWidth(10)),
-                        Text('Quest',
+                        Text('Vault',
                             style: TextStyle(
                                 fontFamily: 'Montserrat',
+                                fontStyle: FontStyle.italic,
                                 color: Colors.white,
                                 fontSize: ScreenUtil().setSp(25)))
                       ],

@@ -8,8 +8,18 @@ import 'package:ielts/services/auth.dart';
 import 'package:ielts/widgets/circular_image.dart';
 
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MenuPage extends StatelessWidget {
+  _launchURL() async {
+    const url = 'mailto:singh.nikhil999@gmail.com';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   final List<MenuItem> options = [
     MenuItem(Icons.home, 'Home', RoutePaths.root),
     MenuItem(Icons.library_books, 'Vocabulary', RoutePaths.vocabulary),
@@ -130,13 +140,13 @@ class MenuPage extends StatelessWidget {
                       fontSize: ScreenUtil().setSp(14), color: Colors.white)),
             ),
             ListTile(
-              onTap: () {},
+              onTap: () => _launchURL(),
               leading: Icon(
                 Icons.headset_mic,
                 color: Colors.white,
                 size: ScreenUtil().setSp(20),
               ),
-              title: Text('Support',
+              title: Text('Contact us',
                   style: TextStyle(
                       fontSize: ScreenUtil().setSp(14), color: Colors.white)),
             ),

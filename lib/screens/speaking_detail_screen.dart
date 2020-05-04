@@ -226,8 +226,7 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
                                           title: Text(
                                             resultant.replaceAll('_n', '\n'),
                                             style: TextStyle(
-                                              fontSize:
-                                                  ScreenUtil().setHeight(20),
+                                              fontSize: ScreenUtil().setSp(16),
                                               fontFamily: 'Montserrat',
                                               fontWeight: FontWeight.w400,
                                             ),

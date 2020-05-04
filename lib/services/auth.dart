@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ielts/utils/app_constants.dart';
 
@@ -28,7 +29,10 @@ Future<String> signInWithGoogle() async {
       idToken: googleSignInAuthentication.idToken,
     );
 
-    final AuthResult authResult = await _auth.signInWithCredential(credential);
+    final AuthResult authResult = await _auth
+        .signInWithCredential(credential)
+        .catchError((onError) => print(onError));
+
     final FirebaseUser user = authResult.user;
 
     // Checking if email and name is null
@@ -59,10 +63,8 @@ Future<String> signInWithGoogle() async {
     assert(user.uid == currentUser.uid);
 
     return 'signInWithGoogle succeeded: $user';
-  } catch (error, s) {
-    print('exception handled');
-    print(error);
-    print(s);
+  } catch (error) {
+    return null;
   }
 }
 
