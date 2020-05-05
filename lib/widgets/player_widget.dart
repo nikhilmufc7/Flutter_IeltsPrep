@@ -135,21 +135,21 @@ class _PlayerWidgetState extends State<PlayerWidget> {
     _durationSubscription = _audioPlayer.onDurationChanged.listen((duration) {
       setState(() => _duration = duration);
 
-      // if (Theme.of(context).platform == TargetPlatform.iOS) {
-      //   // (Optional) listen for notification updates in the background
-      //   _audioPlayer.startHeadlessService();
+      if (Theme.of(context).platform == TargetPlatform.iOS) {
+        // (Optional) listen for notification updates in the background
+        _audioPlayer.startHeadlessService();
 
-      //   // set at least title to see the notification bar on ios.
-      //   _audioPlayer.setNotification(
-      //       title: 'App Name',
-      //       artist: 'Artist or blank',
-      //       albumTitle: 'Name or blank',
-      //       imageUrl: 'url or blank',
-      //       forwardSkipInterval: const Duration(seconds: 30), // default is 30s
-      //       backwardSkipInterval: const Duration(seconds: 30), // default is 30s
-      //       duration: duration,
-      //       elapsedTime: Duration(seconds: 0));
-      // }
+        // set at least title to see the notification bar on ios.
+        _audioPlayer.setNotification(
+            title: 'App Name',
+            artist: 'Artist or blank',
+            albumTitle: 'Name or blank',
+            imageUrl: 'url or blank',
+            forwardSkipInterval: const Duration(seconds: 30), // default is 30s
+            backwardSkipInterval: const Duration(seconds: 30), // default is 30s
+            duration: duration,
+            elapsedTime: Duration(seconds: 0));
+      }
     });
 
     _positionSubscription =

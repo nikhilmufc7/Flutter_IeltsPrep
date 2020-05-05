@@ -2,10 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ielts/utils/app_constants.dart';
 
-import 'package:ielts/services/auth.dart';
-
 import 'package:ielts/widgets/menu_page.dart';
-import 'package:upgrader/upgrader.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 final Color backgroundColor = Color(0xFF21BFBD);
@@ -61,14 +59,12 @@ class _HomeScreenState extends State<HomeScreen>
       onWillPop: () async => false,
       child: Scaffold(
         backgroundColor: backgroundColor,
-        body: UpgradeAlert(
-          child: Stack(
-            children: <Widget>[
-              MenuPage(),
-              dashboard(context),
-              // curvedContainer(context),
-            ],
-          ),
+        body: Stack(
+          children: <Widget>[
+            MenuPage(),
+            dashboard(context),
+            // curvedContainer(context),
+          ],
         ),
       ),
     );
