@@ -107,27 +107,30 @@ class _LoginScreenState extends State<LoginScreen>
     _formKey.currentState.save();
     try {
       if (_authMode == AuthMode.Login) {
-        await signIn(emailInputController.text, passwordInputController.text)
-            .then((value) =>
-                {Navigator.pushReplacementNamed(context, RoutePaths.home)});
+        await signIn(emailInputController.text, passwordInputController.text);
+        print('successful');
+
+        Navigator.pushReplacementNamed(context, RoutePaths.home);
       } else {
         await signUp(emailInputController.text, passwordInputController.text,
-                firstNameInputController.text)
-            .then((result) =>
-                {Navigator.pushReplacementNamed(context, RoutePaths.home)});
+            firstNameInputController.text);
+
+        Navigator.pushReplacementNamed(context, RoutePaths.home);
       }
-    } on AuthException catch (error) {
-      print('''
-    caught firebase auth exception\n
-    ${error.code}\n
-    ${error.message}
-  ''');
-      _showErrorDialog(
-          'Could not authenticate you.$errorMessage Please try again later.');
+      //   } on AuthException catch (error) {
+      //     print('''
+      //   caught firebase auth exception\n
+      //   ${error.code}\n
+      //   ${error.message}
+      // ''');
+      //     _showErrorDialog(
+      //         'Could not authenticate you.$errorMessage Please try again later.');
     } catch (error) {
       var errorM =
           'Could not authenticate you.$errorMessage Please try again later.';
+
       _showErrorDialog(errorM);
+
       print(error);
     }
   }
@@ -407,7 +410,7 @@ class _LoginScreenState extends State<LoginScreen>
     return RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
-          text: 'I',
+          text: 'Iel',
           style: GoogleFonts.portLligatSans(
             fontSize: ScreenUtil().setSp(30),
             fontWeight: FontWeight.w700,
@@ -415,12 +418,19 @@ class _LoginScreenState extends State<LoginScreen>
           ),
           children: [
             TextSpan(
-              text: 'el',
-              style: TextStyle(color: Colors.black, fontSize: 30),
+              text: 'ts',
+              style: TextStyle(
+                  color: Colors.black, fontSize: ScreenUtil().setSp(30)),
             ),
             TextSpan(
-              text: 'ts',
-              style: TextStyle(color: Color(0xffe46b10), fontSize: 30),
+              text: ' Va',
+              style: TextStyle(
+                  color: Color(0xffe46b10), fontSize: ScreenUtil().setSp(30)),
+            ),
+            TextSpan(
+              text: 'ult',
+              style: TextStyle(
+                  color: Colors.black, fontSize: ScreenUtil().setSp(30)),
             ),
           ]),
     );
@@ -516,31 +526,5 @@ class _LoginScreenState extends State<LoginScreen>
             ),
           ))),
     );
-  }
-
-  Future<bool> _onWillPop() async {
-    return showDialog<bool>(
-        context: context,
-        builder: (_) {
-          return AlertDialog(
-            content: Text(
-                "Are you sure you want to quit the quiz? All your progress will be lost."),
-            title: Text("Warning!"),
-            actions: <Widget>[
-              FlatButton(
-                child: Text("Yes"),
-                onPressed: () {
-                  SystemNavigator.pop();
-                },
-              ),
-              FlatButton(
-                child: Text("No"),
-                onPressed: () {
-                  Navigator.pop(context, false);
-                },
-              ),
-            ],
-          );
-        });
   }
 }

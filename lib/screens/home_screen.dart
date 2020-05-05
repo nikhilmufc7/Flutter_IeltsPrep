@@ -123,7 +123,10 @@ class _HomeScreenState extends State<HomeScreen>
                               right: ScreenUtil().setWidth(8),
                               top: ScreenUtil().setHeight(14)),
                           child: IconButton(
-                              icon: Icon(Icons.settings),
+                              icon: Icon(
+                                Icons.settings,
+                                color: Colors.white,
+                              ),
                               onPressed: () {
                                 Navigator.pushNamed(
                                     context, RoutePaths.settings);

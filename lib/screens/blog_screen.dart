@@ -94,7 +94,7 @@ class _BlogScreenState extends State<BlogScreen> {
                           .map((doc) => Blog.fromMap(doc.data, doc.documentID))
                           .toList();
                       return ListView.builder(
-                        itemCount: blog.length,
+                        itemCount: 3,
                         scrollDirection: Axis.horizontal,
                         shrinkWrap: true,
                         itemBuilder: (context, index) {

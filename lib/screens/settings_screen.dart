@@ -1,4 +1,5 @@
 import 'package:day_night_switch/day_night_switch.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ielts/services/auth.dart';
 
 import 'package:ielts/utils/themeChange.dart';
@@ -32,6 +33,13 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
+
+//If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
+    ScreenUtil.init(context, width: 414, height: 896);
+
+//If you want to set the font size is scaled according to the system's "font size" assist option
+    ScreenUtil.init(context, width: 414, height: 896, allowFontScaling: true);
     final themeNotifier = Provider.of<ThemeNotifier>(context);
     _darkTheme = (themeNotifier.getTheme() == darkTheme);
     return Scaffold(
@@ -44,7 +52,7 @@ class _SettingsPageState extends State<SettingsPage> {
           ListTile(
             leading: Icon(Icons.wb_sunny),
             title: Text('Dark Theme'),
-            contentPadding: const EdgeInsets.only(left: 16.0),
+            contentPadding: EdgeInsets.only(left: ScreenUtil().setWidth(16)),
             trailing: Transform.scale(
               scale: 0.4,
               child: DayNightSwitch(
@@ -59,14 +67,14 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: ScreenUtil().setHeight(20),
           ),
           ListTile(
             leading: Icon(Icons.email),
             title: Text('Subscribe to emails'),
             subtitle:
                 Text('Get the latest news about IELTS directly to your mail'),
-            contentPadding: const EdgeInsets.only(left: 16.0),
+            contentPadding: EdgeInsets.only(left: ScreenUtil().setWidth(16)),
             trailing: Transform.scale(
               scale: 0.4,
               child: DayNightSwitch(
@@ -80,15 +88,15 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: ScreenUtil().setHeight(20),
           ),
           ListTile(
             leading: Icon(Icons.exit_to_app),
             title: Text('Provide Feedback'),
             subtitle: Text('Helps us be better'),
-            contentPadding: const EdgeInsets.only(left: 16.0),
+            contentPadding: EdgeInsets.only(left: ScreenUtil().setWidth(16)),
             trailing: Padding(
-              padding: const EdgeInsets.only(right: 18.0),
+              padding: EdgeInsets.only(right: ScreenUtil().setWidth(18)),
               child: Transform.scale(
                 scale: 0.8,
                 child: RaisedButton(
@@ -106,7 +114,7 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: ScreenUtil().setHeight(20),
           ),
           Center(
             child: RaisedButton(
