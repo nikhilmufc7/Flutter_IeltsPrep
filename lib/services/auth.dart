@@ -84,6 +84,7 @@ Future<String> signIn(String email, String password) async {
         break;
       case "ERROR_WRONG_PASSWORD":
         errorMessage = "Your password is wrong.";
+
         break;
       case "ERROR_USER_NOT_FOUND":
         errorMessage = "User with this email doesn't exist.";
@@ -101,7 +102,7 @@ Future<String> signIn(String email, String password) async {
         errorMessage = "An undefined Error happened.";
     }
   }
-  if (errorMessage != null) {
+  if (user == null) {
     return Future.error(errorMessage);
   }
 
@@ -147,7 +148,7 @@ Future<String> signUp(String email, String password, String firstName) async {
         errorMessage = "An undefined Error happened.";
     }
   }
-  if (errorMessage != null) {
+  if (user == null) {
     return Future.error(errorMessage);
   }
 
