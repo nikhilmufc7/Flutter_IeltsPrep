@@ -8,17 +8,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:267741102183:android:e34745c017339b08f994c2",
+        "mobilesdk_app_id": "1:267741102183:android:d86dda88897412f6f994c2",
         "android_client_info": {
-          "package_name": "com.nikhilsingh.ielts"
+          "package_name": "tech.ieltsvault.ielts"
         }
       },
       "oauth_client": [
         {
-          "client_id": "267741102183-hiq0uhc6oi76ipoldpc3gt6plc7e866h.apps.googleusercontent.com",
+          "client_id": "267741102183-h75p6prd6t6pir1pignul2q0133k2klj.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.nikhilsingh.ielts",
+            "package_name": "tech.ieltsvault.ielts",
             "certificate_hash": "b08118505f87b8d646fa877ee2fd4ec996d76667"
           }
         },

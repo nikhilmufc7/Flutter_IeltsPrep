@@ -120,13 +120,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.2+1"
-  device_info:
-    dependency: transitive
-    description:
-      name: device_info
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.4.2+2"
   firebase:
     dependency: transitive
     description:
@@ -216,13 +209,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
-  flutter_device_locale:
-    dependency: transitive
-    description:
-      name: flutter_device_locale
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.4+1"
   flutter_emoji:
     dependency: "direct main"
     description:
@@ -387,13 +373,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.4"
-  package_info:
-    dependency: transitive
-    description:
-      name: package_info
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.4.0+17"
   path:
     dependency: transitive
     description:
@@ -560,13 +539,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.6"
-  upgrader:
-    dependency: "direct main"
-    description:
-      name: upgrader
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.10.0"
   url_launcher:
     dependency: "direct main"
     description:
@@ -609,13 +581,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.8"
-  version:
-    dependency: transitive
-    description:
-      name: version
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.3"
   xml:
     dependency: transitive
     description:

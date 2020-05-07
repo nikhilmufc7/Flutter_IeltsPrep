@@ -45,7 +45,7 @@ dependencies:
   flutter_tts:
   day_night_switch:
   flutter_fader: ^1.0.0
-  upgrader:
+
   firebase_crashlytics:
   flutter_screenutil:
   url_launcher:

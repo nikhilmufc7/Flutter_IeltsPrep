@@ -179,8 +179,6 @@ PODS:
     - Flutter
   - Crashlytics (3.14.0):
     - Fabric (~> 1.10.2)
-  - device_info (0.0.1):
-    - Flutter
   - Fabric (1.10.2)
   - Firebase/Analytics (6.15.0):
     - Firebase/Core
@@ -283,8 +281,6 @@ PODS:
     - GoogleUtilities/UserDefaults (~> 6.5)
     - Protobuf (>= 3.9.2, ~> 3.9)
   - Flutter (1.0.0)
-  - flutter_device_locale (0.0.1):
-    - Flutter
   - flutter_tts (0.0.1):
     - Flutter
   - FMDB (2.7.5):
@@ -357,8 +353,6 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
-  - package_info (0.0.1):
-    - Flutter
   - path_provider (0.0.1):
     - Flutter
   - PromisesObjC (1.2.8)
@@ -383,7 +377,6 @@ DEPENDENCIES:
   - audioplayers (from `.symlinks/plugins/audioplayers/ios`)
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
   - cloud_firestore_web (from `.symlinks/plugins/cloud_firestore_web/ios`)
-  - device_info (from `.symlinks/plugins/device_info/ios`)
   - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_auth_web (from `.symlinks/plugins/firebase_auth_web/ios`)
@@ -392,11 +385,9 @@ DEPENDENCIES:
   - firebase_crashlytics (from `.symlinks/plugins/firebase_crashlytics/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - Flutter (from `Flutter`)
-  - flutter_device_locale (from `.symlinks/plugins/flutter_device_locale/ios`)
   - flutter_tts (from `.symlinks/plugins/flutter_tts/ios`)
   - google_sign_in (from `.symlinks/plugins/google_sign_in/ios`)
   - google_sign_in_web (from `.symlinks/plugins/google_sign_in_web/ios`)
-  - package_info (from `.symlinks/plugins/package_info/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - shared_preferences_macos (from `.symlinks/plugins/shared_preferences_macos/ios`)
@@ -447,8 +438,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/cloud_firestore/ios"
   cloud_firestore_web:
     :path: ".symlinks/plugins/cloud_firestore_web/ios"
-  device_info:
-    :path: ".symlinks/plugins/device_info/ios"
   firebase_analytics:
     :path: ".symlinks/plugins/firebase_analytics/ios"
   firebase_auth:
@@ -465,16 +454,12 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_messaging/ios"
   Flutter:
     :path: Flutter
-  flutter_device_locale:
-    :path: ".symlinks/plugins/flutter_device_locale/ios"
   flutter_tts:
     :path: ".symlinks/plugins/flutter_tts/ios"
   google_sign_in:
     :path: ".symlinks/plugins/google_sign_in/ios"
   google_sign_in_web:
     :path: ".symlinks/plugins/google_sign_in_web/ios"
-  package_info:
-    :path: ".symlinks/plugins/package_info/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
   shared_preferences:
@@ -500,7 +485,6 @@ SPEC CHECKSUMS:
   cloud_firestore: 85aabb8ad61987d6d139f8788ff86229c3506a2f
   cloud_firestore_web: 9ec3dc7f5f98de5129339802d491c1204462bfec
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
-  device_info: d7d233b645a32c40dfdc212de5cf646ca482f175
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   Firebase: 5d77105d9740a07ca6b16927ca971db7e860faaf
   firebase_analytics: dacdcfc524d722fff13dcff942f0dfa47e6be567
@@ -522,7 +506,6 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: 6668efc1655a4052c083f287a7141f1ead12f9c2
   FirebaseMessaging: 9e23f9d603b1fb71ccbeb48d79bf0d4ba0272c84
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
-  flutter_device_locale: bd88cfdfdcae58b2a9d5ec05389fd99631c9dca7
   flutter_tts: 0f492aab6accf87059b72354fcb4ba934304771d
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   google_sign_in: f32920a589fdf4ab2918ec6dc5e5b0d5b8040ff5
@@ -538,7 +521,6 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
-  package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
   path_provider: fb74bd0465e96b594bb3b5088ee4a4e7bb1f2a9d
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   Protobuf: dd1aaea7140debfe4dd0683fb8ef208e527ae153
