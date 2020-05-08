@@ -62,7 +62,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
   Widget build(BuildContext context) {
     ScreenUtil.init(context);
 
-//If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
+//If the design is based on the size of the iPhone6 ​​(iPhone6 ​​450*1334)
     ScreenUtil.init(context, width: 414, height: 896);
 
 //If you want to set the font size is scaled according to the system's "font size" assist option
@@ -75,44 +75,72 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
       child: Scaffold(
         backgroundColor: Theme.of(context).primaryColor,
         appBar: AppBar(
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back_ios),
+              color: Colors.white,
+              onPressed: () {
+                Navigator.of(context).pop();
+              }),
           elevation: 0.0,
           backgroundColor: Theme.of(context).primaryColor,
           title: FittedBox(
-            child: Text(listening.title),
+            child: Text(
+              listening.title,
+              style: TextStyle(color: Colors.white),
+            ),
           ),
           bottom: TabBar(
-              labelColor: Colors.redAccent,
-              unselectedLabelColor: Colors.white,
-              indicatorSize: TabBarIndicatorSize.label,
               isScrollable: true,
-              indicator: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  color: Colors.white),
+              labelColor: Colors.white,
+              labelStyle: TextStyle(fontWeight: FontWeight.w600),
+              unselectedLabelColor: Colors.white,
               tabs: [
                 Tab(
                   child: Align(
                     alignment: Alignment.center,
-                    child: Text("Section 1"),
-                  ),
-                ),
-                Tab(
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Text("Section 2"),
-                  ),
-                ),
-                Tab(
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Section 3",
+                    child: Padding(
+                      padding: EdgeInsets.all(ScreenUtil().setHeight(8)),
+                      child: Text(
+                        "Section 1",
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
                 ),
                 Tab(
                   child: Align(
                     alignment: Alignment.center,
-                    child: Text("Section 4"),
+                    child: Padding(
+                      padding: EdgeInsets.all(ScreenUtil().setHeight(8)),
+                      child: Text(
+                        "Section 2",
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ),
+                Tab(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Padding(
+                      padding: EdgeInsets.all(ScreenUtil().setHeight(8)),
+                      child: Text(
+                        "Section 3",
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ),
+                Tab(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Padding(
+                      padding: EdgeInsets.all(ScreenUtil().setHeight(8)),
+                      child: Text(
+                        "Section 4",
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                   ),
                 ),
               ]),
@@ -132,15 +160,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                     // height: MediaQuery.of(context).size.height,
 
                     decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                            color: Theme.of(context).secondaryHeaderColor,
-                            blurRadius: 10)
-                      ],
                       color: Theme.of(context).canvasColor,
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(ScreenUtil().setWidth(75)),
-                          topRight: Radius.circular(ScreenUtil().setWidth(75))),
                     ),
                     child: ListView(
                       padding: EdgeInsets.only(top: ScreenUtil().setHeight(50)),
@@ -368,15 +388,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                     // height: MediaQuery.of(context).size.height,
 
                     decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                            color: Theme.of(context).secondaryHeaderColor,
-                            blurRadius: 10)
-                      ],
                       color: Theme.of(context).canvasColor,
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(ScreenUtil().setWidth(75)),
-                          topRight: Radius.circular(ScreenUtil().setWidth(75))),
                     ),
                     child: ListView(
                       padding: EdgeInsets.only(top: ScreenUtil().setHeight(50)),
@@ -577,15 +589,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                     // height: MediaQuery.of(context).size.height,
 
                     decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                            color: Theme.of(context).secondaryHeaderColor,
-                            blurRadius: 10)
-                      ],
                       color: Theme.of(context).canvasColor,
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(ScreenUtil().setWidth(75)),
-                          topRight: Radius.circular(ScreenUtil().setWidth(75))),
                     ),
                     child: ListView(
                       padding: EdgeInsets.only(top: 50),
@@ -847,15 +851,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                     // height: MediaQuery.of(context).size.height,
 
                     decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                            color: Theme.of(context).secondaryHeaderColor,
-                            blurRadius: 10)
-                      ],
                       color: Theme.of(context).canvasColor,
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(ScreenUtil().setWidth(75)),
-                          topRight: Radius.circular(ScreenUtil().setWidth(75))),
                     ),
                     child: ListView(
                       padding: EdgeInsets.only(top: ScreenUtil().setHeight(50)),

@@ -107,14 +107,20 @@ class _QuizScreenState extends State<QuizScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
           backgroundColor: Theme.of(context).primaryColor,
-          title: Text('Quizzes'),
+          title: Text(
+            'Quizzes',
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          ),
           elevation: 0,
           actions: <Widget>[],
           leading: IconButton(
             onPressed: () {
               Navigator.pushReplacementNamed(context, RoutePaths.home);
             },
-            icon: Icon(Icons.arrow_back_ios),
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
+            ),
           )),
       body: Stack(
         children: <Widget>[
@@ -153,7 +159,7 @@ class _QuizScreenState extends State<QuizScreen> {
                       },
                     );
                   } else {
-                    return CircularProgressIndicator();
+                    return Center(child: CircularProgressIndicator());
                   }
                 }),
           ),
@@ -225,13 +231,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                   fontWeight: FontWeight.w700),
                             ),
                           ),
-                          SizedBox(height: ScreenUtil().setHeight(10)),
-                          LinearProgressIndicator(
-                              backgroundColor:
-                                  Color.fromRGBO(209, 224, 224, 0.2),
-                              value: quiz.indicatorValue,
-                              valueColor: AlwaysStoppedAnimation(Colors.green)),
-                          SizedBox(height: ScreenUtil().setHeight(16)),
+                          SizedBox(height: ScreenUtil().setHeight(20)),
                           Row(
                             children: <Widget>[
                               Icon(
@@ -248,7 +248,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontFamily: 'Montserrat',
-                                      fontSize: ScreenUtil().setSp(16)),
+                                      fontSize: ScreenUtil().setSp(15)),
                                 ),
                               ),
                             ],
@@ -261,8 +261,8 @@ class _QuizScreenState extends State<QuizScreen> {
                       child: FittedBox(
                         child: CheckboxGroup(
                             checked: checkedItems,
-                            checkColor: Colors.black,
-                            activeColor: Theme.of(context).secondaryHeaderColor,
+                            checkColor: Colors.white,
+                            activeColor: Colors.black,
                             labels: [quiz.id],
                             labelStyle: TextStyle(fontSize: 0),
                             onSelected: (List<String> checked) {
@@ -321,7 +321,7 @@ class CustomCardShapePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    var radius = ScreenUtil().setWidth(24);
+    var radius = ScreenUtil().setWidth(12);
 
     var paint = Paint();
     paint.shader = ui.Gradient.linear(

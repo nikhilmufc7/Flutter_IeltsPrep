@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fader/flutter_fader.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
+import 'package:flutter_tts/flutter_tts.dart';
+
 import 'package:ielts/utils/app_constants.dart';
 import 'package:ielts/lesson_data/vocabulary_data.dart';
 import 'package:ielts/models/vocabulary.dart';
@@ -16,6 +18,8 @@ class VocabularyScreen extends StatefulWidget {
   _VocabularyScreenState createState() => _VocabularyScreenState();
 }
 
+enum TtsState { playing, stopped }
+
 class _VocabularyScreenState extends State<VocabularyScreen>
     with SingleTickerProviderStateMixin {
   List vocabulary;
@@ -24,15 +28,53 @@ class _VocabularyScreenState extends State<VocabularyScreen>
   double screenWidth, screenHeight;
   final Duration duration = const Duration(milliseconds: 300);
 
+  double volume = 0.5;
+  double pitch = 1.0;
+  double rate = 0.5;
+
+  FlutterTts flutterTts;
+
+  TtsState ttsState = TtsState.stopped;
+
+  get isPlaying => ttsState == TtsState.playing;
+
+  get isStopped => ttsState == TtsState.stopped;
+
   @override
   void initState() {
     super.initState();
 
     vocabulary = getVocabularyData();
     vocabulary.shuffle();
+    initTts();
   }
 
   FaderController faderController = FaderController();
+
+  initTts() {
+    flutterTts = FlutterTts();
+
+    flutterTts.setStartHandler(() {
+      setState(() {
+        print("playing");
+        ttsState = TtsState.playing;
+      });
+    });
+
+    flutterTts.setCompletionHandler(() {
+      setState(() {
+        print("Complete");
+        ttsState = TtsState.stopped;
+      });
+    });
+
+    flutterTts.setErrorHandler((msg) {
+      setState(() {
+        print("error: $msg");
+        ttsState = TtsState.stopped;
+      });
+    });
+  }
 
   @override
   void dispose() {
@@ -53,6 +95,16 @@ class _VocabularyScreenState extends State<VocabularyScreen>
     screenHeight = size.height;
     screenWidth = size.width;
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            color: Colors.white,
+            onPressed: () {
+              Navigator.of(context).pushReplacementNamed(RoutePaths.home);
+            }),
+        elevation: 0.0,
+        backgroundColor: Theme.of(context).primaryColor,
+      ),
       body: Stack(
         children: <Widget>[
           dashboard(context),
@@ -72,31 +124,10 @@ class _VocabularyScreenState extends State<VocabularyScreen>
       child: SingleChildScrollView(
         physics: NeverScrollableScrollPhysics(),
         child: Container(
-          padding: EdgeInsets.only(top: ScreenUtil().setHeight(48)),
+          padding: EdgeInsets.only(top: ScreenUtil().setHeight(18)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: ScreenUtil().setWidth(18)),
-                    child: IconButton(
-                      icon: Icon(Icons.arrow_back_ios, color: Colors.white),
-                      onPressed: () {
-                        Navigator.pushReplacementNamed(
-                            context, RoutePaths.home);
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: ScreenUtil().setWidth(18)),
-                    child: Icon(Icons.settings, color: Colors.white),
-                  ),
-                ],
-              ),
-              SizedBox(height: ScreenUtil().setHeight(25)),
               Padding(
                 padding: EdgeInsets.only(left: ScreenUtil().setWidth(40)),
                 child: Row(
@@ -142,7 +173,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
                         child: TinderSwapCard(
                             orientation: AmassOrientation.BOTTOM,
                             totalNum: vocabulary.length,
-                            stackNum: 3,
+                            stackNum: 4,
                             swipeEdge: 4.0,
                             maxWidth: MediaQuery.of(context).size.width * 0.9,
                             maxHeight: MediaQuery.of(context).size.width * 0.9,
@@ -194,92 +225,79 @@ class _VocabularyScreenState extends State<VocabularyScreen>
 
   Widget makeCard(Vocabulary vocabulary) {
     return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       elevation: 8.0,
-      child: Column(
+      child: ListView(
+        physics: NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
         children: <Widget>[
-          Row(
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.all(ScreenUtil().setWidth(8)),
-                child: Text(
-                  'Word :    ',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: ScreenUtil().setSp(20),
-                    fontFamily: 'Montserrat',
-                  ),
-                ),
+          ListTile(
+            title: Text(
+              StringUtils.capitalize(vocabulary.word ?? 'Word'),
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: ScreenUtil().setSp(24),
+                fontFamily: 'Montserrat',
               ),
-              Padding(
-                padding: EdgeInsets.all(ScreenUtil().setWidth(8)),
-                child: Text(
-                  StringUtils.capitalize(vocabulary.word ?? 'Word'),
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: ScreenUtil().setSp(18),
-                    fontFamily: 'Montserrat',
-                  ),
-                ),
-              ),
-            ],
+            ),
+            trailing: _btnSection(vocabulary),
           ),
           SizedBox(height: ScreenUtil().setHeight(15)),
-          Padding(
-            padding: EdgeInsets.all(ScreenUtil().setWidth(8)),
-            child: Row(
-              children: <Widget>[
-                Text(
-                  'Description : ',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: ScreenUtil().setSp(20),
-                    fontFamily: 'Montserrat',
-                  ),
-                ),
-                Flexible(
-                  child: Column(
-                    children: <Widget>[
-                      Text(
-                        vocabulary.description ?? 'Description',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: ScreenUtil().setSp(16),
-                            fontFamily: 'Montserrat'),
-                      ),
-                    ],
-                  ),
-                )
-              ],
+          ListTile(
+            title: Text(
+              vocabulary.description ?? 'Description',
+              style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: ScreenUtil().setSp(16),
+                  fontFamily: 'Montserrat'),
             ),
           ),
-          SizedBox(height: ScreenUtil().setHeight(25)),
-          Row(
-            children: <Widget>[
-              Text(
-                'Sentence : ',
-                style: TextStyle(
+          SizedBox(height: ScreenUtil().setHeight(15)),
+          ListTile(
+            title: Text(
+              'Usage in Sentence',
+              style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: ScreenUtil().setSp(20),
-                  fontFamily: 'Montserrat',
-                ),
-              ),
-              Flexible(
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      vocabulary.sentence ?? 'sentence',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: ScreenUtil().setSp(16),
-                          fontFamily: 'Montserrat'),
-                    ),
-                  ],
-                ),
-              )
-            ],
+                  fontSize: ScreenUtil().setSp(16),
+                  fontFamily: 'Montserrat'),
+            ),
+          ),
+          ListTile(
+            title: Text(
+              vocabulary.sentence ?? 'sentence',
+              style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: ScreenUtil().setSp(16),
+                  fontFamily: 'Montserrat'),
+            ),
           ),
         ],
       ),
     );
+  }
+
+  Widget _btnSection(Vocabulary vocabulary) => Container(
+          child: _buildButtonColumn(
+              Colors.green, Colors.white, Icons.volume_up, 'PLAY', () async {
+        await flutterTts.setVolume(volume);
+        await flutterTts.setSpeechRate(rate);
+        await flutterTts.setPitch(pitch);
+
+        if (vocabulary.word != null) {
+          if (vocabulary.word.isNotEmpty) {
+            var result = await flutterTts.speak(vocabulary.word);
+            if (result == 1) setState(() => ttsState = TtsState.playing);
+          }
+        }
+      }));
+
+  IconButton _buildButtonColumn(Color color, Color splashColor, IconData icon,
+      String label, Function func) {
+    return IconButton(
+        icon: Icon(icon),
+        iconSize: ScreenUtil().setHeight(40),
+        color: color,
+        splashColor: splashColor,
+        onPressed: () => func());
   }
 }

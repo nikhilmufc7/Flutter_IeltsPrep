@@ -90,83 +90,126 @@ class _ReadingScreenState extends State<ReadingScreen>
     screenWidth = size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Reading Exercises'),
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            color: Colors.white,
+            onPressed: () {
+              Navigator.of(context).pop();
+            }),
+        title: Text(
+          'Reading Exercises',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
         elevation: 0.0,
         backgroundColor: Theme.of(context).primaryColor,
-        bottomOpacity: 0.8,
         bottom: TabBar(
           isScrollable: true,
           controller: _tabController,
-          labelColor: Colors.redAccent,
+          labelColor: Colors.white,
+          labelStyle: TextStyle(fontWeight: FontWeight.w600),
           unselectedLabelColor: Colors.white,
-          indicatorSize: TabBarIndicatorSize.label,
-          indicator: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              color: Colors.white),
           tabs: [
             Tab(
-              child: Align(
-                alignment: Alignment.center,
-                child: FittedBox(child: Text("True/ False")),
-              ),
+              child: FittedBox(
+                  child: Padding(
+                padding: EdgeInsets.all(ScreenUtil().setHeight(8)),
+                child: Text(
+                  "True/ False",
+                  textAlign: TextAlign.center,
+                ),
+              )),
             ),
             Tab(
-              child: Align(
-                alignment: Alignment.center,
-                child: FittedBox(
+              child: FittedBox(
+                child: Padding(
+                  padding: EdgeInsets.all(ScreenUtil().setHeight(8)),
                   child: Text(
                     "Sentence \n Completion",
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
             ),
             Tab(
-              child: Align(
-                alignment: Alignment.center,
-                child: FittedBox(child: Text("Heading \n Completion")),
+              child: FittedBox(
+                child: Padding(
+                  padding: EdgeInsets.all(ScreenUtil().setHeight(8)),
+                  child: Text(
+                    "Heading \n Completion",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
               ),
             ),
             Tab(
-              child: Align(
-                alignment: Alignment.center,
-                child: FittedBox(child: Text("Summary \n Completion")),
-              ),
+              child: FittedBox(
+                  child: Padding(
+                padding: EdgeInsets.all(ScreenUtil().setHeight(8)),
+                child: Text(
+                  "Summary \n Completion",
+                  textAlign: TextAlign.center,
+                ),
+              )),
             ),
             Tab(
-              child: Align(
-                alignment: Alignment.center,
-                child: FittedBox(child: Text("Matching \n Paragraphs")),
-              ),
+              child: FittedBox(
+                  child: Padding(
+                padding: EdgeInsets.all(ScreenUtil().setHeight(8)),
+                child: Text(
+                  "Matching \n Paragraphs",
+                  textAlign: TextAlign.center,
+                ),
+              )),
             ),
             Tab(
-              child: Align(
-                alignment: Alignment.center,
-                child: FittedBox(child: Text("MCQs")),
-              ),
+              child: FittedBox(
+                  child: Padding(
+                padding: EdgeInsets.all(ScreenUtil().setHeight(8)),
+                child: Text(
+                  "MCQs",
+                ),
+              )),
             ),
             Tab(
-              child: Align(
-                alignment: Alignment.center,
-                child: FittedBox(child: Text("List \n Selection")),
-              ),
+              child: FittedBox(
+                  child: Padding(
+                padding: EdgeInsets.all(ScreenUtil().setHeight(8)),
+                child: Text(
+                  "List \n Selection",
+                  textAlign: TextAlign.center,
+                ),
+              )),
             ),
             Tab(
-              child: Align(
-                alignment: Alignment.center,
-                child: FittedBox(child: Text("Categorization")),
-              ),
+              child: FittedBox(
+                  child: Padding(
+                padding: EdgeInsets.all(ScreenUtil().setHeight(8)),
+                child: Text(
+                  "Categorization",
+                  textAlign: TextAlign.center,
+                ),
+              )),
             ),
             Tab(
-              child: Align(
-                alignment: Alignment.center,
-                child: FittedBox(child: Text("Matching \n Endings")),
-              ),
+              child: FittedBox(
+                  child: Padding(
+                padding: EdgeInsets.all(ScreenUtil().setHeight(8)),
+                child: Text(
+                  "Matching \n Endings",
+                  textAlign: TextAlign.center,
+                ),
+              )),
             ),
             Tab(
-              child: Align(
-                alignment: Alignment.center,
-                child: FittedBox(child: Text("Short \n Answers")),
-              ),
+              child: FittedBox(
+                  child: Padding(
+                padding: EdgeInsets.all(ScreenUtil().setHeight(8)),
+                child: Text(
+                  "Short \n Answers",
+                  textAlign: TextAlign.center,
+                ),
+              )),
             ),
           ],
         ),
@@ -199,8 +242,9 @@ class _ReadingScreenState extends State<ReadingScreen>
     return Material(
       animationDuration: duration,
       // borderRadius: BorderRadius.all(Radius.circular(40)),
-      elevation: 8,
+
       color: Theme.of(context).primaryColor,
+
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         physics: ClampingScrollPhysics(),
@@ -208,19 +252,14 @@ class _ReadingScreenState extends State<ReadingScreen>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(height: ScreenUtil().setHeight(40)),
+              // SizedBox(height: ScreenUtil().setHeight(20)),
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                        color: Theme.of(context).secondaryHeaderColor,
-                        blurRadius: 10)
-                  ],
                   color: Theme.of(context).canvasColor,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(ScreenUtil().setWidth(75)),
-                      topRight: Radius.circular(ScreenUtil().setWidth(75))),
+                  // borderRadius: BorderRadius.only(
+                  //   topLeft: Radius.circular(ScreenUtil().setWidth(45)),
+                  // ),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -238,7 +277,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                           return ListView.builder(
                             scrollDirection: Axis.vertical,
                             padding: EdgeInsets.only(
-                                top: ScreenUtil().setHeight(70),
+                                top: ScreenUtil().setHeight(40),
                                 bottom: ScreenUtil().setHeight(50)),
                             shrinkWrap: true,
                             physics: ScrollPhysics(),
@@ -249,7 +288,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                             },
                           );
                         } else {
-                          return CircularProgressIndicator();
+                          return Center(child: CircularProgressIndicator());
                         }
                       }),
                 ),
@@ -267,7 +306,7 @@ class _ReadingScreenState extends State<ReadingScreen>
     return Material(
       animationDuration: duration,
       // borderRadius: BorderRadius.all(Radius.circular(40)),
-      elevation: 8,
+
       color: Theme.of(context).primaryColor,
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -276,21 +315,13 @@ class _ReadingScreenState extends State<ReadingScreen>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(
-                height: ScreenUtil().setHeight(40),
-              ),
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                        color: Theme.of(context).secondaryHeaderColor,
-                        blurRadius: 10)
-                  ],
                   color: Theme.of(context).canvasColor,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(ScreenUtil().setHeight(75)),
-                      topRight: Radius.circular(ScreenUtil().setHeight(75))),
+                  // borderRadius: BorderRadius.only(
+                  //   topLeft: Radius.circular(ScreenUtil().setHeight(45)),
+                  // ),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -307,7 +338,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                           return ListView.builder(
                             scrollDirection: Axis.vertical,
                             padding: EdgeInsets.only(
-                                top: ScreenUtil().setHeight(70),
+                                top: ScreenUtil().setHeight(40),
                                 bottom: ScreenUtil().setHeight(70)),
                             shrinkWrap: true,
                             physics: ScrollPhysics(),
@@ -318,7 +349,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                             },
                           );
                         } else {
-                          return CircularProgressIndicator();
+                          return Center(child: CircularProgressIndicator());
                         }
                       }),
                 ),
@@ -336,7 +367,7 @@ class _ReadingScreenState extends State<ReadingScreen>
     return Material(
       animationDuration: duration,
       // borderRadius: BorderRadius.all(Radius.circular(40)),
-      elevation: 8,
+
       color: Theme.of(context).primaryColor,
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -345,21 +376,13 @@ class _ReadingScreenState extends State<ReadingScreen>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(
-                height: ScreenUtil().setHeight(40),
-              ),
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                        color: Theme.of(context).secondaryHeaderColor,
-                        blurRadius: 10)
-                  ],
                   color: Theme.of(context).canvasColor,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(ScreenUtil().setHeight(75)),
-                      topRight: Radius.circular(ScreenUtil().setHeight(75))),
+                  // borderRadius: BorderRadius.only(
+                  //   topLeft: Radius.circular(ScreenUtil().setHeight(45)),
+                  // ),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -376,7 +399,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                           return ListView.builder(
                             scrollDirection: Axis.vertical,
                             padding: EdgeInsets.only(
-                                top: ScreenUtil().setHeight(70),
+                                top: ScreenUtil().setHeight(40),
                                 bottom: ScreenUtil().setHeight(70)),
                             shrinkWrap: true,
                             physics: ScrollPhysics(),
@@ -387,7 +410,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                             },
                           );
                         } else {
-                          return CircularProgressIndicator();
+                          return Center(child: CircularProgressIndicator());
                         }
                       }),
                 ),
@@ -405,7 +428,7 @@ class _ReadingScreenState extends State<ReadingScreen>
     return Material(
       animationDuration: duration,
       // borderRadius: BorderRadius.all(Radius.circular(40)),
-      elevation: 8,
+
       color: Theme.of(context).primaryColor,
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -414,21 +437,13 @@ class _ReadingScreenState extends State<ReadingScreen>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(
-                height: ScreenUtil().setHeight(40),
-              ),
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                        color: Theme.of(context).secondaryHeaderColor,
-                        blurRadius: 10)
-                  ],
                   color: Theme.of(context).canvasColor,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(ScreenUtil().setHeight(75)),
-                      topRight: Radius.circular(ScreenUtil().setHeight(75))),
+                  // borderRadius: BorderRadius.only(
+                  //   topLeft: Radius.circular(ScreenUtil().setHeight(45)),
+                  // ),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -444,7 +459,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                           return ListView.builder(
                             scrollDirection: Axis.vertical,
                             padding: EdgeInsets.only(
-                                top: ScreenUtil().setHeight(70),
+                                top: ScreenUtil().setHeight(40),
                                 bottom: ScreenUtil().setHeight(70)),
                             shrinkWrap: true,
                             physics: ScrollPhysics(),
@@ -455,7 +470,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                             },
                           );
                         } else {
-                          return CircularProgressIndicator();
+                          return Center(child: CircularProgressIndicator());
                         }
                       }),
                 ),
@@ -473,7 +488,7 @@ class _ReadingScreenState extends State<ReadingScreen>
     return Material(
       animationDuration: duration,
       // borderRadius: BorderRadius.all(Radius.circular(40)),
-      elevation: 8,
+
       color: Theme.of(context).primaryColor,
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -482,21 +497,13 @@ class _ReadingScreenState extends State<ReadingScreen>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(
-                height: ScreenUtil().setHeight(40),
-              ),
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                        color: Theme.of(context).secondaryHeaderColor,
-                        blurRadius: 10)
-                  ],
                   color: Theme.of(context).canvasColor,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(ScreenUtil().setHeight(75)),
-                      topRight: Radius.circular(ScreenUtil().setHeight(75))),
+                  // borderRadius: BorderRadius.only(
+                  //   topLeft: Radius.circular(ScreenUtil().setHeight(45)),
+                  // ),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -513,7 +520,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                           return ListView.builder(
                             scrollDirection: Axis.vertical,
                             padding: EdgeInsets.only(
-                                top: ScreenUtil().setHeight(70),
+                                top: ScreenUtil().setHeight(40),
                                 bottom: ScreenUtil().setHeight(70)),
                             shrinkWrap: true,
                             physics: ScrollPhysics(),
@@ -524,7 +531,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                             },
                           );
                         } else {
-                          return CircularProgressIndicator();
+                          return Center(child: CircularProgressIndicator());
                         }
                       }),
                 ),
@@ -542,7 +549,7 @@ class _ReadingScreenState extends State<ReadingScreen>
     return Material(
       animationDuration: duration,
       // borderRadius: BorderRadius.all(Radius.circular(40)),
-      elevation: 8,
+
       color: Theme.of(context).primaryColor,
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -551,21 +558,13 @@ class _ReadingScreenState extends State<ReadingScreen>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(
-                height: ScreenUtil().setHeight(40),
-              ),
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                        color: Theme.of(context).secondaryHeaderColor,
-                        blurRadius: 10)
-                  ],
                   color: Theme.of(context).canvasColor,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(ScreenUtil().setHeight(75)),
-                      topRight: Radius.circular(ScreenUtil().setHeight(75))),
+                  // borderRadius: BorderRadius.only(
+                  //   topLeft: Radius.circular(ScreenUtil().setHeight(45)),
+                  // ),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -581,7 +580,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                           return ListView.builder(
                             scrollDirection: Axis.vertical,
                             padding: EdgeInsets.only(
-                                top: ScreenUtil().setHeight(70),
+                                top: ScreenUtil().setHeight(40),
                                 bottom: ScreenUtil().setHeight(70)),
                             shrinkWrap: true,
                             physics: ScrollPhysics(),
@@ -592,7 +591,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                             },
                           );
                         } else {
-                          return CircularProgressIndicator();
+                          return Center(child: CircularProgressIndicator());
                         }
                       }),
                 ),
@@ -610,7 +609,7 @@ class _ReadingScreenState extends State<ReadingScreen>
     return Material(
       animationDuration: duration,
       // borderRadius: BorderRadius.all(Radius.circular(40)),
-      elevation: 8,
+
       color: Theme.of(context).primaryColor,
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -619,21 +618,13 @@ class _ReadingScreenState extends State<ReadingScreen>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(
-                height: ScreenUtil().setHeight(40),
-              ),
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                        color: Theme.of(context).secondaryHeaderColor,
-                        blurRadius: 10)
-                  ],
                   color: Theme.of(context).canvasColor,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(ScreenUtil().setHeight(75)),
-                      topRight: Radius.circular(ScreenUtil().setHeight(75))),
+                  // borderRadius: BorderRadius.only(
+                  //   topLeft: Radius.circular(ScreenUtil().setHeight(45)),
+                  // ),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -649,7 +640,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                           return ListView.builder(
                             scrollDirection: Axis.vertical,
                             padding: EdgeInsets.only(
-                                top: ScreenUtil().setHeight(70),
+                                top: ScreenUtil().setHeight(40),
                                 bottom: ScreenUtil().setHeight(70)),
                             shrinkWrap: true,
                             physics: ScrollPhysics(),
@@ -660,7 +651,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                             },
                           );
                         } else {
-                          return CircularProgressIndicator();
+                          return Center(child: CircularProgressIndicator());
                         }
                       }),
                 ),
@@ -678,7 +669,7 @@ class _ReadingScreenState extends State<ReadingScreen>
   //   return Material(
   //     animationDuration: duration,
   //     // borderRadius: BorderRadius.all(Radius.circular(40)),
-  //     elevation: 8,
+  //
   //     color: Theme.of(context).primaryColor,
   //     child: SingleChildScrollView(
   //       scrollDirection: Axis.vertical,
@@ -715,7 +706,7 @@ class _ReadingScreenState extends State<ReadingScreen>
   //                             .toList();
   //                         return ListView.builder(
   //                           scrollDirection: Axis.vertical,
-  //                           padding: EdgeInsets.only(top: ScreenUtil().setHeight(70), bottom: ScreenUtil().setHeight(70)),
+  //                           padding: EdgeInsets.only(top: ScreenUtil().setHeight(40), bottom: ScreenUtil().setHeight(70)),
   //                           shrinkWrap: true,
   //                           physics: ScrollPhysics(),
   //                           itemCount: titleSelection.length,
@@ -743,7 +734,7 @@ class _ReadingScreenState extends State<ReadingScreen>
     return Material(
       animationDuration: duration,
       // borderRadius: BorderRadius.all(Radius.circular(40)),
-      elevation: 8,
+
       color: Theme.of(context).primaryColor,
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -752,21 +743,13 @@ class _ReadingScreenState extends State<ReadingScreen>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(
-                height: ScreenUtil().setHeight(40),
-              ),
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                        color: Theme.of(context).secondaryHeaderColor,
-                        blurRadius: 10)
-                  ],
                   color: Theme.of(context).canvasColor,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(ScreenUtil().setHeight(75)),
-                      topRight: Radius.circular(ScreenUtil().setHeight(75))),
+                  // borderRadius: BorderRadius.only(
+                  //   topLeft: Radius.circular(ScreenUtil().setHeight(45)),
+                  // ),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -782,7 +765,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                           return ListView.builder(
                             scrollDirection: Axis.vertical,
                             padding: EdgeInsets.only(
-                                top: ScreenUtil().setHeight(70),
+                                top: ScreenUtil().setHeight(40),
                                 bottom: ScreenUtil().setHeight(70)),
                             shrinkWrap: true,
                             physics: ScrollPhysics(),
@@ -811,7 +794,7 @@ class _ReadingScreenState extends State<ReadingScreen>
     return Material(
       animationDuration: duration,
       // borderRadius: BorderRadius.all(Radius.circular(40)),
-      elevation: 8,
+
       color: Theme.of(context).primaryColor,
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -821,21 +804,13 @@ class _ReadingScreenState extends State<ReadingScreen>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(
-                height: ScreenUtil().setHeight(40),
-              ),
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                        color: Theme.of(context).secondaryHeaderColor,
-                        blurRadius: 10)
-                  ],
                   color: Theme.of(context).canvasColor,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(ScreenUtil().setHeight(75)),
-                      topRight: Radius.circular(ScreenUtil().setHeight(75))),
+                  // borderRadius: BorderRadius.only(
+                  //   topLeft: Radius.circular(ScreenUtil().setHeight(45)),
+                  // ),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -851,7 +826,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                           return ListView.builder(
                             scrollDirection: Axis.vertical,
                             padding: EdgeInsets.only(
-                                top: ScreenUtil().setHeight(70),
+                                top: ScreenUtil().setHeight(40),
                                 bottom: ScreenUtil().setHeight(70)),
                             shrinkWrap: true,
                             physics: ScrollPhysics(),
@@ -880,7 +855,7 @@ class _ReadingScreenState extends State<ReadingScreen>
     return Material(
       animationDuration: duration,
       // borderRadius: BorderRadius.all(Radius.circular(40)),
-      elevation: 8,
+
       color: Theme.of(context).primaryColor,
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -890,21 +865,13 @@ class _ReadingScreenState extends State<ReadingScreen>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(
-                height: ScreenUtil().setHeight(40),
-              ),
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                        color: Theme.of(context).secondaryHeaderColor,
-                        blurRadius: 10)
-                  ],
                   color: Theme.of(context).canvasColor,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(ScreenUtil().setHeight(75)),
-                      topRight: Radius.circular(ScreenUtil().setHeight(75))),
+                  // borderRadius: BorderRadius.only(
+                  //   topLeft: Radius.circular(ScreenUtil().setHeight(45)),
+                  // ),
                 ),
                 child: Container(
                   // height: screenHeight,
@@ -920,7 +887,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                           return ListView.builder(
                             scrollDirection: Axis.vertical,
                             padding: EdgeInsets.only(
-                                top: ScreenUtil().setHeight(70),
+                                top: ScreenUtil().setHeight(40),
                                 bottom: ScreenUtil().setHeight(70)),
                             shrinkWrap: true,
                             physics: ScrollPhysics(),
@@ -950,8 +917,8 @@ class _ReadingScreenState extends State<ReadingScreen>
         trailing: FittedBox(
           child: CheckboxGroup(
               checked: checkedReadingItems,
-              checkColor: Colors.black,
-              activeColor: Theme.of(context).secondaryHeaderColor,
+              checkColor: Colors.white,
+              activeColor: Colors.black,
               labels: [reading.id],
               labelStyle: TextStyle(fontSize: 0),
               onSelected: (List<String> checked) {

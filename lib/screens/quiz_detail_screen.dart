@@ -53,7 +53,16 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
           backgroundColor: Colors.white,
           key: _key,
           appBar: AppBar(
-            title: Text('Quiz'),
+            leading: IconButton(
+                icon: Icon(Icons.arrow_back_ios),
+                onPressed: () {
+                  Navigator.pop(context);
+                }),
+            title: FittedBox(
+                child: Text(
+              quiz.quizTitle,
+              style: TextStyle(color: Colors.white),
+            )),
             elevation: 0,
           ),
           body: SingleChildScrollView(
@@ -85,6 +94,8 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
                           Expanded(
                               child: Text(
                             quiz.question[_currentIndex],
+                            maxLines: 5,
+                            overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                                 fontSize: ScreenUtil().setSp(18),
                                 fontWeight: FontWeight.w600,
@@ -108,52 +119,58 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
                               physics: NeverScrollableScrollPhysics(),
                               itemCount: options.keys.length,
                               itemBuilder: (context, index) {
-                                return Card(
-                                  color: Colors.grey,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: RadioListTile(
-                                      activeColor: (_isRadioEnabled)
-                                          ? Colors.deepPurpleAccent
-                                          : Colors.deepPurpleAccent,
-                                      title: Text(
-                                        options["$index"],
-                                        maxLines: 3,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontFamily: 'Montserrat',
-                                            fontSize: ScreenUtil().setSp(16),
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      value: options["$index"],
-                                      groupValue: _selectedAnswer,
-                                      onChanged: _isRadioEnabled
-                                          ? (value) {
-                                              setState(() {
-                                                _selectedAnswer = value;
-                                                if (_selectedAnswer ==
-                                                    quiz.answers[
-                                                        _currentIndex]) {
-                                                  answerScore = answerScore + 1;
-                                                  _onChanged();
+                                return Padding(
+                                  padding: EdgeInsets.only(
+                                      top: ScreenUtil().setHeight(8)),
+                                  child: Card(
+                                    color: Colors.grey,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: RadioListTile(
+                                        activeColor: (_isRadioEnabled)
+                                            ? Colors.deepPurpleAccent
+                                            : Colors.deepPurpleAccent,
+                                        title: Text(
+                                          options["$index"],
+                                          maxLines: 4,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontFamily: 'Montserrat',
+                                              fontSize: ScreenUtil().setSp(15),
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        value: options["$index"],
+                                        groupValue: _selectedAnswer,
+                                        onChanged: _isRadioEnabled
+                                            ? (value) {
+                                                setState(() {
+                                                  _selectedAnswer = value;
+                                                  if (_selectedAnswer ==
+                                                      quiz.answers[
+                                                          _currentIndex]) {
+                                                    answerScore =
+                                                        answerScore + 1;
+                                                    _onChanged();
 
-                                                  _answer =
-                                                      'Answer is right, well done!';
+                                                    _answer =
+                                                        'Answer is right, well done!';
 
-                                                  print(_answer);
-                                                  print(answerScore);
-                                                } else {
-                                                  _answer =
-                                                      'Wrong Answer, try again';
-                                                  print(answerScore);
-                                                  _onChanged();
+                                                    print(_answer);
+                                                    print(answerScore);
+                                                  } else {
+                                                    _answer =
+                                                        'Wrong Answer, try again';
+                                                    print(answerScore);
+                                                    _onChanged();
 
-                                                  print(_answer);
-                                                }
-                                              });
-                                            }
-                                          : null),
+                                                    print(_answer);
+                                                  }
+                                                });
+                                              }
+                                            : null),
+                                  ),
                                 );
                               }),
                         ),
@@ -223,7 +240,7 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
                                             BorderRadius.circular(20)),
                                     child: Text(
                                       ' Correct Answer is ${quiz.answers[_currentIndex]} ',
-                                      maxLines: 4,
+                                      maxLines: 5,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
                                           color: Colors.black,

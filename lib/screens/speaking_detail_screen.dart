@@ -110,6 +110,15 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
     screenWidth = size.width;
     return Scaffold(
       appBar: AppBar(
+        title: Text(speaking.title.replaceAll("_n", "\n"),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              fontFamily: 'Montserrat',
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: ScreenUtil().setSp(20),
+            )),
         elevation: 0.0,
         backgroundColor: Theme.of(context).primaryColor,
         bottomOpacity: 0.0,
@@ -130,30 +139,8 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.only(
-                        left: ScreenUtil().setWidth(20),
-                        right: ScreenUtil().setWidth(20),
-                      ),
-                      child: FittedBox(
-                        child: Text(speaking.title.replaceAll("_n", "\n"),
-                            maxLines: 2,
-                            style: TextStyle(
-                              fontFamily: 'Montserrat',
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: ScreenUtil().setSp(25),
-                            )),
-                      ),
-
-                      // Text('Prep',
-                      //     style: TextStyle(
-                      //         fontFamily: 'Montserrat',
-                      //         color: Colors.white,
-                      //         fontSize: 25.0))
-                    ),
                     SizedBox(
-                      height: ScreenUtil().setHeight(40),
+                      height: ScreenUtil().setHeight(20),
                     ),
                     Container(
                       // height: MediaQuery.of(context).size.height,
@@ -217,7 +204,7 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
                                           leading: Container(
                                               height:
                                                   ScreenUtil().setHeight(20),
-                                              width: ScreenUtil().setWidth(20),
+                                              width: ScreenUtil().setWidth(10),
                                               decoration: BoxDecoration(
                                                 color: Theme.of(context)
                                                     .accentColor,
@@ -225,6 +212,7 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
                                               )),
                                           title: Text(
                                             resultant.replaceAll('_n', '\n'),
+                                            textAlign: TextAlign.start,
                                             style: TextStyle(
                                               fontSize: ScreenUtil().setSp(16),
                                               fontFamily: 'Montserrat',
@@ -312,19 +300,22 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
                                       vocabResult = speaking.vocabulary[index];
                                       return ListTile(
                                         leading: Container(
-                                            height: ScreenUtil().setHeight(15),
-                                            width: ScreenUtil().setWidth(15),
+                                            height: ScreenUtil().setHeight(20),
+                                            width: ScreenUtil().setWidth(10),
                                             decoration: BoxDecoration(
                                               color:
                                                   Theme.of(context).accentColor,
                                               shape: BoxShape.circle,
                                             )),
-                                        title: Text(
-                                          vocabResult.replaceAll("_n", "\n"),
-                                          style: TextStyle(
-                                            fontSize: ScreenUtil().setSp(16),
-                                            fontFamily: 'Montserrat',
-                                            fontWeight: FontWeight.w400,
+                                        title: Padding(
+                                          padding: const EdgeInsets.all(2.0),
+                                          child: Text(
+                                            vocabResult.replaceAll("_n", "\n"),
+                                            style: TextStyle(
+                                              fontSize: ScreenUtil().setSp(16),
+                                              fontFamily: 'Montserrat',
+                                              fontWeight: FontWeight.w400,
+                                            ),
                                           ),
                                         ),
                                       );

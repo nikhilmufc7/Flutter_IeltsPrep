@@ -66,6 +66,20 @@ class _ListeningScreenState extends State<ListeningScreen>
     screenWidth = size.width;
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            color: Colors.white,
+            onPressed: () {
+              Navigator.of(context).pop();
+            }),
+        title: Text('Listening Exercises',
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              fontFamily: 'Montserrat',
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: ScreenUtil().setSp(20),
+            )),
         elevation: 0.0,
         backgroundColor: Theme.of(context).primaryColor,
         bottomOpacity: 0.0,
@@ -94,47 +108,7 @@ class _ListeningScreenState extends State<ListeningScreen>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   mainAxisSize: MainAxisSize.max,
-              //   children: [
-              //     Padding(
-              //       padding: const EdgeInsets.only(left: 18.0),
-              //       child: InkWell(
-              //         child: Icon(Icons.arrow_back, color: Colors.white),
-              //         onTap: () {
-              //           Navigator.pop(context);
-              //         },
-              //       ),
-              //     ),
-              //     Padding(
-              //       padding: const EdgeInsets.only(right: 18.0),
-              //       child: Icon(Icons.settings, color: Colors.white),
-              //     ),
-              //   ],
-              // ),
-
-              Padding(
-                padding: EdgeInsets.only(left: ScreenUtil().setWidth(40)),
-                child: Row(
-                  children: <Widget>[
-                    Text('Listening Exercises',
-                        style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: ScreenUtil().setSp(25),
-                        )),
-                    SizedBox(width: ScreenUtil().setWidth(10)),
-                    // Text('Prep',
-                    //     style: TextStyle(
-                    //         fontFamily: 'Montserrat',
-                    //         color: Colors.white,
-                    //         fontSize: 25.0))
-                  ],
-                ),
-              ),
-              SizedBox(height: ScreenUtil().setHeight(40)),
+              SizedBox(height: ScreenUtil().setHeight(20)),
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
@@ -173,7 +147,7 @@ class _ListeningScreenState extends State<ListeningScreen>
                             },
                           );
                         } else {
-                          return CircularProgressIndicator();
+                          return Center(child: CircularProgressIndicator());
                         }
                       }),
                 ),
@@ -200,8 +174,8 @@ class _ListeningScreenState extends State<ListeningScreen>
           child: CheckboxGroup(
               checked: checkedListeningItems,
               labels: [listening.id],
-              checkColor: Colors.black,
-              activeColor: Theme.of(context).secondaryHeaderColor,
+              checkColor: Colors.white,
+              activeColor: Colors.black,
               labelStyle: TextStyle(fontSize: 0),
               onSelected: (List<String> checked) {
                 print("${checked.toString()}");

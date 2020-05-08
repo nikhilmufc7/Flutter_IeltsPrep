@@ -52,6 +52,24 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
     screenWidth = size.width;
     return Scaffold(
       appBar: AppBar(
+        title: Text(
+            reading.title.replaceAll(
+              "_n",
+              "\n",
+            ),
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+                fontFamily: 'Montserrat',
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: ScreenUtil().setSp(20))),
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            color: Colors.white,
+            onPressed: () {
+              Navigator.of(context).pop();
+            }),
         elevation: 0.0,
         backgroundColor: Theme.of(context).primaryColor,
         bottomOpacity: 0.0,
@@ -72,26 +90,6 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.only(
-                          left: ScreenUtil().setWidth(20),
-                          right: ScreenUtil().setWidth(20)),
-                      child: FittedBox(
-                        child: Text(reading.title.replaceAll("_n", "\n"),
-                            maxLines: 2,
-                            style: TextStyle(
-                                fontFamily: 'Montserrat',
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: ScreenUtil().setSp(25))),
-                      ),
-
-                      // Text('Prep',
-                      //     style: TextStyle(
-                      //         fontFamily: 'Montserrat',
-                      //         color: Colors.white,
-                      //         fontSize: 25.0))
-                    ),
                     SizedBox(height: ScreenUtil().setHeight(40)),
                     Container(
                       // height: MediaQuery.of(context).size.height,

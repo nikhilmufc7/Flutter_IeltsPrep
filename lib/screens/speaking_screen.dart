@@ -172,8 +172,8 @@ class _SpeakingScreenState extends State<SpeakingScreen>
         trailing: FittedBox(
           child: CheckboxGroup(
               checked: checkedSpeakingItems,
-              checkColor: Colors.black,
-              activeColor: Colors.white,
+              checkColor: Colors.white,
+              activeColor: Colors.black,
               labels: [speaking.id],
               labelStyle: TextStyle(fontSize: 0),
               onSelected: (List<String> checked) {

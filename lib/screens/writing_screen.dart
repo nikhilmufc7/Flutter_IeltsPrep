@@ -191,8 +191,8 @@ class _WritingScreenState extends State<WritingScreen>
         trailing: FittedBox(
           child: CheckboxGroup(
               checked: checkedWritingItems,
-              checkColor: Colors.black,
-              activeColor: Colors.white,
+              checkColor: Colors.white,
+              activeColor: Colors.black,
               labels: [lesson.id],
               labelStyle: TextStyle(fontSize: 0),
               onSelected: (List<String> checked) {
