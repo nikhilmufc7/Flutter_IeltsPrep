@@ -64,13 +64,29 @@ class _SpeakingScreenState extends State<SpeakingScreen>
     screenWidth = size.width;
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            }),
         elevation: 0.0,
         backgroundColor: Theme.of(context).primaryColor,
+        title: Text('Speaking Exercises',
+            style: TextStyle(
+              fontFamily: 'Montserrat',
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: ScreenUtil().setSp(20),
+            )),
         bottomOpacity: 0.0,
       ),
       body: Stack(
         children: <Widget>[
           // MenuPage(),
+
           dashboard(context),
         ],
       ),
@@ -92,22 +108,7 @@ class _SpeakingScreenState extends State<SpeakingScreen>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(left: ScreenUtil().setWidth(40)),
-                child: Row(
-                  children: <Widget>[
-                    Text('Speaking Exercises',
-                        style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: ScreenUtil().setSp(25),
-                        )),
-                    SizedBox(width: ScreenUtil().setWidth(10)),
-                  ],
-                ),
-              ),
-              SizedBox(height: ScreenUtil().setHeight(40)),
+              SizedBox(height: ScreenUtil().setHeight(20)),
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
@@ -172,7 +173,7 @@ class _SpeakingScreenState extends State<SpeakingScreen>
           child: CheckboxGroup(
               checked: checkedSpeakingItems,
               checkColor: Colors.black,
-              activeColor: Theme.of(context).secondaryHeaderColor,
+              activeColor: Colors.white,
               labels: [speaking.id],
               labelStyle: TextStyle(fontSize: 0),
               onSelected: (List<String> checked) {

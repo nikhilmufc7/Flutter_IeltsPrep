@@ -51,6 +51,20 @@ class _WritingDetailScreenState extends State<WritingDetailScreen>
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            color: Colors.white,
+            onPressed: () {
+              Navigator.of(context).pop();
+            }),
+        title: Text(lesson.title,
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+                fontFamily: 'Montserrat',
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: ScreenUtil().setSp(20))),
         backgroundColor: Theme.of(context).primaryColor,
         bottomOpacity: 0.0,
       ),
@@ -66,25 +80,6 @@ class _WritingDetailScreenState extends State<WritingDetailScreen>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(
-                      left: ScreenUtil().setHeight(ScreenUtil().setHeight(10))),
-                  child: FittedBox(
-                    child: Text(lesson.title,
-                        maxLines: 2,
-                        style: TextStyle(
-                            fontFamily: 'Montserrat',
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: ScreenUtil().setSp(25))),
-                  ),
-
-                  // Text('Prep',
-                  //     style: TextStyle(
-                  //         fontFamily: 'Montserrat',
-                  //         color: Colors.white,
-                  //         fontSize: 25.0))
-                ),
                 SizedBox(height: ScreenUtil().setHeight(40)),
                 Container(
                     // height: MediaQuery.of(context).size.height,

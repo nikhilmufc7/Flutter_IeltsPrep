@@ -65,6 +65,16 @@ class _WritingScreenState extends State<WritingScreen>
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Theme.of(context).primaryColor,
+        title: Text(
+          'Writing Exercises',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            color: Colors.white,
+            onPressed: () {
+              Navigator.of(context).pop();
+            }),
         bottomOpacity: 0.0,
       ),
       // floatingActionButton: FloatingActionButton(
@@ -117,27 +127,7 @@ class _WritingScreenState extends State<WritingScreen>
               //   ],
               // ),
 
-              Padding(
-                padding: EdgeInsets.only(left: ScreenUtil().setWidth(40)),
-                child: Row(
-                  children: <Widget>[
-                    Text('Writing Exercises',
-                        style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: ScreenUtil().setHeight(25),
-                        )),
-                    SizedBox(width: ScreenUtil().setWidth(10)),
-                    // Text('Prep',
-                    //     style: TextStyle(
-                    //         fontFamily: 'Montserrat',
-                    //         color: Colors.white,
-                    //         fontSize: 25.0))
-                  ],
-                ),
-              ),
-              SizedBox(height: ScreenUtil().setHeight(40)),
+              SizedBox(height: ScreenUtil().setHeight(20)),
               Container(
                 // height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
@@ -176,7 +166,7 @@ class _WritingScreenState extends State<WritingScreen>
                             },
                           );
                         } else {
-                          return CircularProgressIndicator();
+                          return Center(child: CircularProgressIndicator());
                         }
                       }),
                 ),
@@ -202,7 +192,7 @@ class _WritingScreenState extends State<WritingScreen>
           child: CheckboxGroup(
               checked: checkedWritingItems,
               checkColor: Colors.black,
-              activeColor: Theme.of(context).secondaryHeaderColor,
+              activeColor: Colors.white,
               labels: [lesson.id],
               labelStyle: TextStyle(fontSize: 0),
               onSelected: (List<String> checked) {

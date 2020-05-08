@@ -48,7 +48,7 @@ class LessonCard extends StatelessWidget {
               decoration: BoxDecoration(
                   border: Border(
                       right: BorderSide(width: 1.0, color: Colors.white24))),
-              child: Icon(Icons.autorenew, color: Colors.white),
+              child: Icon(Icons.device_hub, color: Colors.white),
             ),
             title: Text(
               title,

@@ -47,11 +47,11 @@ class _BlogScreenState extends State<BlogScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).bottomAppBarColor,
       appBar: AppBar(
-        centerTitle: true,
         title: Text(
           'Blog',
           style: TextStyle(
               fontWeight: FontWeight.bold,
+              color: Colors.white,
               letterSpacing: 1.2,
               fontSize: ScreenUtil().setSp(20),
               fontFamily: 'Montserrat'),
@@ -78,7 +78,6 @@ class _BlogScreenState extends State<BlogScreen> {
                         fontWeight: FontWeight.w900,
                         letterSpacing: 1.2,
                         color: Theme.of(context).accentColor,
-                        fontStyle: FontStyle.italic,
                         fontSize: ScreenUtil().setSp(20),
                         fontFamily: 'Montserrat'),
                   )),
@@ -102,7 +101,7 @@ class _BlogScreenState extends State<BlogScreen> {
                         },
                       );
                     } else {
-                      return CircularProgressIndicator();
+                      return Center(child: CircularProgressIndicator());
                     }
                   }),
             ),
@@ -119,7 +118,6 @@ class _BlogScreenState extends State<BlogScreen> {
                         fontWeight: FontWeight.w900,
                         letterSpacing: 1.2,
                         color: Theme.of(context).accentColor,
-                        fontStyle: FontStyle.italic,
                         fontSize: ScreenUtil().setSp(20),
                         fontFamily: 'Montserrat'),
                   ),
@@ -146,7 +144,7 @@ class _BlogScreenState extends State<BlogScreen> {
                         },
                       );
                     } else {
-                      return CircularProgressIndicator();
+                      return Center(child: CircularProgressIndicator());
                     }
                   }),
             ),
@@ -203,6 +201,8 @@ class _BlogScreenState extends State<BlogScreen> {
                         Flexible(
                           child: Text(
                             blog.title,
+                            maxLines: 3,
+                            overflow: TextOverflow.clip,
                             style: TextStyle(
                               color: Theme.of(context).accentColor,
                               fontWeight: FontWeight.bold,
