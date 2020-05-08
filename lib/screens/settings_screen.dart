@@ -1,6 +1,7 @@
 import 'package:day_night_switch/day_night_switch.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ielts/services/auth.dart';
+import 'package:ielts/utils/app_constants.dart';
 
 import 'package:ielts/utils/themeChange.dart';
 
@@ -45,86 +46,120 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).canvasColor,
       appBar: AppBar(
-        title: Text("Settings"),
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            color: Colors.white,
+            onPressed: () {
+              Navigator.of(context).pushReplacementNamed(RoutePaths.home);
+            }),
+        title: Text(
+          "Settings",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
       ),
-      body: ListView(
+      body: Stack(
         children: <Widget>[
-          ListTile(
-            leading: Icon(Icons.wb_sunny),
-            title: Text('Dark Theme'),
-            contentPadding: EdgeInsets.only(left: ScreenUtil().setWidth(16)),
-            trailing: Transform.scale(
-              scale: 0.4,
-              child: DayNightSwitch(
-                value: _darkTheme,
-                onChanged: (val) {
-                  setState(() {
-                    _darkTheme = val;
-                  });
-                  onThemeChanged(val, themeNotifier);
-                },
-              ),
-            ),
-          ),
-          SizedBox(
-            height: ScreenUtil().setHeight(20),
-          ),
-          ListTile(
-            leading: Icon(Icons.email),
-            title: Text('Subscribe to emails'),
-            subtitle:
-                Text('Get the latest news about IELTS directly to your mail'),
-            contentPadding: EdgeInsets.only(left: ScreenUtil().setWidth(16)),
-            trailing: Transform.scale(
-              scale: 0.4,
-              child: DayNightSwitch(
-                value: _subscribleToEmails,
-                onChanged: (val) {
-                  setState(() {
-                    _subscribleToEmails = val;
-                  });
-                },
-              ),
-            ),
-          ),
-          SizedBox(
-            height: ScreenUtil().setHeight(20),
-          ),
-          ListTile(
-            leading: Icon(Icons.exit_to_app),
-            title: Text('Provide Feedback'),
-            subtitle: Text('Helps us be better'),
-            contentPadding: EdgeInsets.only(left: ScreenUtil().setWidth(16)),
-            trailing: Padding(
-              padding: EdgeInsets.only(right: ScreenUtil().setWidth(18)),
-              child: Transform.scale(
-                scale: 0.8,
-                child: RaisedButton(
-                  elevation: 8,
-                  color: Colors.deepPurpleAccent,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(100)),
-                  child: Text(
-                    'Go',
-                    style: TextStyle(color: Colors.white),
+          ListView(
+            children: <Widget>[
+              ListTile(
+                leading: Icon(Icons.wb_sunny),
+                title: Text('Dark Theme'),
+                contentPadding:
+                    EdgeInsets.only(left: ScreenUtil().setWidth(16)),
+                trailing: Transform.scale(
+                  scale: 0.4,
+                  child: DayNightSwitch(
+                    value: _darkTheme,
+                    onChanged: (val) {
+                      setState(() {
+                        _darkTheme = val;
+                      });
+                      onThemeChanged(val, themeNotifier);
+                    },
                   ),
-                  onPressed: _launchURL,
                 ),
               ),
-            ),
+              SizedBox(
+                height: ScreenUtil().setHeight(20),
+              ),
+              ListTile(
+                leading: Icon(Icons.email),
+                title: Text('Subscribe to emails'),
+                subtitle: Text(
+                    'Get the latest news about IELTS directly to your mail'),
+                contentPadding:
+                    EdgeInsets.only(left: ScreenUtil().setWidth(16)),
+                trailing: Transform.scale(
+                  scale: 0.4,
+                  child: DayNightSwitch(
+                    value: _subscribleToEmails,
+                    onChanged: (val) {
+                      setState(() {
+                        _subscribleToEmails = val;
+                      });
+                    },
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: ScreenUtil().setHeight(20),
+              ),
+              ListTile(
+                leading: Icon(Icons.exit_to_app),
+                title: Text('Provide Feedback'),
+                subtitle: Text('Helps us be better'),
+                contentPadding:
+                    EdgeInsets.only(left: ScreenUtil().setWidth(16)),
+                trailing: Padding(
+                  padding: EdgeInsets.only(right: ScreenUtil().setWidth(18)),
+                  child: Transform.scale(
+                    scale: 0.8,
+                    child: RaisedButton(
+                      elevation: 8,
+                      color: Colors.deepPurpleAccent,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(100)),
+                      child: Text(
+                        'Go',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: _launchURL,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: ScreenUtil().setHeight(20),
+              ),
+            ],
           ),
-          SizedBox(
-            height: ScreenUtil().setHeight(20),
-          ),
-          Center(
-            child: RaisedButton(
-              onPressed: () {
-                signOutGoogle(context);
-              },
-              color: Colors.deepPurpleAccent,
-              child: Text('Sign Out', style: TextStyle(color: Colors.white)),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(50)),
+              child: FlatButton(
+                onPressed: () {
+                  signOutGoogle(context);
+                },
+                child: Container(
+                  height: ScreenUtil().setHeight(50),
+                  width: ScreenUtil().setWidth(200),
+                  padding: EdgeInsets.symmetric(
+                      vertical: ScreenUtil().setHeight(15)),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      color: Colors.deepPurpleAccent),
+                  child: FittedBox(
+                    child: Text(
+                      'Sign Out',
+                      style: TextStyle(
+                          fontSize: ScreenUtil().setSp(20),
+                          color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
             ),
           )
         ],
