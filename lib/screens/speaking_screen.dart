@@ -146,7 +146,7 @@ class _SpeakingScreenState extends State<SpeakingScreen>
                             },
                           );
                         } else {
-                          return CircularProgressIndicator();
+                          return Center(child: CircularProgressIndicator());
                         }
                       }),
                 ),

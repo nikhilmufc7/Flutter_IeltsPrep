@@ -117,8 +117,8 @@ class _VocabularyScreenState extends State<VocabularyScreen>
     CardController controller;
     return Material(
       animationDuration: duration,
-      borderRadius:
-          BorderRadius.all(Radius.circular(ScreenUtil().setWidth(40))),
+      // borderRadius:
+      //     BorderRadius.all(Radius.circular(ScreenUtil().setWidth(40))),
       elevation: 8,
       color: Theme.of(context).primaryColor,
       child: SingleChildScrollView(
