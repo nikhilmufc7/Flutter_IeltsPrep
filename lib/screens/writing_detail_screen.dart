@@ -64,7 +64,7 @@ class _WritingDetailScreenState extends State<WritingDetailScreen>
                 fontFamily: 'Montserrat',
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
-                fontSize: ScreenUtil().setSp(20))),
+                fontSize: ScreenUtil().setSp(18))),
         backgroundColor: Theme.of(context).primaryColor,
         bottomOpacity: 0.0,
       ),
@@ -103,46 +103,52 @@ class _WritingDetailScreenState extends State<WritingDetailScreen>
                         shrinkWrap: true,
                         physics: ClampingScrollPhysics(),
                         children: <Widget>[
-                          Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15)),
-                            elevation: 8,
-                            child: Column(
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    'Question',
-                                    style: TextStyle(
-                                        fontFamily: 'Montserrat',
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: ScreenUtil().setSp(20),
-                                        color: Color(0xFF21BFBD)),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.all(
-                                      ScreenUtil().setHeight(10)),
-                                  child: Text(
-                                    lesson.question.replaceAll("_n", "\n"),
-                                    style: TextStyle(
-                                      fontSize: ScreenUtil().setSp(16),
-                                      fontFamily: 'Montserrat',
+                          Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15)),
+                              elevation: 8,
+                              child: Column(
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      'Question',
+                                      style: TextStyle(
+                                          fontFamily: 'Montserrat',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: ScreenUtil().setSp(20),
+                                          color: Color(0xFF21BFBD)),
                                     ),
                                   ),
-                                ),
-                              ],
+                                  Padding(
+                                    padding: EdgeInsets.all(
+                                        ScreenUtil().setHeight(10)),
+                                    child: Text(
+                                      lesson.question.replaceAll("_n", "\n"),
+                                      style: TextStyle(
+                                        fontSize: ScreenUtil().setSp(16),
+                                        fontFamily: 'Montserrat',
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           SizedBox(height: ScreenUtil().setHeight(25)),
-                          Card(
-                            elevation: 8,
-                            child: CachedNetworkImage(
-                              imageUrl: lesson.image,
-                              placeholder: (context, url) =>
-                                  Center(child: CircularProgressIndicator()),
-                              errorWidget: (context, url, error) =>
-                                  Icon(Icons.error),
+                          Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: FittedBox(
+                              fit: BoxFit.fill,
+                              child: CachedNetworkImage(
+                                imageUrl: lesson.image,
+                                placeholder: (context, url) =>
+                                    Center(child: CircularProgressIndicator()),
+                                errorWidget: (context, url, error) =>
+                                    Icon(Icons.error),
+                              ),
                             ),
                           ),
                           SizedBox(height: ScreenUtil().setHeight(20)),

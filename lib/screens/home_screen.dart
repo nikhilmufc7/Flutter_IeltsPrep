@@ -202,8 +202,8 @@ class _HomeScreenState extends State<HomeScreen>
                                   children: <Widget>[
                                     CupertinoButton(
                                       child: Container(
-                                        height: ScreenUtil().setHeight(180),
-                                        width: ScreenUtil().setWidth(150),
+                                        height: screenHeight / 4.6,
+                                        width: screenWidth / 2.8,
                                         decoration: BoxDecoration(
                                           image: DecorationImage(
                                             image: AssetImage(
@@ -237,8 +237,8 @@ class _HomeScreenState extends State<HomeScreen>
                                     ),
                                     CupertinoButton(
                                       child: Container(
-                                        height: ScreenUtil().setHeight(180),
-                                        width: ScreenUtil().setWidth(150),
+                                        height: screenHeight / 4.6,
+                                        width: screenWidth / 2.8,
                                         decoration: BoxDecoration(
                                           image: DecorationImage(
                                             image: AssetImage(
@@ -280,8 +280,8 @@ class _HomeScreenState extends State<HomeScreen>
                                   children: <Widget>[
                                     CupertinoButton(
                                       child: Container(
-                                        height: ScreenUtil().setHeight(180),
-                                        width: ScreenUtil().setWidth(150),
+                                        height: screenHeight / 4.6,
+                                        width: screenWidth / 2.8,
                                         decoration: BoxDecoration(
                                           image: DecorationImage(
                                             image: AssetImage(
@@ -325,8 +325,8 @@ class _HomeScreenState extends State<HomeScreen>
                                     ),
                                     CupertinoButton(
                                       child: Container(
-                                        height: ScreenUtil().setHeight(180),
-                                        width: ScreenUtil().setWidth(150),
+                                        height: screenHeight / 4.6,
+                                        width: screenWidth / 2.8,
                                         decoration: BoxDecoration(
                                           image: DecorationImage(
                                             image: AssetImage(

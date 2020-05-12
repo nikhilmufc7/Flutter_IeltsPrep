@@ -34,8 +34,8 @@ class LessonCard extends StatelessWidget {
       child: Card(
         color: Color.fromRGBO(64, 75, 96, .9),
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(ScreenUtil().setWidth(15))),
-        elevation: 8.0,
+            borderRadius: BorderRadius.circular(ScreenUtil().setWidth(10))),
+        elevation: 0.0,
         margin: EdgeInsets.symmetric(
             horizontal: ScreenUtil().setWidth(10),
             vertical: ScreenUtil().setHeight(6)),
