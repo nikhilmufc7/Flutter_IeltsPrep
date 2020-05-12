@@ -25,6 +25,7 @@ Flutter/flutter_export_environment.sh
 ServiceDefinitions.json
 Runner/GeneratedPluginRegistrant.*
 GoogleService-Info.plist
+secret.base64
 
 # Exceptions to above rules.
 !default.mode1v3
