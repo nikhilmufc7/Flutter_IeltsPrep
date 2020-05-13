@@ -106,7 +106,8 @@ class _ReadingScreenState extends State<ReadingScreen>
           isScrollable: true,
           controller: _tabController,
           labelColor: Colors.white,
-          labelStyle: TextStyle(fontWeight: FontWeight.w600),
+          labelStyle: TextStyle(
+              fontWeight: FontWeight.w600, fontSize: ScreenUtil().setSp(14)),
           unselectedLabelColor: Colors.white,
           tabs: [
             Tab(

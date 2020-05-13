@@ -164,8 +164,8 @@ class _BlogScreenState extends State<BlogScreen> {
       },
       child: Container(
         padding: EdgeInsets.all(10),
-        height: ScreenUtil().setHeight(310),
-        width: ScreenUtil().setWidth(360),
+        height: screenHeight / 4,
+        width: screenWidth / 1.3,
         child: Card(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(ScreenUtil().setWidth(20))),
@@ -176,14 +176,14 @@ class _BlogScreenState extends State<BlogScreen> {
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(ScreenUtil().setWidth(10)),
                       topRight: Radius.circular(ScreenUtil().setWidth(10))),
-                  child: CachedNetworkImage(
-                    fit: BoxFit.cover,
-                    height: ScreenUtil().setHeight(180),
-                    width: ScreenUtil().setWidth(360),
-                    imageUrl: blog.imageUrl,
-                    placeholder: (context, url) =>
-                        Center(child: CircularProgressIndicator()),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  child: FittedBox(
+                    fit: BoxFit.fill,
+                    child: CachedNetworkImage(
+                      imageUrl: blog.imageUrl,
+                      placeholder: (context, url) =>
+                          Center(child: CircularProgressIndicator()),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+                    ),
                   ),
                 ),
               ),
@@ -207,7 +207,7 @@ class _BlogScreenState extends State<BlogScreen> {
                               color: Theme.of(context).accentColor,
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Montserrat',
-                              fontSize: ScreenUtil().setSp(16),
+                              fontSize: ScreenUtil().setSp(14),
                             ),
                           ),
                         ),

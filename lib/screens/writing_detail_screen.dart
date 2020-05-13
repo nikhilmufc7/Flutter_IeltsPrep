@@ -144,8 +144,11 @@ class _WritingDetailScreenState extends State<WritingDetailScreen>
                               fit: BoxFit.fill,
                               child: CachedNetworkImage(
                                 imageUrl: lesson.image,
-                                placeholder: (context, url) =>
-                                    Center(child: CircularProgressIndicator()),
+                                placeholder: (context, url) => SizedBox(
+                                  height: 50,
+                                  width: 50,
+                                  child: CircularProgressIndicator(),
+                                ),
                                 errorWidget: (context, url, error) =>
                                     Icon(Icons.error),
                               ),

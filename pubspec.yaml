@@ -45,7 +45,7 @@ dependencies:
   flutter_tts:
   day_night_switch:
   flutter_fader: ^1.0.0
-
+  custom_switch:
   firebase_crashlytics:
   flutter_screenutil:
   url_launcher:
@@ -82,6 +82,7 @@ flutter:
     - assets/pushing.png
     - assets/sucess.png
     - assets/swipe.png
+    - assets/transparent.gif
 
   #   - images/a_dot_ham.jpeg
 

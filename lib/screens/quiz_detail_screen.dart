@@ -38,6 +38,9 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    double screenHeight = size.height;
+    double screenWidth = size.width;
     ScreenUtil.init(context);
 
 //If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
@@ -55,8 +58,31 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
           appBar: AppBar(
             leading: IconButton(
                 icon: Icon(Icons.arrow_back_ios),
+                color: Colors.white,
                 onPressed: () {
-                  Navigator.pop(context);
+                  return showDialog<bool>(
+                      context: context,
+                      builder: (_) {
+                        return AlertDialog(
+                          content: Text(
+                              "Are you sure you want to quit the quiz? All your progress will be lost."),
+                          title: Text("Warning!"),
+                          actions: <Widget>[
+                            FlatButton(
+                              child: Text("Yes"),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                            FlatButton(
+                              child: Text("No"),
+                              onPressed: () {
+                                Navigator.pop(context, true);
+                              },
+                            ),
+                          ],
+                        );
+                      });
                 }),
             title: FittedBox(
                 child: Text(
@@ -73,7 +99,7 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
                   child: Container(
                     decoration:
                         BoxDecoration(color: Theme.of(context).primaryColor),
-                    height: ScreenUtil().setHeight(200),
+                    height: screenHeight / 4,
                   ),
                 ),
                 Padding(

@@ -67,7 +67,11 @@ class _WritingScreenState extends State<WritingScreen>
         backgroundColor: Theme.of(context).primaryColor,
         title: Text(
           'Writing Exercises',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: ScreenUtil().setSp(16),
+          ),
         ),
         leading: IconButton(
             icon: Icon(Icons.arrow_back_ios),

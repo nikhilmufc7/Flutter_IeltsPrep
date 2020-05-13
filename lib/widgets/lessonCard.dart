@@ -19,6 +19,9 @@ class LessonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    double screenHeight = size.height;
+    double screenWidth = size.width;
     ScreenUtil.init(context);
 
 //If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
@@ -31,11 +34,11 @@ class LessonCard extends StatelessWidget {
           bottom: ScreenUtil().setHeight(15),
           left: ScreenUtil().setWidth(5),
           right: ScreenUtil().setWidth(5)),
-      child: Card(
-        color: Color.fromRGBO(64, 75, 96, .9),
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(ScreenUtil().setWidth(10))),
-        elevation: 0.0,
+      child: Container(
+        height: screenHeight / 9,
+        decoration: BoxDecoration(
+            color: Color.fromRGBO(64, 75, 96, .9),
+            borderRadius: BorderRadius.circular(ScreenUtil().setWidth(15))),
         margin: EdgeInsets.symmetric(
             horizontal: ScreenUtil().setWidth(10),
             vertical: ScreenUtil().setHeight(6)),
@@ -48,35 +51,48 @@ class LessonCard extends StatelessWidget {
               decoration: BoxDecoration(
                   border: Border(
                       right: BorderSide(width: 1.0, color: Colors.white24))),
-              child: Icon(Icons.device_hub, color: Colors.white),
+              child: Icon(
+                Icons.device_hub,
+                color: Colors.white,
+                size: ScreenUtil().setSp(20),
+              ),
             ),
             title: Text(
               title,
+              maxLines: 3,
+              overflow: TextOverflow.clip,
               style: TextStyle(
                   fontFamily: 'Montserrat',
                   fontSize: ScreenUtil().setSp(16),
                   color: Colors.white,
                   fontWeight: FontWeight.bold),
             ),
-            subtitle: Row(
-              children: <Widget>[
-                Expanded(
-                    flex: 1,
-                    child: Container(
-                      // tag: 'hero',
-                      child: LinearProgressIndicator(
-                          backgroundColor: Color.fromRGBO(209, 224, 224, 0.2),
-                          value: indicatorValue,
-                          valueColor: AlwaysStoppedAnimation(Colors.green)),
-                    )),
-                Expanded(
-                  flex: 4,
-                  child: Padding(
-                      padding: EdgeInsets.only(left: ScreenUtil().setWidth(10)),
-                      child:
-                          Text(level, style: TextStyle(color: Colors.white))),
-                )
-              ],
+            subtitle: Padding(
+              padding: EdgeInsets.only(top: 10.0),
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                      flex: 2,
+                      child: Container(
+                        // tag: 'hero',
+                        child: LinearProgressIndicator(
+                            backgroundColor: Color.fromRGBO(209, 224, 224, 0.2),
+                            value: indicatorValue,
+                            valueColor: AlwaysStoppedAnimation(Colors.green)),
+                      )),
+                  Expanded(
+                    flex: 2,
+                    child: Padding(
+                        padding:
+                            EdgeInsets.only(left: ScreenUtil().setWidth(10)),
+                        child: Text(level,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'Montserrat',
+                                fontSize: ScreenUtil().setSp(14)))),
+                  )
+                ],
+              ),
             ),
             trailing: trailing,
             onTap: onTap),

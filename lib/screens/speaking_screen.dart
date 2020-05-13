@@ -79,7 +79,7 @@ class _SpeakingScreenState extends State<SpeakingScreen>
               fontFamily: 'Montserrat',
               color: Colors.white,
               fontWeight: FontWeight.bold,
-              fontSize: ScreenUtil().setSp(20),
+              fontSize: ScreenUtil().setSp(18),
             )),
         bottomOpacity: 0.0,
       ),

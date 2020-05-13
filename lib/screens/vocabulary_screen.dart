@@ -160,15 +160,18 @@ class _VocabularyScreenState extends State<VocabularyScreen>
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(ScreenUtil().setWidth(75))),
                 ),
-                child: ListView(
-                  physics: ClampingScrollPhysics(),
-                  primary: false,
-                  padding: EdgeInsets.only(
-                      left: ScreenUtil().setWidth(25),
-                      right: ScreenUtil().setWidth(20)),
+                child: Column(
+                  // physics: ClampingScrollPhysics(),
+                  // primary: false,
+                  // padding: EdgeInsets.only(
+                  //     left: ScreenUtil().setWidth(25),
+                  //     right: ScreenUtil().setWidth(20)),
                   children: <Widget>[
+                    SizedBox(
+                      height: ScreenUtil().setHeight(20),
+                    ),
                     Container(
-                      height: ScreenUtil().setHeight(570),
+                      height: screenHeight / 1.8,
                       child: Container(
                         child: TinderSwapCard(
                             orientation: AmassOrientation.BOTTOM,
@@ -202,7 +205,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
                       duration: const Duration(milliseconds: 5),
                       child: Container(
                         height: ScreenUtil().setHeight(60),
-                        width: ScreenUtil().setWidth(20),
+                        width: ScreenUtil().setWidth(40),
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage("assets/swipe.png"),
@@ -224,54 +227,57 @@ class _VocabularyScreenState extends State<VocabularyScreen>
   }
 
   Widget makeCard(Vocabulary vocabulary) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      elevation: 8.0,
-      child: ListView(
-        physics: NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        children: <Widget>[
-          ListTile(
-            title: Text(
-              StringUtils.capitalize(vocabulary.word ?? 'Word'),
-              style: TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: ScreenUtil().setSp(24),
-                fontFamily: 'Montserrat',
+    return Padding(
+      padding: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        elevation: 8.0,
+        child: ListView(
+          physics: NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          children: <Widget>[
+            ListTile(
+              title: Text(
+                StringUtils.capitalize(vocabulary.word ?? 'Word'),
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: ScreenUtil().setSp(24),
+                  fontFamily: 'Montserrat',
+                ),
+              ),
+              trailing: _btnSection(vocabulary),
+            ),
+            SizedBox(height: ScreenUtil().setHeight(15)),
+            ListTile(
+              title: Text(
+                vocabulary.description ?? 'Description',
+                style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: ScreenUtil().setSp(16),
+                    fontFamily: 'Montserrat'),
               ),
             ),
-            trailing: _btnSection(vocabulary),
-          ),
-          SizedBox(height: ScreenUtil().setHeight(15)),
-          ListTile(
-            title: Text(
-              vocabulary.description ?? 'Description',
-              style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: ScreenUtil().setSp(16),
-                  fontFamily: 'Montserrat'),
+            SizedBox(height: ScreenUtil().setHeight(15)),
+            ListTile(
+              title: Text(
+                'Usage in Sentence',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: ScreenUtil().setSp(16),
+                    fontFamily: 'Montserrat'),
+              ),
             ),
-          ),
-          SizedBox(height: ScreenUtil().setHeight(15)),
-          ListTile(
-            title: Text(
-              'Usage in Sentence',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: ScreenUtil().setSp(16),
-                  fontFamily: 'Montserrat'),
+            ListTile(
+              title: Text(
+                vocabulary.sentence ?? 'sentence',
+                style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: ScreenUtil().setSp(16),
+                    fontFamily: 'Montserrat'),
+              ),
             ),
-          ),
-          ListTile(
-            title: Text(
-              vocabulary.sentence ?? 'sentence',
-              style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: ScreenUtil().setSp(16),
-                  fontFamily: 'Montserrat'),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

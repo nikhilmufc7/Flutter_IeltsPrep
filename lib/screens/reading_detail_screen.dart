@@ -63,7 +63,7 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
                 fontFamily: 'Montserrat',
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
-                fontSize: ScreenUtil().setSp(20))),
+                fontSize: ScreenUtil().setSp(16))),
         leading: IconButton(
             icon: Icon(Icons.arrow_back_ios),
             color: Colors.white,
@@ -134,10 +134,10 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
                                 child: Text(
                                   reading.paragraph.replaceAll("_n", "\n"),
                                   style: TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.w400,
-                                    color: Theme.of(context).accentColor,
-                                  ),
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w400,
+                                      color: Theme.of(context).accentColor,
+                                      fontSize: ScreenUtil().setSp(13)),
                                 ),
                               ),
                               SizedBox(height: ScreenUtil().setHeight(15)),
@@ -174,6 +174,7 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
                                           style: TextStyle(
                                             fontFamily: 'Montserrat',
                                             fontWeight: FontWeight.w400,
+                                            fontSize: ScreenUtil().setSp(13),
                                             color:
                                                 Theme.of(context).accentColor,
                                           ),
@@ -234,6 +235,7 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
                                             style: TextStyle(
                                               fontFamily: 'Montserrat',
                                               fontWeight: FontWeight.w400,
+                                              fontSize: ScreenUtil().setSp(13),
                                               color:
                                                   Theme.of(context).accentColor,
                                             ),
@@ -297,6 +299,7 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
                       answersResult.replaceAll("_n", "\n"),
                       style: TextStyle(
                         fontFamily: 'Montserrat',
+                        fontSize: ScreenUtil().setSp(13),
                         fontWeight: FontWeight.w400,
                       ),
                     ),

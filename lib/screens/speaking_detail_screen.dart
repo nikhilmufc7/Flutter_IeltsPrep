@@ -117,7 +117,7 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
               fontFamily: 'Montserrat',
               color: Colors.white,
               fontWeight: FontWeight.bold,
-              fontSize: ScreenUtil().setSp(20),
+              fontSize: ScreenUtil().setSp(18),
             )),
         elevation: 0.0,
         backgroundColor: Theme.of(context).primaryColor,
@@ -168,7 +168,7 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
                             children: <Widget>[
                               Padding(
                                 padding:
-                                    EdgeInsets.all(ScreenUtil().setHeight(8)),
+                                    EdgeInsets.all(ScreenUtil().setHeight(14)),
                                 child: Text(
                                   'Things to speak',
                                   style: TextStyle(
@@ -178,50 +178,57 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
                                       color: Color(0xFF21BFBD)),
                                 ),
                               ),
-                              Card(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(
-                                  ScreenUtil().setHeight(20),
-                                )),
-                                elevation: 5,
-                                child: Padding(
-                                    padding: EdgeInsets.only(
-                                      left: ScreenUtil().setWidth(10),
-                                      right: ScreenUtil().setWidth(45),
-                                      top: ScreenUtil().setHeight(10),
-                                    ),
-                                    child: ListView.builder(
-                                      shrinkWrap: true,
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
-                                      itemCount: speaking.thingsToSpeak.length,
-                                      itemBuilder:
-                                          (BuildContext context, int index) {
-                                        resultant =
-                                            speaking.thingsToSpeak[index];
+                              Padding(
+                                padding:
+                                    EdgeInsets.all(ScreenUtil().setHeight(10)),
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(
+                                    ScreenUtil().setHeight(20),
+                                  )),
+                                  elevation: 5,
+                                  child: Padding(
+                                      padding: EdgeInsets.only(
+                                        left: ScreenUtil().setWidth(10),
+                                        right: ScreenUtil().setWidth(45),
+                                        top: ScreenUtil().setHeight(10),
+                                      ),
+                                      child: ListView.builder(
+                                        shrinkWrap: true,
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        itemCount:
+                                            speaking.thingsToSpeak.length,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          resultant =
+                                              speaking.thingsToSpeak[index];
 
-                                        return ListTile(
-                                          leading: Container(
-                                              height:
-                                                  ScreenUtil().setHeight(20),
-                                              width: ScreenUtil().setWidth(10),
-                                              decoration: BoxDecoration(
-                                                color: Theme.of(context)
-                                                    .accentColor,
-                                                shape: BoxShape.circle,
-                                              )),
-                                          title: Text(
-                                            resultant.replaceAll('_n', '\n'),
-                                            textAlign: TextAlign.start,
-                                            style: TextStyle(
-                                              fontSize: ScreenUtil().setSp(16),
-                                              fontFamily: 'Montserrat',
-                                              fontWeight: FontWeight.w400,
+                                          return ListTile(
+                                            leading: Container(
+                                                height:
+                                                    ScreenUtil().setHeight(20),
+                                                width:
+                                                    ScreenUtil().setWidth(10),
+                                                decoration: BoxDecoration(
+                                                  color: Theme.of(context)
+                                                      .accentColor,
+                                                  shape: BoxShape.circle,
+                                                )),
+                                            title: Text(
+                                              resultant.replaceAll('_n', '\n'),
+                                              textAlign: TextAlign.start,
+                                              style: TextStyle(
+                                                fontSize:
+                                                    ScreenUtil().setSp(14),
+                                                fontFamily: 'Montserrat',
+                                                fontWeight: FontWeight.w400,
+                                              ),
                                             ),
-                                          ),
-                                        );
-                                      },
-                                    )),
+                                          );
+                                        },
+                                      )),
+                                ),
                               ),
                               SizedBox(
                                 height: ScreenUtil().setHeight(15),
@@ -263,7 +270,7 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
                                 child: Text(
                                   speaking.answer.replaceAll("_n", "\n"),
                                   style: TextStyle(
-                                    fontSize: ScreenUtil().setSp(16),
+                                    fontSize: ScreenUtil().setSp(14),
                                     color: Theme.of(context).accentColor,
                                     fontFamily: 'Montserrat',
                                   ),
@@ -312,7 +319,7 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
                                           child: Text(
                                             vocabResult.replaceAll("_n", "\n"),
                                             style: TextStyle(
-                                              fontSize: ScreenUtil().setSp(16),
+                                              fontSize: ScreenUtil().setSp(14),
                                               fontFamily: 'Montserrat',
                                               fontWeight: FontWeight.w400,
                                             ),

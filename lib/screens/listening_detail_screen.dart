@@ -92,7 +92,9 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
           bottom: TabBar(
               isScrollable: true,
               labelColor: Colors.white,
-              labelStyle: TextStyle(fontWeight: FontWeight.w600),
+              labelStyle: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: ScreenUtil().setSp(14)),
               unselectedLabelColor: Colors.white,
               tabs: [
                 Tab(
@@ -100,9 +102,11 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                     alignment: Alignment.center,
                     child: Padding(
                       padding: EdgeInsets.all(ScreenUtil().setHeight(8)),
-                      child: Text(
-                        "Section 1",
-                        textAlign: TextAlign.center,
+                      child: FittedBox(
+                        child: Text(
+                          "Section 1",
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                   ),
@@ -112,9 +116,11 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                     alignment: Alignment.center,
                     child: Padding(
                       padding: EdgeInsets.all(ScreenUtil().setHeight(8)),
-                      child: Text(
-                        "Section 2",
-                        textAlign: TextAlign.center,
+                      child: FittedBox(
+                        child: Text(
+                          "Section 2",
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                   ),
@@ -124,9 +130,11 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                     alignment: Alignment.center,
                     child: Padding(
                       padding: EdgeInsets.all(ScreenUtil().setHeight(8)),
-                      child: Text(
-                        "Section 3",
-                        textAlign: TextAlign.center,
+                      child: FittedBox(
+                        child: Text(
+                          "Section 3",
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                   ),
@@ -136,9 +144,11 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                     alignment: Alignment.center,
                     child: Padding(
                       padding: EdgeInsets.all(ScreenUtil().setHeight(8)),
-                      child: Text(
-                        "Section 4",
-                        textAlign: TextAlign.center,
+                      child: FittedBox(
+                        child: Text(
+                          "Section 4",
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                   ),
@@ -218,12 +228,18 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                               child: Padding(
                                 padding:
                                     EdgeInsets.all(ScreenUtil().setWidth(10)),
-                                child: CachedNetworkImage(
-                                  imageUrl: listening.firstQuestionImage,
-                                  placeholder: (context, url) => Center(
-                                      child: CircularProgressIndicator()),
-                                  errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
+                                child: FittedBox(
+                                  fit: BoxFit.fill,
+                                  child: CachedNetworkImage(
+                                    imageUrl: listening.firstQuestionImage,
+                                    placeholder: (context, url) => SizedBox(
+                                      height: 50,
+                                      width: 50,
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
+                                  ),
                                 ),
                               ),
                             ),
@@ -265,6 +281,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                             color:
                                                 Theme.of(context).accentColor,
                                             fontFamily: 'Montserrat',
+                                            fontSize: ScreenUtil().setSp(12),
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
@@ -296,12 +313,18 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                               child: Padding(
                                 padding:
                                     EdgeInsets.all(ScreenUtil().setHeight(10)),
-                                child: CachedNetworkImage(
-                                  imageUrl: listening.secondQuestionImage,
-                                  placeholder: (context, url) => Center(
-                                      child: CircularProgressIndicator()),
-                                  errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
+                                child: FittedBox(
+                                  fit: BoxFit.fill,
+                                  child: CachedNetworkImage(
+                                    imageUrl: listening.secondQuestionImage,
+                                    placeholder: (context, url) => SizedBox(
+                                      height: 50,
+                                      width: 50,
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
+                                  ),
                                 ),
                               ),
                             ),
@@ -329,6 +352,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                             color:
                                                 Theme.of(context).accentColor,
                                             fontFamily: 'Montserrat',
+                                            fontSize: ScreenUtil().setSp(12),
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
@@ -438,12 +462,18 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                               child: Padding(
                                 padding:
                                     EdgeInsets.all(ScreenUtil().setHeight(10)),
-                                child: CachedNetworkImage(
-                                  imageUrl: listening.section2Image1,
-                                  placeholder: (context, url) => Center(
-                                      child: CircularProgressIndicator()),
-                                  errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
+                                child: FittedBox(
+                                  fit: BoxFit.fill,
+                                  child: CachedNetworkImage(
+                                    imageUrl: listening.section2Image1,
+                                    placeholder: (context, url) => SizedBox(
+                                      height: 50,
+                                      width: 50,
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
+                                  ),
                                 ),
                               ),
                             ),
@@ -471,6 +501,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                             color:
                                                 Theme.of(context).accentColor,
                                             fontFamily: 'Montserrat',
+                                            fontSize: ScreenUtil().setSp(12),
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
@@ -498,12 +529,18 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                               child: Padding(
                                 padding:
                                     EdgeInsets.all(ScreenUtil().setHeight(10)),
-                                child: CachedNetworkImage(
-                                  imageUrl: listening.section2Image2,
-                                  placeholder: (context, url) => Center(
-                                      child: CircularProgressIndicator()),
-                                  errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
+                                child: FittedBox(
+                                  fit: BoxFit.fill,
+                                  child: CachedNetworkImage(
+                                    imageUrl: listening.section2Image2,
+                                    placeholder: (context, url) => SizedBox(
+                                      height: 50,
+                                      width: 50,
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
+                                  ),
                                 ),
                               ),
                             ),
@@ -531,6 +568,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                             color:
                                                 Theme.of(context).accentColor,
                                             fontFamily: 'Montserrat',
+                                            fontSize: ScreenUtil().setSp(12),
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
@@ -543,13 +581,14 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                               alignment: Alignment.bottomCenter,
                               child: RaisedButton(
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)),
+                                    borderRadius: BorderRadius.circular(
+                                        ScreenUtil().setWidth(10))),
                                 onPressed: () {
                                   openSection2AnswersSheet(context, listening);
                                 },
                                 child: Text('Answers',
                                     style: TextStyle(
-                                      fontSize: ScreenUtil().setSp(20),
+                                      fontSize: ScreenUtil().setSp(18),
                                       fontFamily: 'Montserrat',
                                     )),
                                 color: Colors.deepPurpleAccent,
@@ -592,7 +631,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                       color: Theme.of(context).canvasColor,
                     ),
                     child: ListView(
-                      padding: EdgeInsets.only(top: 50),
+                      padding: EdgeInsets.only(top: ScreenUtil().setHeight(50)),
                       physics: ClampingScrollPhysics(),
                       shrinkWrap: true,
                       children: <Widget>[
@@ -600,7 +639,9 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
 
                         ListView(
                           scrollDirection: Axis.vertical,
-                          padding: EdgeInsets.only(top: 10, bottom: 20),
+                          padding: EdgeInsets.only(
+                              top: ScreenUtil().setHeight(10),
+                              bottom: ScreenUtil().setHeight(20)),
                           shrinkWrap: true,
                           physics: ClampingScrollPhysics(),
                           children: <Widget>[
@@ -639,12 +680,18 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                               child: Padding(
                                 padding:
                                     EdgeInsets.all(ScreenUtil().setHeight(10)),
-                                child: CachedNetworkImage(
-                                  imageUrl: listening.section3Image1,
-                                  placeholder: (context, url) => Center(
-                                      child: CircularProgressIndicator()),
-                                  errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
+                                child: FittedBox(
+                                  fit: BoxFit.fill,
+                                  child: CachedNetworkImage(
+                                    imageUrl: listening.section3Image1,
+                                    placeholder: (context, url) => SizedBox(
+                                      height: 50,
+                                      width: 50,
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
+                                  ),
                                 ),
                               ),
                             ),
@@ -673,6 +720,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                             color:
                                                 Theme.of(context).accentColor,
                                             fontFamily: 'Montserrat',
+                                            fontSize: ScreenUtil().setSp(12),
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
@@ -700,12 +748,18 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                               child: Padding(
                                 padding:
                                     EdgeInsets.all(ScreenUtil().setHeight(10)),
-                                child: CachedNetworkImage(
-                                  imageUrl: listening.section3Image2,
-                                  placeholder: (context, url) => Center(
-                                      child: CircularProgressIndicator()),
-                                  errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
+                                child: FittedBox(
+                                  fit: BoxFit.fill,
+                                  child: CachedNetworkImage(
+                                    imageUrl: listening.section3Image2,
+                                    placeholder: (context, url) => SizedBox(
+                                      height: 50,
+                                      width: 50,
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
+                                  ),
                                 ),
                               ),
                             ),
@@ -734,6 +788,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                             color:
                                                 Theme.of(context).accentColor,
                                             fontFamily: 'Montserrat',
+                                            fontSize: ScreenUtil().setSp(12),
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
@@ -761,12 +816,18 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                               child: Padding(
                                 padding:
                                     EdgeInsets.all(ScreenUtil().setHeight(10)),
-                                child: CachedNetworkImage(
-                                  imageUrl: listening.section3Image3,
-                                  placeholder: (context, url) => Center(
-                                      child: CircularProgressIndicator()),
-                                  errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
+                                child: FittedBox(
+                                  fit: BoxFit.fill,
+                                  child: CachedNetworkImage(
+                                    imageUrl: listening.section3Image3,
+                                    placeholder: (context, url) => SizedBox(
+                                      height: 50,
+                                      width: 50,
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
+                                  ),
                                 ),
                               ),
                             ),
@@ -795,6 +856,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                             color:
                                                 Theme.of(context).accentColor,
                                             fontFamily: 'Montserrat',
+                                            fontSize: ScreenUtil().setSp(12),
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
@@ -807,13 +869,14 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                               alignment: Alignment.bottomCenter,
                               child: RaisedButton(
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)),
+                                    borderRadius: BorderRadius.circular(
+                                        ScreenUtil().setHeight(10))),
                                 onPressed: () {
                                   openSection3AnswersSheet(context, listening);
                                 },
                                 child: Text('Answers',
                                     style: TextStyle(
-                                      fontSize: ScreenUtil().setSp(20),
+                                      fontSize: ScreenUtil().setSp(18),
                                       fontFamily: 'Montserrat',
                                     )),
                                 color: Colors.deepPurpleAccent,
@@ -904,12 +967,18 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                               child: Padding(
                                 padding:
                                     EdgeInsets.all(ScreenUtil().setHeight(10)),
-                                child: CachedNetworkImage(
-                                  imageUrl: listening.section4Image1,
-                                  placeholder: (context, url) => Center(
-                                      child: CircularProgressIndicator()),
-                                  errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
+                                child: FittedBox(
+                                  fit: BoxFit.fill,
+                                  child: CachedNetworkImage(
+                                    imageUrl: listening.section4Image1,
+                                    placeholder: (context, url) => SizedBox(
+                                      height: 50,
+                                      width: 50,
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
+                                  ),
                                 ),
                               ),
                             ),
@@ -937,6 +1006,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                             color:
                                                 Theme.of(context).accentColor,
                                             fontFamily: 'Montserrat',
+                                            fontSize: ScreenUtil().setSp(12),
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
@@ -964,12 +1034,17 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                               child: Padding(
                                 padding:
                                     EdgeInsets.all(ScreenUtil().setHeight(10)),
-                                child: CachedNetworkImage(
-                                  imageUrl: listening.section4Image2,
-                                  placeholder: (context, url) => Center(
-                                      child: CircularProgressIndicator()),
-                                  errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
+                                child: FittedBox(
+                                  child: CachedNetworkImage(
+                                    imageUrl: listening.section4Image2,
+                                    placeholder: (context, url) => SizedBox(
+                                      height: 50,
+                                      width: 50,
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
+                                  ),
                                 ),
                               ),
                             ),
@@ -998,6 +1073,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                             color:
                                                 Theme.of(context).accentColor,
                                             fontFamily: 'Montserrat',
+                                            fontSize: ScreenUtil().setSp(12),
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
@@ -1044,6 +1120,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                             color:
                                                 Theme.of(context).accentColor,
                                             fontFamily: 'Montserrat',
+                                            fontSize: ScreenUtil().setSp(12),
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
@@ -1056,13 +1133,14 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                               alignment: Alignment.bottomCenter,
                               child: RaisedButton(
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)),
+                                    borderRadius: BorderRadius.circular(
+                                        ScreenUtil().setHeight(10))),
                                 onPressed: () {
                                   openSection4AnswersSheet(context, listening);
                                 },
                                 child: Text('Answers',
                                     style: TextStyle(
-                                      fontSize: ScreenUtil().setSp(20),
+                                      fontSize: ScreenUtil().setSp(18),
                                       fontFamily: 'Montserrat',
                                     )),
                                 color: Colors.deepPurpleAccent,
@@ -1106,6 +1184,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                       answersResult.replaceAll("_n", "\n"),
                       style: TextStyle(
                         fontFamily: 'Montserrat',
+                        fontSize: ScreenUtil().setSp(12),
                         fontWeight: FontWeight.w400,
                       ),
                     ),
@@ -1141,6 +1220,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                       answersResult.replaceAll("_n", "\n"),
                       style: TextStyle(
                         fontFamily: 'Montserrat',
+                        fontSize: ScreenUtil().setSp(12),
                         fontWeight: FontWeight.w400,
                       ),
                     ),
@@ -1178,6 +1258,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                       answersResult.replaceAll("_n", "\n"),
                       style: TextStyle(
                         fontFamily: 'Montserrat',
+                        fontSize: ScreenUtil().setSp(12),
                         fontWeight: FontWeight.w400,
                       ),
                     ),
@@ -1215,6 +1296,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                       answersResult.replaceAll("_n", "\n"),
                       style: TextStyle(
                         fontFamily: 'Montserrat',
+                        fontSize: ScreenUtil().setSp(12),
                         fontWeight: FontWeight.w400,
                       ),
                     ),

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -66,9 +67,7 @@ class MenuPage extends StatelessWidget {
                       return Row(
                         children: <Widget>[
                           CircularImage(
-                            NetworkImage(
-                              user.photoUrl,
-                            ),
+                            CachedNetworkImageProvider(user.photoUrl),
                           ),
                           SizedBox(
                             width: ScreenUtil().setWidth(15),
@@ -105,49 +104,58 @@ class MenuPage extends StatelessWidget {
             Spacer(),
             Column(
               children: options.map((item) {
-                return ListTile(
-                  onTap: () {
-                    Navigator.pushNamed(context, item.routeName);
-                  },
-                  leading: Icon(
-                    item.icon,
-                    color: Colors.white,
-                    size: ScreenUtil().setSp(20),
-                  ),
-                  title: Text(
-                    item.title,
-                    style: TextStyle(
-                        fontSize: ScreenUtil().setSp(14),
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
+                return Padding(
+                  padding: EdgeInsets.all(ScreenUtil().setWidth(8)),
+                  child: ListTile(
+                    onTap: () {
+                      Navigator.pushNamed(context, item.routeName);
+                    },
+                    leading: Icon(
+                      item.icon,
+                      color: Colors.white,
+                      size: ScreenUtil().setSp(20),
+                    ),
+                    title: Text(
+                      item.title,
+                      style: TextStyle(
+                          fontSize: ScreenUtil().setSp(14),
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
                   ),
                 );
               }).toList(),
             ),
             Spacer(),
-            ListTile(
-              onTap: () {
-                Navigator.pushNamed(context, RoutePaths.settings);
-              },
-              leading: Icon(
-                Icons.settings,
-                color: Colors.white,
-                size: ScreenUtil().setSp(20),
+            Padding(
+              padding: EdgeInsets.all(ScreenUtil().setWidth(8)),
+              child: ListTile(
+                onTap: () {
+                  Navigator.pushNamed(context, RoutePaths.settings);
+                },
+                leading: Icon(
+                  Icons.settings,
+                  color: Colors.white,
+                  size: ScreenUtil().setSp(20),
+                ),
+                title: Text('Settings',
+                    style: TextStyle(
+                        fontSize: ScreenUtil().setSp(14), color: Colors.white)),
               ),
-              title: Text('Settings',
-                  style: TextStyle(
-                      fontSize: ScreenUtil().setSp(14), color: Colors.white)),
             ),
-            ListTile(
-              onTap: () => _launchURL(),
-              leading: Icon(
-                Icons.headset_mic,
-                color: Colors.white,
-                size: ScreenUtil().setSp(20),
+            Padding(
+              padding: EdgeInsets.all(ScreenUtil().setWidth(8)),
+              child: ListTile(
+                onTap: () => _launchURL(),
+                leading: Icon(
+                  Icons.headset_mic,
+                  color: Colors.white,
+                  size: ScreenUtil().setSp(20),
+                ),
+                title: Text('Contact us',
+                    style: TextStyle(
+                        fontSize: ScreenUtil().setSp(14), color: Colors.white)),
               ),
-              title: Text('Contact us',
-                  style: TextStyle(
-                      fontSize: ScreenUtil().setSp(14), color: Colors.white)),
             ),
           ],
         ),

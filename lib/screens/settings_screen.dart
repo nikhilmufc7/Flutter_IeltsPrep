@@ -1,3 +1,4 @@
+import 'package:custom_switch/custom_switch.dart';
 import 'package:day_night_switch/day_night_switch.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ielts/services/auth.dart';
@@ -30,7 +31,7 @@ class _SettingsPageState extends State<SettingsPage> {
     }
   }
 
-  bool _subscribleToEmails = false;
+  bool _subscribleToEmails = true;
 
   @override
   Widget build(BuildContext context) {
@@ -89,15 +90,20 @@ class _SettingsPageState extends State<SettingsPage> {
                     'Get the latest news about IELTS directly to your mail'),
                 contentPadding:
                     EdgeInsets.only(left: ScreenUtil().setWidth(16)),
-                trailing: Transform.scale(
-                  scale: 0.4,
-                  child: DayNightSwitch(
-                    value: _subscribleToEmails,
-                    onChanged: (val) {
-                      setState(() {
-                        _subscribleToEmails = val;
-                      });
-                    },
+                trailing: Padding(
+                  padding: EdgeInsets.only(right: ScreenUtil().setWidth(24.0)),
+                  child: Transform.scale(
+                    scale: 0.9,
+                    child: CustomSwitch(
+                      activeColor: Colors.deepPurpleAccent,
+                      value: _subscribleToEmails,
+                      onChanged: (value) {
+                        print("VALUE : $value");
+                        setState(() {
+                          _subscribleToEmails = value;
+                        });
+                      },
+                    ),
                   ),
                 ),
               ),
@@ -111,7 +117,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 contentPadding:
                     EdgeInsets.only(left: ScreenUtil().setWidth(16)),
                 trailing: Padding(
-                  padding: EdgeInsets.only(right: ScreenUtil().setWidth(18)),
+                  padding: EdgeInsets.only(right: ScreenUtil().setWidth(14)),
                   child: Transform.scale(
                     scale: 0.8,
                     child: RaisedButton(
