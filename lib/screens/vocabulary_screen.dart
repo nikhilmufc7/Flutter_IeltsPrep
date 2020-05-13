@@ -208,7 +208,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
                         width: ScreenUtil().setWidth(40),
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage("assets/swipe.png"),
+                            image: AssetImage("assets/swipe.jpeg"),
                             fit: BoxFit.fitHeight,
                           ),
                           borderRadius:

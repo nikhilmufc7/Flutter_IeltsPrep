@@ -147,7 +147,7 @@ class _WritingDetailScreenState extends State<WritingDetailScreen>
                                 placeholder: (context, url) => SizedBox(
                                   height: 50,
                                   width: 50,
-                                  child: CircularProgressIndicator(),
+                                  child: Image.asset('assets/transparent.gif'),
                                 ),
                                 errorWidget: (context, url, error) =>
                                     Icon(Icons.error),

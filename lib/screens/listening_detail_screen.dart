@@ -235,10 +235,17 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     placeholder: (context, url) => SizedBox(
                                       height: 50,
                                       width: 50,
-                                      child: CircularProgressIndicator(),
+                                      child:
+                                          Image.asset('assets/transparent.gif'),
                                     ),
                                     errorWidget: (context, url, error) =>
+                                        Column(
+                                      children: <Widget>[
                                         Icon(Icons.error),
+                                        Text(
+                                            'Please check your internet connection')
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -320,10 +327,17 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     placeholder: (context, url) => SizedBox(
                                       height: 50,
                                       width: 50,
-                                      child: CircularProgressIndicator(),
+                                      child:
+                                          Image.asset('assets/transparent.gif'),
                                     ),
                                     errorWidget: (context, url, error) =>
+                                        Column(
+                                      children: <Widget>[
                                         Icon(Icons.error),
+                                        Text(
+                                            'Please check your internet connection')
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -469,10 +483,17 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     placeholder: (context, url) => SizedBox(
                                       height: 50,
                                       width: 50,
-                                      child: CircularProgressIndicator(),
+                                      child:
+                                          Image.asset('assets/transparent.gif'),
                                     ),
                                     errorWidget: (context, url, error) =>
+                                        Column(
+                                      children: <Widget>[
                                         Icon(Icons.error),
+                                        Text(
+                                            'Please check your internet connection')
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -536,10 +557,17 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     placeholder: (context, url) => SizedBox(
                                       height: 50,
                                       width: 50,
-                                      child: CircularProgressIndicator(),
+                                      child:
+                                          Image.asset('assets/transparent.gif'),
                                     ),
                                     errorWidget: (context, url, error) =>
+                                        Column(
+                                      children: <Widget>[
                                         Icon(Icons.error),
+                                        Text(
+                                            'Please check your internet connection')
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -687,10 +715,17 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     placeholder: (context, url) => SizedBox(
                                       height: 50,
                                       width: 50,
-                                      child: CircularProgressIndicator(),
+                                      child:
+                                          Image.asset('assets/transparent.gif'),
                                     ),
                                     errorWidget: (context, url, error) =>
+                                        Column(
+                                      children: <Widget>[
                                         Icon(Icons.error),
+                                        Text(
+                                            'Please check your internet connection')
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -755,10 +790,17 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     placeholder: (context, url) => SizedBox(
                                       height: 50,
                                       width: 50,
-                                      child: CircularProgressIndicator(),
+                                      child:
+                                          Image.asset('assets/transparent.gif'),
                                     ),
                                     errorWidget: (context, url, error) =>
+                                        Column(
+                                      children: <Widget>[
                                         Icon(Icons.error),
+                                        Text(
+                                            'Please check your internet connection')
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -823,10 +865,17 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     placeholder: (context, url) => SizedBox(
                                       height: 50,
                                       width: 50,
-                                      child: CircularProgressIndicator(),
+                                      child:
+                                          Image.asset('assets/transparent.gif'),
                                     ),
                                     errorWidget: (context, url, error) =>
+                                        Column(
+                                      children: <Widget>[
                                         Icon(Icons.error),
+                                        Text(
+                                            'Please check your internet connection')
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -974,10 +1023,17 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     placeholder: (context, url) => SizedBox(
                                       height: 50,
                                       width: 50,
-                                      child: CircularProgressIndicator(),
+                                      child:
+                                          Image.asset('assets/transparent.gif'),
                                     ),
                                     errorWidget: (context, url, error) =>
+                                        Column(
+                                      children: <Widget>[
                                         Icon(Icons.error),
+                                        Text(
+                                            'Please check your internet connection')
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -1040,10 +1096,17 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                     placeholder: (context, url) => SizedBox(
                                       height: 50,
                                       width: 50,
-                                      child: CircularProgressIndicator(),
+                                      child:
+                                          Image.asset('assets/transparent.gif'),
                                     ),
                                     errorWidget: (context, url, error) =>
+                                        Column(
+                                      children: <Widget>[
                                         Icon(Icons.error),
+                                        Text(
+                                            'Please check your internet connection')
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
