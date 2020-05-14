@@ -146,7 +146,10 @@ class _SpeakingScreenState extends State<SpeakingScreen>
                             },
                           );
                         } else {
-                          return Center(child: CircularProgressIndicator());
+                          return Container(
+                              height: screenHeight,
+                              child:
+                                  Center(child: CircularProgressIndicator()));
                         }
                       }),
                 ),

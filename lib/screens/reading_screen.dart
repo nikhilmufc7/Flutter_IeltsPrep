@@ -289,7 +289,10 @@ class _ReadingScreenState extends State<ReadingScreen>
                             },
                           );
                         } else {
-                          return Center(child: CircularProgressIndicator());
+                          return Container(
+                              height: screenHeight,
+                              child:
+                                  Center(child: CircularProgressIndicator()));
                         }
                       }),
                 ),
@@ -350,7 +353,10 @@ class _ReadingScreenState extends State<ReadingScreen>
                             },
                           );
                         } else {
-                          return Center(child: CircularProgressIndicator());
+                          return Container(
+                              height: screenHeight,
+                              child:
+                                  Center(child: CircularProgressIndicator()));
                         }
                       }),
                 ),
@@ -411,7 +417,10 @@ class _ReadingScreenState extends State<ReadingScreen>
                             },
                           );
                         } else {
-                          return Center(child: CircularProgressIndicator());
+                          return Container(
+                              height: screenHeight,
+                              child:
+                                  Center(child: CircularProgressIndicator()));
                         }
                       }),
                 ),
@@ -471,7 +480,10 @@ class _ReadingScreenState extends State<ReadingScreen>
                             },
                           );
                         } else {
-                          return Center(child: CircularProgressIndicator());
+                          return Container(
+                              height: screenHeight,
+                              child:
+                                  Center(child: CircularProgressIndicator()));
                         }
                       }),
                 ),
@@ -532,7 +544,10 @@ class _ReadingScreenState extends State<ReadingScreen>
                             },
                           );
                         } else {
-                          return Center(child: CircularProgressIndicator());
+                          return Container(
+                              height: screenHeight,
+                              child:
+                                  Center(child: CircularProgressIndicator()));
                         }
                       }),
                 ),
@@ -592,7 +607,10 @@ class _ReadingScreenState extends State<ReadingScreen>
                             },
                           );
                         } else {
-                          return Center(child: CircularProgressIndicator());
+                          return Container(
+                              height: screenHeight,
+                              child:
+                                  Center(child: CircularProgressIndicator()));
                         }
                       }),
                 ),
@@ -652,7 +670,10 @@ class _ReadingScreenState extends State<ReadingScreen>
                             },
                           );
                         } else {
-                          return Center(child: CircularProgressIndicator());
+                          return Container(
+                              height: screenHeight,
+                              child:
+                                  Center(child: CircularProgressIndicator()));
                         }
                       }),
                 ),
@@ -773,7 +794,10 @@ class _ReadingScreenState extends State<ReadingScreen>
                             itemCount: categorization.length,
                             itemBuilder: (BuildContext context, int index) {
                               _getcheckedReadingItems();
-                              return makeCard(categorization[index]);
+                              return Container(
+                                  height: screenHeight,
+                                  child: Center(
+                                      child: CircularProgressIndicator()));
                             },
                           );
                         } else {
@@ -838,7 +862,10 @@ class _ReadingScreenState extends State<ReadingScreen>
                             },
                           );
                         } else {
-                          return CircularProgressIndicator();
+                          return Container(
+                              height: screenHeight,
+                              child:
+                                  Center(child: CircularProgressIndicator()));
                         }
                       }),
                 ),
@@ -899,7 +926,10 @@ class _ReadingScreenState extends State<ReadingScreen>
                             },
                           );
                         } else {
-                          return CircularProgressIndicator();
+                          return Container(
+                              height: screenHeight,
+                              child:
+                                  Center(child: CircularProgressIndicator()));
                         }
                       }),
                 ),

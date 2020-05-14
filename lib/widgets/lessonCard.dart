@@ -34,11 +34,9 @@ class LessonCard extends StatelessWidget {
           bottom: ScreenUtil().setHeight(15),
           left: ScreenUtil().setWidth(5),
           right: ScreenUtil().setWidth(5)),
-      child: Container(
-        height: screenHeight / 9,
-        decoration: BoxDecoration(
-            color: Color.fromRGBO(64, 75, 96, .9),
-            borderRadius: BorderRadius.circular(ScreenUtil().setWidth(15))),
+      child: Card(
+        color: Color.fromRGBO(64, 75, 96, .9),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         margin: EdgeInsets.symmetric(
             horizontal: ScreenUtil().setWidth(10),
             vertical: ScreenUtil().setHeight(6)),
@@ -54,12 +52,12 @@ class LessonCard extends StatelessWidget {
               child: Icon(
                 Icons.device_hub,
                 color: Colors.white,
-                size: ScreenUtil().setSp(20),
+                size: ScreenUtil().setSp(24),
               ),
             ),
             title: Text(
               title,
-              maxLines: 3,
+              maxLines: 4,
               overflow: TextOverflow.clip,
               style: TextStyle(
                   fontFamily: 'Montserrat',

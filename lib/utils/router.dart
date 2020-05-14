@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ielts/screens/credits_screen.dart';
 import 'package:ielts/utils/app_constants.dart';
 import 'package:ielts/screens/blog_screen.dart';
 import 'package:ielts/screens/home_screen.dart';
@@ -41,6 +42,8 @@ class Router {
         return MaterialPageRoute<Widget>(builder: (_) => QuizScreen());
       case RoutePaths.settings:
         return MaterialPageRoute<Widget>(builder: (_) => SettingsPage());
+      case RoutePaths.credits:
+        return MaterialPageRoute<Widget>(builder: (_) => CreditsScreen());
 
       default:
         return MaterialPageRoute<Widget>(

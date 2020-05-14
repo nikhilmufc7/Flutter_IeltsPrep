@@ -55,7 +55,10 @@ class _SettingsPageState extends State<SettingsPage> {
             }),
         title: Text(
           "Settings",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: ScreenUtil().setSp(18)),
         ),
       ),
       body: Stack(
@@ -130,6 +133,34 @@ class _SettingsPageState extends State<SettingsPage> {
                         style: TextStyle(color: Colors.white),
                       ),
                       onPressed: _launchURL,
+                    ),
+                  ),
+                ),
+              ),
+              ListTile(
+                leading: Icon(Icons.info),
+                title: Text('About us'),
+                subtitle:
+                    Text('View our privacy policy and terms and conditions'),
+                contentPadding:
+                    EdgeInsets.only(left: ScreenUtil().setWidth(16)),
+                trailing: Padding(
+                  padding: EdgeInsets.only(right: ScreenUtil().setWidth(14)),
+                  child: Transform.scale(
+                    scale: 0.8,
+                    child: RaisedButton(
+                      elevation: 8,
+                      color: Colors.deepPurpleAccent,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(100)),
+                      child: Text(
+                        'View',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(
+                            context, RoutePaths.credits);
+                      },
                     ),
                   ),
                 ),

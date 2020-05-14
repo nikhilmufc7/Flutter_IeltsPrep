@@ -144,7 +144,9 @@ class _BlogScreenState extends State<BlogScreen> {
                         },
                       );
                     } else {
-                      return Center(child: CircularProgressIndicator());
+                      return Container(
+                          height: screenHeight,
+                          child: Center(child: CircularProgressIndicator()));
                     }
                   }),
             ),
@@ -170,19 +172,23 @@ class _BlogScreenState extends State<BlogScreen> {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(ScreenUtil().setWidth(20))),
             child: Stack(children: <Widget>[
-              Hero(
-                tag: blog.title,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(ScreenUtil().setWidth(10)),
-                      topRight: Radius.circular(ScreenUtil().setWidth(10))),
-                  child: FittedBox(
-                    fit: BoxFit.fill,
-                    child: CachedNetworkImage(
-                      imageUrl: blog.imageUrl,
-                      placeholder: (context, url) =>
-                          Center(child: CircularProgressIndicator()),
-                      errorWidget: (context, url, error) => Icon(Icons.error),
+              Container(
+                height: screenHeight / 4.4,
+                width: screenWidth / 1.3,
+                child: Hero(
+                  tag: blog.title,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(ScreenUtil().setWidth(10)),
+                        topRight: Radius.circular(ScreenUtil().setWidth(10))),
+                    child: FittedBox(
+                      fit: BoxFit.fill,
+                      child: CachedNetworkImage(
+                        imageUrl: blog.imageUrl,
+                        placeholder: (context, url) =>
+                            Center(child: CircularProgressIndicator()),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                      ),
                     ),
                   ),
                 ),

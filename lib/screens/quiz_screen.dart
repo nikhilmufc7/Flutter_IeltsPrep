@@ -103,6 +103,10 @@ class _QuizScreenState extends State<QuizScreen> {
     ScreenUtil.init(context, width: 414, height: 896, allowFontScaling: true);
     final productProvider = Provider.of<QuizCrudModel>(context);
 
+    Size size = MediaQuery.of(context).size;
+    double screenHeight = size.height;
+    double screenWidth = size.width;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -159,7 +163,9 @@ class _QuizScreenState extends State<QuizScreen> {
                       },
                     );
                   } else {
-                    return Center(child: CircularProgressIndicator());
+                    return Container(
+                        height: screenHeight,
+                        child: Center(child: CircularProgressIndicator()));
                   }
                 }),
           ),

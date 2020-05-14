@@ -147,7 +147,10 @@ class _ListeningScreenState extends State<ListeningScreen>
                             },
                           );
                         } else {
-                          return Center(child: CircularProgressIndicator());
+                          return Container(
+                              height: screenHeight,
+                              child:
+                                  Center(child: CircularProgressIndicator()));
                         }
                       }),
                 ),

@@ -105,7 +105,7 @@ class MenuPage extends StatelessWidget {
             Column(
               children: options.map((item) {
                 return Padding(
-                  padding: EdgeInsets.all(ScreenUtil().setWidth(8)),
+                  padding: EdgeInsets.all(ScreenUtil().setWidth(3)),
                   child: ListTile(
                     onTap: () {
                       Navigator.pushNamed(context, item.routeName);
@@ -128,7 +128,7 @@ class MenuPage extends StatelessWidget {
             ),
             Spacer(),
             Padding(
-              padding: EdgeInsets.all(ScreenUtil().setWidth(8)),
+              padding: EdgeInsets.all(ScreenUtil().setWidth(3)),
               child: ListTile(
                 onTap: () {
                   Navigator.pushNamed(context, RoutePaths.settings);
@@ -144,7 +144,7 @@ class MenuPage extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(ScreenUtil().setWidth(8)),
+              padding: EdgeInsets.all(ScreenUtil().setWidth(3)),
               child: ListTile(
                 onTap: () => _launchURL(),
                 leading: Icon(

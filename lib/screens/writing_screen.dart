@@ -170,7 +170,10 @@ class _WritingScreenState extends State<WritingScreen>
                             },
                           );
                         } else {
-                          return Center(child: CircularProgressIndicator());
+                          return Container(
+                              height: screenHeight,
+                              child:
+                                  Center(child: CircularProgressIndicator()));
                         }
                       }),
                 ),
