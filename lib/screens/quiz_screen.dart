@@ -237,7 +237,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                   fontWeight: FontWeight.w700),
                             ),
                           ),
-                          SizedBox(height: ScreenUtil().setHeight(20)),
+                          SizedBox(height: ScreenUtil().setHeight(15)),
                           Row(
                             children: <Widget>[
                               Icon(

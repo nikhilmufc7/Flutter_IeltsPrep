@@ -56,34 +56,6 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
           backgroundColor: Colors.white,
           key: _key,
           appBar: AppBar(
-            leading: IconButton(
-                icon: Icon(Icons.arrow_back_ios),
-                color: Colors.white,
-                onPressed: () {
-                  return showDialog<bool>(
-                      context: context,
-                      builder: (_) {
-                        return AlertDialog(
-                          content: Text(
-                              "Are you sure you want to quit the quiz? All your progress will be lost."),
-                          title: Text("Warning!"),
-                          actions: <Widget>[
-                            FlatButton(
-                              child: Text("Yes"),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                            ),
-                            FlatButton(
-                              child: Text("No"),
-                              onPressed: () {
-                                Navigator.pop(context, true);
-                              },
-                            ),
-                          ],
-                        );
-                      });
-                }),
             title: FittedBox(
                 child: Text(
               quiz.quizTitle,

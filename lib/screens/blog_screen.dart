@@ -101,7 +101,9 @@ class _BlogScreenState extends State<BlogScreen> {
                         },
                       );
                     } else {
-                      return Center(child: CircularProgressIndicator());
+                      return Container(
+                          height: screenHeight,
+                          child: Center(child: CircularProgressIndicator()));
                     }
                   }),
             ),
