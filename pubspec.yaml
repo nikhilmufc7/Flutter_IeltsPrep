@@ -11,7 +11,7 @@ description: A new Flutter project.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 0.0.1
+version: 1.0.0+2
 
 environment:
   sdk: '>=2.5.0 <3.0.0'
@@ -31,7 +31,7 @@ dependencies:
   cloud_firestore:
   get_it:
   cached_network_image: ^2.0.0
-  audioplayers:
+
   firebase_messaging: ^6.0.13
   google_fonts:
   google_sign_in:
@@ -50,6 +50,8 @@ dependencies:
   flutter_screenutil:
   url_launcher:
   flutter_launcher_icons: '^0.7.3'
+  just_audio:
+  rxdart:
 
 flutter_icons:
   android: 'launcher_icon'
