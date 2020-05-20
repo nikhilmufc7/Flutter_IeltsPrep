@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ielts/utils/app_constants.dart';
-import 'package:ielts/lesson_data/blog_data.dart';
+
 import 'package:ielts/models/blog.dart';
 import 'package:ielts/screens/blog_detail_screen.dart';
 import 'package:ielts/viewModels/blogCrudModel.dart';
@@ -25,7 +25,6 @@ class _BlogScreenState extends State<BlogScreen> {
   @override
   void initState() {
     super.initState();
-    blog = getBlogData();
   }
 
   double screenHeight;
@@ -187,8 +186,9 @@ class _BlogScreenState extends State<BlogScreen> {
                       fit: BoxFit.fill,
                       child: CachedNetworkImage(
                         imageUrl: blog.imageUrl,
-                        placeholder: (context, url) =>
-                            Center(child: CircularProgressIndicator()),
+                        placeholder: (context, url) => Container(
+                            height: screenHeight,
+                            child: Center(child: CircularProgressIndicator())),
                         errorWidget: (context, url, error) => Icon(Icons.error),
                       ),
                     ),

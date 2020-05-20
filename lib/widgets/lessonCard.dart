@@ -19,9 +19,6 @@ class LessonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    double screenHeight = size.height;
-    double screenWidth = size.width;
     ScreenUtil.init(context);
 
 //If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)

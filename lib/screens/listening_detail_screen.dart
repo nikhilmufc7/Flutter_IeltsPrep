@@ -1,12 +1,10 @@
-import 'dart:io';
-
-import 'package:audioplayers/audio_cache.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ielts/models/listening.dart';
-import 'package:ielts/widgets/player_widget.dart';
+import 'package:ielts/widgets/seekBar.dart';
+import 'package:just_audio/just_audio.dart';
 
 final Color backgroundColor = Color(0xFF21BFBD);
 
@@ -36,25 +34,52 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
   double screenWidth, screenHeight;
   final Duration duration = Duration(milliseconds: 300);
 
-  AudioCache audioCache = AudioCache();
-  AudioPlayer advancedPlayer = AudioPlayer();
+  AudioPlayer _player;
+  AudioPlayer _player2;
+  AudioPlayer _player3;
+  AudioPlayer _player4;
 
   @override
   void initState() {
-    super.initState();
+    _player = AudioPlayer();
+    _player.setUrl(listening.firstSectionAudio).catchError((error) {
+      // catch audio error ex: 404 url, wrong url ...
+      print(error);
+    });
 
-    if (Platform.isIOS) {
-      if (audioCache.fixedPlayer != null) {
-        audioCache.fixedPlayer.startHeadlessService();
-      }
-      advancedPlayer.startHeadlessService();
-    }
+    // preloading 2nd section audio
+
+    _player2 = AudioPlayer();
+    _player2.setUrl(listening.section2Audio).catchError((error) {
+      // catch audio error ex: 404 url, wrong url ...
+      print(error);
+    });
+
+    // preloading 3rd section audio
+
+    _player3 = AudioPlayer();
+    _player3.setUrl(listening.section3Audio).catchError((error) {
+      // catch audio error ex: 404 url, wrong url ...
+      print(error);
+    });
+
+    // preloading 4th section audio
+
+    _player4 = AudioPlayer();
+    _player4.setUrl(listening.section4Audio).catchError((error) {
+      // catch audio error ex: 404 url, wrong url ...
+      print(error);
+    });
+
+    super.initState();
   }
 
   @override
   void dispose() {
-    advancedPlayer.dispose();
-
+    _player.dispose();
+    _player2.dispose();
+    _player3.dispose();
+    _player4.dispose();
     super.dispose();
   }
 
@@ -67,6 +92,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
 
 //If you want to set the font size is scaled according to the system's "font size" assist option
     ScreenUtil.init(context, width: 414, height: 896, allowFontScaling: true);
+
     Size size = MediaQuery.of(context).size;
     screenHeight = size.height;
     screenWidth = size.width;
@@ -173,7 +199,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                       color: Theme.of(context).canvasColor,
                     ),
                     child: ListView(
-                      padding: EdgeInsets.only(top: ScreenUtil().setHeight(50)),
+                      padding: EdgeInsets.only(top: ScreenUtil().setHeight(30)),
                       physics: ClampingScrollPhysics(),
                       shrinkWrap: true,
                       children: <Widget>[
@@ -198,16 +224,135 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                               ),
                             ),
 
-                            // StreamBuilder(builder: (context, snapshot) {
-                            //   return PlayerWidget(
-                            //     url: listening.firstSectionAudio,
-                            //     mode: PlayerMode.LOW_LATENCY,
-                            //   );
-                            // }),
+                            StreamBuilder<FullAudioPlaybackState>(
+                              stream: _player.fullPlaybackStateStream,
+                              builder: (context, snapshot) {
+                                final fullState = snapshot.data;
+                                final state = fullState?.state;
+                                final buffering = fullState?.buffering;
+                                return Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    if (state ==
+                                            AudioPlaybackState.connecting ||
+                                        buffering == true)
+                                      Container(
+                                        margin: EdgeInsets.all(8.0),
+                                        width: 45.0,
+                                        height: 45.0,
+                                        child: CircularProgressIndicator(),
+                                      )
+                                    else if (state ==
+                                        AudioPlaybackState.playing)
+                                      Column(
+                                        children: <Widget>[
+                                          IconButton(
+                                            icon: Icon(Icons.pause),
+                                            color: Colors.deepPurpleAccent,
+                                            iconSize: 45.0,
+                                            onPressed: _player.pause,
+                                          ),
+                                          Text(
+                                            'Pause',
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                fontFamily: 'Montserrat'),
+                                          ),
+                                        ],
+                                      )
+                                    else
+                                      Column(
+                                        children: <Widget>[
+                                          IconButton(
+                                            icon: Icon(Icons.play_arrow),
+                                            iconSize: 45.0,
+                                            color: Colors.deepPurpleAccent,
+                                            onPressed: () {
+                                              _player2.stop();
+                                              _player3.stop();
+                                              _player4.stop();
+                                              _player.play();
+                                            },
+                                          ),
+                                          Text(
+                                            'Play',
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                fontFamily: 'Montserrat'),
+                                          ),
+                                        ],
+                                      ),
+                                    Column(
+                                      children: <Widget>[
+                                        StreamBuilder<Duration>(
+                                          stream: _player.durationStream,
+                                          builder: (context, snapshot) {
+                                            final duration =
+                                                snapshot.data ?? Duration.zero;
+                                            return StreamBuilder<Duration>(
+                                              stream:
+                                                  _player.getPositionStream(),
+                                              builder: (context, snapshot) {
+                                                var position = snapshot.data ??
+                                                    Duration.zero;
+                                                if (position > duration) {
+                                                  position = duration;
+                                                }
+                                                return SeekBar(
+                                                  duration: duration,
+                                                  position: position,
+                                                  onChangeEnd: (newPosition) {
+                                                    _player.seek(newPosition);
+                                                  },
+                                                );
+                                              },
+                                            );
+                                          },
+                                        ),
+                                        if (state ==
+                                                AudioPlaybackState.connecting ||
+                                            buffering == true)
+                                          Text(
+                                            'Loading audio...',
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                fontFamily: 'Montserrat'),
+                                          ),
+                                        Container(
+                                          height: 0,
+                                          width: 0,
+                                        )
+                                      ],
+                                    ),
+                                    Column(
+                                      children: <Widget>[
+                                        IconButton(
+                                          icon: Icon(Icons.stop),
+                                          color: Colors.deepPurpleAccent,
+                                          iconSize: 45.0,
+                                          onPressed: state ==
+                                                      AudioPlaybackState
+                                                          .stopped ||
+                                                  state ==
+                                                      AudioPlaybackState.none
+                                              ? null
+                                              : _player.stop,
+                                        ),
+                                        Text(
+                                          'Stop',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontFamily: 'Montserrat'),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                );
+                              },
+                            ),
 
-                            PlayerWidget(url: listening.firstSectionAudio),
-
-                            SizedBox(height: ScreenUtil().setHeight(15)),
+                            SizedBox(height: ScreenUtil().setHeight(20)),
                             Padding(
                               padding:
                                   EdgeInsets.all(ScreenUtil().setHeight(8)),
@@ -429,7 +574,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                       color: Theme.of(context).canvasColor,
                     ),
                     child: ListView(
-                      padding: EdgeInsets.only(top: ScreenUtil().setHeight(50)),
+                      padding: EdgeInsets.only(top: ScreenUtil().setHeight(30)),
                       physics: ClampingScrollPhysics(),
                       shrinkWrap: true,
                       children: <Widget>[
@@ -454,9 +599,141 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                               ),
                             ),
 
-                            PlayerWidget(url: listening.section2Audio),
-
                             SizedBox(height: ScreenUtil().setHeight(15)),
+
+                            StreamBuilder<FullAudioPlaybackState>(
+                              stream: _player2.fullPlaybackStateStream,
+                              builder: (context, snapshot) {
+                                final fullState = snapshot.data;
+                                final state = fullState?.state;
+                                final buffering = fullState?.buffering;
+                                return Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    if (state ==
+                                            AudioPlaybackState.connecting ||
+                                        buffering == true)
+                                      Column(
+                                        children: <Widget>[
+                                          Container(
+                                            margin: EdgeInsets.all(8.0),
+                                            width: 45.0,
+                                            height: 45.0,
+                                            child: CircularProgressIndicator(),
+                                          ),
+                                        ],
+                                      )
+                                    else if (state ==
+                                        AudioPlaybackState.playing)
+                                      Column(
+                                        children: <Widget>[
+                                          IconButton(
+                                            icon: Icon(Icons.pause),
+                                            color: Colors.deepPurpleAccent,
+                                            iconSize: 45.0,
+                                            onPressed: _player2.pause,
+                                          ),
+                                          Text(
+                                            'Pause',
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                fontFamily: 'Montserrat'),
+                                          ),
+                                        ],
+                                      )
+                                    else
+                                      Column(
+                                        children: <Widget>[
+                                          IconButton(
+                                            icon: Icon(Icons.play_arrow),
+                                            iconSize: 45.0,
+                                            color: Colors.deepPurpleAccent,
+                                            onPressed: () {
+                                              _player.stop();
+                                              _player3.stop();
+                                              _player4.stop();
+                                              _player2.play();
+                                            },
+                                          ),
+                                          Text(
+                                            'Play',
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                fontFamily: 'Montserrat'),
+                                          ),
+                                        ],
+                                      ),
+                                    Column(
+                                      children: <Widget>[
+                                        StreamBuilder<Duration>(
+                                          stream: _player2.durationStream,
+                                          builder: (context, snapshot) {
+                                            final duration =
+                                                snapshot.data ?? Duration.zero;
+                                            return StreamBuilder<Duration>(
+                                              stream:
+                                                  _player2.getPositionStream(),
+                                              builder: (context, snapshot) {
+                                                var position = snapshot.data ??
+                                                    Duration.zero;
+                                                if (position > duration) {
+                                                  position = duration;
+                                                }
+                                                return SeekBar(
+                                                  duration: duration,
+                                                  position: position,
+                                                  onChangeEnd: (newPosition) {
+                                                    _player2.seek(newPosition);
+                                                  },
+                                                );
+                                              },
+                                            );
+                                          },
+                                        ),
+                                        if (state ==
+                                                AudioPlaybackState.connecting ||
+                                            buffering == true)
+                                          Text(
+                                            'Loading audio...',
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                fontFamily: 'Montserrat'),
+                                          ),
+                                        Container(
+                                          height: 0,
+                                          width: 0,
+                                        )
+                                      ],
+                                    ),
+                                    Column(
+                                      children: <Widget>[
+                                        IconButton(
+                                          icon: Icon(Icons.stop),
+                                          color: Colors.deepPurpleAccent,
+                                          iconSize: 45.0,
+                                          onPressed: state ==
+                                                      AudioPlaybackState
+                                                          .stopped ||
+                                                  state ==
+                                                      AudioPlaybackState.none
+                                              ? null
+                                              : _player2.stop,
+                                        ),
+                                        Text(
+                                          'Stop',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontFamily: 'Montserrat'),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                );
+                              },
+                            ),
+
+                            SizedBox(height: ScreenUtil().setHeight(20)),
 
                             Padding(
                               padding:
@@ -659,7 +936,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                       color: Theme.of(context).canvasColor,
                     ),
                     child: ListView(
-                      padding: EdgeInsets.only(top: ScreenUtil().setHeight(50)),
+                      padding: EdgeInsets.only(top: ScreenUtil().setHeight(30)),
                       physics: ClampingScrollPhysics(),
                       shrinkWrap: true,
                       children: <Widget>[
@@ -686,9 +963,137 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                               ),
                             ),
 
-                            PlayerWidget(url: listening.section3Audio),
+                            // PlayerWidget(url: listening.section3Audio),
 
-                            SizedBox(height: ScreenUtil().setHeight(15)),
+                            StreamBuilder<FullAudioPlaybackState>(
+                              stream: _player3.fullPlaybackStateStream,
+                              builder: (context, snapshot) {
+                                final fullState = snapshot.data;
+                                final state = fullState?.state;
+                                final buffering = fullState?.buffering;
+                                return Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    if (state ==
+                                            AudioPlaybackState.connecting ||
+                                        buffering == true)
+                                      Container(
+                                        margin: EdgeInsets.all(8.0),
+                                        width: 45.0,
+                                        height: 45.0,
+                                        child: CircularProgressIndicator(),
+                                      )
+                                    else if (state ==
+                                        AudioPlaybackState.playing)
+                                      Column(
+                                        children: <Widget>[
+                                          IconButton(
+                                            icon: Icon(Icons.pause),
+                                            color: Colors.deepPurpleAccent,
+                                            iconSize: 45.0,
+                                            onPressed: _player3.pause,
+                                          ),
+                                          Text(
+                                            'Pause',
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                fontFamily: 'Montserrat'),
+                                          ),
+                                        ],
+                                      )
+                                    else
+                                      Column(
+                                        children: <Widget>[
+                                          IconButton(
+                                            icon: Icon(Icons.play_arrow),
+                                            iconSize: 45.0,
+                                            color: Colors.deepPurpleAccent,
+                                            onPressed: () {
+                                              _player.stop();
+                                              _player2.stop();
+                                              _player4.stop();
+                                              _player3.play();
+                                            },
+                                          ),
+                                          Text(
+                                            'Play',
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                fontFamily: 'Montserrat'),
+                                          ),
+                                        ],
+                                      ),
+                                    Column(
+                                      children: <Widget>[
+                                        StreamBuilder<Duration>(
+                                          stream: _player3.durationStream,
+                                          builder: (context, snapshot) {
+                                            final duration =
+                                                snapshot.data ?? Duration.zero;
+                                            return StreamBuilder<Duration>(
+                                              stream:
+                                                  _player3.getPositionStream(),
+                                              builder: (context, snapshot) {
+                                                var position = snapshot.data ??
+                                                    Duration.zero;
+                                                if (position > duration) {
+                                                  position = duration;
+                                                }
+                                                return SeekBar(
+                                                  duration: duration,
+                                                  position: position,
+                                                  onChangeEnd: (newPosition) {
+                                                    _player3.seek(newPosition);
+                                                  },
+                                                );
+                                              },
+                                            );
+                                          },
+                                        ),
+                                        if (state ==
+                                                AudioPlaybackState.connecting ||
+                                            buffering == true)
+                                          Text(
+                                            'Loading audio...',
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                fontFamily: 'Montserrat'),
+                                          ),
+                                        Container(
+                                          height: 0,
+                                          width: 0,
+                                        )
+                                      ],
+                                    ),
+                                    Column(
+                                      children: <Widget>[
+                                        IconButton(
+                                          icon: Icon(Icons.stop),
+                                          color: Colors.deepPurpleAccent,
+                                          iconSize: 45.0,
+                                          onPressed: state ==
+                                                      AudioPlaybackState
+                                                          .stopped ||
+                                                  state ==
+                                                      AudioPlaybackState.none
+                                              ? null
+                                              : _player.stop,
+                                        ),
+                                        Text(
+                                          'Stop',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontFamily: 'Montserrat'),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                );
+                              },
+                            ),
+
+                            SizedBox(height: ScreenUtil().setHeight(20)),
 
                             Padding(
                               padding:
@@ -966,7 +1371,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                       color: Theme.of(context).canvasColor,
                     ),
                     child: ListView(
-                      padding: EdgeInsets.only(top: ScreenUtil().setHeight(50)),
+                      padding: EdgeInsets.only(top: ScreenUtil().setHeight(30)),
                       physics: ClampingScrollPhysics(),
                       shrinkWrap: true,
                       children: <Widget>[
@@ -993,9 +1398,137 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                               ),
                             ),
 
-                            PlayerWidget(url: listening.section4Audio),
+                            // PlayerWidget(url: listening.section4Audio),
 
-                            SizedBox(height: ScreenUtil().setHeight(15)),
+                            StreamBuilder<FullAudioPlaybackState>(
+                              stream: _player4.fullPlaybackStateStream,
+                              builder: (context, snapshot) {
+                                final fullState = snapshot.data;
+                                final state = fullState?.state;
+                                final buffering = fullState?.buffering;
+                                return Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    if (state ==
+                                            AudioPlaybackState.connecting ||
+                                        buffering == true)
+                                      Container(
+                                        margin: EdgeInsets.all(8.0),
+                                        width: 45.0,
+                                        height: 45.0,
+                                        child: CircularProgressIndicator(),
+                                      )
+                                    else if (state ==
+                                        AudioPlaybackState.playing)
+                                      Column(
+                                        children: <Widget>[
+                                          IconButton(
+                                            icon: Icon(Icons.pause),
+                                            color: Colors.deepPurpleAccent,
+                                            iconSize: 45.0,
+                                            onPressed: _player4.pause,
+                                          ),
+                                          Text(
+                                            'Pause',
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                fontFamily: 'Montserrat'),
+                                          ),
+                                        ],
+                                      )
+                                    else
+                                      Column(
+                                        children: <Widget>[
+                                          IconButton(
+                                            icon: Icon(Icons.play_arrow),
+                                            iconSize: 45.0,
+                                            color: Colors.deepPurpleAccent,
+                                            onPressed: () {
+                                              _player2.stop();
+                                              _player3.stop();
+                                              _player.stop();
+                                              _player4.play();
+                                            },
+                                          ),
+                                          Text(
+                                            'Play',
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                fontFamily: 'Montserrat'),
+                                          ),
+                                        ],
+                                      ),
+                                    Column(
+                                      children: <Widget>[
+                                        StreamBuilder<Duration>(
+                                          stream: _player4.durationStream,
+                                          builder: (context, snapshot) {
+                                            final duration =
+                                                snapshot.data ?? Duration.zero;
+                                            return StreamBuilder<Duration>(
+                                              stream:
+                                                  _player4.getPositionStream(),
+                                              builder: (context, snapshot) {
+                                                var position = snapshot.data ??
+                                                    Duration.zero;
+                                                if (position > duration) {
+                                                  position = duration;
+                                                }
+                                                return SeekBar(
+                                                  duration: duration,
+                                                  position: position,
+                                                  onChangeEnd: (newPosition) {
+                                                    _player4.seek(newPosition);
+                                                  },
+                                                );
+                                              },
+                                            );
+                                          },
+                                        ),
+                                        if (state ==
+                                                AudioPlaybackState.connecting ||
+                                            buffering == true)
+                                          Text(
+                                            'Loading audio...',
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                fontFamily: 'Montserrat'),
+                                          ),
+                                        Container(
+                                          height: 0,
+                                          width: 0,
+                                        )
+                                      ],
+                                    ),
+                                    Column(
+                                      children: <Widget>[
+                                        IconButton(
+                                          icon: Icon(Icons.stop),
+                                          color: Colors.deepPurpleAccent,
+                                          iconSize: 45.0,
+                                          onPressed: state ==
+                                                      AudioPlaybackState
+                                                          .stopped ||
+                                                  state ==
+                                                      AudioPlaybackState.none
+                                              ? null
+                                              : _player4.stop,
+                                        ),
+                                        Text(
+                                          'Stop',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontFamily: 'Montserrat'),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                );
+                              },
+                            ),
+
+                            SizedBox(height: ScreenUtil().setHeight(20)),
 
                             Padding(
                               padding:

@@ -43,11 +43,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    @override
-    void initState() {
-      super.initState();
-    }
-
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
