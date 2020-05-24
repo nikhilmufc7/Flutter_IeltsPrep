@@ -67,7 +67,7 @@ class LessonCard extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                      flex: 2,
+                      flex: 1,
                       child: Container(
                         // tag: 'hero',
                         child: LinearProgressIndicator(

@@ -248,7 +248,7 @@ class _QuizScreenState extends State<QuizScreen> {
                               SizedBox(
                                 width: ScreenUtil().setHeight(8),
                               ),
-                              Flexible(
+                              FittedBox(
                                 child: Text(
                                   'Total Questions : ${quiz.question.length}',
                                   style: TextStyle(

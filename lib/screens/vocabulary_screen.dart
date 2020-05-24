@@ -257,7 +257,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
                     fontFamily: 'Montserrat'),
               ),
             ),
-            SizedBox(height: ScreenUtil().setHeight(15)),
+            SizedBox(height: ScreenUtil().setHeight(10)),
             ListTile(
               title: Text(
                 'Usage in Sentence',
@@ -272,7 +272,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
                 vocabulary.sentence ?? 'sentence',
                 style: TextStyle(
                     fontWeight: FontWeight.w400,
-                    fontSize: ScreenUtil().setSp(16),
+                    fontSize: ScreenUtil().setSp(14),
                     fontFamily: 'Montserrat'),
               ),
             ),
