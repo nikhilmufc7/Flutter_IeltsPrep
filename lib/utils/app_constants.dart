@@ -12,4 +12,5 @@ class RoutePaths {
   static const String quiz = '/quiz';
   static const String settings = '/settings';
   static const String credits = '/credits';
+  static const String forum = '/forum';
 }
