@@ -103,7 +103,7 @@ class _ForumCardState extends State<ForumCard> {
                               child: AutoSizeText(chatDocuments[index]['title'],
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
-                                  style: GoogleFonts.pangolin(fontSize: 20)),
+                                  style: GoogleFonts.sanchez(fontSize: 20)),
                             ),
                             subtitle: Wrap(
                               spacing: 8,

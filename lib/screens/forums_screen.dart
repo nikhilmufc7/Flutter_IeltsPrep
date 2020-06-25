@@ -1,8 +1,10 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_tags/flutter_tags.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:ielts/widgets/forum_card.dart';
 
 class ForumsScreen extends StatefulWidget {
@@ -17,29 +19,36 @@ class _ForumsScreenState extends State<ForumsScreen> {
 
   var _newTitle = '';
 
-  final List<String> _list = ['first', 'second', 'third'];
-  List _items;
+  final List<String> _list = [
+    'Mentor Help',
+    'Discussion',
+    'IELTS Exam',
+    'Help Required',
+    'Useful',
+    'Speaking Buddy',
+    'Information',
+    'Tips',
+    'Share knowledge',
+    'Exam Dates',
+    'Reading',
+    'Listening',
+    'Writing',
+    'Speaking'
+  ];
+  List _items = [];
 
   bool _symmetry = false;
-  bool _removeButton = true;
+
   bool _singleItem = false;
-  bool _startDirection = false;
   bool _horizontalScroll = false;
-  bool _withSuggesttions = false;
-  int _count = 0;
   int _column = 0;
   double _fontSize = 14;
-
-  String _itemCombine = 'withTextBefore';
-
-  String _onPressed = '';
-
-  List _icon = [Icons.home, Icons.language, Icons.headset];
+  GlobalKey<FormState> _formKey = GlobalKey();
+  bool _errorVisible = false;
 
   @override
   void initState() {
     super.initState();
-    _items = _list.toList();
   }
 
   @override
@@ -66,10 +75,13 @@ class _ForumsScreenState extends State<ForumsScreen> {
               height: screenHeight / 10,
               width: screenWidth,
               color: Colors.orange,
-              child: Text(
+              child: AutoSizeText(
                 "Discussions",
+                maxLines: 1,
+                minFontSize: 16,
+                maxFontSize: 32,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                style: GoogleFonts.breeSerif(fontSize: 28),
               ),
             ),
           ),
@@ -90,91 +102,134 @@ class _ForumsScreenState extends State<ForumsScreen> {
         context: context,
         builder: (_) => Column(
               children: [
-                Center(
-                  child: Text('Start a discussion'),
+                Form(
+                  key: _formKey,
+                  child: AutoSizeText(
+                    "Start a discussion",
+                    maxLines: 1,
+                    minFontSize: 16,
+                    maxFontSize: 32,
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.breeSerif(fontSize: 28),
+                  ),
                 ),
-                TextField(
-                  maxLength: 50,
-                  onChanged: (text) {
-                    setState(() {
-                      _newTitle = text;
-                    });
-                  },
+                Container(
+                  decoration: BoxDecoration(
+                      color: Color.fromRGBO(179, 179, 255, 0.2),
+                      borderRadius: BorderRadius.circular(30)),
+                  margin:
+                      EdgeInsets.only(left: 10, right: 20, top: 30, bottom: 0),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                        labelText: 'Give a catchy title',
+                        border: InputBorder.none,
+                        prefixIcon: Icon(Icons.child_care,
+                            color: Color.fromRGBO(179, 179, 255, 1), size: 24)),
+                    maxLength: 50,
+                    maxLines: 2,
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
+                    validator: (val) {
+                      if (val.isEmpty || val.length < 5) {
+                        return 'Please enter a title';
+                      }
+                    },
+                    onChanged: (val) => _newTitle = val,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: AutoSizeText(
+                    "Select Tags (Max 2)",
+                    maxLines: 1,
+                    minFontSize: 14,
+                    maxFontSize: 20,
+                    textAlign: TextAlign.left,
+                    style: GoogleFonts.breeSerif(fontSize: 18),
+                  ),
                 ),
                 Tags(
                   symmetry: _symmetry,
                   columns: _column,
                   horizontalScroll: _horizontalScroll,
+
                   //verticalDirection: VerticalDirection.up, textDirection: TextDirection.rtl,
                   heightHorizontalScroll: 60 * (_fontSize / 14),
-                  itemCount: _items.length,
+                  itemCount: _list.length,
                   itemBuilder: (index) {
-                    final item = _items[index];
+                    final item = _list[index];
 
                     return ItemTags(
                       key: Key(index.toString()),
                       index: index,
                       title: item,
-                      pressEnabled: true,
+                      active: true,
                       activeColor: Colors.blueGrey[600],
+                      pressEnabled: true,
                       singleItem: _singleItem,
                       splashColor: Colors.green,
-                      combine: ItemTagsCombine.withTextBefore,
-                      image: index > 0 && index < 5
-                          ? ItemTagsImage(
-                              //image: AssetImage("img/p$index.jpg"),
-                              child: Image.network(
-                              "http://www.clipartpanda.com/clipart_images/user-66327738/download",
-                              width: 16 * _fontSize / 14,
-                              height: 16 * _fontSize / 14,
-                            ))
-                          : (1 == 1
-                              ? ItemTagsImage(
-                                  image: NetworkImage(
-                                      "https://d32ogoqmya1dw8.cloudfront.net/images/serc/empty_user_icon_256.v2.png"),
-                                )
-                              : null),
-                      icon: (item == '0' || item == '1' || item == '2')
-                          ? ItemTagsIcon(
-                              icon: _icon[int.parse(item)],
-                            )
-                          : null,
-                      removeButton: _removeButton
-                          ? ItemTagsRemoveButton(
-                              onRemoved: () {
-                                setState(() {
-                                  _items.removeAt(index);
-                                });
-                                return true;
-                              },
-                            )
-                          : null,
                       textStyle: TextStyle(
                         fontSize: _fontSize,
                       ),
-                      onPressed: (item) => print(item),
+                      onPressed: (item) => setState(() {
+                        if (_items.length < 2 &&
+                            _items.contains(item.title) == false) {
+                          _items.add(item.title);
+
+                          print(_items);
+                        } else {
+                          _items.remove(item.title);
+                        }
+                      }),
                     );
                   },
                 ),
-                RaisedButton(
-                  onPressed: () async {
-                    FocusScope.of(context).unfocus();
-                    titleController.clear();
-                    final user = await FirebaseAuth.instance.currentUser();
-                    final userData = await Firestore.instance
-                        .collection('users')
-                        .document(user.uid)
-                        .get();
-                    Firestore.instance.collection('forums').add({
-                      'title': _newTitle,
-                      'sentAt': Timestamp.now(),
-                      'userId': user.uid,
-                      'firstName': userData['firstName'],
-                      'userImage': userData['userImage'],
-                    });
-                    Navigator.pop(context);
-                  },
-                  child: Text('Submit'),
+                Visibility(visible: _errorVisible, child: Text('Fix errors')),
+                Padding(
+                  padding: EdgeInsets.only(top: 15),
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    splashColor: Colors.greenAccent,
+                    color: Colors.deepPurpleAccent,
+                    onPressed: () async {
+                      FocusScope.of(context).unfocus();
+
+                      if (_formKey.currentState.validate() &&
+                          _items.length != 0) {
+                        _formKey.currentState.save();
+                        final user = await FirebaseAuth.instance.currentUser();
+                        final userData = await Firestore.instance
+                            .collection('users')
+                            .document(user.uid)
+                            .get();
+                        Firestore.instance.collection('forums').add({
+                          'title': _newTitle,
+                          'sentAt': Timestamp.now(),
+                          'userId': user.uid,
+                          'firstName': userData['firstName'],
+                          'userImage': userData['userImage'],
+                          'tags': _items,
+                        });
+                        titleController.clear();
+                        setState(() {
+                          _items.clear();
+                          _errorVisible = false;
+                        });
+                        Navigator.pop(context);
+                      } else {
+                        setState(() {
+                          _errorVisible = true;
+                        });
+                      }
+                    },
+                    child: Text(
+                      'Submit',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                 )
               ],
             ));
