@@ -1,12 +1,15 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:ielts/widgets/message.dart';
 import 'package:ielts/widgets/new_message.dart';
 
 class ChatScreen extends StatefulWidget {
   final String documentId;
-  const ChatScreen({Key key, this.documentId}) : super(key: key);
+  final String title;
+  const ChatScreen({Key key, this.documentId, this.title}) : super(key: key);
 
   @override
   _ChatScreenState createState() => _ChatScreenState();
@@ -37,16 +40,21 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Chats'),
-          actions: [
-            IconButton(
-                icon: Icon(Icons.exit_to_app),
-                onPressed: () {
-                  FirebaseAuth.instance.signOut();
-                })
-          ],
+          elevation: 0,
+          title: AutoSizeText(
+            widget.title,
+            minFontSize: 13,
+            maxFontSize: 26,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: GoogleFonts.sanchez(fontSize: 24),
+          ),
         ),
         body: Container(
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(60), topRight: Radius.circular(60))),
           child: Column(
             children: [
               Expanded(

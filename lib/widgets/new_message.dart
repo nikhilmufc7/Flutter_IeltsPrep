@@ -37,8 +37,11 @@ class _NewMessageState extends State<NewMessage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 8),
-      padding: EdgeInsets.all(8),
+      margin: EdgeInsets.only(bottom: 10),
+      padding: EdgeInsets.all(12),
+      decoration: BoxDecoration(
+          color: Color.fromRGBO(179, 179, 255, 0.2),
+          borderRadius: BorderRadius.circular(30)),
       child: Row(
         children: [
           Expanded(
@@ -46,9 +49,11 @@ class _NewMessageState extends State<NewMessage> {
             textCapitalization: TextCapitalization.sentences,
             autocorrect: true,
             enableSuggestions: true,
+            maxLines: null,
             controller: _controller,
             decoration: InputDecoration(
               labelText: 'Enter a message',
+              border: InputBorder.none,
             ),
             onChanged: (value) {
               setState(() {
@@ -56,9 +61,16 @@ class _NewMessageState extends State<NewMessage> {
               });
             },
           )),
-          IconButton(
-              icon: Icon(Icons.send),
-              onPressed: _newMessage.trim().isEmpty ? null : _send)
+          RaisedButton(
+            onPressed: _newMessage.trim().isEmpty ? null : _send,
+            color: Colors.blue[200],
+            shape: CircleBorder(),
+            disabledColor: Colors.grey,
+            child: Icon(
+              Icons.send,
+              size: 18,
+            ),
+          )
         ],
       ),
     );

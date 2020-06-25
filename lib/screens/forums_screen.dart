@@ -60,7 +60,7 @@ class _ForumsScreenState extends State<ForumsScreen> {
       backgroundColor: Colors.white,
       key: _scaffoldKey,
       appBar: AppBar(
-        backgroundColor: Colors.orange,
+        backgroundColor: Theme.of(context).primaryColor,
         elevation: 0,
       ),
       floatingActionButton: FloatingActionButton(
@@ -74,7 +74,7 @@ class _ForumsScreenState extends State<ForumsScreen> {
             child: Container(
               height: screenHeight / 10,
               width: screenWidth,
-              color: Colors.orange,
+              color: Theme.of(context).primaryColor,
               child: AutoSizeText(
                 "Discussions",
                 maxLines: 1,
@@ -126,7 +126,7 @@ class _ForumsScreenState extends State<ForumsScreen> {
                         prefixIcon: Icon(Icons.child_care,
                             color: Color.fromRGBO(179, 179, 255, 1), size: 24)),
                     maxLength: 50,
-                    maxLines: 2,
+                    maxLines: null,
                     style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,

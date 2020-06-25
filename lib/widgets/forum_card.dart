@@ -84,6 +84,7 @@ class _ForumCardState extends State<ForumCard> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => ChatScreen(
+                                title: chatDocuments[index]['title'],
                                 documentId:
                                     snapshot.data.documents[index].documentID,
                               ))),
