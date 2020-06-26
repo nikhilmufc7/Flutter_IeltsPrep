@@ -1,50 +1,81 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class MessageBubble extends StatelessWidget {
   const MessageBubble(
-      {Key key, this.message, this.isMe, this.firstName, this.imageUrl})
+      {Key key,
+      this.message,
+      this.isMe,
+      this.firstName,
+      this.imageUrl,
+      this.time})
       : super(key: key);
 
   final String message;
   final bool isMe;
   final String firstName;
   final String imageUrl;
+  final DateTime time;
 
   @override
   Widget build(BuildContext context) {
+    DateTime format = time.toLocal();
+
     return Stack(
       children: [
         Row(
           mainAxisAlignment:
               isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
           children: [
-            Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(12),
-                      topLeft: Radius.circular(12),
-                      bottomLeft:
-                          !isMe ? Radius.circular(0) : Radius.circular(12),
-                      bottomRight:
-                          isMe ? Radius.circular(0) : Radius.circular(12)),
-                  color: isMe ? Colors.grey[300] : Colors.pinkAccent),
-              width: 140,
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-              margin: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+            Flexible(
               child: Column(
                 crossAxisAlignment:
-                    isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+                    isMe ? CrossAxisAlignment.start : CrossAxisAlignment.end,
                 children: [
-                  Text(
-                    firstName,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
+                  Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(12),
+                            topLeft: Radius.circular(12),
+                            bottomLeft: !isMe
+                                ? Radius.circular(0)
+                                : Radius.circular(12),
+                            bottomRight: isMe
+                                ? Radius.circular(0)
+                                : Radius.circular(12)),
+                        color: isMe ? Colors.grey[300] : Colors.pinkAccent),
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                    margin: EdgeInsets.only(
+                        top: 16, bottom: 0, left: 50, right: 50),
+                    child: Column(
+                      crossAxisAlignment: isMe
+                          ? CrossAxisAlignment.end
+                          : CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          firstName,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          message,
+                          textAlign: isMe ? TextAlign.end : TextAlign.start,
+                          style: TextStyle(
+                              color: isMe ? Colors.black : Colors.white),
+                        ),
+                      ],
                     ),
                   ),
-                  Text(
-                    message,
-                    textAlign: isMe ? TextAlign.end : TextAlign.start,
-                    style: TextStyle(color: isMe ? Colors.black : Colors.white),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      right: isMe ? 0 : 50,
+                      left: isMe ? 50 : 0,
+                    ),
+                    child: Text(
+                      DateFormat('dd MMMM hh mm').format(format),
+                      textAlign: isMe ? TextAlign.start : TextAlign.end,
+                    ),
                   ),
                 ],
               ),
@@ -52,9 +83,9 @@ class MessageBubble extends StatelessWidget {
           ],
         ),
         Positioned(
-          top: 0,
-          left: isMe ? null : 120,
-          right: isMe ? 120 : null,
+          top: 20,
+          left: isMe ? null : 5,
+          right: isMe ? 5 : null,
           child: CircleAvatar(
             backgroundImage: NetworkImage(imageUrl),
           ),

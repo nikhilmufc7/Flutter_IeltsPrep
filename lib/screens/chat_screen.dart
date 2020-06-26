@@ -55,16 +55,19 @@ class _ChatScreenState extends State<ChatScreen> {
               color: Colors.white,
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(60), topRight: Radius.circular(60))),
-          child: Column(
-            children: [
-              Expanded(
-                  child: MessagesWidget(
-                documentId: widget.documentId,
-              )),
-              NewMessage(
-                documentId: widget.documentId,
-              )
-            ],
+          child: Padding(
+            padding: EdgeInsets.only(top: 15.0, right: 10),
+            child: Column(
+              children: [
+                Expanded(
+                    child: MessagesWidget(
+                  documentId: widget.documentId,
+                )),
+                NewMessage(
+                  documentId: widget.documentId,
+                )
+              ],
+            ),
           ),
         ));
   }

@@ -41,6 +41,7 @@ class MessagesWidget extends StatelessWidget {
                         key: ValueKey(chatDocuments[index].documentID),
                         firstName: chatDocuments[index]['firstName'],
                         imageUrl: chatDocuments[index]['userImage'],
+                        time: chatDocuments[index]['sentAt'].toDate(),
                       ));
             },
           );
