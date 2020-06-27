@@ -57,10 +57,10 @@ class _ForumsScreenState extends State<ForumsScreen> {
     double screenHeight = size.height;
     double screenWidth = size.width;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).splashColor,
       key: _scaffoldKey,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Theme.of(context).indicatorColor,
         elevation: 0,
       ),
       floatingActionButton: FloatingActionButton(
@@ -74,7 +74,7 @@ class _ForumsScreenState extends State<ForumsScreen> {
             child: Container(
               height: screenHeight / 10,
               width: screenWidth,
-              color: Theme.of(context).primaryColor,
+              color: Theme.of(context).indicatorColor,
               child: AutoSizeText(
                 "Discussions",
                 maxLines: 1,
@@ -121,8 +121,10 @@ class _ForumsScreenState extends State<ForumsScreen> {
                       EdgeInsets.only(left: 10, right: 20, top: 30, bottom: 0),
                   child: TextFormField(
                     decoration: InputDecoration(
-                        labelText: 'Give a catchy title',
+                        hintText: 'Give a catchy title',
                         border: InputBorder.none,
+                        hintStyle:
+                            TextStyle(color: Theme.of(context).accentColor),
                         prefixIcon: Icon(Icons.child_care,
                             color: Color.fromRGBO(179, 179, 255, 1), size: 24)),
                     maxLength: 50,
@@ -130,7 +132,7 @@ class _ForumsScreenState extends State<ForumsScreen> {
                     style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black),
+                        color: Theme.of(context).accentColor),
                     validator: (val) {
                       if (val.isEmpty || val.length < 5) {
                         return 'Please enter a title';

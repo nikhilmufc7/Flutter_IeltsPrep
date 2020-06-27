@@ -32,44 +32,46 @@ class _NewMessageState extends State<NewMessage> {
       'firstName': userData['firstName'],
       'userImage': userData['userImage'],
     });
+    setState(() {
+      _newMessage = '';
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 10),
-      padding: EdgeInsets.all(12),
       decoration: BoxDecoration(
-          color: Color.fromRGBO(179, 179, 255, 0.2),
-          borderRadius: BorderRadius.circular(30)),
+        color: Theme.of(context).splashColor,
+        border: Border(
+          top: BorderSide(width: 1, color: Colors.lightBlue.shade50),
+        ),
+      ),
       child: Row(
         children: [
           Expanded(
-              child: TextField(
-            textCapitalization: TextCapitalization.sentences,
-            autocorrect: true,
-            enableSuggestions: true,
-            maxLines: null,
-            controller: _controller,
-            decoration: InputDecoration(
-              labelText: 'Enter a message',
-              border: InputBorder.none,
+              child: Container(
+            child: TextField(
+              textCapitalization: TextCapitalization.sentences,
+              autocorrect: true,
+              enableSuggestions: true,
+              maxLines: null,
+              controller: _controller,
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'Enter a message',
+                  hintStyle:
+                      TextStyle(color: Theme.of(context).secondaryHeaderColor)),
+              onChanged: (value) {
+                setState(() {
+                  _newMessage = value;
+                });
+              },
             ),
-            onChanged: (value) {
-              setState(() {
-                _newMessage = value;
-              });
-            },
           )),
-          RaisedButton(
-            onPressed: _newMessage.trim().isEmpty ? null : _send,
-            color: Colors.blue[200],
-            shape: CircleBorder(),
-            disabledColor: Colors.grey,
-            child: Icon(
-              Icons.send,
-              size: 18,
-            ),
+          IconButton(
+            icon: Icon(Icons.send),
+            onPressed:
+                _newMessage.trim().isEmpty || _newMessage == '' ? null : _send,
           )
         ],
       ),

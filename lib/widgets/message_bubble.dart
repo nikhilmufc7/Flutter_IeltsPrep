@@ -43,7 +43,9 @@ class MessageBubble extends StatelessWidget {
                             bottomRight: isMe
                                 ? Radius.circular(0)
                                 : Radius.circular(12)),
-                        color: isMe ? Colors.grey[300] : Colors.pinkAccent),
+                        color: isMe
+                            ? Color.fromRGBO(0, 102, 255, 0.7)
+                            : Color.fromRGBO(153, 194, 255, .4)),
                     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                     margin: EdgeInsets.only(
                         top: 16, bottom: 0, left: 50, right: 50),
@@ -55,14 +57,24 @@ class MessageBubble extends StatelessWidget {
                         Text(
                           firstName,
                           style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
+                              fontWeight: FontWeight.bold,
+                              color: isMe
+                                  ? Colors.white
+                                  : Theme.of(context).accentColor,
+                              fontSize: 13,
+                              fontFamily: 'Montserrat'),
                         ),
                         Text(
                           message,
                           textAlign: isMe ? TextAlign.end : TextAlign.start,
                           style: TextStyle(
-                              color: isMe ? Colors.black : Colors.white),
+                            color: isMe
+                                ? Colors.white
+                                : Theme.of(context).accentColor,
+                            fontFamily: 'Montserrat',
+                            fontSize: 13,
+                            letterSpacing: 0.5,
+                          ),
                         ),
                       ],
                     ),
@@ -73,8 +85,12 @@ class MessageBubble extends StatelessWidget {
                       left: isMe ? 50 : 0,
                     ),
                     child: Text(
-                      DateFormat('dd MMMM hh mm').format(format),
+                      DateFormat('E').add_jm().format(format),
                       textAlign: isMe ? TextAlign.start : TextAlign.end,
+                      style: TextStyle(
+                          fontSize: 12,
+                          fontFamily: 'Montserrat',
+                          color: Theme.of(context).accentColor),
                     ),
                   ),
                 ],

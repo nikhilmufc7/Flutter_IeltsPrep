@@ -39,7 +39,9 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Theme.of(context).indicatorColor,
         appBar: AppBar(
+          backgroundColor: Theme.of(context).indicatorColor,
           elevation: 0,
           title: AutoSizeText(
             widget.title,
@@ -52,9 +54,9 @@ class _ChatScreenState extends State<ChatScreen> {
         ),
         body: Container(
           decoration: BoxDecoration(
-              color: Colors.white,
+              color: Theme.of(context).splashColor,
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(60), topRight: Radius.circular(60))),
+                  topLeft: Radius.circular(50), topRight: Radius.circular(50))),
           child: Padding(
             padding: EdgeInsets.only(top: 15.0, right: 10),
             child: Column(
@@ -63,6 +65,9 @@ class _ChatScreenState extends State<ChatScreen> {
                     child: MessagesWidget(
                   documentId: widget.documentId,
                 )),
+                SizedBox(
+                  height: 10,
+                ),
                 NewMessage(
                   documentId: widget.documentId,
                 )

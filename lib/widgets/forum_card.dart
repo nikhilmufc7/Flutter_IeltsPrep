@@ -68,14 +68,24 @@ class _ForumCardState extends State<ForumCard> {
                             child: IconButton(
                                 icon: Icon(uid == chatDocuments[index]['userId']
                                     ? Icons.delete
-                                    : null),
+                                    : Icons.delete_forever),
+                                color: Theme.of(context).accentColor,
                                 onPressed: () async {
-                                  await Firestore.instance.runTransaction(
-                                      (Transaction myTransaction) async {
-                                    await myTransaction.delete(snapshot
-                                        .data.documents[index].reference);
+                                  if (uid == chatDocuments[index]['userId']) {
+                                    await Firestore.instance.runTransaction(
+                                        (Transaction myTransaction) async {
+                                      await myTransaction.delete(snapshot
+                                          .data.documents[index].reference);
+                                      Navigator.pop(context);
+                                    });
+                                  } else {
+                                    final snackBar = SnackBar(
+                                        duration: Duration(seconds: 2),
+                                        content: Text(
+                                            'Not authorized to delete this discussion'));
+                                    Scaffold.of(context).showSnackBar(snackBar);
                                     Navigator.pop(context);
-                                  });
+                                  }
                                 }),
                           )
                         ]);
