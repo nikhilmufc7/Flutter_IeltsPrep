@@ -53,9 +53,10 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
     return WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).splashColor,
           key: _key,
           appBar: AppBar(
+            backgroundColor: Theme.of(context).indicatorColor,
             title: FittedBox(
                 child: Text(
               quiz.quizTitle,
@@ -70,7 +71,7 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
                   clipper: WaveClipperTwo(),
                   child: Container(
                     decoration:
-                        BoxDecoration(color: Theme.of(context).primaryColor),
+                        BoxDecoration(color: Theme.of(context).indicatorColor),
                     height: screenHeight / 4,
                   ),
                 ),

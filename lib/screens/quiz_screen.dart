@@ -108,9 +108,9 @@ class _QuizScreenState extends State<QuizScreen> {
     double screenWidth = size.width;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).splashColor,
       appBar: AppBar(
-          backgroundColor: Theme.of(context).primaryColor,
+          backgroundColor: Theme.of(context).indicatorColor,
           title: Text(
             'Quizzes',
             style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
@@ -132,7 +132,7 @@ class _QuizScreenState extends State<QuizScreen> {
             clipper: ArcClipper(),
             child: Container(
               decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).indicatorColor,
               ),
               height: ScreenUtil().setHeight(200),
             ),
