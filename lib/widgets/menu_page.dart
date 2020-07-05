@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ielts/screens/home_screen.dart';
 
 import 'package:ielts/utils/app_constants.dart';
 import 'package:ielts/models/userModel.dart';
@@ -27,7 +28,6 @@ class MenuPage extends StatelessWidget {
     MenuItem(Icons.speaker_notes, 'Blog', RoutePaths.blog),
     MenuItem(Icons.people, 'Quiz', RoutePaths.quiz),
     MenuItem(Icons.forum, 'Discussions', RoutePaths.forum),
-    MenuItem(Icons.forum, 'Premium', RoutePaths.premium),
   ];
 
   @override
@@ -129,6 +129,22 @@ class MenuPage extends StatelessWidget {
               }).toList(),
             ),
             Spacer(),
+            if (premium_user == false)
+              Padding(
+                padding: EdgeInsets.all(ScreenUtil().setWidth(3)),
+                child: ListTile(
+                  onTap: () => Navigator.pushNamed(context, RoutePaths.premium),
+                  leading: Icon(
+                    Icons.all_inclusive,
+                    color: Colors.white,
+                    size: ScreenUtil().setSp(20),
+                  ),
+                  title: Text('Premium',
+                      style: TextStyle(
+                          fontSize: ScreenUtil().setSp(14),
+                          color: Colors.white)),
+                ),
+              ),
             Padding(
               padding: EdgeInsets.all(ScreenUtil().setWidth(3)),
               child: ListTile(
@@ -141,20 +157,6 @@ class MenuPage extends StatelessWidget {
                   size: ScreenUtil().setSp(20),
                 ),
                 title: Text('Settings',
-                    style: TextStyle(
-                        fontSize: ScreenUtil().setSp(14), color: Colors.white)),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(ScreenUtil().setWidth(3)),
-              child: ListTile(
-                onTap: () => _launchURL(),
-                leading: Icon(
-                  Icons.headset_mic,
-                  color: Colors.white,
-                  size: ScreenUtil().setSp(20),
-                ),
-                title: Text('Contact us',
                     style: TextStyle(
                         fontSize: ScreenUtil().setSp(14), color: Colors.white)),
               ),

@@ -41,6 +41,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
       _conectionSubscription.cancel();
       _conectionSubscription = null;
     }
+    super.dispose();
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.

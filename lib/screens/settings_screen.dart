@@ -31,7 +31,14 @@ class _SettingsPageState extends State<SettingsPage> {
     }
   }
 
-  bool _subscribleToEmails = true;
+  _launchContactUrl() async {
+    const url = 'mailto:singh.nikhil999@gmail.com';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,24 +95,25 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               ListTile(
                 leading: Icon(Icons.email),
-                title: Text('Subscribe to emails'),
-                subtitle: Text(
-                    'Get the latest news about IELTS directly to your mail'),
+                title: Text('Contact us'),
+                subtitle:
+                    Text('Feel free to contact us for any enquiries or help'),
                 contentPadding:
                     EdgeInsets.only(left: ScreenUtil().setWidth(16)),
                 trailing: Padding(
-                  padding: EdgeInsets.only(right: ScreenUtil().setWidth(24.0)),
+                  padding: EdgeInsets.only(right: ScreenUtil().setWidth(14)),
                   child: Transform.scale(
-                    scale: 0.9,
-                    child: CustomSwitch(
-                      activeColor: Colors.deepPurpleAccent,
-                      value: _subscribleToEmails,
-                      onChanged: (value) {
-                        print("VALUE : $value");
-                        setState(() {
-                          _subscribleToEmails = value;
-                        });
-                      },
+                    scale: 0.8,
+                    child: RaisedButton(
+                      elevation: 8,
+                      color: Colors.deepPurpleAccent,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(100)),
+                      child: Text(
+                        'Mail',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: _launchContactUrl,
                     ),
                   ),
                 ),
