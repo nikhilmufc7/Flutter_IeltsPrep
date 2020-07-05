@@ -26,7 +26,8 @@ class MenuPage extends StatelessWidget {
     MenuItem(Icons.library_books, 'Vocabulary', RoutePaths.vocabulary),
     MenuItem(Icons.speaker_notes, 'Blog', RoutePaths.blog),
     MenuItem(Icons.people, 'Quiz', RoutePaths.quiz),
-    MenuItem(Icons.forum, 'Discussions', RoutePaths.forum)
+    MenuItem(Icons.forum, 'Discussions', RoutePaths.forum),
+    MenuItem(Icons.forum, 'Premium', RoutePaths.premium),
   ];
 
   @override

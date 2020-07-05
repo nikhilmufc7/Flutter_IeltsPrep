@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ielts/screens/credits_screen.dart';
 import 'package:ielts/screens/forums_screen.dart';
+import 'package:ielts/screens/premium_screen.dart';
 import 'package:ielts/utils/app_constants.dart';
 import 'package:ielts/screens/blog_screen.dart';
 import 'package:ielts/screens/home_screen.dart';
@@ -47,6 +48,8 @@ class Router {
         return MaterialPageRoute<Widget>(builder: (_) => CreditsScreen());
       case RoutePaths.forum:
         return MaterialPageRoute<Widget>(builder: (_) => ForumsScreen());
+      case RoutePaths.premium:
+        return MaterialPageRoute<Widget>(builder: (_) => PremiumScreen());
 
       default:
         return MaterialPageRoute<Widget>(

@@ -13,4 +13,5 @@ class RoutePaths {
   static const String settings = '/settings';
   static const String credits = '/credits';
   static const String forum = '/forum';
+  static const String premium = '/premium';
 }

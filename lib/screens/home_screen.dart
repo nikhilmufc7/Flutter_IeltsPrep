@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ielts/utils/app_constants.dart';
@@ -7,6 +9,7 @@ import 'package:ielts/widgets/menu_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 final Color backgroundColor = Color(0xFF21BFBD);
+bool premium_user = false;
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -27,13 +30,36 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   void initState() {
+    getPremium();
     super.initState();
+
     _controller = AnimationController(vsync: this, duration: duration);
     _scaleAnimation = Tween<double>(begin: 1, end: 0.8).animate(_controller);
     _menuScaleAnimation =
         Tween<double>(begin: 0.5, end: 1).animate(_controller);
     _slideAnimation = Tween<Offset>(begin: Offset(-1, 0), end: Offset(0, 0))
         .animate(_controller);
+  }
+
+  void getPremium() async {
+    final user = await FirebaseAuth.instance.currentUser();
+
+    try {
+      DocumentSnapshot snap = await Firestore.instance
+          .collection('premium_users')
+          .document(user.uid)
+          .get();
+
+      setState(() {
+        if (snap.exists) {
+          setState(() {
+            premium_user = true;
+          });
+        }
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
@@ -220,7 +246,9 @@ class _HomeScreenState extends State<HomeScreen>
                                               0,
                                               0),
                                           child: Text(
-                                            "Reading",
+                                            premium_user
+                                                ? "Reading"
+                                                : "Not reaidng",
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize:

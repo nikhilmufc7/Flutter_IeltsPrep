@@ -11,7 +11,7 @@ description: A new Flutter project.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+4
+version: 1.0.0+20
 
 environment:
   sdk: '>=2.5.0 <3.0.0'
@@ -55,6 +55,7 @@ dependencies:
   auto_size_text:
   flutter_tags:
   time_machine:
+  flutter_inapp_purchase:
 
 flutter_icons:
   android: 'launcher_icon'
@@ -88,7 +89,7 @@ flutter:
     - assets/sucess.png
     - assets/swipe.jpeg
     - assets/transparent.gif
-
+    - assets/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
