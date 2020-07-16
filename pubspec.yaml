@@ -56,6 +56,7 @@ dependencies:
   flutter_tags:
   time_machine:
   flutter_inapp_purchase:
+  admob_flutter:
 
 flutter_icons:
   android: 'launcher_icon'

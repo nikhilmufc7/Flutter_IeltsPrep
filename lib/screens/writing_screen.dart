@@ -1,9 +1,12 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:ielts/models/lesson.dart';
+import 'package:ielts/screens/home_screen.dart';
 import 'package:ielts/screens/writing_detail_screen.dart';
+import 'package:ielts/services/admob_service.dart';
 import 'package:ielts/viewModels/writingCrudModel.dart';
 import 'package:ielts/widgets/lessonCard.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +27,7 @@ class _WritingScreenState extends State<WritingScreen>
 
   bool isCollapsed = true;
   double screenWidth, screenHeight;
+  final ams = AdMobService();
 
   List<String> checkedWritingItems = [];
   final Duration duration = const Duration(milliseconds: 300);
@@ -41,6 +45,7 @@ class _WritingScreenState extends State<WritingScreen>
   void initState() {
     _getcheckedWritingItems();
     super.initState();
+    Admob.initialize(ams.getAdMobAppId());
     // lessons = getWritingData();
   }
 
@@ -91,6 +96,15 @@ class _WritingScreenState extends State<WritingScreen>
         children: <Widget>[
           // MenuPage(),
           dashboard(context),
+          Visibility(
+            visible: premium_user == true,
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: AdmobBanner(
+                  adUnitId: ams.getBannerAdId(),
+                  adSize: AdmobBannerSize.FULL_BANNER),
+            ),
+          )
         ],
       ),
     );
@@ -111,26 +125,6 @@ class _WritingScreenState extends State<WritingScreen>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   mainAxisSize: MainAxisSize.max,
-              //   children: [
-              //     Padding(
-              //       padding: const EdgeInsets.only(left: 18.0),
-              //       child: InkWell(
-              //         child: Icon(Icons.arrow_back, color: Colors.white),
-              //         onTap: () {
-              //           Navigator.pop(context);
-              //         },
-              //       ),
-              //     ),
-              //     Padding(
-              //       padding: const EdgeInsets.only(right: 18.0),
-              //       child: Icon(Icons.settings, color: Colors.white),
-              //     ),
-              //   ],
-              // ),
-
               SizedBox(height: ScreenUtil().setHeight(20)),
               Container(
                 // height: MediaQuery.of(context).size.height,

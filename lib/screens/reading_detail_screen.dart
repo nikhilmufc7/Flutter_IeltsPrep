@@ -1,6 +1,9 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ielts/models/reading.dart';
+import 'package:ielts/screens/home_screen.dart';
+import 'package:ielts/services/admob_service.dart';
 
 final Color backgroundColor = Color(0xFF21BFBD);
 
@@ -23,7 +26,7 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
   String initialQuestionResult;
   String endingQuestionResult;
   String answersResult;
-
+  final ams = AdMobService();
   bool isCollapsed = true;
   double screenWidth, screenHeight;
   final Duration duration = const Duration(milliseconds: 300);
@@ -31,6 +34,7 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
   @override
   void initState() {
     super.initState();
+    Admob.initialize(ams.getAdMobAppId());
   }
 
   @override
@@ -182,6 +186,7 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
                                       );
                                     },
                                   )),
+
                               // Summary
                               Padding(
                                 padding:
@@ -243,6 +248,13 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
                                         );
                                       },
                                     )),
+                              ),
+
+                              Visibility(
+                                visible: premium_user == true,
+                                child: AdmobBanner(
+                                    adUnitId: ams.getBannerAdId(),
+                                    adSize: AdmobBannerSize.MEDIUM_RECTANGLE),
                               ),
                               Align(
                                 alignment: Alignment.bottomCenter,

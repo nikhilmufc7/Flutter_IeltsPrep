@@ -1,9 +1,12 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:ielts/models/speaking.dart';
+import 'package:ielts/screens/home_screen.dart';
 import 'package:ielts/screens/speaking_detail_screen.dart';
+import 'package:ielts/services/admob_service.dart';
 import 'package:ielts/viewModels/speakingCrudModel.dart';
 import 'package:ielts/widgets/lessonCard.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +27,8 @@ class _SpeakingScreenState extends State<SpeakingScreen>
 
   bool isCollapsed = true;
   double screenWidth, screenHeight;
+
+  final ams = AdMobService();
   final Duration duration = const Duration(milliseconds: 300);
 
   List<String> checkedSpeakingItems = [];
@@ -41,6 +46,7 @@ class _SpeakingScreenState extends State<SpeakingScreen>
   void initState() {
     _getcheckedSpeakingItems();
     super.initState();
+    Admob.initialize(ams.getAdMobAppId());
 
     // speakings = getSpeakingData();
   }
@@ -88,6 +94,15 @@ class _SpeakingScreenState extends State<SpeakingScreen>
           // MenuPage(),
 
           dashboard(context),
+          Visibility(
+            visible: premium_user == true,
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: AdmobBanner(
+                  adUnitId: ams.getBannerAdId(),
+                  adSize: AdmobBannerSize.FULL_BANNER),
+            ),
+          ),
         ],
       ),
     );

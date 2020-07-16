@@ -1,10 +1,13 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
 
 import 'package:ielts/models/reading.dart';
+import 'package:ielts/screens/home_screen.dart';
 import 'package:ielts/screens/reading_detail_screen.dart';
+import 'package:ielts/services/admob_service.dart';
 import 'package:ielts/viewModels/readingCrudModel.dart';
 import 'package:ielts/widgets/lessonCard.dart';
 
@@ -32,6 +35,8 @@ class _ReadingScreenState extends State<ReadingScreen>
   List matchingEndings;
   List saqs;
 
+  final ams = AdMobService();
+
   bool isCollapsed = true;
   double screenWidth, screenHeight;
   final Duration duration = const Duration(milliseconds: 300);
@@ -55,6 +60,7 @@ class _ReadingScreenState extends State<ReadingScreen>
     _getcheckedReadingItems();
 
     super.initState();
+    Admob.initialize(ams.getAdMobAppId());
     _controller = AnimationController(vsync: this, duration: duration);
 
     // readings = getReadingData();
@@ -233,6 +239,15 @@ class _ReadingScreenState extends State<ReadingScreen>
             controller: _tabController,
           ),
           // dashboard(context),
+          Visibility(
+            visible: premium_user == true,
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: AdmobBanner(
+                  adUnitId: ams.getBannerAdId(),
+                  adSize: AdmobBannerSize.FULL_BANNER),
+            ),
+          )
         ],
       ),
     );

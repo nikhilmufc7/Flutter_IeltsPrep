@@ -1,9 +1,12 @@
 import 'dart:ui' as ui;
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
+import 'package:ielts/screens/home_screen.dart';
+import 'package:ielts/services/admob_service.dart';
 import 'package:ielts/utils/app_constants.dart';
 
 import 'package:ielts/models/quiz.dart';
@@ -20,6 +23,7 @@ class QuizScreen extends StatefulWidget {
 
 class _QuizScreenState extends State<QuizScreen> {
   final double _borderRadius = 24;
+  final ams = AdMobService();
 
   int _currentIndex = 0;
   int _scoresIndex = 0;
@@ -88,6 +92,7 @@ class _QuizScreenState extends State<QuizScreen> {
     _getCheckedItems();
 
     super.initState();
+    Admob.initialize(ams.getAdMobAppId());
   }
 
   Quiz quiz;
@@ -168,6 +173,15 @@ class _QuizScreenState extends State<QuizScreen> {
                         child: Center(child: CircularProgressIndicator()));
                   }
                 }),
+          ),
+          Visibility(
+            visible: premium_user == true,
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: AdmobBanner(
+                  adUnitId: ams.getBannerAdId(),
+                  adSize: AdmobBannerSize.FULL_BANNER),
+            ),
           ),
         ],
       ),

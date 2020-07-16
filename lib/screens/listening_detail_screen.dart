@@ -1,8 +1,11 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ielts/models/listening.dart';
+import 'package:ielts/screens/home_screen.dart';
+import 'package:ielts/services/admob_service.dart';
 import 'package:ielts/widgets/seekBar.dart';
 import 'package:just_audio/just_audio.dart';
 
@@ -29,6 +32,8 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
   String s1SubQuestions2Result;
   String s1SubQuestions3Result;
   String answersResult;
+
+  final ams = AdMobService();
 
   bool isCollapsed = true;
   double screenWidth, screenHeight;
@@ -72,6 +77,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
     });
 
     super.initState();
+    Admob.initialize(ams.getAdMobAppId());
   }
 
   @override
@@ -367,6 +373,12 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                               ),
                             ),
                             Visibility(
+                              visible: premium_user == true,
+                              child: AdmobBanner(
+                                  adUnitId: ams.getBannerAdId(),
+                                  adSize: AdmobBannerSize.FULL_BANNER),
+                            ),
+                            Visibility(
                               visible: (listening.firstQuestionImage != '')
                                   ? true
                                   : false,
@@ -518,6 +530,13 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                       );
                                     },
                                   )),
+                            ),
+
+                            Visibility(
+                              visible: premium_user == true,
+                              child: AdmobBanner(
+                                  adUnitId: ams.getBannerAdId(),
+                                  adSize: AdmobBannerSize.BANNER),
                             ),
                             Align(
                               alignment: Alignment.bottomCenter,
@@ -882,6 +901,13 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                   )),
                             ),
 
+                            Visibility(
+                              visible: premium_user == true,
+                              child: AdmobBanner(
+                                  adUnitId: ams.getBannerAdId(),
+                                  adSize: AdmobBannerSize.BANNER),
+                            ),
+
                             Align(
                               alignment: Alignment.bottomCenter,
                               child: RaisedButton(
@@ -1109,6 +1135,15 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                               ),
                             ),
                             Visibility(
+                              visible: premium_user == true,
+                              child: Align(
+                                alignment: Alignment.bottomCenter,
+                                child: AdmobBanner(
+                                    adUnitId: ams.getBannerAdId(),
+                                    adSize: AdmobBannerSize.FULL_BANNER),
+                              ),
+                            ),
+                            Visibility(
                               visible: listening.section3Image1Bool == true,
                               child: Padding(
                                 padding:
@@ -1317,6 +1352,13 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                       );
                                     },
                                   )),
+                            ),
+
+                            Visibility(
+                              visible: premium_user == true,
+                              child: AdmobBanner(
+                                  adUnitId: ams.getBannerAdId(),
+                                  adSize: AdmobBannerSize.BANNER),
                             ),
 
                             Align(
@@ -1723,6 +1765,13 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                                       );
                                     },
                                   )),
+                            ),
+
+                            Visibility(
+                              visible: premium_user == true,
+                              child: AdmobBanner(
+                                  adUnitId: ams.getBannerAdId(),
+                                  adSize: AdmobBannerSize.BANNER),
                             ),
 
                             Align(

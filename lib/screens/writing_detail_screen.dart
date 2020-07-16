@@ -1,8 +1,11 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ielts/models/lesson.dart';
+import 'package:ielts/screens/home_screen.dart';
+import 'package:ielts/services/admob_service.dart';
 
 final Color backgroundColor = Color(0xFF21BFBD);
 
@@ -25,10 +28,12 @@ class _WritingDetailScreenState extends State<WritingDetailScreen>
   bool isCollapsed = true;
   double screenWidth, screenHeight;
   final Duration duration = const Duration(milliseconds: 300);
+  final ams = AdMobService();
 
   @override
   void initState() {
     super.initState();
+    Admob.initialize(ams.getAdMobAppId());
   }
 
   @override
@@ -49,6 +54,7 @@ class _WritingDetailScreenState extends State<WritingDetailScreen>
     screenHeight = size.height;
     screenWidth = size.width;
     return Scaffold(
+      backgroundColor: Theme.of(context).bottomAppBarColor,
       appBar: AppBar(
         elevation: 0.0,
         leading: IconButton(
@@ -137,7 +143,6 @@ class _WritingDetailScreenState extends State<WritingDetailScreen>
                               ),
                             ),
                           ),
-                          SizedBox(height: ScreenUtil().setHeight(25)),
                           Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: FittedBox(
@@ -154,7 +159,12 @@ class _WritingDetailScreenState extends State<WritingDetailScreen>
                               ),
                             ),
                           ),
-                          SizedBox(height: ScreenUtil().setHeight(20)),
+                          Visibility(
+                            visible: premium_user == true,
+                            child: AdmobBanner(
+                                adUnitId: ams.getBannerAdId(),
+                                adSize: AdmobBannerSize.LARGE_BANNER),
+                          ),
                           Padding(
                             padding: EdgeInsets.only(bottom: 10.0),
                             child: Align(
@@ -175,7 +185,7 @@ class _WritingDetailScreenState extends State<WritingDetailScreen>
                                 elevation: 5,
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     )),

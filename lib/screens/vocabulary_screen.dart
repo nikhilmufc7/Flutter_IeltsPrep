@@ -1,9 +1,12 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:basic_utils/basic_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fader/flutter_fader.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tindercard/flutter_tindercard.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:ielts/screens/home_screen.dart';
+import 'package:ielts/services/admob_service.dart';
 
 import 'package:ielts/utils/app_constants.dart';
 import 'package:ielts/lesson_data/vocabulary_data.dart';
@@ -40,6 +43,8 @@ class _VocabularyScreenState extends State<VocabularyScreen>
 
   get isStopped => ttsState == TtsState.stopped;
 
+  final ams = AdMobService();
+
   @override
   void initState() {
     super.initState();
@@ -74,6 +79,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
         ttsState = TtsState.stopped;
       });
     });
+    Admob.initialize(ams.getAdMobAppId());
   }
 
   @override
@@ -108,6 +114,15 @@ class _VocabularyScreenState extends State<VocabularyScreen>
       body: Stack(
         children: <Widget>[
           dashboard(context),
+          Visibility(
+            visible: premium_user == true,
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: AdmobBanner(
+                  adUnitId: ams.getBannerAdId(),
+                  adSize: AdmobBannerSize.LARGE_BANNER),
+            ),
+          ),
         ],
       ),
     );

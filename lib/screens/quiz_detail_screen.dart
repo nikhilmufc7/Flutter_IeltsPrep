@@ -1,9 +1,12 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_emoji/flutter_emoji.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ielts/models/quiz.dart';
+import 'package:ielts/screens/home_screen.dart';
 import 'package:ielts/screens/quiz_result_screen.dart';
+import 'package:ielts/services/admob_service.dart';
 
 class QuizDetailScreen extends StatefulWidget {
   final Quiz quiz;
@@ -21,9 +24,17 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
 
   int _currentIndex = 0;
 
+  final ams = AdMobService();
+
   bool _isRadioEnabled = true;
 
   var parser = EmojiParser();
+
+  @override
+  void initState() {
+    super.initState();
+    Admob.initialize(ams.getAdMobAppId());
+  }
 
   String _answer;
   String _selectedAnswer;
@@ -267,7 +278,16 @@ class _QuizDetailScreenState extends State<QuizDetailScreen> {
                         ),
                         color: Colors.deepPurpleAccent,
                         onPressed: _nextSubmit,
-                      )
+                      ),
+                      Visibility(
+                        visible: premium_user == true,
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: AdmobBanner(
+                              adUnitId: ams.getBannerAdId(),
+                              adSize: AdmobBannerSize.LARGE_BANNER),
+                        ),
+                      ),
                     ])),
               ],
             ),

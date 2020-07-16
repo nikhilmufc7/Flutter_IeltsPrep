@@ -1,10 +1,13 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
 
 import 'package:ielts/models/listening.dart';
+import 'package:ielts/screens/home_screen.dart';
 import 'package:ielts/screens/listening_detail_screen.dart';
+import 'package:ielts/services/admob_service.dart';
 import 'package:ielts/viewModels/listeningCrudModel.dart';
 import 'package:ielts/widgets/lessonCard.dart';
 
@@ -28,6 +31,8 @@ class _ListeningScreenState extends State<ListeningScreen>
   double screenWidth, screenHeight;
   final Duration duration = const Duration(milliseconds: 300);
 
+  final ams = AdMobService();
+
   List<String> checkedListeningItems = [];
 
   void _getcheckedListeningItems() async {
@@ -43,6 +48,7 @@ class _ListeningScreenState extends State<ListeningScreen>
   void initState() {
     _getcheckedListeningItems();
     super.initState();
+    Admob.initialize(ams.getAdMobAppId());
 
     // listening = getListeningData();
   }
@@ -88,6 +94,15 @@ class _ListeningScreenState extends State<ListeningScreen>
         children: <Widget>[
           // MenuPage(),
           dashboard(context),
+          Visibility(
+            visible: premium_user == true,
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: AdmobBanner(
+                  adUnitId: ams.getBannerAdId(),
+                  adSize: AdmobBannerSize.FULL_BANNER),
+            ),
+          )
         ],
       ),
     );

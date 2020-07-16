@@ -1,8 +1,11 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:ielts/models/speaking.dart';
+import 'package:ielts/screens/home_screen.dart';
+import 'package:ielts/services/admob_service.dart';
 
 class SpeakingDetailScreen extends StatefulWidget {
   final Speaking speaking;
@@ -28,6 +31,8 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
 
   TtsState ttsState = TtsState.stopped;
 
+  final ams = AdMobService();
+
   get isPlaying => ttsState == TtsState.playing;
 
   get isStopped => ttsState == TtsState.stopped;
@@ -45,6 +50,7 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
   void initState() {
     super.initState();
     initTts();
+    Admob.initialize(ams.getAdMobAppId());
   }
 
   initTts() {
@@ -249,6 +255,12 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
                               _btnSection(),
                               SizedBox(
                                 height: ScreenUtil().setHeight(15),
+                              ),
+                              Visibility(
+                                visible: premium_user == true,
+                                child: AdmobBanner(
+                                    adUnitId: ams.getBannerAdId(),
+                                    adSize: AdmobBannerSize.LARGE_BANNER),
                               ),
                               Padding(
                                 padding: EdgeInsets.all(
