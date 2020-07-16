@@ -115,7 +115,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
         children: <Widget>[
           dashboard(context),
           Visibility(
-            visible: premium_user == true,
+            visible: premium_user != true,
             child: Align(
               alignment: Alignment.bottomCenter,
               child: AdmobBanner(

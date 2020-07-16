@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_tags/flutter_tags.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ielts/screens/home_screen.dart';
+import 'package:ielts/screens/onboarding/onboarding.dart';
 import 'package:ielts/widgets/forum_card.dart';
 
 class ForumsScreen extends StatefulWidget {
@@ -56,42 +58,46 @@ class _ForumsScreenState extends State<ForumsScreen> {
     Size size = MediaQuery.of(context).size;
     double screenHeight = size.height;
     double screenWidth = size.width;
-    return Scaffold(
-      backgroundColor: Theme.of(context).splashColor,
-      key: _scaffoldKey,
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).indicatorColor,
-        elevation: 0,
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => _showDialog(context),
-        child: Icon(Icons.add),
-      ),
-      body: Stack(
-        children: [
-          ClipPath(
-            clipper: WaveClipperTwo(),
-            child: Container(
-              height: screenHeight / 10,
-              width: screenWidth,
-              color: Theme.of(context).indicatorColor,
-              child: AutoSizeText(
-                "Discussions",
-                maxLines: 1,
-                minFontSize: 16,
-                maxFontSize: 32,
-                textAlign: TextAlign.center,
-                style: GoogleFonts.breeSerif(fontSize: 28),
+    if (premium_user) {
+      return Scaffold(
+        backgroundColor: Theme.of(context).splashColor,
+        key: _scaffoldKey,
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).indicatorColor,
+          elevation: 0,
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => _showDialog(context),
+          child: Icon(Icons.add),
+        ),
+        body: Stack(
+          children: [
+            ClipPath(
+              clipper: WaveClipperTwo(),
+              child: Container(
+                height: screenHeight / 10,
+                width: screenWidth,
+                color: Theme.of(context).indicatorColor,
+                child: AutoSizeText(
+                  "Discussions",
+                  maxLines: 1,
+                  minFontSize: 16,
+                  maxFontSize: 32,
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.breeSerif(fontSize: 28),
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 90),
-            child: ForumCard(),
-          ),
-        ],
-      ),
-    );
+            Padding(
+              padding: const EdgeInsets.only(top: 90),
+              child: ForumCard(),
+            ),
+          ],
+        ),
+      );
+    } else {
+      return Onboarding(screenHeight: screenHeight);
+    }
   }
 
   void _showDialog(context) {
@@ -235,5 +241,16 @@ class _ForumsScreenState extends State<ForumsScreen> {
                 )
               ],
             ));
+  }
+}
+
+class GetPremium extends StatelessWidget {
+  const GetPremium({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [],
+    );
   }
 }

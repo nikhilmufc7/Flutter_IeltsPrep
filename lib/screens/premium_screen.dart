@@ -7,6 +7,7 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:flutter_inapp_purchase/flutter_inapp_purchase.dart';
 import 'package:flutter_screenutil/screenutil.dart';
+import 'package:ielts/screens/home_screen.dart';
 
 class PremiumScreen extends StatefulWidget {
   @override
@@ -103,6 +104,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
 
       setState(() {
         _premiumUser = true;
+        premium_user = true;
       });
 
       await FlutterInappPurchase.instance.finishTransaction(
@@ -113,6 +115,8 @@ class _PremiumScreenState extends State<PremiumScreen> {
 
       await FlutterInappPurchase.instance
           .acknowledgePurchaseAndroid(productItem.purchaseToken);
+
+      Navigator.pop(context);
     });
 
     _purchaseErrorSubscription =

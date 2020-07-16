@@ -97,7 +97,7 @@ class _WritingScreenState extends State<WritingScreen>
           // MenuPage(),
           dashboard(context),
           Visibility(
-            visible: premium_user == true,
+            visible: premium_user != true,
             child: Align(
               alignment: Alignment.bottomCenter,
               child: AdmobBanner(

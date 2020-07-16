@@ -95,7 +95,7 @@ class _SpeakingScreenState extends State<SpeakingScreen>
 
           dashboard(context),
           Visibility(
-            visible: premium_user == true,
+            visible: premium_user != true,
             child: Align(
               alignment: Alignment.bottomCenter,
               child: AdmobBanner(

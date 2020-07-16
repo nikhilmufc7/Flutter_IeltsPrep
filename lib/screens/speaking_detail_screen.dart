@@ -257,7 +257,7 @@ class _SpeakingDetailScreenState extends State<SpeakingDetailScreen>
                                 height: ScreenUtil().setHeight(15),
                               ),
                               Visibility(
-                                visible: premium_user == true,
+                                visible: premium_user != true,
                                 child: AdmobBanner(
                                     adUnitId: ams.getBannerAdId(),
                                     adSize: AdmobBannerSize.LARGE_BANNER),

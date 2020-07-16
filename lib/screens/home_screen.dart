@@ -257,9 +257,7 @@ class _HomeScreenState extends State<HomeScreen>
                                                   0,
                                                   0),
                                               child: Text(
-                                                premium_user
-                                                    ? "Reading"
-                                                    : "Not reaidng",
+                                                "Reading",
                                                 style: TextStyle(
                                                     color: Colors.white,
                                                     fontSize:

@@ -373,7 +373,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                               ),
                             ),
                             Visibility(
-                              visible: premium_user == true,
+                              visible: premium_user != true,
                               child: AdmobBanner(
                                   adUnitId: ams.getBannerAdId(),
                                   adSize: AdmobBannerSize.FULL_BANNER),
@@ -533,7 +533,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             ),
 
                             Visibility(
-                              visible: premium_user == true,
+                              visible: premium_user != true,
                               child: AdmobBanner(
                                   adUnitId: ams.getBannerAdId(),
                                   adSize: AdmobBannerSize.BANNER),
@@ -902,7 +902,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             ),
 
                             Visibility(
-                              visible: premium_user == true,
+                              visible: premium_user != true,
                               child: AdmobBanner(
                                   adUnitId: ams.getBannerAdId(),
                                   adSize: AdmobBannerSize.BANNER),
@@ -1135,7 +1135,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                               ),
                             ),
                             Visibility(
-                              visible: premium_user == true,
+                              visible: premium_user != true,
                               child: Align(
                                 alignment: Alignment.bottomCenter,
                                 child: AdmobBanner(
@@ -1355,7 +1355,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             ),
 
                             Visibility(
-                              visible: premium_user == true,
+                              visible: premium_user != true,
                               child: AdmobBanner(
                                   adUnitId: ams.getBannerAdId(),
                                   adSize: AdmobBannerSize.BANNER),
@@ -1768,7 +1768,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             ),
 
                             Visibility(
-                              visible: premium_user == true,
+                              visible: premium_user != true,
                               child: AdmobBanner(
                                   adUnitId: ams.getBannerAdId(),
                                   adSize: AdmobBannerSize.BANNER),

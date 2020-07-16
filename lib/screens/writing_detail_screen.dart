@@ -160,7 +160,7 @@ class _WritingDetailScreenState extends State<WritingDetailScreen>
                             ),
                           ),
                           Visibility(
-                            visible: premium_user == true,
+                            visible: premium_user != true,
                             child: AdmobBanner(
                                 adUnitId: ams.getBannerAdId(),
                                 adSize: AdmobBannerSize.LARGE_BANNER),

@@ -251,7 +251,7 @@ class _ReadingDetailScreenState extends State<ReadingDetailScreen>
                               ),
 
                               Visibility(
-                                visible: premium_user == true,
+                                visible: premium_user != true,
                                 child: AdmobBanner(
                                     adUnitId: ams.getBannerAdId(),
                                     adSize: AdmobBannerSize.MEDIUM_RECTANGLE),
