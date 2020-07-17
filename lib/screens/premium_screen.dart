@@ -208,13 +208,15 @@ class _PremiumScreenState extends State<PremiumScreen> {
               image: AssetImage(
                 "assets/premium.jpg",
               ),
-              height: 200,
+              height: ScreenUtil().setHeight(200),
               width: double.infinity,
             ),
             Text(
               'Vault Premium',
               textAlign: TextAlign.center,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: ScreenUtil().setSp(20)),
             ),
             ListTile(
               leading: Icon(
@@ -225,12 +227,13 @@ class _PremiumScreenState extends State<PremiumScreen> {
                 'No Ads',
                 style: TextStyle(
                     color: Colors.deepPurpleAccent,
-                    fontSize: 16,
+                    fontSize: ScreenUtil().setSp(16),
                     fontWeight: FontWeight.w600),
               ),
               subtitle: Text(
                 'Concentrate just on studying!',
-                style: TextStyle(color: Colors.black87, fontSize: 14),
+                style: TextStyle(
+                    color: Colors.black87, fontSize: ScreenUtil().setSp(14)),
               ),
             ),
 
@@ -243,12 +246,13 @@ class _PremiumScreenState extends State<PremiumScreen> {
                 'Unlock discussion forums',
                 style: TextStyle(
                     color: Colors.deepPurpleAccent,
-                    fontSize: 16,
+                    fontSize: ScreenUtil().setSp(16),
                     fontWeight: FontWeight.w600),
               ),
               subtitle: Text(
                 'Ask questions, get help, essay reviews',
-                style: TextStyle(color: Colors.black87, fontSize: 14),
+                style: TextStyle(
+                    color: Colors.black87, fontSize: ScreenUtil().setSp(14)),
               ),
             ),
 
@@ -261,12 +265,13 @@ class _PremiumScreenState extends State<PremiumScreen> {
                 'Support Development',
                 style: TextStyle(
                     color: Colors.deepPurpleAccent,
-                    fontSize: 16,
+                    fontSize: ScreenUtil().setSp(16),
                     fontWeight: FontWeight.w600),
               ),
               subtitle: Text(
                 'Your help keeps us working on this project further',
-                style: TextStyle(color: Colors.black87, fontSize: 14),
+                style: TextStyle(
+                    color: Colors.black87, fontSize: ScreenUtil().setSp(14)),
               ),
             ),
 
@@ -323,9 +328,6 @@ class _PremiumScreenState extends State<PremiumScreen> {
                         ),
                       ),
                     ),
-                    Visibility(
-                        visible: _premiumUser == true,
-                        child: Text('I am premium now'))
                   ],
                 ),
               ),

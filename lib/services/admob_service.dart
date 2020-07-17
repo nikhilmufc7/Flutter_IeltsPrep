@@ -4,6 +4,6 @@ class AdMobService {
   }
 
   String getBannerAdId() {
-    return 'ca-app-pub-3940256099942544/6300978111';
+    return 'ca-app-pub-3133734302958653/4055241683';
   }
 }
