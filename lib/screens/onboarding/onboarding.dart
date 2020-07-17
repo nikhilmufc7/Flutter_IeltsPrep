@@ -16,6 +16,7 @@ import 'package:ielts/screens/onboarding/widgets/header.dart';
 import 'package:ielts/screens/onboarding/widgets/next_page_button.dart';
 import 'package:ielts/screens/onboarding/widgets/onboarding_page_indicator.dart';
 import 'package:ielts/screens/onboarding/widgets/ripple.dart';
+import 'package:ielts/screens/premium_screen.dart';
 import 'package:ielts/screens/quiz_screen.dart';
 import 'package:ielts/utils/constants.dart';
 
@@ -211,7 +212,7 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
     await _rippleAnimationController.forward();
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (_) => QuizScreen(),
+        builder: (_) => PremiumScreen(),
       ),
     );
   }

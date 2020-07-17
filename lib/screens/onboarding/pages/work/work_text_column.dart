@@ -5,9 +5,8 @@ class WorkTextColumn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextColumn(
-      title: 'Work together',
-      text:
-          'Adipisicing anim ex excepteur duis quis in tempor eu ullamco adipisicing.',
+      title: 'Help and Collaborate',
+      text: 'Get help from your peers or find a listening buddy to practice',
     );
   }
 }

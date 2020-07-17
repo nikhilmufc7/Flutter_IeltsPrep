@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ielts/utils/constants.dart';
 
 class CardsStack extends StatelessWidget {
@@ -25,6 +26,13 @@ class CardsStack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
+
+//If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
+    ScreenUtil.init(context, width: 414, height: 896);
+
+//If you want to set the font size is scaled according to the system's "font size" assist option
+    ScreenUtil.init(context, width: 414, height: 896, allowFontScaling: true);
     var darkCardWidth = MediaQuery.of(context).size.width - 2 * kPaddingL;
     var darkCardHeight = MediaQuery.of(context).size.height / 3;
 
@@ -47,8 +55,8 @@ class CardsStack extends StatelessWidget {
                 width: darkCardWidth,
                 height: darkCardHeight,
                 padding: EdgeInsets.only(
-                  top: !isOddPageNumber ? 100.0 : 0.0,
-                  bottom: isOddPageNumber ? 100.0 : 0.0,
+                  top: !isOddPageNumber ? ScreenUtil().setHeight(100) : 0.0,
+                  bottom: isOddPageNumber ? ScreenUtil().setHeight(100) : 0.0,
                 ),
                 child: Center(
                   child: darkCardChild,
