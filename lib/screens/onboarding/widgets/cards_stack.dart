@@ -71,7 +71,8 @@ class CardsStack extends StatelessWidget {
               position: lightCardOffsetAnimation,
               child: Card(
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.0),
+                  borderRadius:
+                      BorderRadius.circular(ScreenUtil().setWidth(16)),
                 ),
                 color: kLightBlue,
                 child: Container(

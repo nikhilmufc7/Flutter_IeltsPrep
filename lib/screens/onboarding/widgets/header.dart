@@ -23,10 +23,14 @@ class Header extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Logo(
-          color: kWhite,
-          size: ScreenUtil().setHeight(32),
-        ),
+        IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            }),
         GestureDetector(
           onTap: onSkip,
           child: Text(

@@ -83,7 +83,7 @@ class _ForumsScreenState extends State<ForumsScreen> {
             ClipPath(
               clipper: WaveClipperTwo(),
               child: Container(
-                height: ScreenUtil().setHeight(110),
+                height: ScreenUtil().setHeight(115),
                 width: screenWidth,
                 color: Theme.of(context).indicatorColor,
                 child: AutoSizeText(
@@ -92,8 +92,11 @@ class _ForumsScreenState extends State<ForumsScreen> {
                   minFontSize: 16,
                   maxFontSize: 32,
                   textAlign: TextAlign.center,
-                  style:
-                      GoogleFonts.breeSerif(fontSize: ScreenUtil().setSp(26)),
+                  style: GoogleFonts.breeSerif(
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
+                      letterSpacing: 1.2,
+                      fontSize: ScreenUtil().setSp(26)),
                 ),
               ),
             ),
@@ -118,7 +121,7 @@ class _ForumsScreenState extends State<ForumsScreen> {
         ),
         context: context,
         builder: (_) => Container(
-              height: MediaQuery.of(context).size.height / 1.4,
+              height: MediaQuery.of(context).size.height / 1.2,
               child: Column(
                 children: [
                   Form(

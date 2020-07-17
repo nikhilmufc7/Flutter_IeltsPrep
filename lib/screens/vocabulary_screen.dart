@@ -192,7 +192,7 @@ class _VocabularyScreenState extends State<VocabularyScreen>
                             orientation: AmassOrientation.BOTTOM,
                             totalNum: vocabulary.length,
                             stackNum: 4,
-                            swipeEdge: 4.0,
+                            swipeEdge: 3.0,
                             maxWidth: MediaQuery.of(context).size.width * 0.9,
                             maxHeight: MediaQuery.of(context).size.width * 0.9,
                             minWidth: MediaQuery.of(context).size.width * 0.8,

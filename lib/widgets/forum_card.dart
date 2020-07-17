@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ielts/screens/chat_screen.dart';
 import 'package:ielts/widgets/circular_image.dart';
@@ -35,6 +36,13 @@ class _ForumCardState extends State<ForumCard> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
+
+//If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
+    ScreenUtil.init(context, width: 414, height: 896);
+
+//If you want to set the font size is scaled according to the system's "font size" assist option
+    ScreenUtil.init(context, width: 414, height: 896, allowFontScaling: true);
     return StreamBuilder(
       stream: Firestore.instance
           .collection('forums')
@@ -99,7 +107,7 @@ class _ForumCardState extends State<ForumCard> {
                                     snapshot.data.documents[index].documentID,
                               ))),
                   child: Padding(
-                    padding: const EdgeInsets.all(12.0),
+                    padding: EdgeInsets.all(ScreenUtil().setHeight(12)),
                     child: Card(
                       elevation: 8,
                       shape: RoundedRectangleBorder(
@@ -114,7 +122,8 @@ class _ForumCardState extends State<ForumCard> {
                               child: AutoSizeText(chatDocuments[index]['title'],
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
-                                  style: GoogleFonts.sanchez(fontSize: 20)),
+                                  style: GoogleFonts.sanchez(
+                                      fontSize: ScreenUtil().setSp(20))),
                             ),
                             subtitle: Wrap(
                               spacing: 8,
@@ -136,7 +145,8 @@ class _ForumCardState extends State<ForumCard> {
                           ),
                           ListTile(
                               subtitle: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding:
+                                    EdgeInsets.all(ScreenUtil().setWidth(8)),
                                 child: Text(
                                   DateFormat('dd-MMMM   HH:mm').format(
                                     chatDocuments[index]['sentAt'].toDate(),
@@ -147,7 +157,8 @@ class _ForumCardState extends State<ForumCard> {
                               trailing: AutoSizeText(
                                 'Started by: ${chatDocuments[index]['firstName']}',
                                 maxLines: 1,
-                                style: GoogleFonts.pangolin(fontSize: 16),
+                                style: GoogleFonts.pangolin(
+                                    fontSize: ScreenUtil().setSp(16)),
                               ))
                         ],
                       ),

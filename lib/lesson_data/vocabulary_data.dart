@@ -1449,5 +1449,459 @@ List getVocabularyData() {
         description: "give instructions to or direct somebody to do something",
         sentence:
             "He turned to beckon the others forward with one hand, while laying the other over his mouth in a gesture enjoining silence"),
+    Vocabulary(
+        word: "gestate",
+        description: "develop in the mind; have the idea for",
+        sentence:
+            "Mr. Lucas’s most recent project, still gestating, is a collaboration with Cuban musicians. \”New York Times (May 9, 2011)"),
+    Vocabulary(
+        word: " traduce",
+        description: "speak unfavorably about",
+        sentence:
+            "For Grover Cleveland there were no longer enemies to traduce and vilify. "),
+    Vocabulary(
+        word: "sextant",
+        description: "an instrument for measuring angular distance",
+        sentence:
+            " For example, a sextant could be used to sight the sun at high noon in order to determine one’s latitude. "),
+    Vocabulary(
+        word: "Coiffure",
+        description: "The arrangement of the hair",
+        sentence:
+            "They sat down, and Saint-Clair noticed his friend\'s coiffure; a single rose was in her hair. "),
+    Vocabulary(
+      word: "malleable",
+      description: "easily influenced",
+      sentence:
+          "The Americans are seen as naïve malleable tools in the hands of the Brits.",
+    ),
+    Vocabulary(
+        word: "Rococo",
+        description: "Having excessive asymmetrical ornamentation",
+        sentence:
+            " The upper part of the case is decorated with elaborately carved and gilt rococo motifs. "),
+    Vocabulary(
+        word: "Fructify",
+        description: "Become productive or fruitful",
+        sentence:
+            "Hence they grow, expand, fructify, and the result is Progress. "),
+    Vocabulary(
+        word: " Nihilist",
+        description: "Someone who rejects all theories of morality",
+        sentence: "He\’s a loner nihilist who believes in nothing,"),
+    Vocabulary(
+        word: " ellipsis",
+        description: "omission or suppression of parts of words or sentences",
+        sentence:
+            " He speaks in ellipses, often leaving sentences hanging, and fiddles apologetically with his BlackBerry."),
+    Vocabulary(
+        word: "Accolade",
+        description: " A tangible symbol signifying approval or distinction",
+        sentence:
+            " The Nobel Prize, considered one of the highest accolades in literature, is given only to living writers."),
+    Vocabulary(
+        word: "Codicil",
+        description: "A supplement to a will",
+        sentence:
+            "The Codicil to her will, which she had spoken of with so much composure, left three hundred pounds to Stella and me. "),
+    Vocabulary(
+        word: " roil",
+        description: " be agitated",
+        sentence:
+            "Like thousands of fellow students, he was roiled with emotions, struggling to come to grips with an inescapable reality. "),
+    Vocabulary(
+        word: " grandiloquent",
+        description: "lofty in style",
+        sentence:
+            " A large part of his duties will be to strut about on the stage, and mouth more or less unintelligible sentences in a grandiloquent tone. "),
+    Vocabulary(
+        word: " inconsequential",
+        description: "lacking worth or importance",
+        sentence:
+            " But as the months went by, Mr. Kimura had an unexpected epiphany: His business, which he thought was inconsequential, mattered to a lot of people."),
+    Vocabulary(
+        word: " effervescence",
+        description: " the property of giving off bubbles",
+        sentence:
+            " Both were in the very sparkle and effervescence of that fanciful glee which bubbles up from the golden, untried fountains of early childhood. "),
+    Vocabulary(
+        word: " stultify",
+        description:
+            "deprive of strength or efficiency; make useless or worthless",
+        sentence:
+            " Far from being engines of economic growth, Egypt\'s leading cities are stultified."),
+    Vocabulary(
+        word: "tureen",
+        description: "large deep serving dish with a cover",
+        sentence: "Soups are presented in big tureens and can be quite good. "),
+    Vocabulary(
+        word: " pellucid",
+        description: "transparently clear; easily understandable",
+        sentence:
+            "Caribou Island is a scant 300 pages, and written in prose as pellucid as the rivers he used to fish as a boy."),
+    Vocabulary(
+        word: "euphony",
+        description: "any pleasing and harmonious sounds",
+        sentence:
+            " It depends somewhat on usage and on euphony or agreeableness of sound. "),
+    Vocabulary(
+        word: " apocryphal",
+        description: "being of questionable authenticity",
+        sentence:
+            "We\'re reminded of the story, possibly apocryphal, that they used to play the Beach Boys\' Smiley Smile in psychiatric wards to calm patients."),
+    Vocabulary(
+        word: "veracious",
+        description: "precisely accurate",
+        sentence:
+            " For proof, we cite the following veracious narrative, which bears within it every internal mark of truth, and matter for grave and serious reflection."),
+    Vocabulary(
+        word: " pendulous",
+        description: "hanging loosely or bending downward",
+        sentence:
+            "And all around, far out of reach, the trees of the forest were swaying restlessly, their long, pendulous branches, like tentacles, lashing out hungrily. "),
+    Vocabulary(
+        word: "exegesis",
+        description: " an explanation or critical interpretation",
+        sentence:
+            " Its musical significance has been presented with illuminating exegesis by more than one commentator. "),
+    Vocabulary(
+        word: " effluvium",
+        description: "a foul-smelling outflow or vapor",
+        sentence:
+            "However, acting on my best judgment, I struck a downward course, and then suddenly a horrible effluvium was wafted to my nostrils. "),
+    Vocabulary(
+        word: " apposite",
+        description: "being of striking appropriateness and pertinence",
+        sentence:
+            "He was quite capable of meaningful, apposite phrases about the game, even though distant sports editors did not encourage them enough."),
+    Vocabulary(
+        word: " viscous",
+        description: "having the sticky properties of an adhesive",
+        sentence:
+            "Sluggish, blind crawling things like three-foot slugs flowed across their path and among the tree trunks, leaving viscous trails of slime behind them. "),
+    Vocabulary(
+        word: " misanthrope",
+        description: "someone who dislikes people in general",
+        sentence:
+            "And shaking his head like a misanthrope, disgusted, if not with life, at least with men, Pat out led the horse to the stable. "),
+    Vocabulary(
+        word: " vintner",
+        description: "someone who makes wine",
+        sentence:
+            "The question remains, he said, whether established vintners will change their winemaking practices or continue to sell their schlock."),
+    Vocabulary(
+        word: " halcyon",
+        description:
+            "idyllically calm and peaceful; suggesting happy tranquility",
+        sentence:
+            " He now seemed to have entered on a halcyon period of life—congenial society, romantic and interesting surroundings. "),
+    Vocabulary(
+        word: " anthropomorphic",
+        description:
+            "suggesting human features for animals or inanimate things",
+        sentence:
+            "The same anthropomorphic fallacy that accords human attributes to giant corporations like BP distorts clear thinking about how to limit their political influence."),
+    Vocabulary(
+        word: "turgid",
+        description: "ostentatiously lofty in style",
+        sentence:
+            "His waspish wit can make him entertaining company at a party, but there is little evidence of that in his largely turgid prose."),
+    Vocabulary(
+        word: " malaise",
+        description:
+            "a general feeling of discomfort, uneasiness, or depression",
+        sentence:
+            " Initially, many doctors discounted sufferers\’ feelings of generalized malaise as nothing more than stress or normal fatigue."),
+    Vocabulary(
+        word: " polemical",
+        description: "of or involving dispute or controversy",
+        sentence:
+            " His works include several dogmatic and polemical treatises, but the most important are the historical. "),
+    Vocabulary(
+        word: "gadfly",
+        description: "a persistently annoying person",
+        sentence:
+            "Mr. Phelps is regarded here as the ultimate example of an irritating local gadfly."),
+    Vocabulary(
+        word: "atavism",
+        description: " a reappearance of an earlier characteristic",
+        sentence:
+            " Criminal atavism might be defined as the sporadic reversion to savagery in certain individuals."),
+    Vocabulary(
+        word: "contusion",
+        description: "an injury in which the skin is not broken",
+        sentence:
+            " My falling companion, being a much stouter man than myself did not fare so well, as his right shoulder received a severe contusion. "),
+    Vocabulary(
+        word: " parsimonious",
+        description: "excessively unwilling to spend",
+        sentence:
+            " Pill-splitting is catching on among parsimonious prescription-takers who want to lower costs."),
+    Vocabulary(
+        word: "dulcet",
+        description: "pleasing to the ear",
+        sentence:
+            " Ever and anon the dulcet murmur of gurgling streams broke gently on the ear. "),
+    Vocabulary(
+        word: " reprise",
+        description: "repeat an earlier theme of a composition",
+        sentence:
+            "The live set reprises material from this remarkable group\'s earlier Aurora CD."),
+    Vocabulary(
+        word: " anodyne",
+        description: "capable of relieving pain",
+        sentence:
+            "But philosophy failed, as it will probably fail till some far-off age, to find an anodyne for the spiritual distresses of the mass of men."),
+    Vocabulary(
+        word: "bemused",
+        description: "perplexed by many conflicting situations or statements",
+        sentence:
+            "They were marching in the middle of the street, chanting and singing and disrupting traffic while countless New Yorkers looked on, some bemused, others applauding."),
+    Vocabulary(
+        word: " consider",
+        description: "deem to be",
+        sentence:
+            "At the moment, artemisinin-based therapies are considered the best treatment, but cost about 10 dollars per dose - far too much for impoverished communities."),
+    Vocabulary(
+        word: "minute",
+        description: " infinitely or immeasurably small",
+        sentence:
+            " The minute stain on the document was not visible to the naked eye."),
+    Vocabulary(
+      word: "accord",
+      description: "concurrence of opinion",
+      sentence:
+          " The committee worked in accord on the bill, and it eventually passed.",
+    ),
+    Vocabulary(
+        word: "evident",
+        description: "clearly revealed to the mind or the senses or judgment",
+        sentence:
+            " That confidence was certainly evident in the way Smith handled the winning play with 14 seconds left on the clock."),
+    Vocabulary(
+        word: " practice",
+        description: "a customary way of operation or behavior",
+        sentence:
+            " He directed and acted in plays every season and became known for exploring Elizabethan theatre practices."),
+    Vocabulary(
+        word: "intend",
+        description: " have in mind as a purpose",
+        sentence:
+            "Lipstick, as a product intended for topical use with limited absorption, is ingested only in very small quantities, the agency said on its website."),
+    Vocabulary(
+        word: " concern",
+        description: "something that interests you because it is important",
+        sentence:
+            "The scandal broke out in October after former chief executive Michael Woodford claimed he was fired for raising concerns about the company\'s accounting practices."),
+    Vocabulary(
+        word: " commit",
+        description: "perform an act, usually with a negative connotation",
+        sentence:
+            " In an unprecedented front page article in 2003 The Times reported that Mr. Blair, a young reporter on its staff, had committed journalistic fraud. "),
+    Vocabulary(
+        word: " issue",
+        description: "some situation or event that is thought about",
+        sentence:
+            " As a result, the privacy issues surrounding mobile computing are becoming ever-more complex."),
+    Vocabulary(
+        word: " approach",
+        description: " move towards",
+        sentence:
+            "Spain\’s jobless rate for people ages 16 to 24 is approaching 50 percent. "),
+    Vocabulary(
+        word: " establish",
+        description: "set up or found",
+        sentence:
+            " A small French colony, Port Louis, was established on East Falkland in 1764 and handed to the Spanish three years later."),
+    Vocabulary(
+        word: "utter",
+        description: "without qualification",
+        sentence:
+            " No one can blame an honest mechanic for holding a wealthy snob in utter contempt. "),
+    Vocabulary(
+        word: "conduct",
+        description: "direct the course of; manage or control",
+        sentence:
+            " Scientists have been conducting studies of individual genes for years."),
+    Vocabulary(
+        word: " engage",
+        description: "consume all of one's attention or time",
+        sentence:
+            " We had nearly two hundred passengers, who were seated about on the sofas, reading, or playing games, or engaged in conversation."),
+    Vocabulary(
+        word: " obtain",
+        description: "come into possession of",
+        sentence:
+            "He delayed making the unclassified report public while awaiting an Army review, but Rolling Stone magazine obtained the report and posted it Friday night."),
+    Vocabulary(
+        word: " scarce",
+        description: "deficient in quantity or number compared with the demand",
+        sentence:
+            " Meanwhile, heating oil could grow more scarce in the Northeast this winter, the Energy Department warned last month. "),
+    Vocabulary(
+        word: " straight",
+        description: "successive, without a break",
+        sentence:
+            " After three straight losing seasons, Hoosiers fans were just hoping for a winning record. "),
+    Vocabulary(
+        word: " stock",
+        description:
+            "capital raised by a corporation through the issue of shares",
+        sentence:
+            " In other words, Apple\’s stock is cheap, and you should buy it."),
+    Vocabulary(
+        word: " apparent",
+        description: "clearly revealed to the mind or the senses or judgment",
+        sentence:
+            " But the elderly creak is beginning to become apparent in McCartney\’s voice."),
+    Vocabulary(
+        word: "\property",
+        description:
+            "a basic or essential attribute shared by members of a class",
+        sentence:
+            " Owing to these magic properties, it was often planted near dwellings to keep away evil spirits. "),
+    Vocabulary(
+        word: " fancy",
+        description: " imagine; conceive of; see in one\'s mind",
+        sentence:
+            "For a time, indeed, he had fancied that things were changed. "),
+    Vocabulary(
+        word: " concept",
+        description:
+            "an abstract or general idea inferred from specific instances",
+        sentence:
+            " As a psychologist, I have always found the concept of speed dating fascinating."),
+    Vocabulary(
+        word: " court",
+        description: "an assembly to conduct judicial business",
+        sentence:
+            "When Brown pleaded not guilty to assaulting Rihanna, their violent past came out in court. "),
+    Vocabulary(
+        word: "appoint",
+        description: "assign a duty, responsibility, or obligation to",
+        sentence:
+            "In 1863 he was appointed by the general assembly professor of oriental languages at New College. "),
+    Vocabulary(
+        word: " passage",
+        description:
+            "a section of text, particularly a section of medium length",
+        sentence:
+            " His interpretation of many obscure scriptural passages by means of native manners and customs and traditions is particularly helpful and informing. "),
+    Vocabulary(
+        word: " vain",
+        description: " unproductive of success",
+        sentence:
+            "An attempt was made to ignore this brilliant and irregular book, but in vain; it was read all over Europe. "),
+    Vocabulary(
+        word: " instance",
+        description: "an occurrence of something",
+        sentence:
+            " In many instances large districts or towns would have fewer representatives than smaller ones, or perhaps none at all. "),
+    Vocabulary(
+        word: " coast",
+        description: "the shore of a sea or ocean",
+        sentence:
+            "Martello towers must be built within short distances all round the coast. "),
+    Vocabulary(
+        word: " project",
+        description: " a planned undertaking",
+        sentence:
+            "The funds are aimed at helping build public projects including mass transit, electricity networks, water utility and ports, it said."),
+    Vocabulary(
+        word: " commission",
+        description: "a special group delegated to consider some matter",
+        sentence:
+            " The developers are now seeking approval from the landmarks commission. "),
+    Vocabulary(
+        word: " constant",
+        description: "a quantity that does not vary",
+        sentence:
+            " In 1929, Hubble independently put forward and confirmed the same idea, and the parameter later became known as the Hubble constant."),
+    Vocabulary(
+        word: "circumstances",
+        description: "one\'s overall condition in life",
+        sentence:
+            " The circumstances leading up to the shootings was not immediately available."),
+    Vocabulary(
+        word: "constitute",
+        description: "compose or represent",
+        sentence:
+            " Oil and natural gas constituted almost 50 percent of Russian government revenue last year."),
+    Vocabulary(
+        word: " level",
+        description: "a relative position or degree of value in a graded group",
+        sentence:
+            " Only last month did the men’s and women\’s unemployment rates reach the same level."),
+    Vocabulary(
+        word: " affect",
+        description: " have an influence upon",
+        sentence:
+            "The central bank will start distributing low-interest loans in early March to individuals and small- and medium-sized companies affected by the flooding."),
+    Vocabulary(
+        word: " institute",
+        description: "set up or lay the groundwork for",
+        sentence:
+            " Corporations have to be more and more focused on instituting higher labor standards. "),
+    Vocabulary(
+        word: " render",
+        description: "give an interpretation of",
+        sentence:
+            " But authorities had rendered the weapon and the explosive device inoperable, officials said. "),
+    Vocabulary(
+        word: " appeal",
+        description: " be attractive to",
+        sentence:
+            "To get traditional women\’s accessories to appeal to men, some designers are giving them manly names and styles."),
+    Vocabulary(
+        word: "generate",
+        description: "bring into existence",
+        sentence:
+            " Qualities such as these are not generated under bad working practices of any sort. "),
+    Vocabulary(
+        word: "theory",
+        description:
+            " a well-substantiated explanation of some aspect of the world",
+        sentence:
+            " Testing that theory begins Saturday night, as the Capitals take on Tampa Bay in another important contest. "),
+    Vocabulary(
+        word: " range",
+        description: "a variety of different things or activities",
+        sentence:
+            "Like American community colleges, admission at an open university is not competitive, but the schools offer a range of programs, including doctoral degrees."),
+    Vocabulary(
+        word: " campaign",
+        description: " a race between candidates for elective office",
+        sentence:
+            "At the same point in 2004 — as an incumbent facing re-election — Mr. Bush had taken in about 145.6 million dollars for his campaign. "),
+    Vocabulary(
+        word: " league",
+        description: "an association of sports teams that organizes matches",
+        sentence:
+            "When I broke into the big leagues until a month ago, Gary kept in touch,Mets third baseman David Wright said. "),
+    Vocabulary(
+        word: " labor",
+        description: "any piece of work that is undertaken or attempted",
+        sentence:
+            " More labor is entailed, more time is required, greater delay is occasioned in cleaning up, and the amount of water used is much greater."),
+    Vocabulary(
+        word: " confer",
+        description: "have a meeting in order to talk something over",
+        sentence:
+            "Ms. Stewart said Mrs. Bachmann conferred with her family and a few aides after her disappointing showing on Tuesday evening. "),
+    Vocabulary(
+        word: " grant",
+        description: "allow to have",
+        sentence:
+            " He had been granted entry into the White House only for the daily briefing, later that afternoon. "),
+    Vocabulary(
+        word: " dwell",
+        description: "think moodily or anxiously about something",
+        sentence:
+            "But it is hardly necessary to dwell on such a normal  event. "),
+    Vocabulary(
+        word: "entertain",
+        description: "provide amusement for",
+        sentence:
+            " The first Super Bowl in 1967 featured college marching bands entertaining the crowds at halftime."),
   ];
 }

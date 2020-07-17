@@ -28,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen>
   TextEditingController emailInputController;
   TextEditingController passwordInputController;
 
-  AuthMode _authMode = AuthMode.Login;
+  AuthMode _authMode = AuthMode.Signup;
 
   AnimationController _controller;
   Animation<Offset> _slideAnimation;
