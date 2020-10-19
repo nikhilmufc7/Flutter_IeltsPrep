@@ -56,7 +56,7 @@ class _ReadingScreenState extends State<ReadingScreen>
 
   @override
   void initState() {
-    _tabController = TabController(length: 10, vsync: this);
+    _tabController = TabController(length: 9, vsync: this);
     _getcheckedReadingItems();
 
     super.initState();
@@ -188,16 +188,16 @@ class _ReadingScreenState extends State<ReadingScreen>
                 ),
               )),
             ),
-            Tab(
-              child: FittedBox(
-                  child: Padding(
-                padding: EdgeInsets.all(ScreenUtil().setHeight(8)),
-                child: Text(
-                  "Categorization",
-                  textAlign: TextAlign.center,
-                ),
-              )),
-            ),
+            // Tab(
+            //   child: FittedBox(
+            //       child: Padding(
+            //     padding: EdgeInsets.all(ScreenUtil().setHeight(8)),
+            //     child: Text(
+            //       "Categorization",
+            //       textAlign: TextAlign.center,
+            //     ),
+            //   )),
+            // ),
             Tab(
               child: FittedBox(
                   child: Padding(
@@ -232,7 +232,7 @@ class _ReadingScreenState extends State<ReadingScreen>
               paragraphDashboard(context),
               mcqDashboard(context),
               selectionDashboard(context),
-              categoryDashboard(context),
+              // categoryDashboard(context),
               endingsDashboard(context),
               saqDashboard(context),
             ],
