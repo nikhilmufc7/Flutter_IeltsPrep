@@ -183,109 +183,114 @@ class _PremiumScreenState extends State<PremiumScreen> {
     double screenWidth = MediaQuery.of(context).size.width - 20;
     double buttonWidth = (screenWidth / 3) - 20;
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Container(
-        padding: EdgeInsets.all(10.0),
-        child: ListView(
-          children: <Widget>[
-            // Column(
-            //   crossAxisAlignment: CrossAxisAlignment.start,
-            //   mainAxisAlignment: MainAxisAlignment.start,
-            //   children: <Widget>[
-            //     Column(
-            //       children: this._renderInApps(),
-            //     ),
-            //   ],
-            // ),
-            IconButton(
-              alignment: Alignment.topLeft,
-              icon: Icon(Icons.arrow_back_ios),
-              color: Colors.black,
-              onPressed: () =>
-                  Navigator.pushReplacementNamed(context, RoutePaths.home),
-            ),
-            Image(
-              image: AssetImage(
-                "assets/premium.jpg",
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.pushReplacementNamed(context, RoutePaths.home);
+      },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Container(
+          padding: EdgeInsets.all(10.0),
+          child: ListView(
+            children: <Widget>[
+              // Column(
+              //   crossAxisAlignment: CrossAxisAlignment.start,
+              //   mainAxisAlignment: MainAxisAlignment.start,
+              //   children: <Widget>[
+              //     Column(
+              //       children: this._renderInApps(),
+              //     ),
+              //   ],
+              // ),
+              IconButton(
+                alignment: Alignment.topLeft,
+                icon: Icon(Icons.arrow_back_ios),
+                color: Colors.black,
+                onPressed: () =>
+                    Navigator.pushReplacementNamed(context, RoutePaths.home),
               ),
-              height: ScreenUtil().setHeight(200),
-              width: double.infinity,
-            ),
-            Text(
-              'Vault Premium',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: ScreenUtil().setSp(20)),
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.verified_user,
-                color: Colors.deepPurpleAccent,
-              ),
-              title: Text(
-                'No Ads',
-                style: TextStyle(
-                    color: Colors.deepPurpleAccent,
-                    fontSize: ScreenUtil().setSp(16),
-                    fontWeight: FontWeight.w600),
-              ),
-              subtitle: Text(
-                'Concentrate just on studying!',
-                style: TextStyle(
-                    color: Colors.black87, fontSize: ScreenUtil().setSp(14)),
-              ),
-            ),
-
-            ListTile(
-              leading: Icon(
-                Icons.verified_user,
-                color: Colors.deepPurpleAccent,
-              ),
-              title: Text(
-                'Unlock discussion forums',
-                style: TextStyle(
-                    color: Colors.deepPurpleAccent,
-                    fontSize: ScreenUtil().setSp(16),
-                    fontWeight: FontWeight.w600),
-              ),
-              subtitle: Text(
-                'Ask questions, get help, essay reviews',
-                style: TextStyle(
-                    color: Colors.black87, fontSize: ScreenUtil().setSp(14)),
-              ),
-            ),
-
-            ListTile(
-              leading: Icon(
-                Icons.verified_user,
-                color: Colors.deepPurpleAccent,
-              ),
-              title: Text(
-                'Support Development',
-                style: TextStyle(
-                    color: Colors.deepPurpleAccent,
-                    fontSize: ScreenUtil().setSp(16),
-                    fontWeight: FontWeight.w600),
-              ),
-              subtitle: Text(
-                'Your help keeps us working on this project further',
-                style: TextStyle(
-                    color: Colors.black87, fontSize: ScreenUtil().setSp(14)),
-              ),
-            ),
-
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Column(
-                  children: this._button(),
+              Image(
+                image: AssetImage(
+                  "assets/premium.jpg",
                 ),
-              ],
-            ),
-          ],
+                height: ScreenUtil().setHeight(200),
+                width: double.infinity,
+              ),
+              Text(
+                'Vault Premium',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: ScreenUtil().setSp(20)),
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.verified_user,
+                  color: Colors.deepPurpleAccent,
+                ),
+                title: Text(
+                  'No Ads',
+                  style: TextStyle(
+                      color: Colors.deepPurpleAccent,
+                      fontSize: ScreenUtil().setSp(16),
+                      fontWeight: FontWeight.w600),
+                ),
+                subtitle: Text(
+                  'Concentrate just on studying!',
+                  style: TextStyle(
+                      color: Colors.black87, fontSize: ScreenUtil().setSp(14)),
+                ),
+              ),
+
+              ListTile(
+                leading: Icon(
+                  Icons.verified_user,
+                  color: Colors.deepPurpleAccent,
+                ),
+                title: Text(
+                  'Unlock discussion forums',
+                  style: TextStyle(
+                      color: Colors.deepPurpleAccent,
+                      fontSize: ScreenUtil().setSp(16),
+                      fontWeight: FontWeight.w600),
+                ),
+                subtitle: Text(
+                  'Ask questions, get help, essay reviews',
+                  style: TextStyle(
+                      color: Colors.black87, fontSize: ScreenUtil().setSp(14)),
+                ),
+              ),
+
+              ListTile(
+                leading: Icon(
+                  Icons.verified_user,
+                  color: Colors.deepPurpleAccent,
+                ),
+                title: Text(
+                  'Support Development',
+                  style: TextStyle(
+                      color: Colors.deepPurpleAccent,
+                      fontSize: ScreenUtil().setSp(16),
+                      fontWeight: FontWeight.w600),
+                ),
+                subtitle: Text(
+                  'Your help keeps us working on this project further',
+                  style: TextStyle(
+                      color: Colors.black87, fontSize: ScreenUtil().setSp(14)),
+                ),
+              ),
+
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Column(
+                    children: this._button(),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

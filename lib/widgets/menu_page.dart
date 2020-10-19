@@ -129,22 +129,21 @@ class MenuPage extends StatelessWidget {
               }).toList(),
             ),
             Spacer(),
-            if (premium_user == false)
-              Padding(
-                padding: EdgeInsets.all(ScreenUtil().setWidth(3)),
-                child: ListTile(
-                  onTap: () => Navigator.pushNamed(context, RoutePaths.premium),
-                  leading: Icon(
-                    Icons.all_inclusive,
-                    color: Colors.white,
-                    size: ScreenUtil().setSp(20),
-                  ),
-                  title: Text('Premium',
-                      style: TextStyle(
-                          fontSize: ScreenUtil().setSp(14),
-                          color: Colors.white)),
+            // if (premium_user == false)
+            Padding(
+              padding: EdgeInsets.all(ScreenUtil().setWidth(3)),
+              child: ListTile(
+                onTap: () => Navigator.pushNamed(context, RoutePaths.premium),
+                leading: Icon(
+                  Icons.all_inclusive,
+                  color: Colors.white,
+                  size: ScreenUtil().setSp(20),
                 ),
+                title: Text('Premium',
+                    style: TextStyle(
+                        fontSize: ScreenUtil().setSp(14), color: Colors.white)),
               ),
+            ),
             Padding(
               padding: EdgeInsets.all(ScreenUtil().setWidth(3)),
               child: ListTile(
