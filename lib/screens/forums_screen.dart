@@ -66,7 +66,7 @@ class _ForumsScreenState extends State<ForumsScreen> {
     Size size = MediaQuery.of(context).size;
     double screenHeight = size.height;
     double screenWidth = size.width;
-    if (premium_user == false) {
+    if (premium_user) {
       return Scaffold(
         backgroundColor: Theme.of(context).splashColor,
         key: _scaffoldKey,
