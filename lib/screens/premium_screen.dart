@@ -3,11 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:io';
-
 import 'package:flutter/services.dart';
 import 'package:flutter_inapp_purchase/flutter_inapp_purchase.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:ielts/screens/home_screen.dart';
+import 'package:ielts/utils/app_constants.dart';
 
 class PremiumScreen extends StatefulWidget {
   @override
@@ -116,7 +116,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
       await FlutterInappPurchase.instance
           .acknowledgePurchaseAndroid(productItem.purchaseToken);
 
-      Navigator.pop(context);
+      Navigator.pushReplacementNamed(context, RoutePaths.home);
     });
 
     _purchaseErrorSubscription =
@@ -200,9 +200,10 @@ class _PremiumScreenState extends State<PremiumScreen> {
             // ),
             IconButton(
               alignment: Alignment.topLeft,
-              icon: Icon(Icons.arrow_back),
+              icon: Icon(Icons.arrow_back_ios),
               color: Colors.black,
-              onPressed: () => Navigator.pop(context),
+              onPressed: () =>
+                  Navigator.pushReplacementNamed(context, RoutePaths.home),
             ),
             Image(
               image: AssetImage(
