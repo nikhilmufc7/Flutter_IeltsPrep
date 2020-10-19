@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:ielts/services/admob_service.dart';
 import 'package:ielts/utils/app_constants.dart';
 
@@ -87,7 +88,8 @@ class _HomeScreenState extends State<HomeScreen>
 //If you want to set the font size is scaled according to the system's "font size" assist option
     ScreenUtil.init(context, width: 414, height: 896, allowFontScaling: true);
     return WillPopScope(
-      onWillPop: () async => false,
+      onWillPop: () async =>
+          SystemChannels.platform.invokeMethod('SystemNavigator.pop'),
       child: Scaffold(
         backgroundColor: backgroundColor,
         body: Stack(
