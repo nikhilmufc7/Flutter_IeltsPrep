@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ielts/utils/app_constants.dart';
 import 'package:ielts/locator.dart';
 import 'package:ielts/utils/themeChange.dart';
-import 'package:ielts/utils/router.dart';
+import 'package:ielts/utils/router.dart' as rt;
 import 'package:ielts/utils/theme.dart';
 import 'package:ielts/viewModels/blogCrudModel.dart';
 import 'package:ielts/viewModels/listeningCrudModel.dart';
@@ -60,7 +60,7 @@ class MyApp extends StatelessWidget {
               title: 'IELTS',
               initialRoute: RoutePaths.root,
               theme: themeNotifier.getTheme(),
-              onGenerateRoute: Router.generateRoute,
+              onGenerateRoute: rt.Router.generateRoute,
             );
           },
         ));
