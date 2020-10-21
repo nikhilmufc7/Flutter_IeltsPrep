@@ -118,9 +118,11 @@ The mail screen contains 4 different categories of exercises: **Reading**, **Wri
 The **IELTS** ***Vault***  team is:
 
 **Nikhil Singh**
+
 Developer
 
 **Mrudula Vable**
+
 Lead content strategist
 
 <br>
