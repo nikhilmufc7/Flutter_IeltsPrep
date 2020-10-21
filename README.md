@@ -19,7 +19,7 @@ Use this [Google Play link](https://play.google.com/store/apps/details?id=tech.i
 
 <br>
 
-<img src="screenshots/signup.png" width="300" height="auto" align="left" style="border: solid 1px #000;">
+<img src="screenshots/signup.png" width="300" height="auto" style="display: block;">
 
 <br>
 Signing in brings you to the main page.
@@ -30,7 +30,7 @@ Signing in brings you to the main page.
 
 ## Main page
 
-<img src="screenshots/main_screen.png" width="300" height="auto" align="left" style="border: solid 1px #000;">
+<img src="screenshots/main_screen.png" width="300" height="auto" style="display: block;">
 
 <br>
 
@@ -38,28 +38,30 @@ The mail screen contains 4 different categories of exercises: **Reading**, **Wri
 
 - **Reading -** This section tests your ability to read and understand a written passage, and to answer questions about it. *Reading* contains 10 sub-categories for exercises: *True/False*, *Sentence Completion*, *Heading Competition*, *Summary Completion*, *Matching Paragraphs*, *MCQs*, *List Selection*, *Categorization*, *Matching Endings*, and *Short Answers.*
 
-  <img src="screenshots/exercise_reading.png" width="260" height="auto" align="left" style="border: solid 1px #000; display: block;">
+  <img src="screenshots/exercise_reading.png" width="260" height="auto" style="display: block;">
 
-  <br>Read the passage and practice answering the questions at the end.
+  <br>
+  
+  Read the passage and practice answering the questions at the end.
 
-  <img src="screenshots/exercise_reading_2.png" width="260" height="auto" align="left" style="border: solid 1px #000; display: block;">
+  <img src="screenshots/exercise_reading_2.png" width="260" height="auto" style="display: block;">
 
   <br>
 
 - **Writing -** This section provides a series of writing prompts to practice the written section of the IELTS. 
 
-  <img src="screenshots/exercise_writing.png" width="260" height="auto" align="left" style="border: solid 1px #000; display: block;">
+  <img src="screenshots/exercise_writing.png" width="260" height="auto" style="display: block;">
 
   <br>
   
 - **Listening -** This section contains a series of audio recordings, followed by questions.
 
-  <img src="screenshots/exercise_listening.png" width="260" height="auto" align="left" style="border: solid 1px #000; display: block;">
+  <img src="screenshots/exercise_listening.png" width="260" height="auto" style="display: block;">
 
   <br>
 - **Speaking -** This section provides a series of speaking prompts to practice the spoken section of the IELTS.
 
-  <img src="screenshots/exercise_speaking.png" width="260" height="auto" align="left" style="border: solid 1px #000; display: block;">
+  <img src="screenshots/exercise_speaking.png" width="260" height="auto" style="display: block;">
 
   <br>
 
@@ -69,15 +71,15 @@ The mail screen contains 4 different categories of exercises: **Reading**, **Wri
 
 ## Side menu
 
-<img src="screenshots/menu.png" width="300" height="auto" align="left" style="border: solid 1px #000;">
+<img src="screenshots/menu.png" width="300" height="auto" style="display: block;">
 
 <br>
 
 - **Home -** Brings you back to the main page.
 
-- **Vocabulary -** Lets you practice English vocabulary with flash cards. Click the *audio* icon to hear the word out loud.
+- **Vocabulary -** Lets you practice English vocabulary with flash cards. Click the *audio* icon to hear the word spoken out loud.
 
-  <img src="screenshots/vocabulary.png" width="200" height="auto" align="left" style="border: solid 1px #000; display: block;">
+  <img src="screenshots/vocabulary.png" width="200" height="auto" style="display: block;">
 
   <br>
 
@@ -85,15 +87,17 @@ The mail screen contains 4 different categories of exercises: **Reading**, **Wri
 
 - **Quiz -** Take a practice quiz here!
 
-  <img src="screenshots/quiz.png" width="200" height="auto" align="left" style="border: solid 1px #000; display: block;">
+  <img src="screenshots/quiz.png" width="200" height="auto" style="display: block;">
   
   <br>
   
   Quizzes consist of 10 multiple-choice questions. They can be taken as many times as you wish.
   
-  <img src="screenshots/quiz_2.png" width="200" height="auto" align="left" style="border: solid 1px #000; display: block;">
+  <img src="screenshots/quiz_2.png" width="200" height="auto" style="display: block;">
   
-  <img src="screenshots/quiz_3.png" width="200" height="auto" align="left" style="border: solid 1px #000; display: block;">
+  <br>
+  
+  <img src="screenshots/quiz_3.png" width="200" height="auto" style="display: block;">
   
   <br>
   
@@ -101,7 +105,7 @@ The mail screen contains 4 different categories of exercises: **Reading**, **Wri
 
 - **Premium -** Purchasing **Vault Premium** removes ads and unlocks *Discussions*. You may purchase the upgrade from *Google Play* for $2.50 USD.
 
-  <img src="screenshots/premium.png" width="200" height="auto" align="left" style="border: solid 1px #000; display: block;">
+  <img src="screenshots/premium.png" width="200" height="auto" style="display: block;">
   
   <br>
 
