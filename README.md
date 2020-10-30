@@ -13,6 +13,21 @@
 <br>
 <br>
 
+## Tech Stack
+-  Flutter
+-  Firebase
+-  In App Purchases
+-  Cloud Functions
+-  Google Cloud Messaging
+-  AdMob
+-  CodeMagic for CI/CD
+-  Reactive Programming
+-  Clean Code Architecture
+-  Flutter Web For Admin Panel
+-  Deployed to PlayStore
+
+
+
 ## Setup
 
 Use this [Google Play link](https://play.google.com/store/apps/details?id=tech.ieltsvault.ielts) to download and install the app on your Android device. Create a login using your name, email, and password. You may also create an account using your Google credentials. 
