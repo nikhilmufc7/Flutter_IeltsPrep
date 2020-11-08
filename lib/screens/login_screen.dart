@@ -321,9 +321,51 @@ class _LoginScreenState extends State<LoginScreen>
               child: Text(
                 'Sign in with Google',
                 style: TextStyle(
-                  fontSize: ScreenUtil().setSp(20),
-                  color: Colors.grey,
-                ),
+                    fontSize: ScreenUtil().setSp(20),
+                    color: Colors.grey,
+                    fontWeight: FontWeight.w400),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _anonymousLoginButton() {
+    return OutlineButton(
+      splashColor: Colors.grey,
+      onPressed: () async {
+        try {
+          await anonymousSignIn();
+
+          Navigator.pushReplacementNamed(context, RoutePaths.home);
+        } catch (error) {
+          print(error);
+        }
+      },
+      // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+      highlightElevation: 0,
+      // borderSide: BorderSide(color: Colors.grey),
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(
+            0, ScreenUtil().setHeight(10), 0, ScreenUtil().setHeight(10)),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Icon(
+              Icons.screen_lock_portrait,
+              color: Colors.black,
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: ScreenUtil().setWidth(10)),
+              child: Text(
+                'Skip Login',
+                style: TextStyle(
+                    fontSize: ScreenUtil().setSp(20),
+                    color: Colors.black,
+                    fontWeight: FontWeight.w700),
               ),
             )
           ],
@@ -491,22 +533,31 @@ class _LoginScreenState extends State<LoginScreen>
                         height: ScreenUtil().setHeight(20),
                       ),
                       _submitButton(),
-                      MaterialButton(
-                        onPressed: () {
-                          Navigator.pushNamed(
-                              context, RoutePaths.resetpassword);
-                        },
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                              vertical: ScreenUtil().setHeight(10)),
-                          alignment: Alignment.centerRight,
-                          child: Text('Forgot Password ?',
-                              style: TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.w500)),
+                      Visibility(
+                        visible: _authMode == AuthMode.Login,
+                        child: MaterialButton(
+                          onPressed: () {
+                            Navigator.pushNamed(
+                                context, RoutePaths.resetpassword);
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: ScreenUtil().setHeight(10)),
+                            alignment: Alignment.centerRight,
+                            child: Text('Forgot Password ?',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: ScreenUtil().setSp(14),
+                                    fontWeight: FontWeight.w500)),
+                          ),
                         ),
                       ),
                       _divider(),
                       _googleButton(),
+                      SizedBox(
+                        height: ScreenUtil().setHeight(20),
+                      ),
+                      _anonymousLoginButton(),
                       Expanded(
                         flex: 2,
                         child: SizedBox(),

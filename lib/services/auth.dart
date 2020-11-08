@@ -154,6 +154,25 @@ Future<String> signUp(String email, String password, String firstName) async {
   return user.uid;
 }
 
+Future<String> anonymousSignIn() async {
+  FirebaseUser user;
+
+  try {
+    AuthResult result = await _auth.signInAnonymously();
+
+    userId = result.user.uid;
+
+    Firestore.instance.collection('users').document(userId).setData({
+      "uid": userId,
+      "firstName": 'Guest',
+      "email": 'test@email.com',
+      "userImage": userImage,
+    });
+  } catch (error) {
+    print(error);
+  }
+}
+
 void signOutGoogle(context) async {
   await _auth.signOut();
   await googleSignIn.signOut();

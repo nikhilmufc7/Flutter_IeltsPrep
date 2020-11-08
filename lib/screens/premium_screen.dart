@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_inapp_purchase/flutter_inapp_purchase.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:ielts/screens/home_screen.dart';
+import 'package:ielts/services/auth.dart';
 import 'package:ielts/utils/app_constants.dart';
 
 class PremiumScreen extends StatefulWidget {
@@ -15,6 +16,7 @@ class PremiumScreen extends StatefulWidget {
 }
 
 class _PremiumScreenState extends State<PremiumScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   bool _premiumUser = false;
   StreamSubscription _purchaseUpdatedSubscription;
   StreamSubscription _purchaseErrorSubscription;
@@ -189,6 +191,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
       },
       child: Scaffold(
         backgroundColor: Colors.white,
+        key: _scaffoldKey,
         body: Container(
           padding: EdgeInsets.all(10.0),
           child: ListView(
@@ -309,8 +312,44 @@ class _PremiumScreenState extends State<PremiumScreen> {
                       child: Padding(
                         padding: EdgeInsets.all(ScreenUtil().setHeight(20)),
                         child: FlatButton(
-                          onPressed: () {
-                            this._requestPurchase(item);
+                          onPressed: () async {
+                            final FirebaseAuth _auth = FirebaseAuth.instance;
+                            final FirebaseUser user = await _auth.currentUser();
+                            var userName;
+                            var document = Firestore.instance
+                                .collection('users')
+                                .document(user.uid);
+                            await document.snapshots().forEach((element) {
+                              userName = element.data["firstName"];
+                              // print(userName);
+                              if (userName == 'Guest') {
+                                _scaffoldKey.currentState.showSnackBar(SnackBar(
+                                    content: InkWell(
+                                  onTap: () {
+                                    signOutGoogle(context);
+                                  },
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        'You need to login to purchase premium',
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        'Login Now',
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold),
+                                      )
+                                    ],
+                                  ),
+                                )));
+                              } else {
+                                this._requestPurchase(item);
+                              }
+                            });
+                            print(userName);
                           },
                           child: Container(
                             height: ScreenUtil().setHeight(50),
