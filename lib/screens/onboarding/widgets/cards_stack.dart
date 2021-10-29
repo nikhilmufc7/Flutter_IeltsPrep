@@ -42,7 +42,7 @@ class CardsStack extends StatelessWidget {
       ),
       child: Stack(
         alignment: AlignmentDirectional.center,
-        overflow: Overflow.visible,
+        clipBehavior: Clip.hardEdge,
         children: <Widget>[
           SlideTransition(
             position: darkCardOffsetAnimation,

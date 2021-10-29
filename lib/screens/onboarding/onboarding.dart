@@ -17,7 +17,6 @@ import 'package:ielts/screens/onboarding/widgets/next_page_button.dart';
 import 'package:ielts/screens/onboarding/widgets/onboarding_page_indicator.dart';
 import 'package:ielts/screens/onboarding/widgets/ripple.dart';
 import 'package:ielts/screens/premium_screen.dart';
-import 'package:ielts/screens/quiz_screen.dart';
 import 'package:ielts/utils/constants.dart';
 
 class Onboarding extends StatefulWidget {

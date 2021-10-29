@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ielts/screens/onboarding/widgets/logo.dart';
 import 'package:ielts/utils/constants.dart';
 
 class Header extends StatelessWidget {
