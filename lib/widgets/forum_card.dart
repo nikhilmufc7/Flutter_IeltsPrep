@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ielts/screens/chat_screen.dart';
-import 'package:ielts/widgets/circular_image.dart';
 
 import 'package:intl/intl.dart';
 

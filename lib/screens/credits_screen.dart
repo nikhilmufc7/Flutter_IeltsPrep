@@ -161,7 +161,7 @@ class CreditsScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                RaisedButton(
+                MaterialButton(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
                   color: Colors.deepPurple,
@@ -175,7 +175,7 @@ class CreditsScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                RaisedButton(
+                MaterialButton(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
                   color: Colors.deepPurple,
