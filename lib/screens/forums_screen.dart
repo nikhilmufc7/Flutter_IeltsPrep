@@ -165,6 +165,7 @@ class _ForumsScreenState extends State<ForumsScreen> {
                         if (val.isEmpty || val.length < 5) {
                           return 'Please enter a title';
                         }
+                        return '';
                       },
                       onChanged: (val) => _newTitle = val,
                     ),
@@ -220,7 +221,7 @@ class _ForumsScreenState extends State<ForumsScreen> {
                   Visibility(visible: _errorVisible, child: Text('Fix errors')),
                   Padding(
                     padding: EdgeInsets.only(top: ScreenUtil().setHeight(15)),
-                    child: RaisedButton(
+                    child: MaterialButton(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
                       splashColor: Colors.greenAccent,
