@@ -12,6 +12,7 @@ import 'package:ielts/widgets/menu_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 final Color backgroundColor = Color(0xFF21BFBD);
+// ignore: non_constant_identifier_names
 bool premium_user = false;
 
 class HomeScreen extends StatefulWidget {
