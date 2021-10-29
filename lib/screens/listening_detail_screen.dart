@@ -540,7 +540,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
                             ),
                             Align(
                               alignment: Alignment.bottomCenter,
-                              child: RaisedButton(
+                              child: MaterialButton(
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10)),
                                 onPressed: () {
@@ -910,7 +910,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
 
                             Align(
                               alignment: Alignment.bottomCenter,
-                              child: RaisedButton(
+                              child: MaterialButton(
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(
                                         ScreenUtil().setWidth(10))),
@@ -1363,7 +1363,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
 
                             Align(
                               alignment: Alignment.bottomCenter,
-                              child: RaisedButton(
+                              child: MaterialButton(
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(
                                         ScreenUtil().setHeight(10))),
@@ -1776,7 +1776,7 @@ class _ListeningDetailScreenState extends State<ListeningDetailScreen>
 
                             Align(
                               alignment: Alignment.bottomCenter,
-                              child: RaisedButton(
+                              child: MaterialButton(
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(
                                         ScreenUtil().setHeight(10))),
