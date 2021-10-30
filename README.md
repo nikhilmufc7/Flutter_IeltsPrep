@@ -24,6 +24,8 @@
 -  Reactive Programming
 -  Clean Code Architecture
 -  Flutter Web For Admin Panel
+-  Heroku
+-  Digital Ocean
 -  Deployed to PlayStore
 
 
