@@ -43,7 +43,7 @@ Signing in brings you to the main page.
 <br>
 <br>
 
-## Main page
+## Home page
 
 <img src="screenshots/main_screen.png" width="300" height="auto" style="display: block;">
 
