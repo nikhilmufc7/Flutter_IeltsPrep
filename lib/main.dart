@@ -16,7 +16,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
-  // firebase crashlytics
+  // firebase crashlytics enablement
   Crashlytics.instance.enableInDevMode = true;
 
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
